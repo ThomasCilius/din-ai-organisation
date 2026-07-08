@@ -93,6 +93,7 @@ pre.cmd{background:var(--code-bg);color:var(--code-ink);border-radius:10px;paddi
   overflow-x:auto;font-family:var(--mono);font-size:12.5px;line-height:1.7}
 pre.cmd .c{color:#9db98f}
 pre.brain{max-height:360px;overflow:auto;margin-top:12px;font-size:12px;line-height:1.55}
+pre.cmd.wrapline{white-space:pre-wrap;word-break:break-word}
 .brainbar{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
 .dep{padding:40px 0 8px;scroll-margin-top:76px}
 .dep__head{display:flex;align-items:center;gap:16px;margin:0 0 22px}
@@ -225,7 +226,7 @@ footer a{color:var(--accent-ink)}
       <div class="icard">
         <div class="brainbar">
           <h3 style="margin:0">Prompten</h3>
-          <button id="copybrain" class="btn btn--primary" type="button" style="padding:8px 16px;font-size:14px">Kopiér prompt</button>
+          <button class="btn btn--primary copybtn" data-copy="brainprompt" type="button" style="padding:8px 16px;font-size:14px">Kopiér prompt</button>
         </div>
         <p class="sub" style="margin-top:8px">Kopiér alt nedenfor ind i den tomme Cowork-mappe.</p>
         <pre class="cmd brain" id="brainprompt">Jeg vil bygge et &quot;company brain&quot; til min virksomhed - en levende vidensbase i
@@ -380,14 +381,18 @@ ARBEJDSREGLER (alt arbejde i denne mappe)
     <div class="install__cols">
       <div class="icard">
         <h3>Claude Code</h3>
-        <p class="sub">Klon repoet og kopiér de afdelinger, du vil bruge, ind i din skills-mappe.</p>
-        <div class="step"><b>1</b><div>Klon repoet<pre class="cmd">git clone https://github.com/ThomasCilius/din-ai-organisation.git</pre></div></div>
-        <div class="step"><b>2</b><div>Kopiér kernen (Viden &amp; Data + Direktionen) ind i <span class="inline">~/.claude/skills/</span><pre class="cmd">mkdir -p ~/.claude/skills
+        <p class="sub">Nemmest: giv Claude Code repoets URL og bed den installere — så klarer den klon og kopiering for dig.</p>
+        <div class="brainbar">
+          <span style="font-weight:600;font-size:13.5px">Indsæt i Claude Code</span>
+          <button class="btn btn--primary copybtn" data-copy="ccprompt" type="button" style="padding:8px 16px;font-size:14px">Kopiér</button>
+        </div>
+        <pre class="cmd wrapline" id="ccprompt">Installer Claude Agent Skills fra dette repo i min skills-mappe: https://github.com/ThomasCilius/din-ai-organisation - klon repoet, vis mig de 10 afdelinger, og kopiér de skill-mapper jeg vælger ind i ~/.claude/skills/ (foreslå kernen først: 03-viden-og-data + 01-direktionen).</pre>
+        <p class="sub" style="margin-top:18px">Eller klon manuelt og kopiér kernen ind:</p>
+        <pre class="cmd">git clone https://github.com/ThomasCilius/din-ai-organisation.git
+mkdir -p ~/.claude/skills
 cp -r din-ai-organisation/03-viden-og-data/*  ~/.claude/skills/
-cp -r din-ai-organisation/01-direktionen/*    ~/.claude/skills/
-<span class="c"># gentag med de afdelinger du vil bruge, fx:</span>
-cp -r din-ai-organisation/07-marketing/*      ~/.claude/skills/</pre></div></div>
-        <div class="step"><b>3</b><div>Start Claude Code i dit projekt — skillsene trigger automatisk på danske og engelske sætninger. Eller læg dem i projektets egen <span class="inline">.claude/skills/</span>.</div></div>
+cp -r din-ai-organisation/01-direktionen/*    ~/.claude/skills/</pre>
+        <p class="sub" style="margin-top:10px">Skillene trigger automatisk på danske og engelske sætninger. Læg dem evt. i projektets egen <span class="inline">.claude/skills/</span>.</p>
       </div>
       <div class="icard">
         <h3>Claude Desktop</h3>
@@ -770,14 +775,17 @@ cp -r din-ai-organisation/07-marketing/*      ~/.claude/skills/</pre></div></div
       if(el)el.scrollIntoView({behavior:'smooth',block:'start'});
     });
   });
-  var cb=document.getElementById('copybrain');
-  if(cb){cb.addEventListener('click',function(){
-    var t=document.getElementById('brainprompt').textContent;
-    function ok(){cb.textContent='Kopieret \u2713';setTimeout(function(){cb.textContent='Kopiér prompt';},1800);}
-    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(ok,function(){});}
-    else{var r=document.createRange();r.selectNode(document.getElementById('brainprompt'));
-      var s=getSelection();s.removeAllRanges();s.addRange(r);try{document.execCommand('copy');ok();}catch(e){}s.removeAllRanges();}
-  });}
+  document.querySelectorAll('.copybtn').forEach(function(cb){
+    var label=cb.textContent;
+    cb.addEventListener('click',function(){
+      var el=document.getElementById(cb.dataset.copy); if(!el)return;
+      var t=el.textContent;
+      function ok(){cb.textContent='Kopieret \u2713';setTimeout(function(){cb.textContent=label;},1800);}
+      if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(ok,function(){});}
+      else{var r=document.createRange();r.selectNode(el);var s=getSelection();s.removeAllRanges();s.addRange(r);
+        try{document.execCommand('copy');ok();}catch(e){}s.removeAllRanges();}
+    });
+  });
   var q=document.getElementById('q'), deps=document.querySelectorAll('.dep'),
       cards=document.querySelectorAll('.card'), nores=document.getElementById('noresult');
   q.addEventListener('input',function(){

@@ -151,7 +151,20 @@ Skills uploades pr. stk. som en zip-fil under **Settings > Capabilities > Skills
 
 ### Claude Code
 
-Kopiér skill-mapperne direkte ind i skills-stien:
+**Nemmest - lad Claude Code installere.** Indsæt denne ene linje i Claude Code:
+
+```
+Installer Claude Agent Skills fra dette repo i min skills-mappe: https://github.com/ThomasCilius/din-ai-organisation - klon repoet, vis mig de 10 afdelinger, og kopiér de skill-mapper jeg vælger ind i ~/.claude/skills/ (foreslå kernen først: 03-viden-og-data + 01-direktionen).
+```
+
+**Eller manuelt.** Klon repoet og kopiér skill-mapperne direkte ind i skills-stien:
+
+```
+git clone https://github.com/ThomasCilius/din-ai-organisation.git
+mkdir -p ~/.claude/skills
+cp -r din-ai-organisation/03-viden-og-data/*  ~/.claude/skills/
+cp -r din-ai-organisation/01-direktionen/*    ~/.claude/skills/
+```
 
 - Globalt for alle projekter: `~/.claude/skills/`
 - Kun for ét projekt: projektets `.claude/skills/`
