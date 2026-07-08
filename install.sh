@@ -17,6 +17,7 @@ CLAUDE_HOME="${CLAUDE_HOME:-$HOME/.claude}"
 SKILLS_DIR="$CLAUDE_HOME/skills"
 AGENTS_DIR="$CLAUDE_HOME/agents"
 COMMANDS_DIR="$CLAUDE_HOME/commands"
+RULES_DIR="$CLAUDE_HOME/rules/din-ai-org"
 PKG_DIR="$CLAUDE_HOME/din-ai-org"
 STASH="$PKG_DIR/udvikler-lager"
 STATE="$PKG_DIR/install-state.json"
@@ -86,10 +87,13 @@ def clean(ev):
 def add(ev, script):
     hooks.setdefault(ev, []).append(
         {"matcher": "*", "hooks": [{"type": "command", "command": f"node '{pkg}/hooks/{script}'"}]})
-for ev in ('SessionStart', 'Stop'):
+for ev in ('SessionStart', 'Stop', 'PreToolUse'):
     clean(ev)
 add('SessionStart', 'brain-inject.js'); add('SessionStart', 'session-load.js')
-add('Stop', 'session-save.js');        add('Stop', 'notify-done.js')
+add('SessionStart', 'rules-inject.js'); add('SessionStart', 'mcp-health.js')
+add('Stop', 'session-save.js');         add('Stop', 'notify-done.js')
+hooks.setdefault('PreToolUse', []).append(
+    {"matcher": "Write|Edit", "hooks": [{"type": "command", "command": f"node '{pkg}/hooks/brain-guard.js'"}]})
 for ev in list(hooks):
     if not hooks[ev]: del hooks[ev]
 os.makedirs(os.path.dirname(settings), exist_ok=True)
@@ -163,7 +167,7 @@ do_install(){
 
   # 3) Udvikler-lager: stage dev-lagets skills, agenter og commands (alle profiler).
   mkdir -p "$STASH"
-  for t in skills agents commands; do
+  for t in skills agents commands rules; do
     [ -d "$REPO_ROOT/dev-tier/$t" ] && { mkdir -p "$STASH/$t"; cp -R "$REPO_ROOT/dev-tier/$t/." "$STASH/$t/"; }
   done
 
@@ -231,6 +235,7 @@ do_activate_dev(){
   _activate_type skills   "$SKILLS_DIR"   managedDevSkills
   _activate_type agents   "$AGENTS_DIR"   managedDevAgents
   _activate_type commands "$COMMANDS_DIR" managedDevCommands
+  _activate_type rules    "$RULES_DIR"    managedDevRules
 }
 
 _remove_list(){
@@ -249,6 +254,8 @@ do_uninstall(){
   t=$((t + $(_remove_list managedDevSkills   "$SKILLS_DIR")))
   t=$((t + $(_remove_list managedDevAgents   "$AGENTS_DIR")))
   t=$((t + $(_remove_list managedDevCommands "$COMMANDS_DIR")))
+  t=$((t + $(_remove_list managedDevRules    "$RULES_DIR")))
+  [ -d "$RULES_DIR" ] && rm -rf "$RULES_DIR"   # namespaced, helt vores egen
   unwire_hooks
   rm -rf "$PKG_DIR"
   log "Fjernet $t filer (skills, dev-lag, hooks) + pakke-mappen. Dine egne filer er uroert."

@@ -166,9 +166,9 @@ cd din-ai-organisation
 - **Install-state.** Alt noteres som `managed` i `~/.claude/din-ai-org/install-state.json`. Din memory, dine regler og dine egne skills står urørt.
 - **Udvikler-lag efter behov.** Vælger du `operatoer`, ligger dev-laget klar i `udvikler-lager/` og tændes senere med `aktiver-udvikler` uden download - hvis du begynder at kode mere.
 - **Ren afinstallation.** `uninstall` fjerner kun det, installeren lagde.
-- **Hooks-lag (levende hjerne).** Installeren wirer merge-sikkert tre hooks ind i `settings.json`: **brain-inject** (hjernen indlæses ambient ved sessionsstart), **kontinuitet** (session-save/load, "hvor vi slap" pr. mappe) og **notify** (besked når Claude er færdig). `uninstall` fjerner kun vores, aldrig dine andre hooks. Kræver Node. Sæt brain-stien med `DIN_AI_BRAIN=~/company-brain ./install.sh`.
+- **Hooks-lag (levende hjerne).** Installeren wirer merge-sikkert syv hooks ind i `settings.json`: **brain-inject** (ambient genkaldelse), **kontinuitet** (session-save/load, "hvor vi slap"), **notify**, **connector-vagt** (`mcp-health`, opdager tabt login på Notion/Gmail/Shopify m.m.), **brain-guard** (beskytter hjernens kernefiler) og **rules-index** (dev-lagets kodestandarder). `uninstall` fjerner kun vores, aldrig dine andre hooks. Kræver Node. Sæt brain-stien med `DIN_AI_BRAIN=~/company-brain ./install.sh`.
 
-> På plads nu: installer, profiler, staging/aktivering, de tre hooks, de danske indholds-skills (`vidensarkitektur`, `menneskeliggoer`), og dev-lagets **68 skills + 35 agenter + 37 commands** (kurateret ECC-subset under MIT, se `dev-tier/`). Næste build: dev-lagets rules (kræver en indlæsnings-mekanisme), connector-vagt (`mcp-health`) og brain-guard.
+> På plads nu: hele pakken. Modulær installer (profiler, install-state, idempotent opgradering, ren afinstallation), syv hooks, de danske indholds-skills (`vidensarkitektur`, `menneskeliggoer`), og dev-laget med **68 skills + 35 agenter + 37 commands + 89 rules** (kurateret ECC-subset under MIT, se `dev-tier/`). Næste: verificér dev-paritet mod ECC og swap den ud (migration).
 
 ### Claude Desktop
 
