@@ -12,6 +12,12 @@ GIT_BLOCK = ("git clone " + REPO + ".git\n"
   "mkdir -p ~/.claude/skills\n"
   "cp -r din-ai-organisation/03-viden-og-data/*  ~/.claude/skills/\n"
   "cp -r din-ai-organisation/01-direktionen/*    ~/.claude/skills/")
+INSTALLER_BLOCK = ("git clone " + REPO + ".git\n"
+  "cd din-ai-organisation\n"
+  "./install.sh                # operatoer-profil (alle skills)\n"
+  "./install.sh udvikler       # + udvikler-lag (staged)\n"
+  "./install.sh status         # hvad er installeret\n"
+  "./install.sh uninstall      # fjern kun det, installeren lagde")
 
 DEPTS = [
     ("01-direktionen",        "Direktionen",            "Beslutninger & kontrakter", "direktion"),
@@ -350,8 +356,29 @@ footer a{{color:var(--accent-ink)}}
     </div>
   </section>
 
+  <section class="install" id="installer">
+    <p class="section-label" style="margin-top:34px">Installeren — installationen over installationerne</p>
+    <div class="install__cols" style="grid-template-columns:1.05fr 1fr">
+      <div class="icard">
+        <h3>Én kommando, hele organisationen</h3>
+        <p class="sub">En modulær installer lægger de {total} skills på plads, husker præcis hvad den selv har lagt, og rører aldrig dine egne skills. Genkør for at opgradere, afinstallér rent når som helst. Til Claude Code.</p>
+        <div class="step"><b>1</b><div><b>Profiler.</b> <span class="inline">operatoer</span> (standard, forretnings-skills aktive) · <span class="inline">udvikler</span> (lægger dev-laget i staging) · <span class="inline">hele-organisationen</span>. Ét valg, ikke to produkter.</div></div>
+        <div class="step"><b>2</b><div><b>Idempotent opgradering.</b> Genkør <span class="inline">./install.sh</span> efter en ny kursusversion — den opdaterer skills, fjerner udgåede og rører intet af dit eget.</div></div>
+        <div class="step"><b>3</b><div><b>Install-state.</b> Alt den lægger, noteres som <span class="inline">managed</span> i <span class="inline">~/.claude/din-ai-org/install-state.json</span>. Din memory, dine regler og dine egne skills står urørt.</div></div>
+        <div class="step"><b>4</b><div><b>Udvikler-lag efter behov.</b> Vælger du <span class="inline">operatoer</span>, ligger dev-laget klar i <span class="inline">udvikler-lager/</span> — tænd det senere med <span class="inline">./install.sh aktiver-udvikler</span>, uden download, hvis du begynder at kode mere.</div></div>
+        <div class="step"><b>5</b><div><b>Ren afinstallation.</b> <span class="inline">./install.sh uninstall</span> fjerner kun det, installeren lagde — aldrig dine egne filer.</div></div>
+      </div>
+      <div class="icard">
+        <div class="brainbar"><h3 style="margin:0">Kom i gang</h3></div>
+        <p class="sub" style="margin-top:8px">Klon og kør — resten klarer installeren.</p>
+        {copyblock("installerblock", INSTALLER_BLOCK)}
+        <p class="sub" style="margin-top:10px">Bruger du <b>Claude Desktop</b>? Installeren er til Claude Code — se skill-for-skill-upload nedenfor.</p>
+      </div>
+    </div>
+  </section>
+
   <section class="install" id="install">
-    <p class="section-label" style="margin-top:34px">Installér skills — <a href="{REPO}" target="_blank" rel="noopener">{REPO.replace('https://','')}</a>{copyicon_inline(REPO, "Kopiér repo-URL")}</p>
+    <p class="section-label" style="margin-top:34px">Installér skills manuelt — <a href="{REPO}" target="_blank" rel="noopener">{REPO.replace('https://','')}</a>{copyicon_inline(REPO, "Kopiér repo-URL")}</p>
     <div class="install__cols">
       <div class="icard">
         <h3>Claude Code</h3>

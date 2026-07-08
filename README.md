@@ -145,6 +145,28 @@ Installér i lag frem for alt på én gang.
 1. **Kernen først.** Start med **03 Viden & Data** (den ejer hub-filerne, hele organisationen læser) og **01 Direktionen**. Uden kernen mangler de øvrige skills deres fælles kontekst.
 2. **Derefter de valgte afdelinger.** Vælg de 3-5 afdelinger, der matcher din rolle - typisk 25-35 aktive skills. Du kan altid tilføje flere senere.
 
+### Installer (anbefalet, Claude Code)
+
+Den reneste vej: en modulær installer, der lægger skills på plads, husker præcis hvad den selv har lagt, og aldrig rører dine egne skills.
+
+```bash
+git clone https://github.com/ThomasCilius/din-ai-organisation.git
+cd din-ai-organisation
+./install.sh                  # operatoer-profil (alle forretnings-skills)
+./install.sh udvikler         # + udvikler-lag (staged, taendes senere)
+./install.sh status           # hvad er installeret
+./install.sh aktiver-udvikler # aktiver det stagede udvikler-lag
+./install.sh uninstall        # fjern KUN det, installeren lagde
+```
+
+- **Profiler.** `operatoer` (standard) · `udvikler` (lægger dev-laget i staging) · `hele-organisationen`. Ét valg ved install, ikke to produkter.
+- **Idempotent opgradering.** Genkør efter en ny kursusversion: den opdaterer skills, fjerner udgåede og rører intet af dit eget.
+- **Install-state.** Alt noteres som `managed` i `~/.claude/din-ai-org/install-state.json`. Din memory, dine regler og dine egne skills står urørt.
+- **Udvikler-lag efter behov.** Vælger du `operatoer`, ligger dev-laget klar i `udvikler-lager/` og tændes senere med `aktiver-udvikler` uden download - hvis du begynder at kode mere.
+- **Ren afinstallation.** `uninstall` fjerner kun det, installeren lagde.
+
+> Bemærk: dev-laget (kurateret udvikler-subset + de danske indholds-skills `knowledge-ops`, `humanizer`, `skill-creator`) fyldes i næste build. Selve installeren, profilerne og staging-mekanikken er på plads nu.
+
 ### Claude Desktop
 
 Skills uploades pr. stk. som en zip-fil under **Settings > Capabilities > Skills**. Zip den enkelte skill-mappe (mappen med `SKILL.md` og dens `references/`), og upload zippen. Gentag for hver skill i de afdelinger, du har valgt.
