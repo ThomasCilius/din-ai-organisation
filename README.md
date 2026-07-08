@@ -164,8 +164,9 @@ cd din-ai-organisation
 - **Install-state.** Alt noteres som `managed` i `~/.claude/din-ai-org/install-state.json`. Din memory, dine regler og dine egne skills står urørt.
 - **Udvikler-lag efter behov.** Vælger du `operatoer`, ligger dev-laget klar i `udvikler-lager/` og tændes senere med `aktiver-udvikler` uden download - hvis du begynder at kode mere.
 - **Ren afinstallation.** `uninstall` fjerner kun det, installeren lagde.
+- **Hooks-lag (levende hjerne).** Installeren wirer merge-sikkert tre hooks ind i `settings.json`: **brain-inject** (hjernen indlæses ambient ved sessionsstart), **kontinuitet** (session-save/load, "hvor vi slap" pr. mappe) og **notify** (besked når Claude er færdig). `uninstall` fjerner kun vores, aldrig dine andre hooks. Kræver Node. Sæt brain-stien med `DIN_AI_BRAIN=~/company-brain ./install.sh`.
 
-> Bemærk: dev-laget (kurateret udvikler-subset + de danske indholds-skills `knowledge-ops`, `humanizer`, `skill-creator`) fyldes i næste build. Selve installeren, profilerne og staging-mekanikken er på plads nu.
+> Bemærk: næste build tilføjer connector-vagt (`mcp-health`), brain-guard, dev-lagets payload (kurateret ECC-subset) og de danske indholds-skills (`knowledge-ops`, `humanizer`, `skill-creator`). Installer, profiler, staging og de tre hooks er på plads nu.
 
 ### Claude Desktop
 
