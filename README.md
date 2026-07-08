@@ -171,6 +171,15 @@ cp -r din-ai-organisation/01-direktionen/*    ~/.claude/skills/
 
 Hver skill-mappe (fx `virksomhedsprofil/`) lægges som en undermappe med sin `SKILL.md` og `references/` intakt.
 
+### Download pr. afdeling (zip)
+
+Vil du hente en hel afdeling på én gang, ligger færdige zips i [`releases/`](releases) - eller brug **⬇ Zip**-knappen ved hver afdeling på [skills.thomascilius.dk](https://skills.thomascilius.dk/). Hver zip har afdelingens skill-mapper i roden:
+
+- **Claude Code:** pak ud direkte i `~/.claude/skills/` (fx `unzip 03-viden-og-data.zip -d ~/.claude/skills/`).
+- **Claude Desktop:** pak ud, og upload de enkelte skill-mapper hver for sig (Desktop tager én skill ad gangen).
+
+Zips regenereres med `scripts/make-zips.sh` efter ændringer i skills.
+
 ## Konventioner
 
 Alle 63 skills følger den samme opskrift, så de opfører sig ens uanset afdeling.

@@ -120,6 +120,7 @@ for i,d in enumerate(data):
           <h2 class="dep__title">{esc(d['label'])}</h2>
           <p class="dep__tag">{esc(d['tag'])} · {len(d['skills'])} skills</p>
         </div>
+        <a class="dep__zip" href="releases/{d['folder']}.zip" download>⬇ Zip</a>
       </header>
       <div class="grid">{cards}</div>
     </section>''')
@@ -228,6 +229,10 @@ pre.cmd.wrapline{{white-space:pre-wrap;word-break:break-word}}
   align-items:center;justify-content:center;flex:none;background:var(--surface)}}
 .dep__title{{margin:0;font-family:var(--serif);font-weight:600;font-size:clamp(1.5rem,3vw,2.1rem);letter-spacing:-.01em}}
 .dep__tag{{margin:2px 0 0;color:var(--muted);font-size:14px}}
+.dep__zip{{margin-left:auto;flex:none;align-self:center;font-size:13px;font-weight:600;text-decoration:none;
+  border:1px solid var(--line);border-radius:999px;padding:7px 14px;color:var(--accent-ink);background:var(--surface);
+  transition:border-color .14s ease,transform .14s ease}}
+.dep__zip:hover{{border-color:var(--accent);transform:translateY(-2px)}}
 .grid{{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}}
 .card{{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:17px 18px;
   transition:border-color .14s ease,transform .14s ease}}
@@ -334,6 +339,7 @@ cp -r din-ai-organisation/01-direktionen/*    ~/.claude/skills/</pre>
         <div class="step"><b>4</b><div>Start altid med <span class="inline">virksomhedsprofil</span> — den bygger hub-filen, alle andre skills læser.</div></div>
       </div>
     </div>
+    <p class="sub" style="margin-top:14px">Vil du hente en <b>hel afdeling</b>? Brug <span class="inline">⬇ Zip</span>-knappen ved hver afdeling nedenfor — pak ud i <span class="inline">~/.claude/skills/</span> (Claude Code), eller træk de enkelte skill-mapper ud til Desktop-upload.</p>
   </section>
 
   <p class="section-label" style="margin-top:34px">Alle afdelinger &amp; skills</p>

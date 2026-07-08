@@ -102,6 +102,10 @@ pre.cmd.wrapline{white-space:pre-wrap;word-break:break-word}
   align-items:center;justify-content:center;flex:none;background:var(--surface)}
 .dep__title{margin:0;font-family:var(--serif);font-weight:600;font-size:clamp(1.5rem,3vw,2.1rem);letter-spacing:-.01em}
 .dep__tag{margin:2px 0 0;color:var(--muted);font-size:14px}
+.dep__zip{margin-left:auto;flex:none;align-self:center;font-size:13px;font-weight:600;text-decoration:none;
+  border:1px solid var(--line);border-radius:999px;padding:7px 14px;color:var(--accent-ink);background:var(--surface);
+  transition:border-color .14s ease,transform .14s ease}
+.dep__zip:hover{border-color:var(--accent);transform:translateY(-2px)}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
 .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:17px 18px;
   transition:border-color .14s ease,transform .14s ease}
@@ -403,6 +407,7 @@ cp -r din-ai-organisation/01-direktionen/*    ~/.claude/skills/</pre>
         <div class="step"><b>4</b><div>Start altid med <span class="inline">virksomhedsprofil</span> — den bygger hub-filen, alle andre skills læser.</div></div>
       </div>
     </div>
+    <p class="sub" style="margin-top:14px">Vil du hente en <b>hel afdeling</b>? Brug <span class="inline">⬇ Zip</span>-knappen ved hver afdeling nedenfor — pak ud i <span class="inline">~/.claude/skills/</span> (Claude Code), eller træk de enkelte skill-mapper ud til Desktop-upload.</p>
   </section>
 
   <p class="section-label" style="margin-top:34px">Alle afdelinger &amp; skills</p>
@@ -414,6 +419,7 @@ cp -r din-ai-organisation/01-direktionen/*    ~/.claude/skills/</pre>
           <h2 class="dep__title">Direktionen</h2>
           <p class="dep__tag">Beslutninger &amp; kontrakter · 6 skills</p>
         </div>
+        <a class="dep__zip" href="releases/01-direktionen.zip" download>⬇ Zip</a>
       </header>
       <div class="grid"><article class="card" data-text="beslutningsgrundlag bygger et skriftligt, kildebelagt beslutningsgrundlag til større beslutninger - bestyrelse, bank, investering, nyt marked, større indkøb eller ansættelse. lav et beslutningsgrundlag byg et beslutningsoplæg undersøg om vi skal... skal vi investere i... lav en business case jeg skal overbevise banken/bestyrelsen">
       <h3 class="card__name">beslutningsgrundlag</h3>
@@ -447,6 +453,7 @@ cp -r din-ai-organisation/01-direktionen/*    ~/.claude/skills/</pre>
           <h2 class="dep__title">Strategiudvikling</h2>
           <p class="dep__tag">Retning, kadence, årshjul · 5 skills</p>
         </div>
+        <a class="dep__zip" href="releases/02-strategiudvikling.zip" download>⬇ Zip</a>
       </header>
       <div class="grid"><article class="card" data-text="etsides-strategiplan kondenserer virksomhedens strategi til én læsbar side med pejlemærke, kernekunde, 3-5 must-win battles, eksplicitte fravalg, nøgletal og ejere - plus en medarbejderversion i klart sprog. skriv vores strategi ned lav en étsides strategiplan vi skal have strategien på én side lav en version til medarbejderne opdater strategiplanen write our strategy on one page">
       <h3 class="card__name">etsides-strategiplan</h3>
@@ -476,6 +483,7 @@ cp -r din-ai-organisation/01-direktionen/*    ~/.claude/skills/</pre>
           <h2 class="dep__title">Viden &amp; Data</h2>
           <p class="dep__tag">Virksomhedens hjerne · stab · 5 skills</p>
         </div>
+        <a class="dep__zip" href="releases/03-viden-og-data.zip" download>⬇ Zip</a>
       </header>
       <div class="grid"><article class="card" data-text="brain-tjek kvalitetsansvarliges dokumentreview af virksomhedens brain-mappe: finder forældede, modstridende, dublerede og kildeløse videnfiler samt skabelon-uensartethed, og retter kun efter godkendelse. kør et brain-tjek tjek vores videnfiler er vores viden opdateret find forældet viden ryd op i vores videnfiler dokumentreview">
       <h3 class="card__name">brain-tjek</h3>
@@ -505,6 +513,7 @@ cp -r din-ai-organisation/01-direktionen/*    ~/.claude/skills/</pre>
           <h2 class="dep__title">Programledelse</h2>
           <p class="dep__tag">Styringsrygraden · stab · 6 skills</p>
         </div>
+        <a class="dep__zip" href="releases/04-programledelse.zip" download>⬇ Zip</a>
       </header>
       <div class="grid"><article class="card" data-text="portefolje-status samler status fra alle igangværende projekter til én one-page trafiklysrapport til ledelsen - med farve, milepæle, top-risiko og beslutningsbehov pr. projekt. giv mig overblik over alle projekter porteføljestatus trafiklysrapport til ledelsesmødet hvordan står det egentlig til med projekterne? status til bestyrelsen status til banken">
       <h3 class="card__name">portefolje-status</h3>
@@ -538,6 +547,7 @@ cp -r din-ai-organisation/01-direktionen/*    ~/.claude/skills/</pre>
           <h2 class="dep__title">Sekretariatet</h2>
           <p class="dep__tag">Mail, møder, ugens rytme · 7 skills</p>
         </div>
+        <a class="dep__zip" href="releases/05-sekretariatet.zip" download>⬇ Zip</a>
       </header>
       <div class="grid"><article class="card" data-text="indbakke-triage laver et prioriteret morgenoverblik over brugerens indbakke: hver mail kategoriseres som handl nu / lav udkast / kan vente / til orientering med en anbefaling i én linje, og myndigheds- og fristpost fremhæves altid øverst. gennemgå min indbakke hvad skal jeg svare på i dag lav dagens mail-overblik triager mine mails er der noget vigtigt i min mail">
       <h3 class="card__name">indbakke-triage</h3>
@@ -575,6 +585,7 @@ cp -r din-ai-organisation/01-direktionen/*    ~/.claude/skills/</pre>
           <h2 class="dep__title">Salg &amp; Kundeservice</h2>
           <p class="dep__tag">Tilbud, leads, kunder · 5 skills</p>
         </div>
+        <a class="dep__zip" href="releases/06-salg-og-kundeservice.zip" download>⬇ Zip</a>
       </header>
       <div class="grid"><article class="card" data-text="kundeemner researcher og scorer b2b-kundeemner 1-10 ud fra brugerens idealkundeprofil - med kilde og dato pr. datapunkt og en samtaleåbner til telefon, linkedin eller fysisk brev pr. emne. find kundeemner lav en leadliste research de her virksomheder scor de her emner hvem skal jeg ringe til i denne uge find nye kunder i [branche]">
       <h3 class="card__name">kundeemner</h3>
@@ -604,6 +615,7 @@ cp -r din-ai-organisation/01-direktionen/*    ~/.claude/skills/</pre>
           <h2 class="dep__title">Marketing &amp; Kommunikation</h2>
           <p class="dep__tag">Tone, indhold, kampagner · 8 skills</p>
         </div>
+        <a class="dep__zip" href="releases/07-marketing.zip" download>⬇ Zip</a>
       </header>
       <div class="grid"><article class="card" data-text="content-kalender bygger og vedligeholder en månedlig content-kalender (indholdsplan) ud fra årshjul, sæson og virksomhedens reelle tid, med genbrugskaskade så én idé bliver til indhold på flere kanaler. læg en indholdsplan lav en content-kalender hvad skal vi poste i næste måned planlæg vores opslag planlæg some for [måned] opdater kalenderen">
       <h3 class="card__name">content-kalender</h3>
@@ -645,6 +657,7 @@ cp -r din-ai-organisation/01-direktionen/*    ~/.claude/skills/</pre>
           <h2 class="dep__title">Økonomi</h2>
           <p class="dep__tag">Bilag, likviditet, priser · 5 skills</p>
         </div>
+        <a class="dep__zip" href="releases/08-okonomi.zip" download>⬇ Zip</a>
       </header>
       <div class="grid"><article class="card" data-text="bilagsrydning rydder op i regnskabsbilag før moms og revisor: aflæser kvitteringer og fakturaer, omdøber til sorterbar standard (åååå-mm-dd_leverandør_beløb), sorterer i momsklare kategorier og bygger en revisorvenlig csv. ryd op i mine bilag gør bilagene klar til moms sortér mine kvitteringer bilag til revisor bilag til bogholder omdøb mine kvitteringer">
       <h3 class="card__name">bilagsrydning</h3>
@@ -674,6 +687,7 @@ cp -r din-ai-organisation/01-direktionen/*    ~/.claude/skills/</pre>
           <h2 class="dep__title">HR</h2>
           <p class="dep__tag">People &amp; Culture + skill-byg · 7 skills</p>
         </div>
+        <a class="dep__zip" href="releases/09-hr.zip" download>⬇ Zip</a>
       </header>
       <div class="grid"><article class="card" data-text="mus-forberedelse forbereder mus- og 1:1-samtaler og skriver bagefter referat med udviklingsplan. jeg skal holde mus med ... forbered min 1:1 medarbejdersamtale udviklingssamtale lav en udviklingsplan skriv referat af samtalen med [medarbejder]">
       <h3 class="card__name">mus-forberedelse</h3>
@@ -711,6 +725,7 @@ cp -r din-ai-organisation/01-direktionen/*    ~/.claude/skills/</pre>
           <h2 class="dep__title">IT &amp; Udvikling</h2>
           <p class="dep__tag">Design &amp; byg · dirigent · 9 skills</p>
         </div>
+        <a class="dep__zip" href="releases/10-it-og-udvikling.zip" download>⬇ Zip</a>
       </header>
       <div class="grid"><article class="card" data-text="adgangsstyring vedligeholder systemoversigt.md (systemer, adgange, licenser, priser, fornyelser) og producerer on-/offboarding-tjeklister og kvartalsvis licens-audit som udkast et menneske eksekverer. vi har en ny medarbejder der starter en medarbejder stopper luk nn , ">
       <h3 class="card__name">adgangsstyring</h3>
