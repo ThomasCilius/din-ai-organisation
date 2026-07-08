@@ -75,25 +75,33 @@ PY
 # Wire pakkens hooks ind i settings.json - merge-sikkert. Identificeres pa stien
 # 'din-ai-org/hooks/', saa vi kan fjerne prAcis vores egne igen uden at roere andres.
 wire_hooks(){
-  python3 - "$SETTINGS" "$PKG_DIR" <<'PY'
+  python3 - "$SETTINGS" "$PKG_DIR" "$STATE" <<'PY'
 import json, sys, os
-settings, pkg = sys.argv[1], sys.argv[2]
+settings, pkg, state = sys.argv[1], sys.argv[2], sys.argv[3]
 d = json.load(open(settings)) if os.path.exists(settings) else {}
 hooks = d.setdefault('hooks', {})
 marker = 'din-ai-org/hooks/'
+dev = False
+if os.path.exists(state):
+    try: dev = bool(json.load(open(state)).get('managedDevSkills'))
+    except Exception: pass
 def clean(ev):
     hooks[ev] = [g for g in hooks.get(ev, [])
                  if not any(marker in h.get('command','') for h in g.get('hooks', []))]
-def add(ev, script):
+def add(ev, script, matcher='*'):
     hooks.setdefault(ev, []).append(
-        {"matcher": "*", "hooks": [{"type": "command", "command": f"node '{pkg}/hooks/{script}'"}]})
-for ev in ('SessionStart', 'Stop', 'PreToolUse'):
+        {"matcher": matcher, "hooks": [{"type": "command", "command": f"node '{pkg}/hooks/{script}'"}]})
+for ev in ('SessionStart', 'Stop', 'PreToolUse', 'PostToolUse'):
     clean(ev)
 add('SessionStart', 'brain-inject.js'); add('SessionStart', 'session-load.js')
 add('SessionStart', 'rules-inject.js'); add('SessionStart', 'mcp-health.js')
 add('Stop', 'session-save.js');         add('Stop', 'notify-done.js')
-hooks.setdefault('PreToolUse', []).append(
-    {"matcher": "Write|Edit", "hooks": [{"type": "command", "command": f"node '{pkg}/hooks/brain-guard.js'"}]})
+add('PreToolUse', 'brain-guard.js', 'Write|Edit')
+if dev:
+    add('PostToolUse', 'dev-format.js', 'Write|Edit')
+    add('PostToolUse', 'dev-console-warn.js', 'Write|Edit')
+    add('PostToolUse', 'dev-typecheck.js', 'Write|Edit')
+    add('PreToolUse', 'dev-commit-gate.js', 'Bash')
 for ev in list(hooks):
     if not hooks[ev]: del hooks[ev]
 os.makedirs(os.path.dirname(settings), exist_ok=True)
@@ -236,6 +244,7 @@ do_activate_dev(){
   _activate_type agents   "$AGENTS_DIR"   managedDevAgents
   _activate_type commands "$COMMANDS_DIR" managedDevCommands
   _activate_type rules    "$RULES_DIR"    managedDevRules
+  wire_hooks   # dev-laget er nu aktivt: wire dev-workflow-hooks (format/typecheck/commit-gate) ind
 }
 
 _remove_list(){
