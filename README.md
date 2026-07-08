@@ -1,8 +1,8 @@
 # Din AI-organisation
 
-En kurateret pakke på **63 Agent Skills** til Claude, bygget til kurset "Claude Desktop 0-100". Du bygger din egen AI-organisation efter et klassisk dansk organisationsdiagram: hver afdeling er et hold AI-medarbejdere, og hver skill er én afgrænset, tilbagevendende opgave, som er valideret mod virkelige danske jobfunktioner i en SMV.
+En kurateret pakke på **65 Agent Skills** til Claude, bygget til kurset "Claude Desktop 0-100". Du bygger din egen AI-organisation efter et klassisk dansk organisationsdiagram: hver afdeling er et hold AI-medarbejdere, og hver skill er én afgrænset, tilbagevendende opgave, som er valideret mod virkelige danske jobfunktioner i en SMV.
 
-Pakken er bevidst modulær. Anthropic anbefaler et loft på cirka 20-50 aktive skills, og 63 er over det med vilje - derfor installerer du kernen plus de afdelinger, der matcher din rolle (typisk 25-35 aktive skills), ikke hele pakken på én gang.
+Pakken er bevidst modulær. Anthropic anbefaler et loft på cirka 20-50 aktive skills, og 65 er over det med vilje - derfor installerer du kernen plus de afdelinger, der matcher din rolle (typisk 25-35 aktive skills), ikke hele pakken på én gang.
 
 ## Organisationsdiagrammet
 
@@ -13,11 +13,11 @@ Pakken er bevidst modulær. Anthropic anbefaler et loft på cirka 20-50 aktive s
                                   |
           +-----------------------+-----------------------+
     STAB: Viden & Data      STAB: Programledelse          |
-    03 (5) "hjernen"        04 (6) "styringsrygraden"     |
+    03 (6) "hjernen"        04 (6) "styringsrygraden"     |
           |                                               |
    +--------------+-------------+------------+-------------+--------------+
 Sekretariatet   Salg &      Marketing    Økonomi        HR        IT & Udvikling
-  05 (7)     Kundeservice     07 (8)       08 (5)      09 (7)         10 (9)
+  05 (7)     Kundeservice     07 (9)       08 (5)      09 (7)         10 (9)
                 06 (5)
 ```
 
@@ -55,6 +55,7 @@ Kernen er **03 Viden & Data** (den ejer virksomhedens hub-filer) og **01 Direkti
 | `natportner` | Rydder op i brain-mappens inbox, arkiverer noter i de rigtige videnfiler og skriver en natterapport. |
 | `brain-tjek` | Dokumentreview af brain-mappen: finder forældet, modstridende, dubleret og kildeløs viden. |
 | `gdpr-fortegnelse` | Udkaster og vedligeholder artikel 30-fortegnelse, sletteliste og databehandleroversigt via interview. |
+| `vidensarkitektur` | Bestemmer hvor ny viden hører hjemme, holder én kanonisk plads pr. fakta og skriver atomiske, forbundne noter i hjernens lagdelte hierarki. |
 
 ### 04 - Stab: Programledelse (PMO)
 
@@ -101,6 +102,7 @@ Kernen er **03 Viden & Data** (den ejer virksomhedens hub-filer) og **01 Direkti
 | `kundecase` | Skaber dokumenterede kundecases med interviewguide, citatliste og indbygget samtykketrin. |
 | `marketing-rapport` | Månedlig marketingrapport ud fra egne tal (GA4, Meta, LinkedIn) med indsigter og anbefalinger. |
 | `pressemeddelelse` | Skriver pressemeddelelse med reel nyhedsvinkel plus pitch-mail og forslag til relevante medier. |
+| `menneskeliggoer` | Fjerner AI-præget fra en tekst: skærer floskler, oppustet vigtighed, reklamesprog og fyld væk og giver teksten stemme igen. |
 
 ### 08 - Økonomi
 
@@ -205,7 +207,7 @@ Zips regenereres med `scripts/make-zips.sh` efter ændringer i skills.
 
 ## Konventioner
 
-Alle 63 skills følger den samme opskrift, så de opfører sig ens uanset afdeling.
+Alle 65 skills følger den samme opskrift, så de opfører sig ens uanset afdeling.
 
 - **Danske skill-navne** - "noget du selv ville sige højt". Navnefeltet tillader kun a-z, tal og bindestreg, så æ/ø/å translittereres til ae/oe/aa: `moedeforberedelse`, `opfoelgningsliste`, `budgetopfoelgning`.
 - **Tosprogede triggere** - hver `description` indeholder ordrette triggersætninger på både dansk og engelsk ("skriv et tilbud" / "write a proposal"), skrevet pushy fordi Claude har tendens til at undertrigge.
