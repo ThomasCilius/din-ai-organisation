@@ -223,7 +223,7 @@ a{{color:var(--accent-ink);text-underline-offset:3px}}
 /* install */
 .install{{margin:12px 0 8px}}
 .install__cols{{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}}
-.icard{{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:22px 22px}}
+.icard{{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:22px 22px;min-width:0}}
 .icard h3{{margin:0 0 4px;font-size:17px;letter-spacing:-.01em}}
 .icard .sub{{margin:0 0 16px;color:var(--muted);font-size:13.5px}}
 .step{{display:flex;gap:11px;margin:0 0 12px;font-size:14px}}
