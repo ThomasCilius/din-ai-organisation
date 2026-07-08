@@ -1,0 +1,188 @@
+# Din AI-organisation
+
+En kurateret pakke på **63 Agent Skills** til Claude, bygget til kurset "Claude Desktop 0-100". Du bygger din egen AI-organisation efter et klassisk dansk organisationsdiagram: hver afdeling er et hold AI-medarbejdere, og hver skill er én afgrænset, tilbagevendende opgave, som er valideret mod virkelige danske jobfunktioner i en SMV.
+
+Pakken er bevidst modulær. Anthropic anbefaler et loft på cirka 20-50 aktive skills, og 63 er over det med vilje - derfor installerer du kernen plus de afdelinger, der matcher din rolle (typisk 25-35 aktive skills), ikke hele pakken på én gang.
+
+## Organisationsdiagrammet
+
+```
+                              DIREKTIONEN
+                  01 Direktionen - beslutninger & kontrakter (6)
+                       02 Strategiudvikling (5)
+                                  |
+          +-----------------------+-----------------------+
+    STAB: Viden & Data      STAB: Programledelse          |
+    03 (5) "hjernen"        04 (6) "styringsrygraden"     |
+          |                                               |
+   +--------------+-------------+------------+-------------+--------------+
+Sekretariatet   Salg &      Marketing    Økonomi        HR        IT & Udvikling
+  05 (7)     Kundeservice     07 (8)       08 (5)      09 (7)         10 (9)
+                06 (5)
+```
+
+Kernen er **03 Viden & Data** (den ejer virksomhedens hub-filer) og **01 Direktionen**. Alt andet bygger ovenpå.
+
+## Afdelinger og skill-indeks
+
+### 01 - Direktionen: beslutninger & kontrakter
+
+| Skill | Formål |
+|-------|--------|
+| `ide-stresstest` | Presser en "skal jeg...?"-beslutning med forcing questions og slutter med én klar anbefaling og næste skridt. |
+| `second-opinion` | Kritisk gennemgang af egne udkast før afsendelse - send / send ikke / send efter rettelser, med citat. |
+| `kontrakt-tjek` | Gennemgår modpartens kontrakter før underskrift, flager risici med klausulcitat og siger hvornår advokaten skal ind. |
+| `beslutningsgrundlag` | Bygger et skriftligt, kildebelagt beslutningsgrundlag eller business case til store beslutninger. |
+| `bestyrelsespakke` | Udkast til bestyrelsesmateriale, bankpræsentation eller ledelsesrapport ud fra virksomhedens egne tal. |
+| `forhandlings-forberedelse` | Forbereder en konkret forhandling med BATNA, smertegrænse, aftalezone og indrømmelsesplan i ét forhandlingsark. |
+
+### 02 - Strategiudvikling
+
+| Skill | Formål |
+|-------|--------|
+| `strategidag-forberedelse` | Forbereder og refererer årets strategidag: dagsorden, situationsbillede og 3-5 skarpe strategiske spørgsmål. |
+| `etsides-strategiplan` | Kondenserer strategien til én læsbar side plus en medarbejderversion i klart sprog. |
+| `konkurrent-radar` | Vedligeholder et stående konkurrentkort og skriver kvartalsvis delta-rapport med "hvad betyder det for os". |
+| `kvartals-nedbrydning` | Nedbryder strategien til 3-5 kvartalsmål med navngivne ejere og "færdig når"-kriterier. |
+| `strategi-tjek` | Kvartalsvis grøn/gul/rød-opfølgning på kvartalsmålene - fungerer også som bestyrelsesside. |
+
+### 03 - Stab: Viden & Data (kerne)
+
+| Skill | Formål |
+|-------|--------|
+| `virksomhedsprofil` | Opretter og vedligeholder `virksomhedsprofil.md` - nav-filen med stamdata, som alle andre skills læser først. |
+| `videnfil-interview` | Interviewer brugeren og destillerer tavs viden til en videnfil på maks. 10 linjer. |
+| `natportner` | Rydder op i brain-mappens inbox, arkiverer noter i de rigtige videnfiler og skriver en natterapport. |
+| `brain-tjek` | Dokumentreview af brain-mappen: finder forældet, modstridende, dubleret og kildeløs viden. |
+| `gdpr-fortegnelse` | Udkaster og vedligeholder artikel 30-fortegnelse, sletteliste og databehandleroversigt via interview. |
+
+### 04 - Stab: Programledelse (PMO)
+
+| Skill | Formål |
+|-------|--------|
+| `projekt-kickoff` | Omsætter en go-beslutning til et 1-2 siders projektkommissorium plus en milepælsplan. |
+| `portefolje-status` | Samler status fra alle projekter til én trafiklys-porteføljerapport til ledelsen. |
+| `risiko-issue-log` | Opretter og ajourfører projektets risikolog (3x3), issue-liste og fælles beslutningslog. |
+| `projekt-prioritering` | Prioriteringsoplæg for hele porteføljen: fortsæt / pausér / stop målt mod reel kapacitet. |
+| `projekt-lukning` | Lukker projekter ordentligt: afslutningstjekliste, evaluering mod succeskriterier og læringer. |
+| `program-styring` | Nedbryder ét stort, tværgående initiativ i arbejdsstrømme, mapper hver strøm til afdeling og skill, og styrer overleveringerne mod ét fælles mål. |
+
+### 05 - Sekretariatet
+
+| Skill | Formål |
+|-------|--------|
+| `mail-i-min-stil` | Skriver mailudkast i ejerens egen tone på hele svartypologien - altid som kladde. |
+| `indbakke-triage` | Prioriteret morgenoverblik over indbakken (Handl nu / Lav udkast / Kan vente / Til orientering). |
+| `referat` | Forvandler mødenoter eller transskript til professionelt referat med beslutninger og aktioner. |
+| `moedeforberedelse` | Étsides mødebriefing plus dagsordenudkast, med frisk dansk CVR-research på eksterne parter. |
+| `ugestatus` | Ugens statusrapport i firefelts-format med trafiklys - kunde- eller intern teamversion. |
+| `opfoelgningsliste` | Samler alle åbne aktioner til én liste (hvem/hvad/deadline/kilde) og skriver påmindelses-udkast. |
+| `journalisering` | Journaliserer dokumenter efter fast navnestandard og mappetaksonomi - plan før én fil røres. |
+
+### 06 - Salg & Kundeservice
+
+| Skill | Formål |
+|-------|--------|
+| `tilbud` | Skriver bindende danske tilbud efter kort interview - acceptfrist, forbehold, moms og følgemail. |
+| `kundeemner` | Researcher og scorer B2B-kundeemner 1-10 mod idealkundeprofilen, med kilde og samtaleåbner. |
+| `pipeline-gennemgang` | Kører det ugentlige pipelinemøde, flager sager i stå og bygger et realistisk interval-forecast. |
+| `kundesvar` | Svarudkast på svære kundehenvendelser (klager, reklamationer, afslag) med styr på købeloven. |
+| `kundegennemgang` | Forbereder statusmøde med eksisterende kunde: mersalg (whitespace), churn-signaler og genforhandling. |
+
+### 07 - Marketing & Kommunikation
+
+| Skill | Formål |
+|-------|--------|
+| `toneprofil` | Udleder virksomhedens tone og skriver hub-filen `voice-profil.md`, som alle skrivende skills læser. |
+| `linkedin-opslag` | Skriver LinkedIn-opslag ud fra noget konkret der er sket - én pointe og 2-3 hook-varianter. |
+| `nyhedsbrev` | Skriver nyhedsbreve til permission-listen med emnelinjeforslag og én klar CTA - altid som kladde. |
+| `marketing-sparring` | Prioriterer marketingtiltag efter effekt/indsats og bygger eller reviderer marketingårshjulet. |
+| `content-kalender` | Bygger en månedlig content-kalender med genbrugskaskade på tværs af kanaler. |
+| `kundecase` | Skaber dokumenterede kundecases med interviewguide, citatliste og indbygget samtykketrin. |
+| `marketing-rapport` | Månedlig marketingrapport ud fra egne tal (GA4, Meta, LinkedIn) med indsigter og anbefalinger. |
+| `pressemeddelelse` | Skriver pressemeddelelse med reel nyhedsvinkel plus pitch-mail og forslag til relevante medier. |
+
+### 08 - Økonomi
+
+| Skill | Formål |
+|-------|--------|
+| `bilagsrydning` | Rydder regnskabsbilag før moms: aflæser, omdøber til standard, sorterer og bygger revisor-CSV. |
+| `rykker-runde` | Bygger debitoroverblik og lovmedholdelige rykkerkladder efter renteloven - altid som kladder. |
+| `likviditetsoverblik` | Bygger et 13-ugers likviditetsoverblik med dansk skattekalender og bufferadvarsler. |
+| `budgetopfoelgning` | Sammenholder faktiske tal med budgettet og skriver én-sides afvigelsesrapport med handlingsforslag. |
+| `priskalkulation` | Gennemsigtige priskalkulationer: timepris, kostpris-plus, dækningsbidrag, break-even og følsomhed. |
+
+### 09 - HR (People & Culture)
+
+| Skill | Formål |
+|-------|--------|
+| `procedure-skriver` | Interviewer kronologisk og skriver en opgave som SOP, klar til uddelegering til medarbejder eller AI. |
+| `skill-opskrift` | Pakker en tilbagevendende opgave som en færdig Claude-skill og afslutter med prøvetid-tests. |
+| `rutine-bygger` | Sætter tilbagevendende rutiner op for AI-medarbejderne med trigger, input, bevis-artefakt og log. |
+| `rekruttering` | Dansk rekrutteringsforløb fra kravprofil til afslag - alt tjekket mod forskelsbehandlingsloven. |
+| `onboarding-offboarding` | Daterede onboardingplaner (preboarding + 30-60-90) og offboarding-tjeklister. |
+| `mus-forberedelse` | Forbereder MUS- og 1:1-samtaler og skriver bagefter referat med udviklingsplan. |
+| `personalepolitik` | Skriver og reviderer personalepolitikker og -håndbog med flag hvor dansk lovgivning sætter rammer. |
+
+### 10 - IT & Udvikling
+
+| Skill | Formål |
+|-------|--------|
+| `designretning` | Fastlægger ÉN sammenhængende designretning og skriver hub-filen `designprofil.md`. |
+| `designvarianter` | Genererer 2-3 navngivne designvarianter af samme flade inden for den godkendte designprofil. |
+| `byggebrief` | Skriver en komplet dansk kravspecifikation (`byggebrief.md`) via interview - nul pladsholdere. |
+| `plan-tjek` | Ingeniørchef-review af byggeplan eller leverandørforslag før byg: GO / GO-med-ændringer / STOP. |
+| `fejldetektiv` | Systematisk fejlfinding for ikke-udviklere plus professionel fejlrapport til leverandøren. |
+| `klar-tjek` | Beviskrav-baseret UAT mod `byggebrief.md` med kategoriseret mangelliste før godkendelse og betaling. |
+| `tilbudssammenligning` | Sammenligner leverandørtilbud mod byggebriefen og flager danske røde flag (kodeejerskab, exit m.m.). |
+| `adgangsstyring` | Vedligeholder `systemoversigt.md` og producerer on-/offboarding-tjeklister og licens-audit. |
+| `sikkerhedstjek` | Vurderer phishing-mails og kører kvartalsvist sikkerheds-basistjek plus hændelsesrespons. |
+
+## Installationsmodel (modulær)
+
+Installér i lag frem for alt på én gang.
+
+1. **Kernen først.** Start med **03 Viden & Data** (den ejer hub-filerne, hele organisationen læser) og **01 Direktionen**. Uden kernen mangler de øvrige skills deres fælles kontekst.
+2. **Derefter de valgte afdelinger.** Vælg de 3-5 afdelinger, der matcher din rolle - typisk 25-35 aktive skills. Du kan altid tilføje flere senere.
+
+### Claude Desktop
+
+Skills uploades pr. stk. som en zip-fil under **Settings > Capabilities > Skills**. Zip den enkelte skill-mappe (mappen med `SKILL.md` og dens `references/`), og upload zippen. Gentag for hver skill i de afdelinger, du har valgt.
+
+### Claude Code
+
+Kopiér skill-mapperne direkte ind i skills-stien:
+
+- Globalt for alle projekter: `~/.claude/skills/`
+- Kun for ét projekt: projektets `.claude/skills/`
+
+Hver skill-mappe (fx `virksomhedsprofil/`) lægges som en undermappe med sin `SKILL.md` og `references/` intakt.
+
+## Konventioner
+
+Alle 63 skills følger den samme opskrift, så de opfører sig ens uanset afdeling.
+
+- **Danske skill-navne** - "noget du selv ville sige højt". Navnefeltet tillader kun a-z, tal og bindestreg, så æ/ø/å translittereres til ae/oe/aa: `moedeforberedelse`, `opfoelgningsliste`, `budgetopfoelgning`.
+- **Tosprogede triggere** - hver `description` indeholder ordrette triggersætninger på både dansk og engelsk ("skriv et tilbud" / "write a proposal"), skrevet pushy fordi Claude har tendens til at undertrigge.
+- **Aldrig-regler** er en fast del af formatet: skills leverer altid en kladde; sender, sletter og bogfører aldrig selv; laver en plan før den rører filer; citerer kilden; og AI anbefaler - mennesket beslutter. Følsomt arbejde har navngivne eskalationstriggere (advokat, revisor, jurist).
+- **Hub-filer (hub-and-spoke).** Konteksten gives ÉN gang og genbruges af alle skills:
+  - `virksomhedsprofil.md` - ejes af `virksomhedsprofil` (03). Alle skills læser den først.
+  - `voice-profil.md` - ejes af `toneprofil` (07). Alle skrivende skills læser den.
+  - `designprofil.md` - ejes af `designretning` (10). Alle visuelle leverancer læser den.
+- **Artefakt-kæder.** Hver skill efterlader et navngivet artefakt, som den næste skill i kæden læser:
+  - **Strategi-årshjulet:** `konkurrent-radar` -> `strategidag-forberedelse` -> `etsides-strategiplan` -> `kvartals-nedbrydning` -> `strategi-tjek` -> (næste års strategidag)
+  - **Byggerejsen:** `ide-stresstest` -> `designretning` -> `designvarianter` -> `byggebrief` -> `plan-tjek` -> byg -> `fejldetektiv` -> `klar-tjek` -> `procedure-skriver`
+  - **Projektlivscyklus:** `ide-stresstest` / `beslutningsgrundlag` -> `projekt-kickoff` -> `risiko-issue-log` -> `portefolje-status` -> `projekt-prioritering` -> `projekt-lukning`
+  - **Salgsflow:** `kundeemner` -> `moedeforberedelse` (salgstilstand) -> `tilbud` -> `pipeline-gennemgang` -> `kundegennemgang`
+
+På tværs af kæderne er `program-styring` (04) dirigenten for store, tværgående initiativer: den nedbryder ét initiativ i arbejdsstrømme og mapper hver strøm til den skill der løser den. Den virker dual-mode - Desktop-dirigeret (mennesket åbner hver afdelingsskill i rækkefølge) eller Claude Code-subagent-dispatch (én subagent pr. strøm) - og leverer status videre til `portefolje-status` og `risiko-issue-log`.
+
+Pakken bygger desuden ovenpå Claudes indbyggede dokumentskills (pptx, pdf, docx, xlsx) via `designprofil.md` og duplikerer dem ikke.
+
+## Kom godt i gang
+
+1. **Kør `virksomhedsprofil` først.** Den opretter `virksomhedsprofil.md` - den fælles nav-fil, alle andre skills læser før de arbejder. Uden den gætter resten af organisationen om, hvem du er.
+2. **Kør derefter `toneprofil`** (07) for at skrive `voice-profil.md`, hvis du vil have skrivende skills til at ramme din stemme, og `designretning` (10) for `designprofil.md`, hvis du skal lave visuelle leverancer.
+3. **Vælg dine afdelinger** ud fra din rolle, og installér dem oven på kernen.
+
+Én gang investeret kontekst, genbrugt af hele organisationen.
