@@ -141,7 +141,9 @@ FREDNINGSREGLER
   gamle: flag det - "Dette strider mod [X]. Hvordan vil du have det?"
 - inbox/ er indbakke, ikke arkiv: behandlet materiale flyttes til inbox/arkiv/.
 - Nye sider opretter du frit. Nye mapper foreslår du først.
-- Ingen eksterne databaser, ingen git - hjernen ER markdown-filerne.
+- Hjernen ER markdown-filerne, ingen ekstern database bag den. Git er valgfrit:
+  som udgangspunkt ingen git; vil du synce eller versionere, se det valgfrie
+  git-trin i fase 6 (kun PRIVAT repo, følsomme sider holdt ude).
 
 ARBEJDSREGLER (alt arbejde i denne mappe)
 - Sig dine antagelser højt; spørg hellere end at gætte.
@@ -181,4 +183,15 @@ ARBEJDSREGLER (alt arbejde i denne mappe)
    - UGENTLIG LINT (fredag eftermiddag): kør LINT. Entydige konsolideringer må
      udføres; alt tvetydigt samles i én kort rapport i inbox/ til min godkendelse.
 
-4. Slut af med 5 linjer: "sådan bruger du din hjerne i morgen".
+4. VALGFRIT - SYNC, BACKUP OG HISTORIK (når jeg er klar). Vil jeg have hjernen på
+   flere maskiner, sikkerhedskopieret og med versionshistorik, kan mappen gøres
+   til et git-repo og pushes til et PRIVAT GitHub-repo. Så kan jeg pushe fra én
+   flade og pulle på en anden, og de to flader holdes ens.
+   - KUN privat repo. En company-brain rummer kundenavne, priser, people/ og
+     persondata; et offentligt repo ville lække det.
+   - Følsomme sider holdes UDE af det synkede repo: opret SENSITIVITY.md, der
+     lister hvad der aldrig synkes, og en .gitignore der matcher. I tvivl: hold
+     siden lokal.
+   - Tilvalg, ikke krav: hjernen virker fuldt uden git.
+
+5. Slut af med 5 linjer: "sådan bruger du din hjerne i morgen".
