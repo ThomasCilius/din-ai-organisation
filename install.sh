@@ -15,6 +15,8 @@ set -euo pipefail
 REPO_ROOT="$(cd "$(dirname "$0")" && pwd)"
 CLAUDE_HOME="${CLAUDE_HOME:-$HOME/.claude}"
 SKILLS_DIR="$CLAUDE_HOME/skills"
+AGENTS_DIR="$CLAUDE_HOME/agents"
+COMMANDS_DIR="$CLAUDE_HOME/commands"
 PKG_DIR="$CLAUDE_HOME/din-ai-org"
 STASH="$PKG_DIR/udvikler-lager"
 STATE="$PKG_DIR/install-state.json"
@@ -59,11 +61,12 @@ import json,sys,datetime,os
 profile,state,version,namesf=sys.argv[1:5]
 prev=json.load(open(state)) if os.path.exists(state) else {}
 names=[n.strip() for n in open(namesf) if n.strip()]
-json.dump({"package":"din-ai-organisation","version":version,"profile":profile,
-           "installedAt":datetime.datetime.now().isoformat(timespec="seconds"),
-           "managedSkills":sorted(set(names)),
-           "managedDevSkills":sorted(set(prev.get("managedDevSkills",[])))},
-          open(state,"w"), indent=2, ensure_ascii=False)
+out={"package":"din-ai-organisation","version":version,"profile":profile,
+     "installedAt":datetime.datetime.now().isoformat(timespec="seconds"),
+     "managedSkills":sorted(set(names))}
+for k,v in prev.items():
+    if k.startswith("managedDev"): out[k]=v
+json.dump(out, open(state,"w"), indent=2, ensure_ascii=False)
 open(state,"a").write("\n")
 PY
 }
@@ -158,9 +161,11 @@ do_install(){
 
   write_state "$profile" "$tmp/desired.txt"
 
-  # 3) Udvikler-lager: stage dev-skills fra dev-tier (tilgaengeligt for alle profiler).
-  mkdir -p "$STASH/skills"
-  [ -d "$REPO_ROOT/dev-tier/skills" ] && cp -R "$REPO_ROOT/dev-tier/skills/." "$STASH/skills/"
+  # 3) Udvikler-lager: stage dev-lagets skills, agenter og commands (alle profiler).
+  mkdir -p "$STASH"
+  for t in skills agents commands; do
+    [ -d "$REPO_ROOT/dev-tier/$t" ] && { mkdir -p "$STASH/$t"; cp -R "$REPO_ROOT/dev-tier/$t/." "$STASH/$t/"; }
+  done
 
   # 4) Brain-prompt tilgaengelig ved siden af pakken.
   [ -f "$REPO_ROOT/company-brain-prompt.txt" ] && cp "$REPO_ROOT/company-brain-prompt.txt" "$PKG_DIR/company-brain-prompt.txt"
@@ -187,47 +192,66 @@ import json,sys
 d=json.load(open(sys.argv[1]))
 print(f"Pakke:   {d.get('package')}  v{d.get('version')}")
 print(f"Profil:  {d.get('profile')}")
-print(f"Skills:  {len(d.get('managedSkills',[]))} managed" + (f" + {len(d.get('managedDevSkills',[]))} dev aktive" if d.get('managedDevSkills') else ""))
+print(f"Skills:  {len(d.get('managedSkills',[]))} managed")
+ds,da,dc=len(d.get('managedDevSkills',[])),len(d.get('managedDevAgents',[])),len(d.get('managedDevCommands',[]))
+if ds or da or dc: print(f"Dev-lag: {ds} skills + {da} agenter + {dc} commands aktive")
 print(f"Install: {d.get('installedAt')}")
 PY
 }
 
-do_activate_dev(){
-  [ -d "$STASH/skills" ] || die "intet udvikler-lager (koer install foerst)"
-  local moved=0 s tmp; tmp="$(mktemp)"
-  shopt -s nullglob
-  for s in "$STASH/skills"/*/; do
-    [ -f "${s}SKILL.md" ] || continue
-    local name; name="$(basename "$s")"
-    rm -rf "${SKILLS_DIR:?}/$name"; cp -R "$s" "$SKILLS_DIR/$name"
-    echo "$name" >> "$tmp"; moved=$((moved+1))
-  done
-  if [ "$moved" -gt 0 ]; then
-    python3 - "$STATE" "$tmp" <<'PY'
+_merge_state_list(){
+  python3 - "$STATE" "$1" "$2" <<'PY'
 import json,sys,os
-state,nf=sys.argv[1],sys.argv[2]
-d=json.load(open(state)) if os.path.exists(state) else {"package":"din-ai-organisation","managedSkills":[],"managedDevSkills":[]}
-cur=set(d.get("managedDevSkills",[])); cur|={n.strip() for n in open(nf) if n.strip()}
-d["managedDevSkills"]=sorted(cur)
+state,key,nf=sys.argv[1],sys.argv[2],sys.argv[3]
+d=json.load(open(state)) if os.path.exists(state) else {"package":"din-ai-organisation"}
+cur=set(d.get(key,[])); cur|={n.strip() for n in open(nf) if n.strip()}
+d[key]=sorted(cur)
 json.dump(d,open(state,"w"),indent=2,ensure_ascii=False); open(state,"a").write("\n")
 PY
-    log "Aktiveret $moved udvikler-skills (nu managed)"
-  else
-    log "Udvikler-lager er tomt"
-  fi
+}
+
+# Aktiver én staged type (skills/agents/commands) fra udvikler-lager til dens rette mappe.
+_activate_type(){
+  local type="$1" dest="$2" statekey="$3" src="$STASH/$1"
+  [ -d "$src" ] || return 0
+  mkdir -p "$dest"
+  local n=0 e tmp; tmp="$(mktemp)"
+  shopt -s nullglob
+  for e in "$src"/*; do
+    local base; base="$(basename "$e")"
+    rm -rf "${dest:?}/$base"; cp -R "$e" "$dest/$base"
+    echo "$base" >> "$tmp"; n=$((n+1))
+  done
+  [ "$n" -gt 0 ] && { _merge_state_list "$statekey" "$tmp"; log "Aktiveret $n $type"; }
   rm -f "$tmp"
+}
+
+do_activate_dev(){
+  [ -d "$STASH" ] || die "intet udvikler-lager (koer install foerst)"
+  _activate_type skills   "$SKILLS_DIR"   managedDevSkills
+  _activate_type agents   "$AGENTS_DIR"   managedDevAgents
+  _activate_type commands "$COMMANDS_DIR" managedDevCommands
+}
+
+_remove_list(){
+  local key="$1" dir="$2" s n=0
+  while IFS= read -r s; do
+    [ -n "$s" ] || continue
+    [ -e "$dir/$s" ] && { rm -rf "${dir:?}/$s"; n=$((n+1)); }
+  done < <(python3 -c "import json;print(chr(10).join(json.load(open('$STATE')).get('$key',[])))" 2>/dev/null)
+  echo "$n"
 }
 
 do_uninstall(){
   [ -f "$STATE" ] || { echo "Intet at afinstallere."; return 0; }
-  local removed=0 s
-  while IFS= read -r s; do
-    [ -n "$s" ] || continue
-    [ -d "$SKILLS_DIR/$s" ] && { rm -rf "${SKILLS_DIR:?}/$s"; removed=$((removed+1)); }
-  done < <(python3 -c "import json;d=json.load(open('$STATE'));print(chr(10).join(d.get('managedSkills',[])+d.get('managedDevSkills',[])))" 2>/dev/null)
+  local t=0
+  t=$((t + $(_remove_list managedSkills     "$SKILLS_DIR")))
+  t=$((t + $(_remove_list managedDevSkills   "$SKILLS_DIR")))
+  t=$((t + $(_remove_list managedDevAgents   "$AGENTS_DIR")))
+  t=$((t + $(_remove_list managedDevCommands "$COMMANDS_DIR")))
   unwire_hooks
   rm -rf "$PKG_DIR"
-  log "Fjernet $removed managed skills, hooks og pakke-mappen. Dine egne skills og hooks er uroert."
+  log "Fjernet $t filer (skills, dev-lag, hooks) + pakke-mappen. Dine egne filer er uroert."
 }
 
 case "${1:-install}" in
