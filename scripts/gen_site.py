@@ -8,6 +8,10 @@ DOMAIN = "skills.thomascilius.dk"
 CC_ONELINER = ("Installer Claude Agent Skills fra dette repo i min skills-mappe: " + REPO +
   " - klon repoet, vis mig de 10 afdelinger, og kopiér de skill-mapper jeg vælger ind i ~/.claude/skills/ "
   "(foreslå kernen først: 03-viden-og-data + 01-direktionen).")
+GIT_BLOCK = ("git clone " + REPO + ".git\n"
+  "mkdir -p ~/.claude/skills\n"
+  "cp -r din-ai-organisation/03-viden-og-data/*  ~/.claude/skills/\n"
+  "cp -r din-ai-organisation/01-direktionen/*    ~/.claude/skills/")
 
 DEPTS = [
     ("01-direktionen",        "Direktionen",            "Beslutninger & kontrakter", "direktion"),
@@ -72,6 +76,15 @@ try:
 except FileNotFoundError:
     pass
 def esc(s): return html.escape(s, quote=True)
+
+def copyblock(pid, content, cls=''):
+    return ('<div class="codewrap"><pre class="cmd ' + cls + '" id="' + pid + '">' + esc(content) + '</pre>'
+      '<button class="copy-icon" data-copy="' + pid + '" data-tip="Kopiér" aria-label="Kopiér" type="button">'
+      '<svg class="i-copy" viewBox="0 0 24 24" aria-hidden="true">'
+      '<rect width="14" height="14" x="8" y="8" rx="2" ry="2"/>'
+      '<path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>'
+      '<svg class="i-check" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>'
+      '</button></div>')
 
 def dept_box(d, i):
     return f'''<button class="node node--{d['tier']}" data-target="dep-{i}" type="button">
@@ -222,6 +235,22 @@ pre.cmd .c{{color:#9db98f}}
 pre.brain{{max-height:360px;overflow:auto;margin-top:12px;font-size:12px;line-height:1.55}}
 pre.cmd.wrapline{{white-space:pre-wrap;word-break:break-word}}
 .brainbar{{display:flex;align-items:center;gap:12px;flex-wrap:wrap}}
+.codewrap{{position:relative}}
+.codewrap pre.cmd{{padding-right:46px}}
+.copy-icon{{position:absolute;top:8px;right:8px;width:30px;height:30px;display:inline-flex;align-items:center;
+  justify-content:center;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--muted);
+  cursor:pointer;transition:color .12s ease,border-color .12s ease}}
+.copy-icon:hover{{color:var(--accent-ink);border-color:var(--accent)}}
+.copy-icon:focus-visible{{outline:2px solid var(--accent);outline-offset:2px}}
+.copy-icon svg{{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}}
+.copy-icon .i-check{{display:none}}
+.copy-icon.copied{{color:#2f8f4e;border-color:#2f8f4e}}
+.copy-icon.copied .i-copy{{display:none}}
+.copy-icon.copied .i-check{{display:block}}
+.copy-icon::after{{content:attr(data-tip);position:absolute;bottom:calc(100% + 6px);right:0;background:var(--ink);
+  color:var(--bg);font-size:11px;font-weight:600;padding:3px 7px;border-radius:6px;white-space:nowrap;
+  opacity:0;pointer-events:none;transition:opacity .12s ease}}
+.copy-icon:hover::after,.copy-icon:focus-visible::after{{opacity:1}}
 .dep{{padding:40px 0 8px;scroll-margin-top:76px}}
 .dep__head{{display:flex;align-items:center;gap:16px;margin:0 0 22px}}
 .dep__num{{font-family:var(--serif);font-size:2.1rem;color:var(--accent);font-weight:600;
@@ -304,10 +333,10 @@ footer a{{color:var(--accent-ink)}}
       <div class="icard">
         <div class="brainbar">
           <h3 style="margin:0">Prompten</h3>
-          <button class="btn btn--primary copybtn" data-copy="brainprompt" type="button" style="padding:8px 16px;font-size:14px">Kopiér prompt</button>
+          <a class="dep__zip" href="company-brain-prompt.txt" download style="margin-left:auto">⬇ Download .txt</a>
         </div>
-        <p class="sub" style="margin-top:8px">Kopiér alt nedenfor ind i den tomme Cowork-mappe.</p>
-        <pre class="cmd brain" id="brainprompt">{esc(BRAIN_PROMPT)}</pre>
+        <p class="sub" style="margin-top:8px">Kopiér alt nedenfor (ikonet øverst til højre) ind i den tomme Cowork-mappe.</p>
+        {copyblock("brainprompt", BRAIN_PROMPT, "brain")}
       </div>
     </div>
   </section>
@@ -318,16 +347,10 @@ footer a{{color:var(--accent-ink)}}
       <div class="icard">
         <h3>Claude Code</h3>
         <p class="sub">Nemmest: giv Claude Code repoets URL og bed den installere — så klarer den klon og kopiering for dig.</p>
-        <div class="brainbar">
-          <span style="font-weight:600;font-size:13.5px">Indsæt i Claude Code</span>
-          <button class="btn btn--primary copybtn" data-copy="ccprompt" type="button" style="padding:8px 16px;font-size:14px">Kopiér</button>
-        </div>
-        <pre class="cmd wrapline" id="ccprompt">{esc(CC_ONELINER)}</pre>
+        <p style="font-weight:600;font-size:13.5px;margin:0 0 4px">Indsæt i Claude Code</p>
+        {copyblock("ccprompt", CC_ONELINER, "wrapline")}
         <p class="sub" style="margin-top:18px">Eller klon manuelt og kopiér kernen ind:</p>
-        <pre class="cmd">git clone {REPO}.git
-mkdir -p ~/.claude/skills
-cp -r din-ai-organisation/03-viden-og-data/*  ~/.claude/skills/
-cp -r din-ai-organisation/01-direktionen/*    ~/.claude/skills/</pre>
+        {copyblock("ccmanual", GIT_BLOCK)}
         <p class="sub" style="margin-top:10px">Skillene trigger automatisk på danske og engelske sætninger. Læg dem evt. i projektets egen <span class="inline">.claude/skills/</span>.</p>
       </div>
       <div class="icard">
@@ -370,12 +393,12 @@ cp -r din-ai-organisation/01-direktionen/*    ~/.claude/skills/</pre>
       if(el)el.scrollIntoView({{behavior:'smooth',block:'start'}});
     }});
   }});
-  document.querySelectorAll('.copybtn').forEach(function(cb){{
-    var label=cb.textContent;
+  document.querySelectorAll('.copy-icon').forEach(function(cb){{
     cb.addEventListener('click',function(){{
       var el=document.getElementById(cb.dataset.copy); if(!el)return;
       var t=el.textContent;
-      function ok(){{cb.textContent='Kopieret \\u2713';setTimeout(function(){{cb.textContent=label;}},1800);}}
+      function ok(){{cb.classList.add('copied');cb.setAttribute('data-tip','Kopieret');
+        setTimeout(function(){{cb.classList.remove('copied');cb.setAttribute('data-tip','Kopiér');}},1600);}}
       if(navigator.clipboard&&navigator.clipboard.writeText){{navigator.clipboard.writeText(t).then(ok,function(){{}});}}
       else{{var r=document.createRange();r.selectNode(el);var s=getSelection();s.removeAllRanges();s.addRange(r);
         try{{document.execCommand('copy');ok();}}catch(e){{}}s.removeAllRanges();}}
