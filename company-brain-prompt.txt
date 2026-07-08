@@ -155,11 +155,23 @@ ARBEJDSREGLER (alt arbejde i denne mappe)
    - "lint"                 → vedligeholdelses-gennemgang
    - "ny kunde: [navn]" / "nyt projekt: [navn]" → opret side fra skabelonen
 
-2. Tilbyd mig to scheduled tasks - opret dem KUN hvis jeg siger ja:
+2. AMBIENT I CLAUDE CODE (hård genkaldelse). Læg en SessionStart-hook i mappens
+   .claude/settings.json, der cat'er 00-index.md ind i konteksten ved hver
+   session, med den FAKTISKE absolutte sti til DENNE mappe. Så er hjernen fysisk
+   til stede fra træk ét, ikke kun via CLAUDE.md-reglen.
+   - Skriv en kommando der passer til mit OS: cat på macOS/Linux, type på Windows.
+   - Projekt-scoped (i denne mappe): hooken fyrer, når jeg åbner Claude Code her.
+     Vil jeg have hjernen ambient i ALLE mine Claude Code-sessioner, så flet i
+     stedet samme hook ind i ~/.claude/settings.json - læs den eksisterende fil
+     først og APPEND til SessionStart, overskriv aldrig eksisterende hooks.
+   - Er jeg i Desktop/Cowork i stedet, gør hooken intet; dér dækker
+     SESSIONSSTART-reglen mig allerede. Opret kun hooken, hvis jeg bruger Claude Code.
+
+3. Tilbyd mig to scheduled tasks - opret dem KUN hvis jeg siger ja:
    - NATLIG HØST (hver aften): gennemgå dagens samtaler i workspacet og skriv
      beslutninger, aftaler og ny viden som datostemplede noter i inbox/.
      Automatik rører ALDRIG de permanente sider - kun inbox/.
    - UGENTLIG LINT (fredag eftermiddag): kør LINT. Entydige konsolideringer må
      udføres; alt tvetydigt samles i én kort rapport i inbox/ til min godkendelse.
 
-3. Slut af med 5 linjer: "sådan bruger du din hjerne i morgen".
+4. Slut af med 5 linjer: "sådan bruger du din hjerne i morgen".
