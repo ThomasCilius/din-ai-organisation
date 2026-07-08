@@ -1,0 +1,143 @@
+Jeg vil bygge et "company brain" til min virksomhed - en levende vidensbase i
+markdown, som du selv vedligeholder og gør klogere for hver samtale. Mappen, du
+har adgang til, er hjernens hjem. Følg planen her, fase for fase.
+
+━━━ FASE 0 - TJEK FØRST ━━━
+Ligger der allerede en CLAUDE.md eller brain-struktur i mappen: læs den FØRST og
+byg videre på den. Modsiger mine svar i interviewet noget eksisterende, så flag
+det og spørg - overskriv aldrig stiltiende. Findes intet: byg fra bunden.
+
+━━━ FASE 1 - INTERVIEW ━━━
+Interview mig, ét spørgsmål ad gangen:
+1. Hvad laver virksomheden, og hvem er kunderne?
+2. Hvilke ydelser sælger jeg - og til hvilke priser?
+3. Hvilke 2-3 ting skal jeg oftest huske eller forklare for andre?
+4. Hvilke faste rutiner har jeg allerede (ugestatus, tilbudsskabelon, bogholderi...)?
+5. Hvilke kundeforløb/projekter er aktive lige nu?
+6. Hvilket eksisterende materiale kan du få som startviden - dokumenter,
+   referater, gamle tilbud, prislister?
+7. Skal hjernen have en personlighed? Navn + tone (fx "rolig kollega, tør
+   humor") - eller neutral. Begge dele er fint.
+
+━━━ FASE 2 - BYG STRUKTUREN ━━━
+company-brain/
+├── 00-index.md      ← overblik + links til alle sider; opdateres ved hver skrivning
+├── CLAUDE.md        ← driftsreglerne (fase 5)
+├── KOMMANDOER.md    ← mit cheat-sheet (fase 6)
+├── inbox/           ← alt råt lander her; behandlet materiale flyttes til inbox/arkiv/
+│                      (originaler slettes aldrig)
+├── identity/        ← HVEM ER VI: virksomheden, ydelser, priser, tone of voice
+├── people/          ← HVEM KENDER VI: én side pr. kunde, lead og samarbejdspartner
+├── projects/        ← HVAD LAVER VI: én side pr. forløb, aktive og afsluttede
+├── methods/         ← HVORDAN GØR VI DET (ud mod kunden): tilbudsskabelon,
+│                      salgsproces, prissætningslogik, beslutninger
+└── operations/      ← HVORDAN KØRER MASKINRUMMET (indad): værktøjer, faste
+                       rutiner, økonomi-rytme, leverandører
+
+Sideformat - ALLE sider i people/, projects/, methods/ og operations/ følger
+samme skabelon:
+
+  # [Titel]
+  ## Status    ← kompileret sandhed: kort og aktuel - det man skal vide NU
+  ## Log       ← append-only, nyeste øverst:
+                 "- 2026-07-07 (session: tilbud til Nordkøb): ..."
+
+To regler bag skabelonen:
+- Du appender frit til Log. Status opdaterer du kun, når noget er sikkert.
+- Hver log-linje stemples med dato + kilde (session-emne eller inbox-fil).
+
+Stub-regel: nævnes en person eller et emne første gang, opretter du en stub
+(titel + én linje + kilde). Dukker de op igen i en senere session, udbygger du
+til fuld side. Sådan lærer hjernen af sig selv, hvem og hvad der betyder noget.
+
+━━━ FASE 3 - FORBIND MINE KILDER (valgfrit, men anbefalet) ━━━
+Hjernen bygges af det, den kan se. Spørg mig, hvilke af disse jeg bruger i
+virksomheden, og guid mig gennem at forbinde dem, én ad gangen:
+- Mail & kalender (Outlook/Microsoft 365 eller Gmail/Google Kalender)
+- Notion, Slack, Teams, SharePoint/OneDrive, Google Drev
+- Andre mapper på min computer (tilbudsarkiv, regnskab, dokumenter)
+
+Selve forbindelsen laver JEG i Claude: Indstillinger → Connectors (login med
+den konto, kilden hører til). Mapper giver jeg dig adgang til direkte i
+Cowork. Du kan ikke forbinde noget for mig - men tjek bagefter, hvilke
+værktøjer der reelt er tilgængelige, og notér de forbundne kilder i CLAUDE.md
+under "Kilder".
+
+Grundregel for alle kilder: de er opslagsværker - hjernen er sandheden. Du
+gemmer destillat (beslutninger, aftaler, fakta) som log-entries med
+kildeangivelse. Aldrig rå mail-dumps eller hele dokumenter ind i hjernen.
+Alt i denne fase er valgfrit: hjernen virker også uden en eneste kilde.
+
+━━━ FASE 4 - SEED HJERNEN ━━━
+En tom hjerne er ubrugelig, så:
+1. Bed mig lægge eksisterende materiale i inbox/ (eller paste det direkte).
+2. Er der forbundet kilder i fase 3: træk startviden derfra også - fx seneste
+   mailtråde pr. aktiv kunde, centrale Notion-sider, tilbudsarkivet. Destillat
+   ind i siderne, med kildeangivelse.
+3. Behandl det hele: opret sider, udfyld Status og Log, opbyg 00-index.md.
+4. Har du adgang til tidligere samtaler i dette workspace, så gennemgå de
+   seneste og høst beslutninger, aftaler og viden derfra også.
+5. Afslut med at vise mig hjernen - og svar på ét prøvespørgsmål fra den,
+   inklusive hvad hjernen IKKE ved endnu.
+
+━━━ FASE 5 - SKRIV REGLERNE (CLAUDE.md) ━━━
+Skriv en CLAUDE.md i rodmappen med disse driftsregler, tilpasset mine
+interviewsvar (og med persona-afsnit, hvis jeg valgte en):
+
+DE TRE OPERATIONER
+- INGEST - når der kommer nyt (inbox/, eller noget jeg fortæller dig): opret/
+  opdater de relevante sider - log-entry altid, Status kun ved sikker viden.
+  Opdater 00-index.md og krydsreferér 2-3 relaterede sider.
+- QUERY - spørgsmål besvares fra hjernen: læs 00-index.md, åbn de relevante
+  sider - navigér, gæt ikke. Mangler hjernen svaret, så søg i de forbundne
+  kilder (mail, Notion, Slack...), svar - og arkivér destillatet bagefter.
+  Slut svaret med en gap-note, hvis hjernen mangler noget ("Intet nyt om X
+  siden [dato] - spørg dem evt. direkte").
+- LINT - gennemgå hjernen for modsigelser, forældede Status-afsnit, sider uden
+  links og oplagte huller. Konsolidér Log → Status, hvor det er entydigt. Alt
+  tvetydigt: rapportér kort og ret kun efter godkendelse.
+
+LUK-RITUALET
+Når jeg skriver "luk sessionen": gennemgå samtalen, skriv dagens læring ind i
+de relevante sider, opdater 00-index.md, og kvittér med max 5 linjer om, hvad
+hjernen har lært.
+
+KILDER
+- [liste over de forbundne kilder fra fase 3 + hvad hver bruges til]
+- Kilder er opslagsværker, hjernen er sandheden: gem destillat med
+  kildeangivelse - aldrig rå dumps.
+- Kilder læses on-demand (QUERY og "hent nyt om..."). Den natlige høst rører
+  kun samtaler - aldrig mail, Slack eller Notion, medmindre jeg udtrykkeligt
+  beder om det.
+
+FREDNINGSREGLER
+- Slet eller omskriv aldrig eksisterende viden stiltiende. Modsiger nyt det
+  gamle: flag det - "Dette strider mod [X]. Hvordan vil du have det?"
+- inbox/ er indbakke, ikke arkiv: behandlet materiale flyttes til inbox/arkiv/.
+- Nye sider opretter du frit. Nye mapper foreslår du først.
+- Ingen eksterne databaser, ingen git - hjernen ER markdown-filerne.
+
+ARBEJDSREGLER (alt arbejde i denne mappe)
+- Sig dine antagelser højt; spørg hellere end at gætte.
+- Simplest muligt - ingen struktur i reserve til "senere behov".
+- Rør kun det, opgaven kræver.
+- Gør opgaver verificérbare: sig hvad du gør, gør det, vis hvad der ændrede sig.
+
+━━━ FASE 6 - KOMMANDO-ARK + AUTOMATION ━━━
+1. Skriv KOMMANDOER.md - et kort cheat-sheet:
+   - "luk sessionen"        → dagens læring skrives ind i hjernen
+   - "status"               → briefing: aktive projekter, åbne punkter, nyt siden sidst
+   - "hvad ved du om [X]"   → svar med kilder + gap-note
+   - "hent nyt om [X]"      → søg i de forbundne kilder, opdatér siden med destillat
+   - "husk: ..."            → direkte ingest af én oplysning
+   - "lint"                 → vedligeholdelses-gennemgang
+   - "ny kunde: [navn]" / "nyt projekt: [navn]" → opret side fra skabelonen
+
+2. Tilbyd mig to scheduled tasks - opret dem KUN hvis jeg siger ja:
+   - NATLIG HØST (hver aften): gennemgå dagens samtaler i workspacet og skriv
+     beslutninger, aftaler og ny viden som datostemplede noter i inbox/.
+     Automatik rører ALDRIG de permanente sider - kun inbox/.
+   - UGENTLIG LINT (fredag eftermiddag): kør LINT. Entydige konsolideringer må
+     udføres; alt tvetydigt samles i én kort rapport i inbox/ til min godkendelse.
+
+3. Slut af med 5 linjer: "sådan bruger du din hjerne i morgen".

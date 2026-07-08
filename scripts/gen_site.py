@@ -63,6 +63,11 @@ for folder, label, tag, tier in DEPTS:
     data.append({"folder": folder, "label": label, "tag": tag, "tier": tier, "skills": skills})
 
 total = sum(len(d["skills"]) for d in data)
+BRAIN_PROMPT = ''
+try:
+    BRAIN_PROMPT = open(os.path.join(ROOT, "company-brain-prompt.txt")).read().rstrip()
+except FileNotFoundError:
+    pass
 def esc(s): return html.escape(s, quote=True)
 
 def dept_box(d, i):
@@ -210,6 +215,8 @@ a{{color:var(--accent-ink);text-underline-offset:3px}}
 pre.cmd{{background:var(--code-bg);color:var(--code-ink);border-radius:10px;padding:13px 15px;margin:6px 0 0;
   overflow-x:auto;font-family:var(--mono);font-size:12.5px;line-height:1.7}}
 pre.cmd .c{{color:#9db98f}}
+pre.brain{{max-height:360px;overflow:auto;margin-top:12px;font-size:12px;line-height:1.55}}
+.brainbar{{display:flex;align-items:center;gap:12px;flex-wrap:wrap}}
 .dep{{padding:40px 0 8px;scroll-margin-top:76px}}
 .dep__head{{display:flex;align-items:center;gap:16px;margin:0 0 22px}}
 .dep__num{{font-family:var(--serif);font-size:2.1rem;color:var(--accent);font-weight:600;
@@ -253,7 +260,8 @@ footer a{{color:var(--accent-ink)}}
     <span class="stat"><b>DK</b><span>jobvalideret</span></span>
   </div>
   <div class="btnrow">
-    <a class="btn btn--primary" href="#install">Installér skills</a>
+    <a class="btn btn--primary" href="#brain">Byg din company brain</a>
+    <a class="btn" href="#install">Installér skills</a>
     <a class="btn" href="{REPO}" target="_blank" rel="noopener">
       <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
       Se på GitHub
@@ -271,6 +279,29 @@ footer a{{color:var(--accent-ink)}}
     <div class="note"><h4>Artefakt-kæder</h4><p>Hver skill efterlader et navngivet artefakt, som den næste læser — det er dét, der gør {total} løse skills til én organisation.</p></div>
     <div class="note"><h4>Modulær installation</h4><p>Start med kernen (<code>03 Viden &amp; Data</code> + <code>01 Direktionen</code>), og vælg de afdelinger, din rolle bruger.</p></div>
   </div>
+
+  <section class="install" id="brain">
+    <p class="section-label" style="margin-top:34px">Trin 0 — byg din company brain</p>
+    <div class="install__cols" style="grid-template-columns:1.05fr 1fr">
+      <div class="icard">
+        <h3>Fundamentet: byg hjernen først</h3>
+        <p class="sub">En AI-organisation uden en hjerne svarer i blinde. Byg hjernen → installér skills → skillene arbejder oven på den.</p>
+        <div class="step"><b>1</b><div>Åbn en ny <span class="inline">Cowork</span>-samtale i Claude Desktop med adgang til en <b>tom mappe</b> (fx <span class="inline">company-brain/</span>).</div></div>
+        <div class="step"><b>2</b><div>Kopiér hele prompten til højre ind. Claude interviewer dig og bygger hjernen fase for fase (0-6).</div></div>
+        <div class="step"><b>3</b><div>Medbring <b>3-5 dokumenter</b> til seedingen - en tom hjerne giver tomme svar.</div></div>
+        <div class="step"><b>4</b><div>Pakkens hub-filer (<span class="inline">virksomhedsprofil.md</span>, <span class="inline">voice-profil.md</span>) bor i hjernen - alle skills læser dem derfra.</div></div>
+        <p style="margin:16px 0 0"><a class="btn" href="company-brain-bootstrap.md">Læs guiden &amp; facilitator-noter</a></p>
+      </div>
+      <div class="icard">
+        <div class="brainbar">
+          <h3 style="margin:0">Prompten</h3>
+          <button id="copybrain" class="btn btn--primary" type="button" style="padding:8px 16px;font-size:14px">Kopiér prompt</button>
+        </div>
+        <p class="sub" style="margin-top:8px">Kopiér alt nedenfor ind i den tomme Cowork-mappe.</p>
+        <pre class="cmd brain" id="brainprompt">{esc(BRAIN_PROMPT)}</pre>
+      </div>
+    </div>
+  </section>
 
   <section class="install" id="install">
     <p class="section-label" style="margin-top:34px">Installér skills — <a href="{REPO}" target="_blank" rel="noopener">{REPO.replace('https://','')}</a></p>
@@ -325,6 +356,14 @@ cp -r din-ai-organisation/07-marketing/*      ~/.claude/skills/</pre></div></div
       if(el)el.scrollIntoView({{behavior:'smooth',block:'start'}});
     }});
   }});
+  var cb=document.getElementById('copybrain');
+  if(cb){{cb.addEventListener('click',function(){{
+    var t=document.getElementById('brainprompt').textContent;
+    function ok(){{cb.textContent='Kopieret \\u2713';setTimeout(function(){{cb.textContent='Kopiér prompt';}},1800);}}
+    if(navigator.clipboard&&navigator.clipboard.writeText){{navigator.clipboard.writeText(t).then(ok,function(){{}});}}
+    else{{var r=document.createRange();r.selectNode(document.getElementById('brainprompt'));
+      var s=getSelection();s.removeAllRanges();s.addRange(r);try{{document.execCommand('copy');ok();}}catch(e){{}}s.removeAllRanges();}}
+  }});}}
   var q=document.getElementById('q'), deps=document.querySelectorAll('.dep'),
       cards=document.querySelectorAll('.card'), nores=document.getElementById('noresult');
   q.addEventListener('input',function(){{
