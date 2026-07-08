@@ -17,8 +17,8 @@ En profil bygget på hvordan virksomheden gerne VIL lyde, uden belæg i rigtige 
 
 ## Læs først
 
-1. Find og læs `virksomhedsprofil.md` i brugerens arbejdsområde/brain-mappe (altid). Den giver branche, målgruppe og produktnavne, som analysen skal holdes op imod.
-2. Tjek om `voice-profil.md` allerede findes samme sted. Findes den: du er i **revisionsspor** (trin R i arbejdsgangen). Findes den ikke: du er i **nyt-profil-spor**.
+1. Find og læs `virksomhedsprofil.md` i brugerens arbejdsområde/brain-mappe (altid; findes der en company-brain, ligger den i `identity/virksomhedsprofil.md`). Den giver branche, målgruppe og produktnavne, som analysen skal holdes op imod.
+2. Tjek om `voice-profil.md` allerede findes samme sted (findes der en company-brain, ligger den i `identity/voice-profil.md` - skriv den dér). Findes den: du er i **revisionsspor** (trin R i arbejdsgangen). Findes den ikke: du er i **nyt-profil-spor**. Foreslå ALDRIG at bygge en ny hjerne; findes der allerede en, så byg videre i den.
 3. Findes `virksomhedsprofil.md` ikke: sig det, og stil kun de spørgsmål filen ellers ville have besvaret (branche, målgruppe, produktnavne) - ét ad gangen. Foreslå bagefter skillen `virksomhedsprofil` (03-viden-og-data), så hullet lukkes permanent.
 
 ## Arbejdsgang

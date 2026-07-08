@@ -335,7 +335,8 @@ footer a{{color:var(--accent-ink)}}
         <div class="step"><b>1</b><div>Åbn en ny <span class="inline">Cowork</span>-samtale i Claude Desktop med adgang til en <b>tom mappe</b> (fx <span class="inline">company-brain/</span>).</div></div>
         <div class="step"><b>2</b><div>Kopiér hele prompten til højre ind. Claude interviewer dig og bygger hjernen fase for fase (0-6).</div></div>
         <div class="step"><b>3</b><div>Medbring <b>3-5 dokumenter</b> til seedingen - en tom hjerne giver tomme svar.</div></div>
-        <div class="step"><b>4</b><div>Pakkens hub-filer (<span class="inline">virksomhedsprofil.md</span>, <span class="inline">voice-profil.md</span>) bor i hjernen - alle skills læser dem derfra.</div></div>
+        <div class="step"><b>4</b><div>Pakkens hub-filer (<span class="inline">virksomhedsprofil.md</span>, <span class="inline">voice-profil.md</span>, <span class="inline">designprofil.md</span>) bor i hjernens <span class="inline">identity/</span> - alle skills læser dem derfra.</div></div>
+        <p class="sub" style="margin-top:12px"><b>Har du allerede en hjerne?</b> Findes <span class="inline">00-index.md</span> i mappen, er Trin 0 gjort - spring bygningen over og installér skills oven på den.</p>
         <p style="margin:16px 0 0"><a class="btn" href="company-brain-bootstrap.md">Læs guiden &amp; facilitator-noter</a></p>
       </div>
       <div class="icard">

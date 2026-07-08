@@ -26,7 +26,9 @@ company-brain/
 ├── KOMMANDOER.md    ← mit cheat-sheet (fase 6)
 ├── inbox/           ← alt råt lander her; behandlet materiale flyttes til inbox/arkiv/
 │                      (originaler slettes aldrig)
-├── identity/        ← HVEM ER VI: virksomheden, ydelser, priser, tone of voice
+├── identity/        ← HVEM ER VI: virksomheden, ydelser, priser + skill-pakkens
+│                      hub-filer: virksomhedsprofil.md, voice-profil.md,
+│                      designprofil.md (faste navne, alle skills læser dem her)
 ├── people/          ← HVEM KENDER VI: én side pr. kunde, lead og samarbejdspartner
 ├── projects/        ← HVAD LAVER VI: én side pr. forløb, aktive og afsluttede
 ├── methods/         ← HVORDAN GØR VI DET (ud mod kunden): tilbudsskabelon,
@@ -49,6 +51,15 @@ To regler bag skabelonen:
 Stub-regel: nævnes en person eller et emne første gang, opretter du en stub
 (titel + én linje + kilde). Dukker de op igen i en senere session, udbygger du
 til fuld side. Sådan lærer hjernen af sig selv, hvem og hvad der betyder noget.
+
+Hub-filer (bindeleddet til skill-pakken): de 63 skills læser tre faste filer i
+identity/, altid med præcis disse navne: virksomhedsprofil.md (stamdata,
+nav-filen alle skills læser først), voice-profil.md (tone) og designprofil.md
+(visuelt udtryk). Opret virksomhedsprofil.md under seedningen (fase 4);
+voice-profil.md og designprofil.md skrives af skill'ene toneprofil og
+designretning, når de køres. Findes en fil allerede: rør den ikke, byg videre.
+Så deler hjernen og skill-pakken ÉN kilde, og ingen skill beder om at bygge en
+hjerne, der allerede står.
 
 ━━━ FASE 3 - FORBIND MINE KILDER (valgfrit, men anbefalet) ━━━
 Hjernen bygges af det, den kan se. Spørg mig, hvilke af disse jeg bruger i
@@ -74,7 +85,8 @@ En tom hjerne er ubrugelig, så:
 2. Er der forbundet kilder i fase 3: træk startviden derfra også - fx seneste
    mailtråde pr. aktiv kunde, centrale Notion-sider, tilbudsarkivet. Destillat
    ind i siderne, med kildeangivelse.
-3. Behandl det hele: opret sider, udfyld Status og Log, opbyg 00-index.md.
+3. Behandl det hele: opret sider, udfyld Status og Log, opbyg 00-index.md, og
+   opret identity/virksomhedsprofil.md som stamdata-nav-filen (se Hub-filer).
 4. Har du adgang til tidligere samtaler i dette workspace, så gennemgå de
    seneste og høst beslutninger, aftaler og viden derfra også.
 5. Afslut med at vise mig hjernen - og svar på ét prøvespørgsmål fra den,

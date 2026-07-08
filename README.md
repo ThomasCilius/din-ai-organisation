@@ -205,9 +205,11 @@ Pakken bygger desuden ovenpå Claudes indbyggede dokumentskills (pptx, pdf, docx
 
 **Trin 0 - byg din company brain.** Fundamentet under det hele: en levende markdown-vidensbase på din egen maskine, som Claude selv vedligeholder. Åbn en ny Cowork-samtale med adgang til en tom mappe (fx `company-brain/`) og kopiér [`company-brain-prompt.txt`](company-brain-prompt.txt) ind - eller brug kopiér-knappen på [skills.thomascilius.dk](https://skills.thomascilius.dk/#brain). Se guiden og facilitator-noterne i [`company-brain-bootstrap.md`](company-brain-bootstrap.md). Hjernen er fundamentet, skill-pakken er medarbejderne der arbejder oven på den.
 
+**Har du allerede en hjerne?** Findes `00-index.md` i mappen, er Trin 0 gjort. Spring bygningen over og installér skills oven på den - `virksomhedsprofil` opdaterer så bare din eksisterende `identity/virksomhedsprofil.md`, den bygger ikke en ny hjerne.
+
 Derefter:
 
-1. **Kør `virksomhedsprofil` først.** Den opretter `virksomhedsprofil.md` - den fælles nav-fil, alle andre skills læser før de arbejder. I hjernen bor den under `identity/`. Uden den gætter resten af organisationen om, hvem du er.
+1. **Kør `virksomhedsprofil` først.** Den opretter (eller opdaterer) `identity/virksomhedsprofil.md` - den fælles nav-fil, alle andre skills læser før de arbejder. Har Trin 0 allerede bygget den, opdaterer skillen den bare. Uden den gætter resten af organisationen om, hvem du er.
 2. **Kør derefter `toneprofil`** (07) for at skrive `voice-profil.md`, hvis du vil have skrivende skills til at ramme din stemme, og `designretning` (10) for `designprofil.md`, hvis du skal lave visuelle leverancer.
 3. **Vælg dine afdelinger** ud fra din rolle, og installér dem oven på kernen.
 

@@ -15,7 +15,7 @@ Profilen er den kanoniske kilde for hele AI-organisationen. Et gæt der står so
 
 Denne skill ER nav-filen, så "læs først" betyder her:
 
-1. Led efter `virksomhedsprofil.md` i brugerens arbejdsområde/brain-mappe.
+1. Led efter `virksomhedsprofil.md` i brugerens arbejdsområde/brain-mappe. Findes der en company-brain (`00-index.md`), ligger filen i `identity/virksomhedsprofil.md` - læs og skriv den dér. Findes hjernen allerede, så byg videre i den og foreslå ALDRIG at bygge en ny hjerne; det er Step 0's opgave.
    - **Findes den:** du er i opdateringstilstand. Læs hele filen inkl. ændringsloggen, før du foreslår noget.
    - **Findes den ikke:** du er i oprettelsestilstand. Sig det, og start arbejdsgangen fra trin 1.
 2. Led efter `voice-profil.md` samme sted. Findes den, skal profilen henvise til den (se skabelonen). Findes den ikke, notér i profilen at voice-profil mangler - du skal IKKE selv skrive en; det gør `toneprofil`.

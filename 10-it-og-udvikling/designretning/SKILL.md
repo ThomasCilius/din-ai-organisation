@@ -15,9 +15,9 @@ En profil der hviler på "det ser rent og moderne ud", kan ikke forsvares over f
 
 ## Læs først
 
-1. Find og læs `virksomhedsprofil.md` i brugerens arbejdsområde eller brain-mappe (altid) - den bærer branche, målgruppe, prisleje og eksisterende identitet.
+1. Find og læs `virksomhedsprofil.md` i brugerens arbejdsområde eller brain-mappe (altid; findes der en company-brain, ligger den i `identity/virksomhedsprofil.md`) - den bærer branche, målgruppe, prisleje og eksisterende identitet.
 2. Læs også `voice-profil.md` (skrivestemmen sætter det visuelle register - en legende stemme og en stram palet modsiger hinanden) og eksisterende materialer: logo, farver, tidligere slides og site.
-3. `designprofil.md` er dit OUTPUT, ikke et input. Findes den allerede: læs den og byg videre - lav ikke en ny fra bunden.
+3. `designprofil.md` er dit OUTPUT, ikke et input (findes der en company-brain, ligger den i `identity/designprofil.md` - skriv den dér). Findes den allerede: læs den og byg videre - lav ikke en ny fra bunden. Foreslå ALDRIG at bygge en ny hjerne; findes der en, så byg videre i den.
 4. Findes profilfilerne ikke: sig det, og stil kun de spørgsmål filerne ellers ville have besvaret - ét ad gangen. Gæt aldrig branche eller målgruppe.
 
 ## Arbejdsgang
