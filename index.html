@@ -9,22 +9,23 @@
 :root{
   --bg:#f6f3ee; --surface:#fffdf9; --ink:#211d17; --muted:#6b6459;
   --line:#e4ddd1; --accent:#b9762a; --accent-soft:#f0e2cd; --accent-ink:#7a4a13;
-  --stab:#3f6b63; --stab-soft:#e0ece9; --afd-line:#d8cfc0;
+  --stab:#3f6b63; --stab-soft:#e0ece9; --afd-line:#d8cfc0; --code-bg:#2b2117; --code-ink:#f3e7d4;
   --radius:14px; --maxw:1120px;
   --font:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
   --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
 }
 @media (prefers-color-scheme:dark){
   :root{ --bg:#17140f; --surface:#211c15; --ink:#f0ebe1; --muted:#a89e8d;
     --line:#332c22; --accent:#e0973f; --accent-soft:#3a2c17; --accent-ink:#f0c184;
-    --stab:#6fb3a6; --stab-soft:#1e2e2a; --afd-line:#3a3227; }
+    --stab:#6fb3a6; --stab-soft:#1e2e2a; --afd-line:#3a3227; --code-bg:#0f0c08; --code-ink:#e9dcc6; }
 }
 :root[data-theme=dark]{ --bg:#17140f; --surface:#211c15; --ink:#f0ebe1; --muted:#a89e8d;
   --line:#332c22; --accent:#e0973f; --accent-soft:#3a2c17; --accent-ink:#f0c184;
-  --stab:#6fb3a6; --stab-soft:#1e2e2a; --afd-line:#3a3227; }
+  --stab:#6fb3a6; --stab-soft:#1e2e2a; --afd-line:#3a3227; --code-bg:#0f0c08; --code-ink:#e9dcc6; }
 :root[data-theme=light]{ --bg:#f6f3ee; --surface:#fffdf9; --ink:#211d17; --muted:#6b6459;
   --line:#e4ddd1; --accent:#b9762a; --accent-soft:#f0e2cd; --accent-ink:#7a4a13;
-  --stab:#3f6b63; --stab-soft:#e0ece9; --afd-line:#d8cfc0; }
+  --stab:#3f6b63; --stab-soft:#e0ece9; --afd-line:#d8cfc0; --code-bg:#2b2117; --code-ink:#f3e7d4; }
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);line-height:1.55;
   -webkit-font-smoothing:antialiased;overflow-x:hidden}
@@ -40,20 +41,26 @@ a{color:var(--accent-ink);text-underline-offset:3px}
 .search:focus{outline:2px solid var(--accent);outline-offset:1px}
 .themebtn{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;
   width:38px;height:38px;font-size:16px;cursor:pointer;flex:none}
-.hero{padding:clamp(48px,8vw,96px) 0 clamp(28px,4vw,44px)}
+.hero{padding:clamp(48px,8vw,92px) 0 clamp(24px,4vw,40px)}
 .eyebrow{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-ink);font-weight:600;margin:0 0 14px}
 .hero h1{font-family:var(--serif);font-weight:600;letter-spacing:-.02em;line-height:1.02;
   font-size:clamp(2.6rem,6vw,5rem);margin:0 0 18px}
-.hero p{font-size:clamp(1.05rem,1.6vw,1.3rem);color:var(--muted);max-width:44ch;margin:0 0 26px}
-.stats{display:flex;gap:34px;flex-wrap:wrap}
+.hero p.lead{font-size:clamp(1.05rem,1.6vw,1.3rem);color:var(--muted);max-width:46ch;margin:0 0 26px}
+.stats{display:flex;gap:34px;flex-wrap:wrap;margin-bottom:28px}
 .stat b{font-family:var(--serif);font-size:2rem;display:block;line-height:1;color:var(--accent-ink)}
 .stat span{font-size:13px;color:var(--muted)}
+.btnrow{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:9px;padding:12px 20px;border-radius:999px;font-size:15px;
+  font-weight:600;text-decoration:none;border:1px solid var(--line);background:var(--surface);color:var(--ink);
+  transition:transform .14s ease,border-color .14s ease}
+.btn:hover{transform:translateY(-2px);border-color:var(--accent)}
+.btn--primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn--primary:hover{border-color:var(--accent)}
+.btn svg{width:18px;height:18px;fill:currentColor}
 .section-label{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
   font-weight:600;margin:0 0 20px;padding-top:10px;border-top:1px solid var(--line)}
-/* org chart */
 .chart{display:flex;flex-direction:column;align-items:center;gap:0;margin:0 0 20px}
 .chart__tier{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;width:100%}
-.chart__tier--afd{max-width:100%}
 .chart__spine{width:2px;height:26px;background:var(--afd-line)}
 .node{position:relative;flex:1 1 200px;max-width:280px;min-width:170px;text-align:left;cursor:pointer;
   background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
@@ -66,17 +73,25 @@ a{color:var(--accent-ink);text-underline-offset:3px}
 .node--afd{flex:1 1 150px;min-width:150px;padding:13px 15px}
 .node__label{font-weight:700;letter-spacing:-.01em;font-size:15px}
 .node__tag{font-size:12.5px;color:var(--muted)}
-.node__count{font-size:11.5px;color:var(--accent-ink);font-weight:600;margin-top:4px;
-  text-transform:uppercase;letter-spacing:.05em}
+.node__count{font-size:11.5px;color:var(--accent-ink);font-weight:600;margin-top:4px;text-transform:uppercase;letter-spacing:.05em}
 .node--stab .node__count{color:var(--stab)}
-.tier-cap{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);width:100%;text-align:center;margin:2px 0 -6px}
-/* explainer */
-.notes{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin:8px 0 8px}
+.notes{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin:8px 0}
 .note{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px}
 .note h4{margin:0 0 6px;font-size:14px;letter-spacing:-.01em}
 .note p{margin:0;font-size:13.5px;color:var(--muted)}
-.note code{background:var(--accent-soft);color:var(--accent-ink);padding:1px 6px;border-radius:6px;font-size:12.5px}
-/* departments */
+.note code,.inline{background:var(--accent-soft);color:var(--accent-ink);padding:1px 6px;border-radius:6px;font-size:12.5px;font-family:var(--mono)}
+/* install */
+.install{margin:12px 0 8px}
+.install__cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+.icard{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:22px 22px}
+.icard h3{margin:0 0 4px;font-size:17px;letter-spacing:-.01em}
+.icard .sub{margin:0 0 16px;color:var(--muted);font-size:13.5px}
+.step{display:flex;gap:11px;margin:0 0 12px;font-size:14px}
+.step b{flex:none;width:22px;height:22px;border-radius:50%;background:var(--accent-soft);color:var(--accent-ink);
+  font-size:12px;display:flex;align-items:center;justify-content:center;font-weight:700;margin-top:1px}
+pre.cmd{background:var(--code-bg);color:var(--code-ink);border-radius:10px;padding:13px 15px;margin:6px 0 0;
+  overflow-x:auto;font-family:var(--mono);font-size:12.5px;line-height:1.7}
+pre.cmd .c{color:#9db98f}
 .dep{padding:40px 0 8px;scroll-margin-top:76px}
 .dep__head{display:flex;align-items:center;gap:16px;margin:0 0 22px}
 .dep__num{font-family:var(--serif);font-size:2.1rem;color:var(--accent);font-weight:600;
@@ -88,12 +103,10 @@ a{color:var(--accent-ink);text-underline-offset:3px}
 .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:17px 18px;
   transition:border-color .14s ease,transform .14s ease}
 .card:hover{border-color:var(--accent);transform:translateY(-2px)}
-.card__name{margin:0 0 6px;font-size:15px;font-weight:700;letter-spacing:-.01em;
-  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--accent-ink)}
+.card__name{margin:0 0 6px;font-size:15px;font-weight:700;letter-spacing:-.01em;font-family:var(--mono);color:var(--accent-ink)}
 .card__purpose{margin:0;font-size:14px;color:var(--ink)}
 .card__triggers{margin-top:11px;display:flex;flex-wrap:wrap;gap:6px}
-.chip{font-size:11.5px;color:var(--muted);background:var(--bg);border:1px solid var(--line);
-  border-radius:999px;padding:3px 9px}
+.chip{font-size:11.5px;color:var(--muted);background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:3px 9px}
 .dep.dim,.card.hide{display:none}
 .noresult{color:var(--muted);padding:30px 0;font-size:15px}
 footer{border-top:1px solid var(--line);margin-top:60px;padding:34px 0;color:var(--muted);font-size:13.5px}
@@ -115,11 +128,18 @@ footer a{color:var(--accent-ink)}
 <header class="hero"><div class="wrap">
   <p class="eyebrow">AI Academy · Claude 0-100</p>
   <h1>Byg din virksomhed<br>som et AI-hold</h1>
-  <p>Et kurateret sæt Agent Skills til Claude, skåret efter et klassisk dansk organisationsdiagram. Hver afdeling er et hold AI-medarbejdere · hver skill er én afgrænset, tilbagevendende opgave.</p>
+  <p class="lead">Et kurateret sæt Agent Skills til Claude, skåret efter et klassisk dansk organisationsdiagram. Hver afdeling er et hold AI-medarbejdere · hver skill er én afgrænset, tilbagevendende opgave.</p>
   <div class="stats">
     <span class="stat"><b>63</b><span>skills</span></span>
     <span class="stat"><b>10</b><span>afdelinger</span></span>
     <span class="stat"><b>DK</b><span>jobvalideret</span></span>
+  </div>
+  <div class="btnrow">
+    <a class="btn btn--primary" href="#install">Installér skills</a>
+    <a class="btn" href="https://github.com/ThomasCilius/din-ai-organisation" target="_blank" rel="noopener">
+      <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+      Se på GitHub
+    </a>
   </div>
 </div></header>
 
@@ -187,6 +207,31 @@ footer a{color:var(--accent-ink)}
     <div class="note"><h4>Modulær installation</h4><p>Start med kernen (<code>03 Viden &amp; Data</code> + <code>01 Direktionen</code>), og vælg de afdelinger, din rolle bruger.</p></div>
   </div>
 
+  <section class="install" id="install">
+    <p class="section-label" style="margin-top:34px">Installér skills — <a href="https://github.com/ThomasCilius/din-ai-organisation" target="_blank" rel="noopener">github.com/ThomasCilius/din-ai-organisation</a></p>
+    <div class="install__cols">
+      <div class="icard">
+        <h3>Claude Code</h3>
+        <p class="sub">Klon repoet og kopiér de afdelinger, du vil bruge, ind i din skills-mappe.</p>
+        <div class="step"><b>1</b><div>Klon repoet<pre class="cmd">git clone https://github.com/ThomasCilius/din-ai-organisation.git</pre></div></div>
+        <div class="step"><b>2</b><div>Kopiér kernen (Viden &amp; Data + Direktionen) ind i <span class="inline">~/.claude/skills/</span><pre class="cmd">mkdir -p ~/.claude/skills
+cp -r din-ai-organisation/03-viden-og-data/*  ~/.claude/skills/
+cp -r din-ai-organisation/01-direktionen/*    ~/.claude/skills/
+<span class="c"># gentag med de afdelinger du vil bruge, fx:</span>
+cp -r din-ai-organisation/07-marketing/*      ~/.claude/skills/</pre></div></div>
+        <div class="step"><b>3</b><div>Start Claude Code i dit projekt — skillsene trigger automatisk på danske og engelske sætninger. Eller læg dem i projektets egen <span class="inline">.claude/skills/</span>.</div></div>
+      </div>
+      <div class="icard">
+        <h3>Claude Desktop</h3>
+        <p class="sub">Upload én skill-mappe ad gangen som .zip.</p>
+        <div class="step"><b>1</b><div>Hent repoet: grøn <span class="inline">Code</span>-knap på GitHub → <span class="inline">Download ZIP</span> (eller klon som ovenfor).</div></div>
+        <div class="step"><b>2</b><div>Pak den enkelte skill-mappe (den med <span class="inline">SKILL.md</span> i) som en <span class="inline">.zip</span> — fx <span class="inline">virksomhedsprofil/</span>.</div></div>
+        <div class="step"><b>3</b><div>I Claude Desktop: <span class="inline">Settings → Capabilities → Skills → Upload skill</span>, og vælg zip-filen. Gentag pr. skill.</div></div>
+        <div class="step"><b>4</b><div>Start altid med <span class="inline">virksomhedsprofil</span> — den bygger hub-filen, alle andre skills læser.</div></div>
+      </div>
+    </div>
+  </section>
+
   <p class="section-label" style="margin-top:34px">Alle afdelinger &amp; skills</p>
   <div id="deps">
     <section class="dep" id="dep-0" data-folder="01-direktionen">
@@ -197,27 +242,27 @@ footer a{color:var(--accent-ink)}
           <p class="dep__tag">Beslutninger &amp; kontrakter · 6 skills</p>
         </div>
       </header>
-      <div class="grid"><article class="card" data-name="beslutningsgrundlag" data-text="beslutningsgrundlag bygger et skriftligt, kildebelagt beslutningsgrundlag til større beslutninger - bestyrelse, bank, investering, nyt marked, større indkøb eller ansættelse. lav et beslutningsgrundlag byg et beslutningsoplæg undersøg om vi skal... skal vi investere i... lav en business case jeg skal overbevise banken/bestyrelsen">
+      <div class="grid"><article class="card" data-text="beslutningsgrundlag bygger et skriftligt, kildebelagt beslutningsgrundlag til større beslutninger - bestyrelse, bank, investering, nyt marked, større indkøb eller ansættelse. lav et beslutningsgrundlag byg et beslutningsoplæg undersøg om vi skal... skal vi investere i... lav en business case jeg skal overbevise banken/bestyrelsen">
       <h3 class="card__name">beslutningsgrundlag</h3>
       <p class="card__purpose">Bygger et skriftligt, kildebelagt beslutningsgrundlag til større beslutninger - bestyrelse, bank, investering, nyt marked, større indkøb eller ansættelse.</p>
       <div class="card__triggers"><span class="chip">lav et beslutningsgrundlag</span><span class="chip">byg et beslutningsoplæg</span><span class="chip">undersøg om vi skal...</span><span class="chip">skal vi investere i...</span><span class="chip">lav en business case</span><span class="chip">jeg skal overbevise banken/bestyrelsen</span></div>
-    </article><article class="card" data-name="bestyrelsespakke" data-text="bestyrelsespakke bygger udkast til bestyrelsesmateriale, bankpræsentation eller månedlig ledelsesrapport ud fra virksomhedens egne tal. lav bestyrelsesmateriale forbered bestyrelsesmødet bestyrelsespakken pakke til banken materiale til banken ledelsesrapport for [måned]">
+    </article><article class="card" data-text="bestyrelsespakke bygger udkast til bestyrelsesmateriale, bankpræsentation eller månedlig ledelsesrapport ud fra virksomhedens egne tal. lav bestyrelsesmateriale forbered bestyrelsesmødet bestyrelsespakken pakke til banken materiale til banken ledelsesrapport for [måned]">
       <h3 class="card__name">bestyrelsespakke</h3>
       <p class="card__purpose">Bygger udkast til bestyrelsesmateriale, bankpræsentation eller månedlig ledelsesrapport ud fra virksomhedens egne tal.</p>
       <div class="card__triggers"><span class="chip">lav bestyrelsesmateriale</span><span class="chip">forbered bestyrelsesmødet</span><span class="chip">bestyrelsespakken</span><span class="chip">pakke til banken</span><span class="chip">materiale til banken</span><span class="chip">ledelsesrapport for [måned]</span></div>
-    </article><article class="card" data-name="forhandlings-forberedelse" data-text="forhandlings-forberedelse forbereder brugeren til en konkret forhandling: sætter tal på batna, smertegrænse og forventet aftalezone, kortlægger modpartens interesser og bygger en indrømmelsesplan - samlet i ét forhandlingsark til mødet. jeg skal forhandle med... forbered mig til mødet med [leverandør/kunde] lønsamtale med... de vil genforhandle hvad skal jeg kræve de har sat prisen op">
+    </article><article class="card" data-text="forhandlings-forberedelse forbereder brugeren til en konkret forhandling: sætter tal på batna, smertegrænse og forventet aftalezone, kortlægger modpartens interesser og bygger en indrømmelsesplan - samlet i ét forhandlingsark til mødet. jeg skal forhandle med... forbered mig til mødet med [leverandør/kunde] lønsamtale med... de vil genforhandle hvad skal jeg kræve de har sat prisen op">
       <h3 class="card__name">forhandlings-forberedelse</h3>
       <p class="card__purpose">Forbereder brugeren til en konkret forhandling: sætter tal på BATNA, smertegrænse og forventet aftalezone, kortlægger modpartens interesser og bygger en indrømmelsesplan - samlet i ét forhandlingsark til mødet.</p>
       <div class="card__triggers"><span class="chip">jeg skal forhandle med...</span><span class="chip">forbered mig til mødet med [leverandør/kunde]</span><span class="chip">lønsamtale med...</span><span class="chip">de vil genforhandle</span><span class="chip">hvad skal jeg kræve</span><span class="chip">de har sat prisen op</span></div>
-    </article><article class="card" data-name="ide-stresstest" data-text="ide-stresstest presser brugerens &#x27;skal jeg...?&#x27;-beslutninger (ny ydelse, pris, marked, ansættelse, investering) med forcing questions ét ad gangen og slutter altid med en entydig anbefaling plus ét konkret næste skridt. skal jeg...? skal jeg... skal jeg ansætte en sælger skal jeg hæve prisen jeg overvejer at... stresstest min idé">
+    </article><article class="card" data-text="ide-stresstest presser brugerens &#x27;skal jeg...?&#x27;-beslutninger (ny ydelse, pris, marked, ansættelse, investering) med forcing questions ét ad gangen og slutter altid med en entydig anbefaling plus ét konkret næste skridt. skal jeg...? skal jeg... skal jeg ansætte en sælger skal jeg hæve prisen jeg overvejer at... stresstest min idé">
       <h3 class="card__name">ide-stresstest</h3>
       <p class="card__purpose">Presser brugerens &#x27;skal jeg...?&#x27;-beslutninger (ny ydelse, pris, marked, ansættelse, investering) med forcing questions ét ad gangen og slutter altid med en entydig anbefaling plus ét konkret næste skridt.</p>
       <div class="card__triggers"><span class="chip">skal jeg...?</span><span class="chip">skal jeg...</span><span class="chip">skal jeg ansætte en sælger</span><span class="chip">skal jeg hæve prisen</span><span class="chip">jeg overvejer at...</span><span class="chip">stresstest min idé</span></div>
-    </article><article class="card" data-name="kontrakt-tjek" data-text="kontrakt-tjek gennemgår kontrakter og aftaler før underskrift og flager risici efter alvorlighed - hvert fund med ordret klausulcitat - og siger klart hvornår en rigtig advokat skal ind over. tjek denne kontrakt gennemgå aftalen før jeg skriver under må jeg skrive under på det her er der noget farligt i den her leverandøraftale hvad betyder den her klausul review this contract">
+    </article><article class="card" data-text="kontrakt-tjek gennemgår kontrakter og aftaler før underskrift og flager risici efter alvorlighed - hvert fund med ordret klausulcitat - og siger klart hvornår en rigtig advokat skal ind over. tjek denne kontrakt gennemgå aftalen før jeg skriver under må jeg skrive under på det her er der noget farligt i den her leverandøraftale hvad betyder den her klausul review this contract">
       <h3 class="card__name">kontrakt-tjek</h3>
       <p class="card__purpose">Gennemgår kontrakter og aftaler før underskrift og flager risici efter alvorlighed - hvert fund med ordret klausulcitat - og siger klart hvornår en rigtig advokat skal ind over.</p>
       <div class="card__triggers"><span class="chip">tjek denne kontrakt</span><span class="chip">gennemgå aftalen før jeg skriver under</span><span class="chip">må jeg skrive under på det her</span><span class="chip">er der noget farligt i den her leverandøraftale</span><span class="chip">hvad betyder den her klausul</span><span class="chip">review this contract</span></div>
-    </article><article class="card" data-name="second-opinion" data-text="second-opinion giver en kritisk second opinion på vigtige udkast før afsendelse - tilbud, vigtige mails, planer, beslutningsoplæg, byggebriefs og præsentationer. tager stilling (send / send ikke / send efter rettelser) og leverer prioriterede fund i tre niveauer med citat. giv mig en second opinion læs mit tilbud igennem tjek den her mail før jeg sender den er det her godt nok? kig min plan igennem gennemgå mit udkast">
+    </article><article class="card" data-text="second-opinion giver en kritisk second opinion på vigtige udkast før afsendelse - tilbud, vigtige mails, planer, beslutningsoplæg, byggebriefs og præsentationer. tager stilling (send / send ikke / send efter rettelser) og leverer prioriterede fund i tre niveauer med citat. giv mig en second opinion læs mit tilbud igennem tjek den her mail før jeg sender den er det her godt nok? kig min plan igennem gennemgå mit udkast">
       <h3 class="card__name">second-opinion</h3>
       <p class="card__purpose">Giver en kritisk second opinion på vigtige udkast før afsendelse - tilbud, vigtige mails, planer, beslutningsoplæg, byggebriefs og præsentationer. Tager stilling (send / send ikke / send efter rettelser) og leverer prioriterede fund i tre niveauer med citat.</p>
       <div class="card__triggers"><span class="chip">giv mig en second opinion</span><span class="chip">læs mit tilbud igennem</span><span class="chip">tjek den her mail før jeg sender den</span><span class="chip">er det her godt nok?</span><span class="chip">kig min plan igennem</span><span class="chip">gennemgå mit udkast</span></div>
@@ -230,23 +275,23 @@ footer a{color:var(--accent-ink)}
           <p class="dep__tag">Retning, kadence, årshjul · 5 skills</p>
         </div>
       </header>
-      <div class="grid"><article class="card" data-name="etsides-strategiplan" data-text="etsides-strategiplan kondenserer virksomhedens strategi til én læsbar side med pejlemærke, kernekunde, 3-5 must-win battles, eksplicitte fravalg, nøgletal og ejere - plus en medarbejderversion i klart sprog. skriv vores strategi ned lav en étsides strategiplan vi skal have strategien på én side lav en version til medarbejderne opdater strategiplanen write our strategy on one page">
+      <div class="grid"><article class="card" data-text="etsides-strategiplan kondenserer virksomhedens strategi til én læsbar side med pejlemærke, kernekunde, 3-5 must-win battles, eksplicitte fravalg, nøgletal og ejere - plus en medarbejderversion i klart sprog. skriv vores strategi ned lav en étsides strategiplan vi skal have strategien på én side lav en version til medarbejderne opdater strategiplanen write our strategy on one page">
       <h3 class="card__name">etsides-strategiplan</h3>
       <p class="card__purpose">Kondenserer virksomhedens strategi til én læsbar side med pejlemærke, kernekunde, 3-5 must-win battles, eksplicitte fravalg, nøgletal og ejere - plus en medarbejderversion i klart sprog.</p>
       <div class="card__triggers"><span class="chip">skriv vores strategi ned</span><span class="chip">lav en étsides strategiplan</span><span class="chip">vi skal have strategien på én side</span><span class="chip">lav en version til medarbejderne</span><span class="chip">opdater strategiplanen</span><span class="chip">write our strategy on one page</span></div>
-    </article><article class="card" data-name="konkurrent-radar" data-text="konkurrent-radar vedligeholder et stående konkurrentkort over 5-8 navngivne konkurrenter og skriver en kvartalsvis delta-rapport med kun ændringer siden sidst plus &#x27;hvad betyder det for os&#x27;. hvad betyder det for os opdater konkurrentbilledet hvad laver konkurrenterne kør konkurrent-radar ny konkurrent på markedet konkurrenten har sat prisen ned">
+    </article><article class="card" data-text="konkurrent-radar vedligeholder et stående konkurrentkort over 5-8 navngivne konkurrenter og skriver en kvartalsvis delta-rapport med kun ændringer siden sidst plus &#x27;hvad betyder det for os&#x27;. hvad betyder det for os opdater konkurrentbilledet hvad laver konkurrenterne kør konkurrent-radar ny konkurrent på markedet konkurrenten har sat prisen ned">
       <h3 class="card__name">konkurrent-radar</h3>
       <p class="card__purpose">Vedligeholder et stående konkurrentkort over 5-8 navngivne konkurrenter og skriver en kvartalsvis delta-rapport med kun ændringer siden sidst plus &#x27;hvad betyder det for os&#x27;.</p>
       <div class="card__triggers"><span class="chip">hvad betyder det for os</span><span class="chip">opdater konkurrentbilledet</span><span class="chip">hvad laver konkurrenterne</span><span class="chip">kør konkurrent-radar</span><span class="chip">ny konkurrent på markedet</span><span class="chip">konkurrenten har sat prisen ned</span></div>
-    </article><article class="card" data-name="kvartals-nedbrydning" data-text="kvartals-nedbrydning nedbryder virksomhedens strategi til max 3-5 kvartalsmål med navngivne ejere, &#x27;færdig når&#x27;-kriterier og første handling inden 14 dage. færdig når nedbryd strategien til kvartalsmål lav kvartalsplanen nyt kvartal - hvad skal vi nå hvad er vores mål for q3">
+    </article><article class="card" data-text="kvartals-nedbrydning nedbryder virksomhedens strategi til max 3-5 kvartalsmål med navngivne ejere, &#x27;færdig når&#x27;-kriterier og første handling inden 14 dage. færdig når nedbryd strategien til kvartalsmål lav kvartalsplanen nyt kvartal - hvad skal vi nå hvad er vores mål for q3">
       <h3 class="card__name">kvartals-nedbrydning</h3>
       <p class="card__purpose">Nedbryder virksomhedens strategi til max 3-5 kvartalsmål med navngivne ejere, &#x27;færdig når&#x27;-kriterier og første handling inden 14 dage.</p>
       <div class="card__triggers"><span class="chip">færdig når</span><span class="chip">nedbryd strategien til kvartalsmål</span><span class="chip">lav kvartalsplanen</span><span class="chip">nyt kvartal - hvad skal vi nå</span><span class="chip">hvad er vores mål for Q3</span></div>
-    </article><article class="card" data-name="strategi-tjek" data-text="strategi-tjek kører kvartalsvis strategiopfølgning: grøn/gul/rød pr. kvartalsmål, skelner &#x27;bagud på plan&#x27; fra &#x27;planen var forkert&#x27; og foreslår max 1-2 justeringer - i ét format der også fungerer som bestyrelsesside. bagud på plan planen var forkert er vi på sporet kør strategi-tjek kvartalsopfølgning status på strategien">
+    </article><article class="card" data-text="strategi-tjek kører kvartalsvis strategiopfølgning: grøn/gul/rød pr. kvartalsmål, skelner &#x27;bagud på plan&#x27; fra &#x27;planen var forkert&#x27; og foreslår max 1-2 justeringer - i ét format der også fungerer som bestyrelsesside. bagud på plan planen var forkert er vi på sporet kør strategi-tjek kvartalsopfølgning status på strategien">
       <h3 class="card__name">strategi-tjek</h3>
       <p class="card__purpose">Kører kvartalsvis strategiopfølgning: grøn/gul/rød pr. kvartalsmål, skelner &#x27;bagud på plan&#x27; fra &#x27;planen var forkert&#x27; og foreslår max 1-2 justeringer - i ét format der også fungerer som bestyrelsesside.</p>
       <div class="card__triggers"><span class="chip">bagud på plan</span><span class="chip">planen var forkert</span><span class="chip">er vi på sporet</span><span class="chip">kør strategi-tjek</span><span class="chip">kvartalsopfølgning</span><span class="chip">status på strategien</span></div>
-    </article><article class="card" data-name="strategidag-forberedelse" data-text="strategidag-forberedelse forbereder og dokumenterer årets strategidag i en dansk smv: dagsorden med timebokse, situationsbillede (swot, nøgletal, udefra-ind-tendenser), 3-5 skarpe strategiske spørgsmål - og skriver referatet med beslutninger og fravalg bagefter. vi skal holde strategidag forbered vores strategiseminar lav dagsorden til strategidagen vi skal lægge strategi for næste år skriv referat fra strategidagen prepare our strategy day">
+    </article><article class="card" data-text="strategidag-forberedelse forbereder og dokumenterer årets strategidag i en dansk smv: dagsorden med timebokse, situationsbillede (swot, nøgletal, udefra-ind-tendenser), 3-5 skarpe strategiske spørgsmål - og skriver referatet med beslutninger og fravalg bagefter. vi skal holde strategidag forbered vores strategiseminar lav dagsorden til strategidagen vi skal lægge strategi for næste år skriv referat fra strategidagen prepare our strategy day">
       <h3 class="card__name">strategidag-forberedelse</h3>
       <p class="card__purpose">Forbereder og dokumenterer årets strategidag i en dansk SMV: dagsorden med timebokse, situationsbillede (SWOT, nøgletal, udefra-ind-tendenser), 3-5 skarpe strategiske spørgsmål - og skriver referatet med beslutninger og fravalg bagefter.</p>
       <div class="card__triggers"><span class="chip">vi skal holde strategidag</span><span class="chip">forbered vores strategiseminar</span><span class="chip">lav dagsorden til strategidagen</span><span class="chip">vi skal lægge strategi for næste år</span><span class="chip">skriv referat fra strategidagen</span><span class="chip">prepare our strategy day</span></div>
@@ -259,23 +304,23 @@ footer a{color:var(--accent-ink)}
           <p class="dep__tag">Virksomhedens hjerne · stab · 5 skills</p>
         </div>
       </header>
-      <div class="grid"><article class="card" data-name="brain-tjek" data-text="brain-tjek kvalitetsansvarliges dokumentreview af virksomhedens brain-mappe: finder forældede, modstridende, dublerede og kildeløse videnfiler samt skabelon-uensartethed, og retter kun efter godkendelse. kør et brain-tjek tjek vores videnfiler er vores viden opdateret find forældet viden ryd op i vores videnfiler dokumentreview">
+      <div class="grid"><article class="card" data-text="brain-tjek kvalitetsansvarliges dokumentreview af virksomhedens brain-mappe: finder forældede, modstridende, dublerede og kildeløse videnfiler samt skabelon-uensartethed, og retter kun efter godkendelse. kør et brain-tjek tjek vores videnfiler er vores viden opdateret find forældet viden ryd op i vores videnfiler dokumentreview">
       <h3 class="card__name">brain-tjek</h3>
       <p class="card__purpose">Kvalitetsansvarliges dokumentreview af virksomhedens brain-mappe: finder forældede, modstridende, dublerede og kildeløse videnfiler samt skabelon-uensartethed, og retter kun efter godkendelse.</p>
       <div class="card__triggers"><span class="chip">kør et brain-tjek</span><span class="chip">tjek vores videnfiler</span><span class="chip">er vores viden opdateret</span><span class="chip">find forældet viden</span><span class="chip">ryd op i vores videnfiler</span><span class="chip">dokumentreview</span></div>
-    </article><article class="card" data-name="gdpr-fortegnelse" data-text="gdpr-fortegnelse udkaster og vedligeholder virksomhedens artikel 30-fortegnelse over behandlingsaktiviteter, sletteliste og databehandleroversigt gennem et struktureret interview. gdpr fortegnelse artikel 30 persondata databehandleraftale må vi gemme...">
+    </article><article class="card" data-text="gdpr-fortegnelse udkaster og vedligeholder virksomhedens artikel 30-fortegnelse over behandlingsaktiviteter, sletteliste og databehandleroversigt gennem et struktureret interview. gdpr fortegnelse artikel 30 persondata databehandleraftale må vi gemme...">
       <h3 class="card__name">gdpr-fortegnelse</h3>
       <p class="card__purpose">Udkaster og vedligeholder virksomhedens artikel 30-fortegnelse over behandlingsaktiviteter, sletteliste og databehandleroversigt gennem et struktureret interview.</p>
       <div class="card__triggers"><span class="chip">GDPR</span><span class="chip">fortegnelse</span><span class="chip">artikel 30</span><span class="chip">persondata</span><span class="chip">databehandleraftale</span><span class="chip">må vi gemme...</span></div>
-    </article><article class="card" data-name="natportner" data-text="natportner rydder op i brain-mappens inbox: laeser alle loese noter, skriver videnindholdet ind i de rigtige videnfiler, flytter noterne til behandlet og skriver en natterapport ejeren kan skimme paa 2 minutter. koer natportneren koer portneren koer natportieren ryd op i inbox ryd op i mine noter arkiver mine noter">
+    </article><article class="card" data-text="natportner rydder op i brain-mappens inbox: laeser alle loese noter, skriver videnindholdet ind i de rigtige videnfiler, flytter noterne til behandlet og skriver en natterapport ejeren kan skimme paa 2 minutter. koer natportneren koer portneren koer natportieren ryd op i inbox ryd op i mine noter arkiver mine noter">
       <h3 class="card__name">natportner</h3>
       <p class="card__purpose">Rydder op i brain-mappens inbox: laeser alle loese noter, skriver videnindholdet ind i de rigtige videnfiler, flytter noterne til behandlet og skriver en natterapport ejeren kan skimme paa 2 minutter.</p>
       <div class="card__triggers"><span class="chip">koer natportneren</span><span class="chip">koer portneren</span><span class="chip">koer natportieren</span><span class="chip">ryd op i inbox</span><span class="chip">ryd op i mine noter</span><span class="chip">arkiver mine noter</span></div>
-    </article><article class="card" data-name="videnfil-interview" data-text="videnfil-interview interviewer brugeren og destillerer tavs viden til en videnfil på maks. 10 linjer i brain-mappen - inkl. exit-vidensoverdragelse når en medarbejder stopper. lav en videnfil interview mig om ... skriv ned hvordan vi gør ... fang min viden om ... det ligger kun i mit hoved vores bogholder er den eneste der ved ...">
+    </article><article class="card" data-text="videnfil-interview interviewer brugeren og destillerer tavs viden til en videnfil på maks. 10 linjer i brain-mappen - inkl. exit-vidensoverdragelse når en medarbejder stopper. lav en videnfil interview mig om ... skriv ned hvordan vi gør ... fang min viden om ... det ligger kun i mit hoved vores bogholder er den eneste der ved ...">
       <h3 class="card__name">videnfil-interview</h3>
       <p class="card__purpose">Interviewer brugeren og destillerer tavs viden til en videnfil på maks. 10 linjer i brain-mappen - inkl. exit-vidensoverdragelse når en medarbejder stopper.</p>
       <div class="card__triggers"><span class="chip">lav en videnfil</span><span class="chip">interview mig om ...</span><span class="chip">skriv ned hvordan vi gør ...</span><span class="chip">fang min viden om ...</span><span class="chip">det ligger kun i mit hoved</span><span class="chip">vores bogholder er den eneste der ved ...</span></div>
-    </article><article class="card" data-name="virksomhedsprofil" data-text="virksomhedsprofil opretter og vedligeholder virksomhedsprofil.md - nav-filen med stamdata, ydelser, kunder, konkurrenter og systemer, som alle andre skills læser først. lav en virksomhedsprofil opret virksomhedsprofil.md opdater virksomhedsprofilen sæt mit arbejdsområde op fortæl claude om min virksomhed hvem er vi-fil">
+    </article><article class="card" data-text="virksomhedsprofil opretter og vedligeholder virksomhedsprofil.md - nav-filen med stamdata, ydelser, kunder, konkurrenter og systemer, som alle andre skills læser først. lav en virksomhedsprofil opret virksomhedsprofil.md opdater virksomhedsprofilen sæt mit arbejdsområde op fortæl claude om min virksomhed hvem er vi-fil">
       <h3 class="card__name">virksomhedsprofil</h3>
       <p class="card__purpose">Opretter og vedligeholder virksomhedsprofil.md - nav-filen med stamdata, ydelser, kunder, konkurrenter og systemer, som alle andre skills læser først.</p>
       <div class="card__triggers"><span class="chip">lav en virksomhedsprofil</span><span class="chip">opret virksomhedsprofil.md</span><span class="chip">opdater virksomhedsprofilen</span><span class="chip">sæt mit arbejdsområde op</span><span class="chip">fortæl Claude om min virksomhed</span><span class="chip">hvem er vi-fil</span></div>
@@ -288,27 +333,27 @@ footer a{color:var(--accent-ink)}
           <p class="dep__tag">Styringsrygraden · stab · 6 skills</p>
         </div>
       </header>
-      <div class="grid"><article class="card" data-name="portefolje-status" data-text="portefolje-status samler status fra alle igangværende projekter til én one-page trafiklysrapport til ledelsen - med farve, milepæle, top-risiko og beslutningsbehov pr. projekt. giv mig overblik over alle projekter porteføljestatus trafiklysrapport til ledelsesmødet hvordan står det egentlig til med projekterne? status til bestyrelsen status til banken">
+      <div class="grid"><article class="card" data-text="portefolje-status samler status fra alle igangværende projekter til én one-page trafiklysrapport til ledelsen - med farve, milepæle, top-risiko og beslutningsbehov pr. projekt. giv mig overblik over alle projekter porteføljestatus trafiklysrapport til ledelsesmødet hvordan står det egentlig til med projekterne? status til bestyrelsen status til banken">
       <h3 class="card__name">portefolje-status</h3>
       <p class="card__purpose">Samler status fra alle igangværende projekter til én one-page trafiklysrapport til ledelsen - med farve, milepæle, top-risiko og beslutningsbehov pr. projekt.</p>
       <div class="card__triggers"><span class="chip">giv mig overblik over alle projekter</span><span class="chip">porteføljestatus</span><span class="chip">trafiklysrapport til ledelsesmødet</span><span class="chip">hvordan står det egentlig til med projekterne?</span><span class="chip">status til bestyrelsen</span><span class="chip">status til banken</span></div>
-    </article><article class="card" data-name="program-styring" data-text="program-styring nedbryder ét stort, tværgående initiativ (fx lancering af en ny ydelse eller en systemudskiftning på tværs af huset) i arbejdsstrømme, mapper hver strøm til den ansvarlige afdeling og den konkrete skill der løser den, og styrer overleveringerne mod ét fælles mål. lancer en ny ydelse sæt gang i et stort initiativ på tværs af afdelingerne det her rører strategi, salg, marketing og it på én gang hvordan koordinerer vi det store initiativ? lav en programplan bryd initiativet ned i arbejdsstrømme">
+    </article><article class="card" data-text="program-styring nedbryder ét stort, tværgående initiativ (fx lancering af en ny ydelse eller en systemudskiftning på tværs af huset) i arbejdsstrømme, mapper hver strøm til den ansvarlige afdeling og den konkrete skill der løser den, og styrer overleveringerne mod ét fælles mål. lancer en ny ydelse sæt gang i et stort initiativ på tværs af afdelingerne det her rører strategi, salg, marketing og it på én gang hvordan koordinerer vi det store initiativ? lav en programplan bryd initiativet ned i arbejdsstrømme">
       <h3 class="card__name">program-styring</h3>
       <p class="card__purpose">Nedbryder ét stort, tværgående initiativ (fx lancering af en ny ydelse eller en systemudskiftning på tværs af huset) i arbejdsstrømme, mapper hver strøm til den ansvarlige afdeling og den konkrete skill der løser den, og styrer overleveringerne mod ét fælles mål.</p>
       <div class="card__triggers"><span class="chip">lancer en ny ydelse</span><span class="chip">sæt gang i et stort initiativ på tværs af afdelingerne</span><span class="chip">det her rører strategi, salg, marketing og IT på én gang</span><span class="chip">hvordan koordinerer vi det store initiativ?</span><span class="chip">lav en programplan</span><span class="chip">bryd initiativet ned i arbejdsstrømme</span></div>
-    </article><article class="card" data-name="projekt-kickoff" data-text="projekt-kickoff omsætter en go-beslutning til et 1-2 siders projektkommissorium plus en milepælsplan, kalibreret til danske smv&#x27;er. er. brug den når brugeren siger  , ">
+    </article><article class="card" data-text="projekt-kickoff omsætter en go-beslutning til et 1-2 siders projektkommissorium plus en milepælsplan, kalibreret til danske smv&#x27;er. er. brug den når brugeren siger  , ">
       <h3 class="card__name">projekt-kickoff</h3>
       <p class="card__purpose">Omsætter en go-beslutning til et 1-2 siders projektkommissorium plus en milepælsplan, kalibreret til danske SMV&#x27;er.</p>
       <div class="card__triggers"><span class="chip">er. Brug den når brugeren siger </span><span class="chip">, </span></div>
-    </article><article class="card" data-name="projekt-lukning" data-text="projekt-lukning lukker et projekt ordentligt: kører afslutningstjeklisten, evaluerer mod kommissoriets succeskriterier og skriver genbrugelige læringer til den fælles læringslog. projektet er færdigt afslut projektet luk projektet lav en evaluering af... hvad lærte vi af det her? lessons learned">
+    </article><article class="card" data-text="projekt-lukning lukker et projekt ordentligt: kører afslutningstjeklisten, evaluerer mod kommissoriets succeskriterier og skriver genbrugelige læringer til den fælles læringslog. projektet er færdigt afslut projektet luk projektet lav en evaluering af... hvad lærte vi af det her? lessons learned">
       <h3 class="card__name">projekt-lukning</h3>
       <p class="card__purpose">Lukker et projekt ordentligt: kører afslutningstjeklisten, evaluerer mod kommissoriets succeskriterier og skriver genbrugelige læringer til den fælles læringslog.</p>
       <div class="card__triggers"><span class="chip">projektet er færdigt</span><span class="chip">afslut projektet</span><span class="chip">luk projektet</span><span class="chip">lav en evaluering af...</span><span class="chip">hvad lærte vi af det her?</span><span class="chip">lessons learned</span></div>
-    </article><article class="card" data-name="projekt-prioritering" data-text="projekt-prioritering bygger et prioriteringsoplæg for hele projektporteføljen: opgør den reelle projektkapacitet, scorer projekterne på værdi mod indsats og indstiller dem i tre bunker (fortsæt/pausér/stop) med begrundelser og ja/nej-beslutningsspørgsmål. vi har for mange projekter alt haster - hvad skal vi prioritere? skal vi starte projekt x nu? vi kan ikke nå det hele lav et prioriteringsoplæg hvilke projekter skal vi stoppe eller sætte på pause?">
+    </article><article class="card" data-text="projekt-prioritering bygger et prioriteringsoplæg for hele projektporteføljen: opgør den reelle projektkapacitet, scorer projekterne på værdi mod indsats og indstiller dem i tre bunker (fortsæt/pausér/stop) med begrundelser og ja/nej-beslutningsspørgsmål. vi har for mange projekter alt haster - hvad skal vi prioritere? skal vi starte projekt x nu? vi kan ikke nå det hele lav et prioriteringsoplæg hvilke projekter skal vi stoppe eller sætte på pause?">
       <h3 class="card__name">projekt-prioritering</h3>
       <p class="card__purpose">Bygger et prioriteringsoplæg for hele projektporteføljen: opgør den reelle projektkapacitet, scorer projekterne på værdi mod indsats og indstiller dem i tre bunker (fortsæt/pausér/stop) med begrundelser og ja/nej-beslutningsspørgsmål.</p>
       <div class="card__triggers"><span class="chip">vi har for mange projekter</span><span class="chip">alt haster - hvad skal vi prioritere?</span><span class="chip">skal vi starte projekt X nu?</span><span class="chip">vi kan ikke nå det hele</span><span class="chip">lav et prioriteringsoplæg</span><span class="chip">hvilke projekter skal vi stoppe eller sætte på pause?</span></div>
-    </article><article class="card" data-name="risiko-issue-log" data-text="risiko-issue-log opretter og ajourfører projektets risikolog (3x3-matrix, top 5-10), issue-liste og en fælles beslutningslog med grundlag og fravalgte alternativer. opdatér risikologgen hvad kan gå galt i det her projekt? vi har et problem i projektet log den beslutning hvorfor besluttede vi egentlig det? update the risk log">
+    </article><article class="card" data-text="risiko-issue-log opretter og ajourfører projektets risikolog (3x3-matrix, top 5-10), issue-liste og en fælles beslutningslog med grundlag og fravalgte alternativer. opdatér risikologgen hvad kan gå galt i det her projekt? vi har et problem i projektet log den beslutning hvorfor besluttede vi egentlig det? update the risk log">
       <h3 class="card__name">risiko-issue-log</h3>
       <p class="card__purpose">Opretter og ajourfører projektets risikolog (3x3-matrix, top 5-10), issue-liste og en fælles beslutningslog med grundlag og fravalgte alternativer.</p>
       <div class="card__triggers"><span class="chip">opdatér risikologgen</span><span class="chip">hvad kan gå galt i det her projekt?</span><span class="chip">vi har et problem i projektet</span><span class="chip">log den beslutning</span><span class="chip">hvorfor besluttede vi egentlig det?</span><span class="chip">update the risk log</span></div>
@@ -321,31 +366,31 @@ footer a{color:var(--accent-ink)}
           <p class="dep__tag">Mail, møder, ugens rytme · 7 skills</p>
         </div>
       </header>
-      <div class="grid"><article class="card" data-name="indbakke-triage" data-text="indbakke-triage laver et prioriteret morgenoverblik over brugerens indbakke: hver mail kategoriseres som handl nu / lav udkast / kan vente / til orientering med en anbefaling i én linje, og myndigheds- og fristpost fremhæves altid øverst. gennemgå min indbakke hvad skal jeg svare på i dag lav dagens mail-overblik triager mine mails er der noget vigtigt i min mail">
+      <div class="grid"><article class="card" data-text="indbakke-triage laver et prioriteret morgenoverblik over brugerens indbakke: hver mail kategoriseres som handl nu / lav udkast / kan vente / til orientering med en anbefaling i én linje, og myndigheds- og fristpost fremhæves altid øverst. gennemgå min indbakke hvad skal jeg svare på i dag lav dagens mail-overblik triager mine mails er der noget vigtigt i min mail">
       <h3 class="card__name">indbakke-triage</h3>
       <p class="card__purpose">Laver et prioriteret morgenoverblik over brugerens indbakke: hver mail kategoriseres som Handl nu / Lav udkast / Kan vente / Til orientering med en anbefaling i én linje, og myndigheds- og fristpost fremhæves altid øverst.</p>
       <div class="card__triggers"><span class="chip">gennemgå min indbakke</span><span class="chip">hvad skal jeg svare på i dag</span><span class="chip">lav dagens mail-overblik</span><span class="chip">triager mine mails</span><span class="chip">er der noget vigtigt i min mail</span></div>
-    </article><article class="card" data-name="journalisering" data-text="journalisering rydder op i og journaliserer virksomhedens dokumenter efter fast navnestandard og mappetaksonomi og fremlægger altid en flytte-/omdøbningsplan til godkendelse før en eneste fil røres - sletter aldrig selv, udpeger kun slettekandidater. ryd op i mappen journalisér de her dokumenter navngiv filerne rigtigt hvor skal den her kontrakt ligge skab orden på drevet omdøb filerne">
+    </article><article class="card" data-text="journalisering rydder op i og journaliserer virksomhedens dokumenter efter fast navnestandard og mappetaksonomi og fremlægger altid en flytte-/omdøbningsplan til godkendelse før en eneste fil røres - sletter aldrig selv, udpeger kun slettekandidater. ryd op i mappen journalisér de her dokumenter navngiv filerne rigtigt hvor skal den her kontrakt ligge skab orden på drevet omdøb filerne">
       <h3 class="card__name">journalisering</h3>
       <p class="card__purpose">Rydder op i og journaliserer virksomhedens dokumenter efter fast navnestandard og mappetaksonomi og fremlægger altid en flytte-/omdøbningsplan til godkendelse før en eneste fil røres - sletter aldrig selv, udpeger kun slettekandidater.</p>
       <div class="card__triggers"><span class="chip">ryd op i mappen</span><span class="chip">journalisér de her dokumenter</span><span class="chip">navngiv filerne rigtigt</span><span class="chip">hvor skal den her kontrakt ligge</span><span class="chip">skab orden på drevet</span><span class="chip">omdøb filerne</span></div>
-    </article><article class="card" data-name="mail-i-min-stil" data-text="mail-i-min-stil skriver mailudkast i ejerens egen tone på hele svartypologien - bekræftelse, afslag/nej-tak, modforslag, rykker for svar, tak og videresendelse med kontekstresumé - og lægger altid resultatet som kladde der kan sendes uden omskrivning. svar på den her mail skriv et udkast lav en pæn afvisning ryk for svar videresend med et resumé skriv det i min tone">
+    </article><article class="card" data-text="mail-i-min-stil skriver mailudkast i ejerens egen tone på hele svartypologien - bekræftelse, afslag/nej-tak, modforslag, rykker for svar, tak og videresendelse med kontekstresumé - og lægger altid resultatet som kladde der kan sendes uden omskrivning. svar på den her mail skriv et udkast lav en pæn afvisning ryk for svar videresend med et resumé skriv det i min tone">
       <h3 class="card__name">mail-i-min-stil</h3>
       <p class="card__purpose">Skriver mailudkast i ejerens egen tone på hele svartypologien - bekræftelse, afslag/nej-tak, modforslag, rykker for svar, tak og videresendelse med kontekstresumé - og lægger ALTID resultatet som kladde der kan sendes uden omskrivning.</p>
       <div class="card__triggers"><span class="chip">svar på den her mail</span><span class="chip">skriv et udkast</span><span class="chip">lav en pæn afvisning</span><span class="chip">ryk for svar</span><span class="chip">videresend med et resumé</span><span class="chip">skriv det i min tone</span></div>
-    </article><article class="card" data-name="moedeforberedelse" data-text="moedeforberedelse forbereder brugeren til et møde med en étsides briefing (modpart, historik, mål, position, 3 skarpe spørgsmål, faldgruber) og et dagsordenudkast med tidsbokse når brugeren selv ejer mødet. ved eksterne parter laves dansk standardresearch med frisk cvr-opslag. forbered mig til mødet jeg skal til møde med x lav en briefing om lav en dagsorden hvem er det vi skal møde salgsmøde i morgen">
+    </article><article class="card" data-text="moedeforberedelse forbereder brugeren til et møde med en étsides briefing (modpart, historik, mål, position, 3 skarpe spørgsmål, faldgruber) og et dagsordenudkast med tidsbokse når brugeren selv ejer mødet. ved eksterne parter laves dansk standardresearch med frisk cvr-opslag. forbered mig til mødet jeg skal til møde med x lav en briefing om lav en dagsorden hvem er det vi skal møde salgsmøde i morgen">
       <h3 class="card__name">moedeforberedelse</h3>
       <p class="card__purpose">Forbereder brugeren til et møde med en étsides briefing (modpart, historik, mål, position, 3 skarpe spørgsmål, faldgruber) og et dagsordenudkast med tidsbokse når brugeren selv ejer mødet. Ved eksterne parter laves dansk standardresearch med frisk CVR-opslag.</p>
       <div class="card__triggers"><span class="chip">forbered mig til mødet</span><span class="chip">jeg skal til møde med X</span><span class="chip">lav en briefing om</span><span class="chip">lav en dagsorden</span><span class="chip">hvem er det vi skal møde</span><span class="chip">salgsmøde i morgen</span></div>
-    </article><article class="card" data-name="opfoelgningsliste" data-text="opfoelgningsliste samler alle åbne aktioner fra referater, ugestatusser og mailtråde til én opfølgningsliste (hvem/hvad/deadline/kilde), sorterer overskredne øverst og skriver påmindelses-mailudkast i ejerens tone. hvem skylder hvad følg op på aktionerne lav opfølgningslisten hvad er der ikke fulgt op på ryk for svar hvad hænger">
+    </article><article class="card" data-text="opfoelgningsliste samler alle åbne aktioner fra referater, ugestatusser og mailtråde til én opfølgningsliste (hvem/hvad/deadline/kilde), sorterer overskredne øverst og skriver påmindelses-mailudkast i ejerens tone. hvem skylder hvad følg op på aktionerne lav opfølgningslisten hvad er der ikke fulgt op på ryk for svar hvad hænger">
       <h3 class="card__name">opfoelgningsliste</h3>
       <p class="card__purpose">Samler alle åbne aktioner fra referater, ugestatusser og mailtråde til én opfølgningsliste (hvem/hvad/deadline/kilde), sorterer overskredne øverst og skriver påmindelses-mailudkast i ejerens tone.</p>
       <div class="card__triggers"><span class="chip">hvem skylder hvad</span><span class="chip">følg op på aktionerne</span><span class="chip">lav opfølgningslisten</span><span class="chip">hvad er der ikke fulgt op på</span><span class="chip">ryk for svar</span><span class="chip">hvad hænger</span></div>
-    </article><article class="card" data-name="referat" data-text="referat forvandler mødetransskripter, mødenoter eller lydudskrifter til et professionelt dansk referat med klart adskilte beslutninger, aktioner (hvem/hvad/deadline) og åbne spørgsmål - plus udkast til opfølgningsmail. skriv et referat lav referat af mødet her er transskriptet fra mødet hvad blev der besluttet lav et beslutningsreferat referér mødet">
+    </article><article class="card" data-text="referat forvandler mødetransskripter, mødenoter eller lydudskrifter til et professionelt dansk referat med klart adskilte beslutninger, aktioner (hvem/hvad/deadline) og åbne spørgsmål - plus udkast til opfølgningsmail. skriv et referat lav referat af mødet her er transskriptet fra mødet hvad blev der besluttet lav et beslutningsreferat referér mødet">
       <h3 class="card__name">referat</h3>
       <p class="card__purpose">Forvandler mødetransskripter, mødenoter eller lydudskrifter til et professionelt dansk referat med klart adskilte beslutninger, aktioner (hvem/hvad/deadline) og åbne spørgsmål - plus udkast til opfølgningsmail.</p>
       <div class="card__triggers"><span class="chip">skriv et referat</span><span class="chip">lav referat af mødet</span><span class="chip">her er transskriptet fra mødet</span><span class="chip">hvad blev der besluttet</span><span class="chip">lav et beslutningsreferat</span><span class="chip">referér mødet</span></div>
-    </article><article class="card" data-name="ugestatus" data-text="ugestatus skriver ugens statusrapport i fast firefelts-format med trafiklys - enten som kundestatus (fremdrift og værdi, intet internt rod) eller intern teamstatus (ærlig, inkl. det der skrider) - plus mailudkast klar til gennemsyn. lav ugestatus skriv statusmail til kunden ugens status statusrapport status til teamet giv kunden en opdatering">
+    </article><article class="card" data-text="ugestatus skriver ugens statusrapport i fast firefelts-format med trafiklys - enten som kundestatus (fremdrift og værdi, intet internt rod) eller intern teamstatus (ærlig, inkl. det der skrider) - plus mailudkast klar til gennemsyn. lav ugestatus skriv statusmail til kunden ugens status statusrapport status til teamet giv kunden en opdatering">
       <h3 class="card__name">ugestatus</h3>
       <p class="card__purpose">Skriver ugens statusrapport i fast firefelts-format med trafiklys - enten som kundestatus (fremdrift og værdi, intet internt rod) eller intern teamstatus (ærlig, inkl. det der skrider) - plus mailudkast klar til gennemsyn.</p>
       <div class="card__triggers"><span class="chip">lav ugestatus</span><span class="chip">skriv statusmail til kunden</span><span class="chip">ugens status</span><span class="chip">statusrapport</span><span class="chip">status til teamet</span><span class="chip">giv kunden en opdatering</span></div>
@@ -358,23 +403,23 @@ footer a{color:var(--accent-ink)}
           <p class="dep__tag">Tilbud, leads, kunder · 5 skills</p>
         </div>
       </header>
-      <div class="grid"><article class="card" data-name="kundeemner" data-text="kundeemner researcher og scorer b2b-kundeemner 1-10 ud fra brugerens idealkundeprofil - med kilde og dato pr. datapunkt og en samtaleåbner til telefon, linkedin eller fysisk brev pr. emne. find kundeemner lav en leadliste research de her virksomheder scor de her emner hvem skal jeg ringe til i denne uge find nye kunder i [branche]">
+      <div class="grid"><article class="card" data-text="kundeemner researcher og scorer b2b-kundeemner 1-10 ud fra brugerens idealkundeprofil - med kilde og dato pr. datapunkt og en samtaleåbner til telefon, linkedin eller fysisk brev pr. emne. find kundeemner lav en leadliste research de her virksomheder scor de her emner hvem skal jeg ringe til i denne uge find nye kunder i [branche]">
       <h3 class="card__name">kundeemner</h3>
       <p class="card__purpose">Researcher og scorer B2B-kundeemner 1-10 ud fra brugerens idealkundeprofil - med kilde og dato pr. datapunkt og en samtaleåbner til telefon, LinkedIn eller fysisk brev pr. emne.</p>
       <div class="card__triggers"><span class="chip">find kundeemner</span><span class="chip">lav en leadliste</span><span class="chip">research de her virksomheder</span><span class="chip">scor de her emner</span><span class="chip">hvem skal jeg ringe til i denne uge</span><span class="chip">find nye kunder i [branche]</span></div>
-    </article><article class="card" data-name="kundegennemgang" data-text="kundegennemgang forbereder statusmøde med en eksisterende kunde: gennemgår leverancehistorik, finder mersalgsmuligheder (whitespace), flager churn-signaler og forbereder genforhandling af pris og vilkår. gennemgå kunden ... kundegennemgang forbered statusmøde med ... hvor kan vi sælge mere til ... vi skal genforhandle med ... er vi ved at miste ...">
+    </article><article class="card" data-text="kundegennemgang forbereder statusmøde med en eksisterende kunde: gennemgår leverancehistorik, finder mersalgsmuligheder (whitespace), flager churn-signaler og forbereder genforhandling af pris og vilkår. gennemgå kunden ... kundegennemgang forbered statusmøde med ... hvor kan vi sælge mere til ... vi skal genforhandle med ... er vi ved at miste ...">
       <h3 class="card__name">kundegennemgang</h3>
       <p class="card__purpose">Forbereder statusmøde med en eksisterende kunde: gennemgår leverancehistorik, finder mersalgsmuligheder (whitespace), flager churn-signaler og forbereder genforhandling af pris og vilkår.</p>
       <div class="card__triggers"><span class="chip">gennemgå kunden ...</span><span class="chip">kundegennemgang</span><span class="chip">forbered statusmøde med ...</span><span class="chip">hvor kan vi sælge mere til ...</span><span class="chip">vi skal genforhandle med ...</span><span class="chip">er vi ved at miste ...</span></div>
-    </article><article class="card" data-name="kundesvar" data-text="kundesvar skriver svarudkast på svære kundehenvendelser - klager, reklamationer, afslag og vrede kunder - i virksomhedens tone og med styr på købelovens reklamationsregler. svar på den her klage kunden er utilfreds vi har fået en reklamation hvordan siger jeg pænt nej til en kunde skriv et svar til en sur kunde kunden truer med at gå til pressen/advokat">
+    </article><article class="card" data-text="kundesvar skriver svarudkast på svære kundehenvendelser - klager, reklamationer, afslag og vrede kunder - i virksomhedens tone og med styr på købelovens reklamationsregler. svar på den her klage kunden er utilfreds vi har fået en reklamation hvordan siger jeg pænt nej til en kunde skriv et svar til en sur kunde kunden truer med at gå til pressen/advokat">
       <h3 class="card__name">kundesvar</h3>
       <p class="card__purpose">Skriver svarudkast på svære kundehenvendelser - klager, reklamationer, afslag og vrede kunder - i virksomhedens tone og med styr på købelovens reklamationsregler.</p>
       <div class="card__triggers"><span class="chip">svar på den her klage</span><span class="chip">kunden er utilfreds</span><span class="chip">vi har fået en reklamation</span><span class="chip">hvordan siger jeg pænt nej til en kunde</span><span class="chip">skriv et svar til en sur kunde</span><span class="chip">kunden truer med at gå til pressen/advokat</span></div>
-    </article><article class="card" data-name="pipeline-gennemgang" data-text="pipeline-gennemgang kører det ugentlige pipelinemøde: gennemgår alle åbne salgssager, flager sager der er gået i stå, bygger et realistisk forecast som interval (lavt/forventet/højt) og skriver opfølgningsmail-udkast på tilbud uden svar. gennemgå pipelinen pipelinemøde ugens pipeline-gennemgang hvad skal jeg følge op på? hvor meget lukker vi denne måned? lav et forecast">
+    </article><article class="card" data-text="pipeline-gennemgang kører det ugentlige pipelinemøde: gennemgår alle åbne salgssager, flager sager der er gået i stå, bygger et realistisk forecast som interval (lavt/forventet/højt) og skriver opfølgningsmail-udkast på tilbud uden svar. gennemgå pipelinen pipelinemøde ugens pipeline-gennemgang hvad skal jeg følge op på? hvor meget lukker vi denne måned? lav et forecast">
       <h3 class="card__name">pipeline-gennemgang</h3>
       <p class="card__purpose">Kører det ugentlige pipelinemøde: gennemgår alle åbne salgssager, flager sager der er gået i stå, bygger et realistisk forecast som interval (lavt/forventet/højt) og skriver opfølgningsmail-udkast på tilbud uden svar.</p>
       <div class="card__triggers"><span class="chip">gennemgå pipelinen</span><span class="chip">pipelinemøde</span><span class="chip">ugens pipeline-gennemgang</span><span class="chip">hvad skal jeg følge op på?</span><span class="chip">hvor meget lukker vi denne måned?</span><span class="chip">lav et forecast</span></div>
-    </article><article class="card" data-name="tilbud" data-text="tilbud skriver bindende danske tilbud efter et kort interview - med acceptfrist, forbehold, korrekt momsangivelse og udkast til følgemail. skriv et tilbud lav et tilbud til... giv kunden en pris send et overslag tilbud på opgaven udbudssvar">
+    </article><article class="card" data-text="tilbud skriver bindende danske tilbud efter et kort interview - med acceptfrist, forbehold, korrekt momsangivelse og udkast til følgemail. skriv et tilbud lav et tilbud til... giv kunden en pris send et overslag tilbud på opgaven udbudssvar">
       <h3 class="card__name">tilbud</h3>
       <p class="card__purpose">Skriver bindende danske tilbud efter et kort interview - med acceptfrist, forbehold, korrekt momsangivelse og udkast til følgemail.</p>
       <div class="card__triggers"><span class="chip">skriv et tilbud</span><span class="chip">lav et tilbud til...</span><span class="chip">giv kunden en pris</span><span class="chip">send et overslag</span><span class="chip">tilbud på opgaven</span><span class="chip">udbudssvar</span></div>
@@ -387,35 +432,35 @@ footer a{color:var(--accent-ink)}
           <p class="dep__tag">Tone, indhold, kampagner · 8 skills</p>
         </div>
       </header>
-      <div class="grid"><article class="card" data-name="content-kalender" data-text="content-kalender bygger og vedligeholder en månedlig content-kalender (indholdsplan) ud fra årshjul, sæson og virksomhedens reelle tid, med genbrugskaskade så én idé bliver til indhold på flere kanaler. læg en indholdsplan lav en content-kalender hvad skal vi poste i næste måned planlæg vores opslag planlæg some for [måned] opdater kalenderen">
+      <div class="grid"><article class="card" data-text="content-kalender bygger og vedligeholder en månedlig content-kalender (indholdsplan) ud fra årshjul, sæson og virksomhedens reelle tid, med genbrugskaskade så én idé bliver til indhold på flere kanaler. læg en indholdsplan lav en content-kalender hvad skal vi poste i næste måned planlæg vores opslag planlæg some for [måned] opdater kalenderen">
       <h3 class="card__name">content-kalender</h3>
       <p class="card__purpose">Bygger og vedligeholder en månedlig content-kalender (indholdsplan) ud fra årshjul, sæson og virksomhedens reelle tid, med genbrugskaskade så én idé bliver til indhold på flere kanaler.</p>
       <div class="card__triggers"><span class="chip">læg en indholdsplan</span><span class="chip">lav en content-kalender</span><span class="chip">hvad skal vi poste i næste måned</span><span class="chip">planlæg vores opslag</span><span class="chip">planlæg SoMe for [måned]</span><span class="chip">opdater kalenderen</span></div>
-    </article><article class="card" data-name="kundecase" data-text="kundecase skaber dokumenterede kundecases fra interviewnoter eller projektmateriale - med interviewguide, udfordring-løsning-resultat-struktur, citatliste og indbygget samtykketrin. skriv en kundecase lav en case om projektet hos [kunde] vi skal have en reference casebeskrivelse kundehistorie lav en case til hjemmesiden">
+    </article><article class="card" data-text="kundecase skaber dokumenterede kundecases fra interviewnoter eller projektmateriale - med interviewguide, udfordring-løsning-resultat-struktur, citatliste og indbygget samtykketrin. skriv en kundecase lav en case om projektet hos [kunde] vi skal have en reference casebeskrivelse kundehistorie lav en case til hjemmesiden">
       <h3 class="card__name">kundecase</h3>
       <p class="card__purpose">Skaber dokumenterede kundecases fra interviewnoter eller projektmateriale - med interviewguide, udfordring-løsning-resultat-struktur, citatliste og indbygget samtykketrin.</p>
       <div class="card__triggers"><span class="chip">skriv en kundecase</span><span class="chip">lav en case om projektet hos [kunde]</span><span class="chip">vi skal have en reference</span><span class="chip">casebeskrivelse</span><span class="chip">kundehistorie</span><span class="chip">lav en case til hjemmesiden</span></div>
-    </article><article class="card" data-name="linkedin-opslag" data-text="linkedin-opslag skriver linkedin-opslag ud fra noget konkret der er sket - én pointe pr. opslag, 2-3 hook-varianter og afslutning i virksomhedens stemme. skriv et linkedin-opslag lav et opslag om... post det på linkedin jeg vil gerne dele det her hjælp mig med et opslag">
+    </article><article class="card" data-text="linkedin-opslag skriver linkedin-opslag ud fra noget konkret der er sket - én pointe pr. opslag, 2-3 hook-varianter og afslutning i virksomhedens stemme. skriv et linkedin-opslag lav et opslag om... post det på linkedin jeg vil gerne dele det her hjælp mig med et opslag">
       <h3 class="card__name">linkedin-opslag</h3>
       <p class="card__purpose">Skriver LinkedIn-opslag ud fra noget konkret der er sket - én pointe pr. opslag, 2-3 hook-varianter og afslutning i virksomhedens stemme.</p>
       <div class="card__triggers"><span class="chip">skriv et LinkedIn-opslag</span><span class="chip">lav et opslag om...</span><span class="chip">post det på LinkedIn</span><span class="chip">jeg vil gerne dele det her</span><span class="chip">hjælp mig med et opslag</span></div>
-    </article><article class="card" data-name="marketing-rapport" data-text="marketing-rapport laver den månedlige marketingrapport til ejer eller ledelse ud fra brugerens egne tal fra fx ga4, meta, linkedin og nyhedsbrevssystemet: hovedtal i tabel, udvikling, 3 indsigter og 1-2 anbefalinger målt mod årshjulets mål. lav månedsrapporten hvordan gik marketing i [måned] rapport til ledelsen saml tallene fra sidste måned virker det vi laver?">
+    </article><article class="card" data-text="marketing-rapport laver den månedlige marketingrapport til ejer eller ledelse ud fra brugerens egne tal fra fx ga4, meta, linkedin og nyhedsbrevssystemet: hovedtal i tabel, udvikling, 3 indsigter og 1-2 anbefalinger målt mod årshjulets mål. lav månedsrapporten hvordan gik marketing i [måned] rapport til ledelsen saml tallene fra sidste måned virker det vi laver?">
       <h3 class="card__name">marketing-rapport</h3>
       <p class="card__purpose">Laver den månedlige marketingrapport til ejer eller ledelse ud fra brugerens egne tal fra fx GA4, Meta, LinkedIn og nyhedsbrevssystemet: hovedtal i tabel, udvikling, 3 indsigter og 1-2 anbefalinger målt mod årshjulets mål.</p>
       <div class="card__triggers"><span class="chip">lav månedsrapporten</span><span class="chip">hvordan gik marketing i [måned]</span><span class="chip">rapport til ledelsen</span><span class="chip">saml tallene fra sidste måned</span><span class="chip">virker det vi laver?</span></div>
-    </article><article class="card" data-name="marketing-sparring" data-text="marketing-sparring marketingchefens sparringspartner: prioriterer 5-7 marketingtiltag efter effekt/indsats ud fra virksomhedens stadie og reelle ressourcer og slutter altid med én anbefalet handling; udvidet tilstand bygger eller reviderer marketingårshjulet. hvad skal vi satse på i marketing prioritér vores marketingtiltag hvor skal vi lægge kræfterne skal vi annoncere eller... giv mig marketing-sparring lav et årshjul">
+    </article><article class="card" data-text="marketing-sparring marketingchefens sparringspartner: prioriterer 5-7 marketingtiltag efter effekt/indsats ud fra virksomhedens stadie og reelle ressourcer og slutter altid med én anbefalet handling; udvidet tilstand bygger eller reviderer marketingårshjulet. hvad skal vi satse på i marketing prioritér vores marketingtiltag hvor skal vi lægge kræfterne skal vi annoncere eller... giv mig marketing-sparring lav et årshjul">
       <h3 class="card__name">marketing-sparring</h3>
       <p class="card__purpose">Marketingchefens sparringspartner: prioriterer 5-7 marketingtiltag efter effekt/indsats ud fra virksomhedens stadie og reelle ressourcer og slutter altid med ÉN anbefalet handling; udvidet tilstand bygger eller reviderer marketingårshjulet.</p>
       <div class="card__triggers"><span class="chip">hvad skal vi satse på i marketing</span><span class="chip">prioritér vores marketingtiltag</span><span class="chip">hvor skal vi lægge kræfterne</span><span class="chip">skal vi annoncere eller...</span><span class="chip">giv mig marketing-sparring</span><span class="chip">lav et årshjul</span></div>
-    </article><article class="card" data-name="nyhedsbrev" data-text="nyhedsbrev skriver nyhedsbreve til virksomhedens permission-liste: 3-5 emnelinjeforslag, fast brevarkitektur og én klar cta - altid som kladde, aldrig udsendelse. skriv nyhedsbrevet lav månedens nyhedsbrev udkast til nyhedsbrev om... mail til vores liste nyt til abonnenterne write our newsletter">
+    </article><article class="card" data-text="nyhedsbrev skriver nyhedsbreve til virksomhedens permission-liste: 3-5 emnelinjeforslag, fast brevarkitektur og én klar cta - altid som kladde, aldrig udsendelse. skriv nyhedsbrevet lav månedens nyhedsbrev udkast til nyhedsbrev om... mail til vores liste nyt til abonnenterne write our newsletter">
       <h3 class="card__name">nyhedsbrev</h3>
       <p class="card__purpose">Skriver nyhedsbreve til virksomhedens permission-liste: 3-5 emnelinjeforslag, fast brevarkitektur og én klar CTA - altid som kladde, aldrig udsendelse.</p>
       <div class="card__triggers"><span class="chip">skriv nyhedsbrevet</span><span class="chip">lav månedens nyhedsbrev</span><span class="chip">udkast til nyhedsbrev om...</span><span class="chip">mail til vores liste</span><span class="chip">nyt til abonnenterne</span><span class="chip">write our newsletter</span></div>
-    </article><article class="card" data-name="pressemeddelelse" data-text="pressemeddelelse skriver en pressemeddelelse med reel nyhedsvinkel plus pitch-mail til journalister og forslag til 3-5 relevante medier (lokal- og fagpresse). skriv en pressemeddelelse vi vil i avisen kontakt til pressen pitch til [medie] presseomtale pr">
+    </article><article class="card" data-text="pressemeddelelse skriver en pressemeddelelse med reel nyhedsvinkel plus pitch-mail til journalister og forslag til 3-5 relevante medier (lokal- og fagpresse). skriv en pressemeddelelse vi vil i avisen kontakt til pressen pitch til [medie] presseomtale pr">
       <h3 class="card__name">pressemeddelelse</h3>
       <p class="card__purpose">Skriver en pressemeddelelse med reel nyhedsvinkel plus pitch-mail til journalister og forslag til 3-5 relevante medier (lokal- og fagpresse).</p>
       <div class="card__triggers"><span class="chip">skriv en pressemeddelelse</span><span class="chip">vi vil i avisen</span><span class="chip">kontakt til pressen</span><span class="chip">pitch til [medie]</span><span class="chip">presseomtale</span><span class="chip">PR</span></div>
-    </article><article class="card" data-name="toneprofil" data-text="toneprofil udleder og vedligeholder virksomhedens toneprofil og skriver hub-filen voice-profil.md, som alle skrivende skills læser før de skriver. lav en toneprofil hvordan skal vi lyde analyser vores tone vores tone of voice opdater voice-profilen vores skrivestil">
+    </article><article class="card" data-text="toneprofil udleder og vedligeholder virksomhedens toneprofil og skriver hub-filen voice-profil.md, som alle skrivende skills læser før de skriver. lav en toneprofil hvordan skal vi lyde analyser vores tone vores tone of voice opdater voice-profilen vores skrivestil">
       <h3 class="card__name">toneprofil</h3>
       <p class="card__purpose">Udleder og vedligeholder virksomhedens toneprofil og skriver hub-filen voice-profil.md, som alle skrivende skills læser før de skriver.</p>
       <div class="card__triggers"><span class="chip">lav en toneprofil</span><span class="chip">hvordan skal vi lyde</span><span class="chip">analyser vores tone</span><span class="chip">vores tone of voice</span><span class="chip">opdater voice-profilen</span><span class="chip">vores skrivestil</span></div>
@@ -428,23 +473,23 @@ footer a{color:var(--accent-ink)}
           <p class="dep__tag">Bilag, likviditet, priser · 5 skills</p>
         </div>
       </header>
-      <div class="grid"><article class="card" data-name="bilagsrydning" data-text="bilagsrydning rydder op i regnskabsbilag før moms og revisor: aflæser kvitteringer og fakturaer, omdøber til sorterbar standard (åååå-mm-dd_leverandør_beløb), sorterer i momsklare kategorier og bygger en revisorvenlig csv. ryd op i mine bilag gør bilagene klar til moms sortér mine kvitteringer bilag til revisor bilag til bogholder omdøb mine kvitteringer">
+      <div class="grid"><article class="card" data-text="bilagsrydning rydder op i regnskabsbilag før moms og revisor: aflæser kvitteringer og fakturaer, omdøber til sorterbar standard (åååå-mm-dd_leverandør_beløb), sorterer i momsklare kategorier og bygger en revisorvenlig csv. ryd op i mine bilag gør bilagene klar til moms sortér mine kvitteringer bilag til revisor bilag til bogholder omdøb mine kvitteringer">
       <h3 class="card__name">bilagsrydning</h3>
       <p class="card__purpose">Rydder op i regnskabsbilag før moms og revisor: aflæser kvitteringer og fakturaer, omdøber til sorterbar standard (ÅÅÅÅ-MM-DD_leverandør_beløb), sorterer i momsklare kategorier og bygger en revisorvenlig CSV.</p>
       <div class="card__triggers"><span class="chip">ryd op i mine bilag</span><span class="chip">gør bilagene klar til moms</span><span class="chip">sortér mine kvitteringer</span><span class="chip">bilag til revisor</span><span class="chip">bilag til bogholder</span><span class="chip">omdøb mine kvitteringer</span></div>
-    </article><article class="card" data-name="budgetopfoelgning" data-text="budgetopfoelgning sammenholder faktiske tal fra økonomisystemet (e-conomic, dinero, billy) med budgettet og skriver en én-sides månedsrapport med afvigelsestabel, afvigelseskommentarer og handlingsforslag. budgetopfølgning hvordan går det mod budget afvigelser månedsrapport tal til banken sammenlign med budgettet">
+    </article><article class="card" data-text="budgetopfoelgning sammenholder faktiske tal fra økonomisystemet (e-conomic, dinero, billy) med budgettet og skriver en én-sides månedsrapport med afvigelsestabel, afvigelseskommentarer og handlingsforslag. budgetopfølgning hvordan går det mod budget afvigelser månedsrapport tal til banken sammenlign med budgettet">
       <h3 class="card__name">budgetopfoelgning</h3>
       <p class="card__purpose">Sammenholder faktiske tal fra økonomisystemet (e-conomic, Dinero, Billy) med budgettet og skriver en én-sides månedsrapport med afvigelsestabel, afvigelseskommentarer og handlingsforslag.</p>
       <div class="card__triggers"><span class="chip">budgetopfølgning</span><span class="chip">hvordan går det mod budget</span><span class="chip">afvigelser</span><span class="chip">månedsrapport</span><span class="chip">tal til banken</span><span class="chip">sammenlign med budgettet</span></div>
-    </article><article class="card" data-name="likviditetsoverblik" data-text="likviditetsoverblik bygger et 13-ugers likviditetsoverblik med dansk skattekalender og bufferadvarsler ud fra eksporterede bank- og debitorlister. har vi penge nok likviditet likviditetsoverblik cash flow kan vi betale løn og moms hvordan ser kassen ud">
+    </article><article class="card" data-text="likviditetsoverblik bygger et 13-ugers likviditetsoverblik med dansk skattekalender og bufferadvarsler ud fra eksporterede bank- og debitorlister. har vi penge nok likviditet likviditetsoverblik cash flow kan vi betale løn og moms hvordan ser kassen ud">
       <h3 class="card__name">likviditetsoverblik</h3>
       <p class="card__purpose">Bygger et 13-ugers likviditetsoverblik med dansk skattekalender og bufferadvarsler ud fra eksporterede bank- og debitorlister.</p>
       <div class="card__triggers"><span class="chip">har vi penge nok</span><span class="chip">likviditet</span><span class="chip">likviditetsoverblik</span><span class="chip">cash flow</span><span class="chip">kan vi betale løn og moms</span><span class="chip">hvordan ser kassen ud</span></div>
-    </article><article class="card" data-name="priskalkulation" data-text="priskalkulation laver gennemsigtige pris- og tilbudskalkulationer for danske smv&#x27;er: timepris, kostpris-plus, dækningsbidrag, break-even og følsomhedsvisning - altid som beslutningsgrundlag med synlige antagelser. hvad skal jeg tage for... beregn min timepris priskalkulation kan det betale sig dækningsbidrag regn på det her tilbud">
+    </article><article class="card" data-text="priskalkulation laver gennemsigtige pris- og tilbudskalkulationer for danske smv&#x27;er: timepris, kostpris-plus, dækningsbidrag, break-even og følsomhedsvisning - altid som beslutningsgrundlag med synlige antagelser. hvad skal jeg tage for... beregn min timepris priskalkulation kan det betale sig dækningsbidrag regn på det her tilbud">
       <h3 class="card__name">priskalkulation</h3>
       <p class="card__purpose">Laver gennemsigtige pris- og tilbudskalkulationer for danske SMV&#x27;er: timepris, kostpris-plus, dækningsbidrag, break-even og følsomhedsvisning - altid som beslutningsgrundlag med synlige antagelser.</p>
       <div class="card__triggers"><span class="chip">hvad skal jeg tage for...</span><span class="chip">beregn min timepris</span><span class="chip">priskalkulation</span><span class="chip">kan det betale sig</span><span class="chip">dækningsbidrag</span><span class="chip">regn på det her tilbud</span></div>
-    </article><article class="card" data-name="rykker-runde" data-text="rykker-runde bygger et prioriteret debitoroverblik og skriver lovmedholdelige rykkerkladder efter renteloven - altid som kladder, aldrig afsendt. lav en rykker skriv en rykker til... rykker-runde ryk kunderne kunden har ikke betalt forfaldne fakturaer">
+    </article><article class="card" data-text="rykker-runde bygger et prioriteret debitoroverblik og skriver lovmedholdelige rykkerkladder efter renteloven - altid som kladder, aldrig afsendt. lav en rykker skriv en rykker til... rykker-runde ryk kunderne kunden har ikke betalt forfaldne fakturaer">
       <h3 class="card__name">rykker-runde</h3>
       <p class="card__purpose">Bygger et prioriteret debitoroverblik og skriver lovmedholdelige rykkerkladder efter renteloven - altid som kladder, aldrig afsendt.</p>
       <div class="card__triggers"><span class="chip">lav en rykker</span><span class="chip">skriv en rykker til...</span><span class="chip">rykker-runde</span><span class="chip">ryk kunderne</span><span class="chip">kunden har ikke betalt</span><span class="chip">forfaldne fakturaer</span></div>
@@ -457,31 +502,31 @@ footer a{color:var(--accent-ink)}
           <p class="dep__tag">People &amp; Culture + skill-byg · 7 skills</p>
         </div>
       </header>
-      <div class="grid"><article class="card" data-name="mus-forberedelse" data-text="mus-forberedelse forbereder mus- og 1:1-samtaler og skriver bagefter referat med udviklingsplan. jeg skal holde mus med ... forbered min 1:1 medarbejdersamtale udviklingssamtale lav en udviklingsplan skriv referat af samtalen med [medarbejder]">
+      <div class="grid"><article class="card" data-text="mus-forberedelse forbereder mus- og 1:1-samtaler og skriver bagefter referat med udviklingsplan. jeg skal holde mus med ... forbered min 1:1 medarbejdersamtale udviklingssamtale lav en udviklingsplan skriv referat af samtalen med [medarbejder]">
       <h3 class="card__name">mus-forberedelse</h3>
       <p class="card__purpose">Forbereder MUS- og 1:1-samtaler og skriver bagefter referat med udviklingsplan.</p>
       <div class="card__triggers"><span class="chip">jeg skal holde MUS med ...</span><span class="chip">forbered min 1:1</span><span class="chip">medarbejdersamtale</span><span class="chip">udviklingssamtale</span><span class="chip">lav en udviklingsplan</span><span class="chip">skriv referat af samtalen med [medarbejder]</span></div>
-    </article><article class="card" data-name="onboarding-offboarding" data-text="onboarding-offboarding bygger daterede onboardingplaner (preboarding + 30-60-90 dage med mål og buddy) og offboarding-tjeklister (varsler, adgange, ferieafregning, overdragelse, exit-interview) for danske virksomheder. lav en onboardingplan ny medarbejder starter [navn] starter den 1. 30-60-90 [navn] stopper hos os offboarding-tjekliste">
+    </article><article class="card" data-text="onboarding-offboarding bygger daterede onboardingplaner (preboarding + 30-60-90 dage med mål og buddy) og offboarding-tjeklister (varsler, adgange, ferieafregning, overdragelse, exit-interview) for danske virksomheder. lav en onboardingplan ny medarbejder starter [navn] starter den 1. 30-60-90 [navn] stopper hos os offboarding-tjekliste">
       <h3 class="card__name">onboarding-offboarding</h3>
       <p class="card__purpose">Bygger daterede onboardingplaner (preboarding + 30-60-90 dage med mål og buddy) og offboarding-tjeklister (varsler, adgange, ferieafregning, overdragelse, exit-interview) for danske virksomheder.</p>
       <div class="card__triggers"><span class="chip">lav en onboardingplan</span><span class="chip">ny medarbejder starter</span><span class="chip">[navn] starter den 1.</span><span class="chip">30-60-90</span><span class="chip">[navn] stopper hos os</span><span class="chip">offboarding-tjekliste</span></div>
-    </article><article class="card" data-name="personalepolitik" data-text="personalepolitik skriver og reviderer personalepolitikker og personalehåndbøger i klart dansk - i fast format (formål, regel, procedure, ansvarlig, ikrafttræden) og med flag hvor dansk lovgivning sætter rammer. vi mangler en politik for ... skriv en personalepolitik opdatér personalehåndbogen hvad skal der stå om sygemelding lav en politik for hjemmearbejde/ai-brug/alkohol/gaver gennemgå vores håndbog">
+    </article><article class="card" data-text="personalepolitik skriver og reviderer personalepolitikker og personalehåndbøger i klart dansk - i fast format (formål, regel, procedure, ansvarlig, ikrafttræden) og med flag hvor dansk lovgivning sætter rammer. vi mangler en politik for ... skriv en personalepolitik opdatér personalehåndbogen hvad skal der stå om sygemelding lav en politik for hjemmearbejde/ai-brug/alkohol/gaver gennemgå vores håndbog">
       <h3 class="card__name">personalepolitik</h3>
       <p class="card__purpose">Skriver og reviderer personalepolitikker og personalehåndbøger i klart dansk - i fast format (formål, regel, procedure, ansvarlig, ikrafttræden) og med flag hvor dansk lovgivning sætter rammer.</p>
       <div class="card__triggers"><span class="chip">vi mangler en politik for ...</span><span class="chip">skriv en personalepolitik</span><span class="chip">opdatér personalehåndbogen</span><span class="chip">hvad skal der stå om sygemelding</span><span class="chip">lav en politik for hjemmearbejde/AI-brug/alkohol/gaver</span><span class="chip">gennemgå vores håndbog</span></div>
-    </article><article class="card" data-name="procedure-skriver" data-text="procedure-skriver interviewer brugeren kronologisk om en opgave kun én person kan udføre, og skriver den som procedure (sop) i fast format, så den kan uddelegeres til en medarbejder, vikar eller ai-kollega. skriv en procedure for... lav en sop dokumentér hvordan jeg gør... lav en arbejdsbeskrivelse kun [navn] ved hvordan man... write a procedure for...">
+    </article><article class="card" data-text="procedure-skriver interviewer brugeren kronologisk om en opgave kun én person kan udføre, og skriver den som procedure (sop) i fast format, så den kan uddelegeres til en medarbejder, vikar eller ai-kollega. skriv en procedure for... lav en sop dokumentér hvordan jeg gør... lav en arbejdsbeskrivelse kun [navn] ved hvordan man... write a procedure for...">
       <h3 class="card__name">procedure-skriver</h3>
       <p class="card__purpose">Interviewer brugeren kronologisk om en opgave kun én person kan udføre, og skriver den som procedure (SOP) i fast format, så den kan uddelegeres til en medarbejder, vikar eller AI-kollega.</p>
       <div class="card__triggers"><span class="chip">skriv en procedure for...</span><span class="chip">lav en SOP</span><span class="chip">dokumentér hvordan jeg gør...</span><span class="chip">lav en arbejdsbeskrivelse</span><span class="chip">kun [navn] ved hvordan man...</span><span class="chip">write a procedure for...</span></div>
-    </article><article class="card" data-name="rekruttering" data-text="rekruttering kører et dansk rekrutteringsforløb fra kravprofil til afslag og producerer jobopslag, screeningsmatrix, struktureret interviewguide og afslagsudkast - alt som udkast, alt tjekket mod forskelsbehandlingsloven. skriv et jobopslag vi skal ansætte en ... lav en jobannonce lav en interviewguide screen de her ansøgninger hvem skal vi indkalde til samtale">
+    </article><article class="card" data-text="rekruttering kører et dansk rekrutteringsforløb fra kravprofil til afslag og producerer jobopslag, screeningsmatrix, struktureret interviewguide og afslagsudkast - alt som udkast, alt tjekket mod forskelsbehandlingsloven. skriv et jobopslag vi skal ansætte en ... lav en jobannonce lav en interviewguide screen de her ansøgninger hvem skal vi indkalde til samtale">
       <h3 class="card__name">rekruttering</h3>
       <p class="card__purpose">Kører et dansk rekrutteringsforløb fra kravprofil til afslag og producerer jobopslag, screeningsmatrix, struktureret interviewguide og afslagsudkast - alt som udkast, alt tjekket mod forskelsbehandlingsloven.</p>
       <div class="card__triggers"><span class="chip">skriv et jobopslag</span><span class="chip">vi skal ansætte en ...</span><span class="chip">lav en jobannonce</span><span class="chip">lav en interviewguide</span><span class="chip">screen de her ansøgninger</span><span class="chip">hvem skal vi indkalde til samtale</span></div>
-    </article><article class="card" data-name="rutine-bygger" data-text="rutine-bygger sætter tilbagevendende rutiner op for brugerens ai-medarbejdere - hr&#x27;s vagtplan, hvor hver rutine får trigger, input, skill, bevis-artefakt og log, så spørgsmålet &#x27;kørte den?&#x27; altid kan besvares. kørte den? sæt en rutine op lav en fast rutine hver mandag skal du... automatisér min ugestatus byg en vagtplan">
+    </article><article class="card" data-text="rutine-bygger sætter tilbagevendende rutiner op for brugerens ai-medarbejdere - hr&#x27;s vagtplan, hvor hver rutine får trigger, input, skill, bevis-artefakt og log, så spørgsmålet &#x27;kørte den?&#x27; altid kan besvares. kørte den? sæt en rutine op lav en fast rutine hver mandag skal du... automatisér min ugestatus byg en vagtplan">
       <h3 class="card__name">rutine-bygger</h3>
       <p class="card__purpose">Sætter tilbagevendende rutiner op for brugerens AI-medarbejdere - HR&#x27;s vagtplan, hvor hver rutine får trigger, input, skill, bevis-artefakt og log, så spørgsmålet &#x27;kørte den?&#x27; altid kan besvares.</p>
       <div class="card__triggers"><span class="chip">kørte den?</span><span class="chip">sæt en rutine op</span><span class="chip">lav en fast rutine</span><span class="chip">hver mandag skal du...</span><span class="chip">automatisér min ugestatus</span><span class="chip">byg en vagtplan</span></div>
-    </article><article class="card" data-name="skill-opskrift" data-text="skill-opskrift pakker en tilbagevendende opgave som en færdig claude-skill (skill.md i kursets opskriftsformat) og afslutter altid med prøvetiden: 3 bør-trigge- og 3 bør-ikke-trigge-tests med testlog som ansættelsesbevis. lav en skill byg en skill til... pak det som en skill ansæt en ny ai-medarbejder kan claude lære at gøre det her fast? create a skill">
+    </article><article class="card" data-text="skill-opskrift pakker en tilbagevendende opgave som en færdig claude-skill (skill.md i kursets opskriftsformat) og afslutter altid med prøvetiden: 3 bør-trigge- og 3 bør-ikke-trigge-tests med testlog som ansættelsesbevis. lav en skill byg en skill til... pak det som en skill ansæt en ny ai-medarbejder kan claude lære at gøre det her fast? create a skill">
       <h3 class="card__name">skill-opskrift</h3>
       <p class="card__purpose">Pakker en tilbagevendende opgave som en færdig Claude-skill (SKILL.md i kursets opskriftsformat) og afslutter ALTID med prøvetiden: 3 bør-trigge- og 3 bør-ikke-trigge-tests med testlog som ansættelsesbevis.</p>
       <div class="card__triggers"><span class="chip">lav en skill</span><span class="chip">byg en skill til...</span><span class="chip">pak det som en skill</span><span class="chip">ansæt en ny AI-medarbejder</span><span class="chip">kan Claude lære at gøre det her fast?</span><span class="chip">create a skill</span></div>
@@ -494,39 +539,39 @@ footer a{color:var(--accent-ink)}
           <p class="dep__tag">Design &amp; byg · dirigent · 9 skills</p>
         </div>
       </header>
-      <div class="grid"><article class="card" data-name="adgangsstyring" data-text="adgangsstyring vedligeholder systemoversigt.md (systemer, adgange, licenser, priser, fornyelser) og producerer on-/offboarding-tjeklister og kvartalsvis licens-audit som udkast et menneske eksekverer. vi har en ny medarbejder der starter en medarbejder stopper luk nn , ">
+      <div class="grid"><article class="card" data-text="adgangsstyring vedligeholder systemoversigt.md (systemer, adgange, licenser, priser, fornyelser) og producerer on-/offboarding-tjeklister og kvartalsvis licens-audit som udkast et menneske eksekverer. vi har en ny medarbejder der starter en medarbejder stopper luk nn , ">
       <h3 class="card__name">adgangsstyring</h3>
       <p class="card__purpose">Vedligeholder systemoversigt.md (systemer, adgange, licenser, priser, fornyelser) og producerer on-/offboarding-tjeklister og kvartalsvis licens-audit som udkast et menneske eksekverer.</p>
       <div class="card__triggers"><span class="chip">vi har en ny medarbejder der starter</span><span class="chip">en medarbejder stopper</span><span class="chip">luk NN</span><span class="chip">, </span></div>
-    </article><article class="card" data-name="byggebrief" data-text="byggebrief skriver en komplet dansk kravspecifikation (byggebrief.md) via interview med testbare færdig-kriterier og nul pladsholdere - klar til en frisk session, et bureau eller en freelancer. skriv en kravspec lav en kravspecifikation vi skal have bygget en app/løsning/hjemmeside/automatisering vi vil bestille en løsning hos et bureau beskriv hvad der skal bygges scope det her projekt">
+    </article><article class="card" data-text="byggebrief skriver en komplet dansk kravspecifikation (byggebrief.md) via interview med testbare færdig-kriterier og nul pladsholdere - klar til en frisk session, et bureau eller en freelancer. skriv en kravspec lav en kravspecifikation vi skal have bygget en app/løsning/hjemmeside/automatisering vi vil bestille en løsning hos et bureau beskriv hvad der skal bygges scope det her projekt">
       <h3 class="card__name">byggebrief</h3>
       <p class="card__purpose">Skriver en komplet dansk kravspecifikation (byggebrief.md) via interview med testbare færdig-kriterier og nul pladsholdere - klar til en frisk session, et bureau eller en freelancer.</p>
       <div class="card__triggers"><span class="chip">skriv en kravspec</span><span class="chip">lav en kravspecifikation</span><span class="chip">vi skal have bygget en app/løsning/hjemmeside/automatisering</span><span class="chip">vi vil bestille en løsning hos et bureau</span><span class="chip">beskriv hvad der skal bygges</span><span class="chip">scope det her projekt</span></div>
-    </article><article class="card" data-name="designretning" data-text="designretning fungerer som designkonsulent og fastlægger én sammenhængende designretning - stilretning, typografi, farvepalet, spacing og wcag-kontrastkrav - og skriver den til designprofil.md, som både claude og et eksternt bureau kan eksekvere efter uden at gætte. lav en designprofil vælg en designretning hvilke skrifter og farver skal vi bruge hvordan skal vores materialer/slides/side se ud vi mangler en visuel stil/identitet design-brief til bureau">
+    </article><article class="card" data-text="designretning fungerer som designkonsulent og fastlægger én sammenhængende designretning - stilretning, typografi, farvepalet, spacing og wcag-kontrastkrav - og skriver den til designprofil.md, som både claude og et eksternt bureau kan eksekvere efter uden at gætte. lav en designprofil vælg en designretning hvilke skrifter og farver skal vi bruge hvordan skal vores materialer/slides/side se ud vi mangler en visuel stil/identitet design-brief til bureau">
       <h3 class="card__name">designretning</h3>
       <p class="card__purpose">Fungerer som designkonsulent og fastlægger ÉN sammenhængende designretning - stilretning, typografi, farvepalet, spacing og WCAG-kontrastkrav - og skriver den til designprofil.md, som både Claude og et eksternt bureau kan eksekvere efter uden at gætte.</p>
       <div class="card__triggers"><span class="chip">lav en designprofil</span><span class="chip">vælg en designretning</span><span class="chip">hvilke skrifter og farver skal vi bruge</span><span class="chip">hvordan skal vores materialer/slides/side se ud</span><span class="chip">vi mangler en visuel stil/identitet</span><span class="chip">design-brief til bureau</span></div>
-    </article><article class="card" data-name="designvarianter" data-text="designvarianter genererer 2-3 navngivne designvarianter af den samme flade (landingsside, dashboard/app, slides eller dokument) inden for den godkendte designprofil, så man vælger med øjnene i stedet for at beskrive smag med ord. vis mig varianter lav 3 bud på siden/sliden/skærmen jeg kan ikke vælge design giv mig nogle designforslag mock nogle versioner op show me design variants">
+    </article><article class="card" data-text="designvarianter genererer 2-3 navngivne designvarianter af den samme flade (landingsside, dashboard/app, slides eller dokument) inden for den godkendte designprofil, så man vælger med øjnene i stedet for at beskrive smag med ord. vis mig varianter lav 3 bud på siden/sliden/skærmen jeg kan ikke vælge design giv mig nogle designforslag mock nogle versioner op show me design variants">
       <h3 class="card__name">designvarianter</h3>
       <p class="card__purpose">Genererer 2-3 navngivne designvarianter af den samme flade (landingsside, dashboard/app, slides eller dokument) inden for den godkendte designprofil, så man vælger med øjnene i stedet for at beskrive smag med ord.</p>
       <div class="card__triggers"><span class="chip">vis mig varianter</span><span class="chip">lav 3 bud på siden/sliden/skærmen</span><span class="chip">jeg kan ikke vælge design</span><span class="chip">giv mig nogle designforslag</span><span class="chip">mock nogle versioner op</span><span class="chip">show me design variants</span></div>
-    </article><article class="card" data-name="fejldetektiv" data-text="fejldetektiv systematisk fejlfinding for ikke-udviklere efter jernloven &#x27;ingen rettelse uden diagnose&#x27;, plus professionelle fejlrapporter til leverandøren. ingen rettelse uden diagnose der er en fejl det virker ikke formularen sender ikke siden vil ikke loade systemet er gået ned">
+    </article><article class="card" data-text="fejldetektiv systematisk fejlfinding for ikke-udviklere efter jernloven &#x27;ingen rettelse uden diagnose&#x27;, plus professionelle fejlrapporter til leverandøren. ingen rettelse uden diagnose der er en fejl det virker ikke formularen sender ikke siden vil ikke loade systemet er gået ned">
       <h3 class="card__name">fejldetektiv</h3>
       <p class="card__purpose">Systematisk fejlfinding for ikke-udviklere efter jernloven &#x27;ingen rettelse uden diagnose&#x27;, plus professionelle fejlrapporter til leverandøren.</p>
       <div class="card__triggers"><span class="chip">ingen rettelse uden diagnose</span><span class="chip">der er en fejl</span><span class="chip">det virker ikke</span><span class="chip">formularen sender ikke</span><span class="chip">siden vil ikke loade</span><span class="chip">systemet er gået ned</span></div>
-    </article><article class="card" data-name="klar-tjek" data-text="klar-tjek beviskrav-baseret uat og leverandør-godkendelse: afprøver hvert færdig-kriterie fra byggebrief.md som en rigtig slutbruger med realistiske danske data (æøå, kommatal, forkerte input), kræver et bevis pr. punkt, skabelontjekker mod designprofil.md og skriver en kategoriseret mangelliste - så du først godkender og betaler når blokerende mangler er lukket. er det her klar til at gå live kan vi godkende leverancen test løsningen inden vi betaler lav en mangelliste uat gennemgå leverancen mod kravspec">
+    </article><article class="card" data-text="klar-tjek beviskrav-baseret uat og leverandør-godkendelse: afprøver hvert færdig-kriterie fra byggebrief.md som en rigtig slutbruger med realistiske danske data (æøå, kommatal, forkerte input), kræver et bevis pr. punkt, skabelontjekker mod designprofil.md og skriver en kategoriseret mangelliste - så du først godkender og betaler når blokerende mangler er lukket. er det her klar til at gå live kan vi godkende leverancen test løsningen inden vi betaler lav en mangelliste uat gennemgå leverancen mod kravspec">
       <h3 class="card__name">klar-tjek</h3>
       <p class="card__purpose">Beviskrav-baseret UAT og leverandør-godkendelse: afprøver hvert færdig-kriterie fra byggebrief.md som en rigtig slutbruger med realistiske danske data (æøå, kommatal, forkerte input), kræver et bevis pr. punkt, skabelontjekker mod designprofil.md og skriver en kategoriseret mangelliste - så du først godkender og betaler når blokerende mangler er lukket.</p>
       <div class="card__triggers"><span class="chip">er det her klar til at gå live</span><span class="chip">kan vi godkende leverancen</span><span class="chip">test løsningen inden vi betaler</span><span class="chip">lav en mangelliste</span><span class="chip">UAT</span><span class="chip">gennemgå leverancen mod kravspec</span></div>
-    </article><article class="card" data-name="plan-tjek" data-text="plan-tjek ingeniørchef-review af en byggeplan eller et leverandørforslag før der skrives kode eller accepteres et tilbud: minimum scope, datavej ende-til-ende, danske kanttilfælde, sikkerheds-aldrig-regler og røde flag - afsluttet med en skriftlig go / go-med-ændringer / stop-dom. tjek planen før vi koder review byggeplanen plan-tjek er den her plan god nok kig på det her løsningsforslag fra bureauet skal vi acceptere det her forslag">
+    </article><article class="card" data-text="plan-tjek ingeniørchef-review af en byggeplan eller et leverandørforslag før der skrives kode eller accepteres et tilbud: minimum scope, datavej ende-til-ende, danske kanttilfælde, sikkerheds-aldrig-regler og røde flag - afsluttet med en skriftlig go / go-med-ændringer / stop-dom. tjek planen før vi koder review byggeplanen plan-tjek er den her plan god nok kig på det her løsningsforslag fra bureauet skal vi acceptere det her forslag">
       <h3 class="card__name">plan-tjek</h3>
       <p class="card__purpose">Ingeniørchef-review af en byggeplan eller et leverandørforslag FØR der skrives kode eller accepteres et tilbud: minimum scope, datavej ende-til-ende, danske kanttilfælde, sikkerheds-aldrig-regler og røde flag - afsluttet med en skriftlig GO / GO-med-ændringer / STOP-dom.</p>
       <div class="card__triggers"><span class="chip">tjek planen før vi koder</span><span class="chip">review byggeplanen</span><span class="chip">plan-tjek</span><span class="chip">er den her plan god nok</span><span class="chip">kig på det her løsningsforslag fra bureauet</span><span class="chip">skal vi acceptere det her forslag</span></div>
-    </article><article class="card" data-name="sikkerhedstjek" data-text="sikkerhedstjek vurderer mistænkelige mails med en fast tjekramme (afsender, pres, links, ændrede betalingsoplysninger) og kører kvartalsvist sikkerheds-basistjek efter sikkerdigital.dk for danske smv&#x27;er - plus hændelsesrespons når noget er gået galt. er den her mail phishing vi har fået en mærkelig mail om en faktura tjek vores it-sikkerhed sikkerhedstjek hvad gør vi hvis nogen har klikket på et link er det her svindel">
+    </article><article class="card" data-text="sikkerhedstjek vurderer mistænkelige mails med en fast tjekramme (afsender, pres, links, ændrede betalingsoplysninger) og kører kvartalsvist sikkerheds-basistjek efter sikkerdigital.dk for danske smv&#x27;er - plus hændelsesrespons når noget er gået galt. er den her mail phishing vi har fået en mærkelig mail om en faktura tjek vores it-sikkerhed sikkerhedstjek hvad gør vi hvis nogen har klikket på et link er det her svindel">
       <h3 class="card__name">sikkerhedstjek</h3>
       <p class="card__purpose">Vurderer mistænkelige mails med en fast tjekramme (afsender, pres, links, ændrede betalingsoplysninger) og kører kvartalsvist sikkerheds-basistjek efter sikkerdigital.dk for danske SMV&#x27;er - plus hændelsesrespons når noget er gået galt.</p>
       <div class="card__triggers"><span class="chip">er den her mail phishing</span><span class="chip">vi har fået en mærkelig mail om en faktura</span><span class="chip">tjek vores it-sikkerhed</span><span class="chip">sikkerhedstjek</span><span class="chip">hvad gør vi hvis nogen har klikket på et link</span><span class="chip">er det her svindel</span></div>
-    </article><article class="card" data-name="tilbudssammenligning" data-text="tilbudssammenligning sammenligner leverandørtilbud (bureau/freelancer) punkt for punkt mod byggebriefen, flagger danske røde flag (timepris uden loft, ejerskab af kode/data/domæne, manglende databehandleraftale, exit-vilkår) og skriver en anbefaling med begrundelse i tilbudssammenligning.md. vi har fået tilbud fra et bureau hvilket tilbud skal vi vælge kig lige på det her tilbud sammenlign de her tilbud er den her pris fair is this quote fair">
+    </article><article class="card" data-text="tilbudssammenligning sammenligner leverandørtilbud (bureau/freelancer) punkt for punkt mod byggebriefen, flagger danske røde flag (timepris uden loft, ejerskab af kode/data/domæne, manglende databehandleraftale, exit-vilkår) og skriver en anbefaling med begrundelse i tilbudssammenligning.md. vi har fået tilbud fra et bureau hvilket tilbud skal vi vælge kig lige på det her tilbud sammenlign de her tilbud er den her pris fair is this quote fair">
       <h3 class="card__name">tilbudssammenligning</h3>
       <p class="card__purpose">Sammenligner leverandørtilbud (bureau/freelancer) punkt for punkt mod byggebriefen, flagger danske røde flag (timepris uden loft, ejerskab af kode/data/domæne, manglende databehandleraftale, exit-vilkår) og skriver en anbefaling med begrundelse i tilbudssammenligning.md.</p>
       <div class="card__triggers"><span class="chip">vi har fået tilbud fra et bureau</span><span class="chip">hvilket tilbud skal vi vælge</span><span class="chip">kig lige på det her tilbud</span><span class="chip">sammenlign de her tilbud</span><span class="chip">er den her pris fair</span><span class="chip">is this quote fair</span></div>
@@ -537,8 +582,8 @@ footer a{color:var(--accent-ink)}
 </main>
 
 <footer><div class="wrap">
-  Din AI-organisation · 63 Agent Skills · bygget til kurset <b>Claude 0-100</b>, AI Academy hos thomascilius.dk.<br>
-  Skill-mapperne i dette repo kan installeres direkte i Claude Desktop (Settings → Capabilities → Skills) eller Claude Code (<code>~/.claude/skills/</code>). Se <a href="./README.md">README</a>.
+  <strong>Din AI-organisation</strong> · 63 Agent Skills · bygget til kurset <b>Claude 0-100</b>, AI Academy hos thomascilius.dk.<br>
+  Kode og skills: <a href="https://github.com/ThomasCilius/din-ai-organisation" target="_blank" rel="noopener">github.com/ThomasCilius/din-ai-organisation</a> · <a href="https://github.com/ThomasCilius/din-ai-organisation/blob/main/README.md" target="_blank" rel="noopener">README &amp; installationsguide</a>
 </div></footer>
 
 <script>
@@ -551,14 +596,12 @@ footer a{color:var(--accent-ink)}
     if(!cur){cur=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';}
     set(cur==='dark'?'light':'dark');
   });
-  // org-chart klik -> scroll til afdeling
   document.querySelectorAll('.node').forEach(function(n){
     n.addEventListener('click',function(){
       var el=document.getElementById(n.dataset.target);
       if(el)el.scrollIntoView({behavior:'smooth',block:'start'});
     });
   });
-  // søgning
   var q=document.getElementById('q'), deps=document.querySelectorAll('.dep'),
       cards=document.querySelectorAll('.card'), nores=document.getElementById('noresult');
   q.addEventListener('input',function(){
