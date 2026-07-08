@@ -55,12 +55,14 @@ write_state(){
   local profile="$1" names_file="$2"
   mkdir -p "$PKG_DIR"
   python3 - "$profile" "$STATE" "$VERSION" "$names_file" <<'PY'
-import json,sys,datetime
+import json,sys,datetime,os
 profile,state,version,namesf=sys.argv[1:5]
+prev=json.load(open(state)) if os.path.exists(state) else {}
 names=[n.strip() for n in open(namesf) if n.strip()]
 json.dump({"package":"din-ai-organisation","version":version,"profile":profile,
            "installedAt":datetime.datetime.now().isoformat(timespec="seconds"),
-           "managedSkills":sorted(set(names))},
+           "managedSkills":sorted(set(names)),
+           "managedDevSkills":sorted(set(prev.get("managedDevSkills",[])))},
           open(state,"w"), indent=2, ensure_ascii=False)
 open(state,"a").write("\n")
 PY
@@ -156,8 +158,9 @@ do_install(){
 
   write_state "$profile" "$tmp/desired.txt"
 
-  # 3) Udvikler-lager (staging). Payload udfyldes i naeste build; mekanikken staar klar.
+  # 3) Udvikler-lager: stage dev-skills fra dev-tier (tilgaengeligt for alle profiler).
   mkdir -p "$STASH/skills"
+  [ -d "$REPO_ROOT/dev-tier/skills" ] && cp -R "$REPO_ROOT/dev-tier/skills/." "$STASH/skills/"
 
   # 4) Brain-prompt tilgaengelig ved siden af pakken.
   [ -f "$REPO_ROOT/company-brain-prompt.txt" ] && cp "$REPO_ROOT/company-brain-prompt.txt" "$PKG_DIR/company-brain-prompt.txt"
@@ -169,13 +172,10 @@ do_install(){
   log "Installeret: $installed skills   (fjernet: $removed)"
   log "Hooks:       brain-inject, session-load/save, notify (settings.json)"
   log "State:       $STATE"
-  if [ "$profile" = "udvikler" ]; then
-    if [ -n "$(ls -A "$STASH/skills" 2>/dev/null)" ]; then
-      log "Udvikler-lag: payload fundet - koer './install.sh aktiver-udvikler'"
-    else
-      log "Udvikler-lag: staging klar, payload kommer i naeste build"
-    fi
-  fi
+  case "$profile" in
+    udvikler|hele-organisationen) do_activate_dev ;;
+    *) [ -n "$(ls -A "$STASH/skills" 2>/dev/null)" ] && log "Udvikler-lag: $(ls "$STASH/skills" | wc -l | tr -d ' ') skills staged - aktiver med './install.sh aktiver-udvikler'" ;;
+  esac
   [ -z "${DIN_AI_BRAIN:-}" ] && log "Tip: saet DIN_AI_BRAIN=~/company-brain foer install, saa hjernen indlaeses ambient (eller redigeer $PKG_DIR/config.json)."
   printf '\nFaerdig. Naeste skridt: byg din company-brain med %s\n' "$PKG_DIR/company-brain-prompt.txt"
 }
@@ -187,21 +187,35 @@ import json,sys
 d=json.load(open(sys.argv[1]))
 print(f"Pakke:   {d.get('package')}  v{d.get('version')}")
 print(f"Profil:  {d.get('profile')}")
-print(f"Skills:  {len(d.get('managedSkills',[]))} managed")
+print(f"Skills:  {len(d.get('managedSkills',[]))} managed" + (f" + {len(d.get('managedDevSkills',[]))} dev aktive" if d.get('managedDevSkills') else ""))
 print(f"Install: {d.get('installedAt')}")
 PY
 }
 
 do_activate_dev(){
   [ -d "$STASH/skills" ] || die "intet udvikler-lager (koer install foerst)"
-  local moved=0 s
+  local moved=0 s tmp; tmp="$(mktemp)"
   shopt -s nullglob
   for s in "$STASH/skills"/*/; do
     [ -f "${s}SKILL.md" ] || continue
     local name; name="$(basename "$s")"
-    rm -rf "${SKILLS_DIR:?}/$name"; cp -R "$s" "$SKILLS_DIR/$name"; moved=$((moved+1))
+    rm -rf "${SKILLS_DIR:?}/$name"; cp -R "$s" "$SKILLS_DIR/$name"
+    echo "$name" >> "$tmp"; moved=$((moved+1))
   done
-  [ "$moved" -gt 0 ] && log "Aktiveret $moved udvikler-skills" || log "Udvikler-lager er tomt (payload kommer i naeste build)"
+  if [ "$moved" -gt 0 ]; then
+    python3 - "$STATE" "$tmp" <<'PY'
+import json,sys,os
+state,nf=sys.argv[1],sys.argv[2]
+d=json.load(open(state)) if os.path.exists(state) else {"package":"din-ai-organisation","managedSkills":[],"managedDevSkills":[]}
+cur=set(d.get("managedDevSkills",[])); cur|={n.strip() for n in open(nf) if n.strip()}
+d["managedDevSkills"]=sorted(cur)
+json.dump(d,open(state,"w"),indent=2,ensure_ascii=False); open(state,"a").write("\n")
+PY
+    log "Aktiveret $moved udvikler-skills (nu managed)"
+  else
+    log "Udvikler-lager er tomt"
+  fi
+  rm -f "$tmp"
 }
 
 do_uninstall(){
@@ -210,7 +224,7 @@ do_uninstall(){
   while IFS= read -r s; do
     [ -n "$s" ] || continue
     [ -d "$SKILLS_DIR/$s" ] && { rm -rf "${SKILLS_DIR:?}/$s"; removed=$((removed+1)); }
-  done < <(read_managed)
+  done < <(python3 -c "import json;d=json.load(open('$STATE'));print(chr(10).join(d.get('managedSkills',[])+d.get('managedDevSkills',[])))" 2>/dev/null)
   unwire_hooks
   rm -rf "$PKG_DIR"
   log "Fjernet $removed managed skills, hooks og pakke-mappen. Dine egne skills og hooks er uroert."

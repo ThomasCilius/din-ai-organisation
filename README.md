@@ -168,7 +168,7 @@ cd din-ai-organisation
 - **Ren afinstallation.** `uninstall` fjerner kun det, installeren lagde.
 - **Hooks-lag (levende hjerne).** Installeren wirer merge-sikkert tre hooks ind i `settings.json`: **brain-inject** (hjernen indlæses ambient ved sessionsstart), **kontinuitet** (session-save/load, "hvor vi slap" pr. mappe) og **notify** (besked når Claude er færdig). `uninstall` fjerner kun vores, aldrig dine andre hooks. Kræver Node. Sæt brain-stien med `DIN_AI_BRAIN=~/company-brain ./install.sh`.
 
-> Bemærk: næste build tilføjer connector-vagt (`mcp-health`), brain-guard, dev-lagets payload (kurateret ECC-subset) og de danske indholds-skills (`knowledge-ops`, `humanizer`, `skill-creator`). Installer, profiler, staging og de tre hooks er på plads nu.
+> På plads nu: installer, profiler, staging, de tre hooks, de danske indholds-skills (`vidensarkitektur`, `menneskeliggoer`), og dev-lagets **68 dev-skills** (framework, testing, database, DevOps m.m., kurateret ECC-subset under MIT, se `dev-tier/`). Næste build: dev-lagets agenter, commands og rules, plus connector-vagt (`mcp-health`) og brain-guard.
 
 ### Claude Desktop
 
