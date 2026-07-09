@@ -5,6 +5,7 @@
 # Roerer ALDRIG dine egne skills - kun det, den selv har lagt (ownership: managed).
 #
 #   ./install.sh [install] [profil]   profil: operatoer (default) | hele-organisationen | udvikler
+#   ./install.sh update               hent nyeste + geninstaller (afstemmer skills, dev-lag og hooks)
 #   ./install.sh status               vis installeret profil, version og antal managed skills
 #   ./install.sh aktiver-udvikler     aktiver det stagede udvikler-lag (hvis payload findes)
 #   ./install.sh uninstall            fjern KUN managed skills + pakke-mappen
@@ -129,9 +130,12 @@ install_hooks(){
   mkdir -p "$PKG_DIR/hooks"
   ls "$HOOKS_SRC"/*.js >/dev/null 2>&1 && cp "$HOOKS_SRC"/*.js "$PKG_DIR/hooks/"
   python3 - "$PKG_DIR/config.json" "${DIN_AI_BRAIN:-}" <<'PY'
-import json, sys
-json.dump({"package": "din-ai-organisation", "brainPath": sys.argv[2]},
-          open(sys.argv[1], 'w'), indent=2, ensure_ascii=False)
+import json, sys, os
+cfgp, brain = sys.argv[1], sys.argv[2]
+prev = json.load(open(cfgp)) if os.path.exists(cfgp) else {}
+if not brain: brain = prev.get("brainPath", "")   # bevar eksisterende brain-sti ved update
+json.dump({"package": "din-ai-organisation", "brainPath": brain},
+          open(cfgp, 'w'), indent=2, ensure_ascii=False)
 PY
   wire_hooks
 }
@@ -211,31 +215,37 @@ print(f"Install: {d.get('installedAt')}")
 PY
 }
 
-_merge_state_list(){
-  python3 - "$STATE" "$1" "$2" <<'PY'
-import json,sys,os
-state,key,nf=sys.argv[1],sys.argv[2],sys.argv[3]
-d=json.load(open(state)) if os.path.exists(state) else {"package":"din-ai-organisation"}
-cur=set(d.get(key,[])); cur|={n.strip() for n in open(nf) if n.strip()}
-d[key]=sorted(cur)
-json.dump(d,open(state,"w"),indent=2,ensure_ascii=False); open(state,"a").write("\n")
-PY
-}
-
-# Aktiver én staged type (skills/agents/commands) fra udvikler-lager til dens rette mappe.
+# Aktiver/opdater én staged type (skills/agents/commands/rules) og AFSTEM: fjern
+# tidligere-managed items der er faldet ud af payloadet, saa opdateringer bliver rene.
 _activate_type(){
   local type="$1" dest="$2" statekey="$3" src="$STASH/$1"
   [ -d "$src" ] || return 0
   mkdir -p "$dest"
-  local n=0 e tmp; tmp="$(mktemp)"
+  local cur; cur="$(mktemp)"
   shopt -s nullglob
+  for e in "$src"/*; do basename "$e"; done > "$cur"
+  # 1) fjern items der var managed, men ikke laengere er i payloadet
+  python3 -c "import json,os;print(chr(10).join(json.load(open('$STATE')).get('$statekey',[])) if os.path.exists('$STATE') else '')" 2>/dev/null \
+    | while IFS= read -r p; do
+        [ -n "$p" ] || continue
+        grep -qxF "$p" "$cur" || { [ -e "$dest/$p" ] && rm -rf "${dest:?}/$p"; }
+      done
+  # 2) kopiér nuvaerende payload ind
+  local n=0 e
   for e in "$src"/*; do
     local base; base="$(basename "$e")"
-    rm -rf "${dest:?}/$base"; cp -R "$e" "$dest/$base"
-    echo "$base" >> "$tmp"; n=$((n+1))
+    rm -rf "${dest:?}/$base"; cp -R "$e" "$dest/$base"; n=$((n+1))
   done
-  [ "$n" -gt 0 ] && { _merge_state_list "$statekey" "$tmp"; log "Aktiveret $n $type"; }
-  rm -f "$tmp"
+  # 3) state[statekey] = nuvaerende payload (afstem, ikke merge)
+  python3 - "$STATE" "$statekey" "$cur" <<'PY'
+import json,sys,os
+state,key,curf=sys.argv[1],sys.argv[2],sys.argv[3]
+d=json.load(open(state)) if os.path.exists(state) else {"package":"din-ai-organisation"}
+d[key]=sorted({n.strip() for n in open(curf) if n.strip()})
+json.dump(d,open(state,"w"),indent=2,ensure_ascii=False); open(state,"a").write("\n")
+PY
+  [ "$n" -gt 0 ] && log "Aktiveret/opdateret $n $type"
+  rm -f "$cur"
 }
 
 do_activate_dev(){
@@ -270,11 +280,33 @@ do_uninstall(){
   log "Fjernet $t filer (skills, dev-lag, hooks) + pakke-mappen. Dine egne filer er uroert."
 }
 
+do_update(){
+  # 1) hent nyeste hvis repo er en git-checkout
+  if [ -d "$REPO_ROOT/.git" ]; then
+    log "Henter nyeste version fra git..."
+    git -C "$REPO_ROOT" pull --ff-only 2>&1 | tail -2 | sed 's/^/  /'
+  else
+    log "Ikke en git-mappe. Opdater repo-filerne manuelt (nyt download) foer update."
+  fi
+  # 2) vaelg profil: udvikler hvis dev-laget er aktivt, ellers den registrerede
+  local profile="operatoer"
+  if [ -f "$STATE" ]; then
+    if python3 -c "import json,sys;sys.exit(0 if json.load(open('$STATE')).get('managedDevSkills') else 1)" 2>/dev/null; then
+      profile="udvikler"
+    else
+      profile="$(python3 -c "import json;print(json.load(open('$STATE')).get('profile','operatoer'))" 2>/dev/null || echo operatoer)"
+    fi
+  fi
+  log "Opdaterer til nyeste, profil: $profile"
+  do_install "$profile"
+}
+
 case "${1:-install}" in
   install)          do_install "${2:-operatoer}";;
   status)           do_status;;
   aktiver-udvikler) do_activate_dev;;
   uninstall)        do_uninstall;;
+  update)           do_update;;
   operatoer|operatør|hele-organisationen|udvikler) do_install "$1";;  # tillad './install.sh <profil>'
-  *) die "ukendt kommando: $1 (install | status | aktiver-udvikler | uninstall)";;
+  *) die "ukendt kommando: $1 (install | update | status | aktiver-udvikler | uninstall)";;
 esac

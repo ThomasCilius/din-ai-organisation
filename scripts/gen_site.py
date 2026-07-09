@@ -16,6 +16,7 @@ INSTALLER_BLOCK = ("git clone " + REPO + ".git\n"
   "cd din-ai-organisation\n"
   "./install.sh                # operatoer-profil (alle skills)\n"
   "./install.sh udvikler       # + udvikler-lag (staged)\n"
+  "./install.sh update         # hent nyeste + geninstaller (afstemmer alt)\n"
   "./install.sh status         # hvad er installeret\n"
   "./install.sh uninstall      # fjern kun det, installeren lagde")
 

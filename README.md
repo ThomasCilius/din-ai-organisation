@@ -157,13 +157,14 @@ git clone https://github.com/ThomasCilius/din-ai-organisation.git
 cd din-ai-organisation
 ./install.sh                  # operatoer-profil (alle forretnings-skills)
 ./install.sh udvikler         # + udvikler-lag (staged, taendes senere)
+./install.sh update           # hent nyeste + geninstaller (afstemmer alt)
 ./install.sh status           # hvad er installeret
 ./install.sh aktiver-udvikler # aktiver det stagede udvikler-lag
 ./install.sh uninstall        # fjern KUN det, installeren lagde
 ```
 
 - **Profiler.** `operatoer` (standard) · `udvikler` (lægger dev-laget i staging) · `hele-organisationen`. Ét valg ved install, ikke to produkter.
-- **Idempotent opgradering.** Genkør efter en ny kursusversion: den opdaterer skills, fjerner udgåede og rører intet af dit eget.
+- **Idempotent opgradering.** `./install.sh update` henter nyeste version (git pull) og geninstallerer den profil, du kører, og **afstemmer alt**: nye skills/agenter/commands/rules/hooks kommer ind, udgåede fjernes, din brain-sti bevares, og intet af dit eget røres. Så ruller du dine egne ændringer ud på din eksisterende installation med én kommando.
 - **Install-state.** Alt noteres som `managed` i `~/.claude/din-ai-org/install-state.json`. Din memory, dine regler og dine egne skills står urørt.
 - **Udvikler-lag efter behov.** Vælger du `operatoer`, ligger dev-laget klar i `udvikler-lager/` og tændes senere med `aktiver-udvikler` uden download - hvis du begynder at kode mere.
 - **Ren afinstallation.** `uninstall` fjerner kun det, installeren lagde.
