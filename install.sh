@@ -149,7 +149,7 @@ do_install(){
   [ -d "$REPO_ROOT/03-viden-og-data" ] || die "koer scriptet fra repo-roden"
   mkdir -p "$SKILLS_DIR" "$PKG_DIR"
 
-  local tmp; tmp="$(mktemp -d)"; trap 'rm -rf "$tmp"' RETURN
+  local tmp; tmp="$(mktemp -d)"
   operator_skills | sort -u > "$tmp/desired.txt"
   read_managed | sort -u > "$tmp/prev.txt"
 
@@ -199,6 +199,7 @@ do_install(){
   esac
   [ -z "${DIN_AI_BRAIN:-}" ] && log "Tip: saet DIN_AI_BRAIN=~/company-brain foer install, saa hjernen indlaeses ambient (eller redigeer $PKG_DIR/config.json)."
   printf '\nFaerdig. Naeste skridt: byg din company-brain med %s\n' "$PKG_DIR/company-brain-prompt.txt"
+  rm -rf "$tmp"
 }
 
 do_status(){
