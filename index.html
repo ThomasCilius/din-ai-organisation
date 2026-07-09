@@ -510,15 +510,16 @@ cd din-ai-organisation
     <div class="install__cols">
       <div class="icard">
         <h3>Claude Code</h3>
-        <p class="sub">Nemmest: giv Claude Code repoets URL og bed den installere — så klarer den klon og kopiering for dig.</p>
-        <p style="font-weight:600;font-size:13.5px;margin:0 0 4px">Indsæt i Claude Code</p>
-        <div class="codewrap"><pre class="cmd wrapline" id="ccprompt">Installer Claude Agent Skills fra dette repo i min skills-mappe: https://github.com/ThomasCilius/din-ai-organisation - klon repoet, vis mig de 10 afdelinger, og kopiér de skill-mapper jeg vælger ind i ~/.claude/skills/ (foreslå kernen først: 03-viden-og-data + 01-direktionen).</pre><button class="copy-icon" data-copy="ccprompt" data-tip="Kopiér" aria-label="Kopiér" type="button"><svg class="i-copy" viewBox="0 0 24 24" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg><svg class="i-check" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></button></div>
-        <p class="sub" style="margin-top:18px">Eller klon manuelt og kopiér kernen ind:</p>
+        <p class="sub">Nemmest: giv Claude Code repoets URL og bed den installere, så klarer den klon og install for dig.</p>
+        <p style="font-weight:600;font-size:13.5px;margin:0 0 4px">Indsæt i Claude Code (installer)</p>
+        <div class="codewrap"><pre class="cmd wrapline" id="ccprompt">Installer din-ai-organisation for mig: klon https://github.com/ThomasCilius/din-ai-organisation (hvis den ikke allerede ligger lokalt), gaa ind i klonen og koer &#x27;./install.sh install operatoer&#x27; (eller &#x27;udvikler&#x27;, hvis jeg ogsaa koder). Det giver en managed, opdaterbar installation med install-state og hooks. Vis mig &#x27;status&#x27; bagefter.</pre><button class="copy-icon" data-copy="ccprompt" data-tip="Kopiér" aria-label="Kopiér" type="button"><svg class="i-copy" viewBox="0 0 24 24" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg><svg class="i-check" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></button></div>
+        <p style="font-weight:600;font-size:13.5px;margin:14px 0 4px">Indsæt i Claude Code (opdater senere)</p>
+        <div class="codewrap"><pre class="cmd wrapline" id="ccupdate">Opdater min din-ai-organisation: find den lokale klon af https://github.com/ThomasCilius/din-ai-organisation (klon den hvis den mangler), koer &#x27;git pull&#x27;, og koer derefter &#x27;./install.sh update&#x27;. Det henter nyeste og afstemmer alt (skills, dev-lag, hooks) uden at roere mine egne filer.</pre><button class="copy-icon" data-copy="ccupdate" data-tip="Kopiér" aria-label="Kopiér" type="button"><svg class="i-copy" viewBox="0 0 24 24" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg><svg class="i-check" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></button></div>
+        <p class="sub" style="margin-top:14px">Eller klon og installer manuelt:</p>
         <div class="codewrap"><pre class="cmd " id="ccmanual">git clone https://github.com/ThomasCilius/din-ai-organisation.git
-mkdir -p ~/.claude/skills
-cp -r din-ai-organisation/03-viden-og-data/*  ~/.claude/skills/
-cp -r din-ai-organisation/01-direktionen/*    ~/.claude/skills/</pre><button class="copy-icon" data-copy="ccmanual" data-tip="Kopiér" aria-label="Kopiér" type="button"><svg class="i-copy" viewBox="0 0 24 24" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg><svg class="i-check" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></button></div>
-        <p class="sub" style="margin-top:10px">Skillene trigger automatisk på danske og engelske sætninger. Læg dem evt. i projektets egen <span class="inline">.claude/skills/</span>.</p>
+cd din-ai-organisation
+./install.sh install operatoer    # eller: udvikler</pre><button class="copy-icon" data-copy="ccmanual" data-tip="Kopiér" aria-label="Kopiér" type="button"><svg class="i-copy" viewBox="0 0 24 24" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg><svg class="i-check" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></button></div>
+        <p class="sub" style="margin-top:10px">Installeren giver en managed, opdaterbar installation. Genkør <span class="inline">./install.sh update</span> for at hente dine ændringer.</p>
       </div>
       <div class="icard">
         <h3>Claude Desktop</h3>

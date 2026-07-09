@@ -5,13 +5,16 @@ import glob, os, re, html
 ROOT = "/Users/thomasciliushansen/Desktop/01 Projekter/thomascilius.dk/AI Academy/Claude Desktop 0-100/din-ai-organisation"
 REPO = "https://github.com/ThomasCilius/din-ai-organisation"
 DOMAIN = "skills.thomascilius.dk"
-CC_ONELINER = ("Installer Claude Agent Skills fra dette repo i min skills-mappe: " + REPO +
-  " - klon repoet, vis mig de 10 afdelinger, og kopiér de skill-mapper jeg vælger ind i ~/.claude/skills/ "
-  "(foreslå kernen først: 03-viden-og-data + 01-direktionen).")
+CC_ONELINER = ("Installer din-ai-organisation for mig: klon " + REPO +
+  " (hvis den ikke allerede ligger lokalt), gaa ind i klonen og koer './install.sh install operatoer' "
+  "(eller 'udvikler', hvis jeg ogsaa koder). Det giver en managed, opdaterbar installation med "
+  "install-state og hooks. Vis mig 'status' bagefter.")
+UPDATE_ONELINER = ("Opdater min din-ai-organisation: find den lokale klon af " + REPO +
+  " (klon den hvis den mangler), koer 'git pull', og koer derefter './install.sh update'. "
+  "Det henter nyeste og afstemmer alt (skills, dev-lag, hooks) uden at roere mine egne filer.")
 GIT_BLOCK = ("git clone " + REPO + ".git\n"
-  "mkdir -p ~/.claude/skills\n"
-  "cp -r din-ai-organisation/03-viden-og-data/*  ~/.claude/skills/\n"
-  "cp -r din-ai-organisation/01-direktionen/*    ~/.claude/skills/")
+  "cd din-ai-organisation\n"
+  "./install.sh install operatoer    # eller: udvikler")
 INSTALLER_BLOCK = ("git clone " + REPO + ".git\n"
   "cd din-ai-organisation\n"
   "./install.sh                # operatoer-profil (alle skills)\n"
@@ -384,12 +387,14 @@ footer a{{color:var(--accent-ink)}}
     <div class="install__cols">
       <div class="icard">
         <h3>Claude Code</h3>
-        <p class="sub">Nemmest: giv Claude Code repoets URL og bed den installere — så klarer den klon og kopiering for dig.</p>
-        <p style="font-weight:600;font-size:13.5px;margin:0 0 4px">Indsæt i Claude Code</p>
+        <p class="sub">Nemmest: giv Claude Code repoets URL og bed den installere, så klarer den klon og install for dig.</p>
+        <p style="font-weight:600;font-size:13.5px;margin:0 0 4px">Indsæt i Claude Code (installer)</p>
         {copyblock("ccprompt", CC_ONELINER, "wrapline")}
-        <p class="sub" style="margin-top:18px">Eller klon manuelt og kopiér kernen ind:</p>
+        <p style="font-weight:600;font-size:13.5px;margin:14px 0 4px">Indsæt i Claude Code (opdater senere)</p>
+        {copyblock("ccupdate", UPDATE_ONELINER, "wrapline")}
+        <p class="sub" style="margin-top:14px">Eller klon og installer manuelt:</p>
         {copyblock("ccmanual", GIT_BLOCK)}
-        <p class="sub" style="margin-top:10px">Skillene trigger automatisk på danske og engelske sætninger. Læg dem evt. i projektets egen <span class="inline">.claude/skills/</span>.</p>
+        <p class="sub" style="margin-top:10px">Installeren giver en managed, opdaterbar installation. Genkør <span class="inline">./install.sh update</span> for at hente dine ændringer.</p>
       </div>
       <div class="icard">
         <h3>Claude Desktop</h3>

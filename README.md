@@ -178,23 +178,27 @@ Skills uploades pr. stk. som en zip-fil under **Settings > Capabilities > Skills
 
 ### Claude Code
 
-**Nemmest - lad Claude Code installere.** Indsæt denne ene linje i Claude Code:
+**Nemmest - lad Claude Code installere.** Indsæt denne ene linje i Claude Code, så klarer den klon og install:
 
 ```
-Installer Claude Agent Skills fra dette repo i min skills-mappe: https://github.com/ThomasCilius/din-ai-organisation - klon repoet, vis mig de 10 afdelinger, og kopiér de skill-mapper jeg vælger ind i ~/.claude/skills/ (foreslå kernen først: 03-viden-og-data + 01-direktionen).
+Installer din-ai-organisation for mig: klon https://github.com/ThomasCilius/din-ai-organisation (hvis den ikke allerede ligger lokalt), gå ind i klonen og kør ./install.sh install operatoer (eller udvikler, hvis jeg også koder). Det giver en managed, opdaterbar installation. Vis mig status bagefter.
 ```
 
-**Eller manuelt.** Klon repoet og kopiér skill-mapperne direkte ind i skills-stien:
+**Opdater senere.** Indsæt denne, så henter den nyeste og afstemmer alt:
+
+```
+Opdater min din-ai-organisation: find den lokale klon af https://github.com/ThomasCilius/din-ai-organisation (klon den hvis den mangler), kør git pull, og kør derefter ./install.sh update. Det henter nyeste og afstemmer alt uden at røre mine egne filer.
+```
+
+**Eller manuelt.** Klon og installer:
 
 ```
 git clone https://github.com/ThomasCilius/din-ai-organisation.git
-mkdir -p ~/.claude/skills
-cp -r din-ai-organisation/03-viden-og-data/*  ~/.claude/skills/
-cp -r din-ai-organisation/01-direktionen/*    ~/.claude/skills/
+cd din-ai-organisation
+./install.sh install operatoer    # eller: udvikler
 ```
 
-- Globalt for alle projekter: `~/.claude/skills/`
-- Kun for ét projekt: projektets `.claude/skills/`
+Begge veje giver en **managed, opdaterbar** installation (global i `~/.claude/`), i modsætning til at kopiere skill-mapper løst ind. Derefter henter `./install.sh update` altid nyeste og afstemmer alt.
 
 Hver skill-mappe (fx `virksomhedsprofil/`) lægges som en undermappe med sin `SKILL.md` og `references/` intakt.
 
