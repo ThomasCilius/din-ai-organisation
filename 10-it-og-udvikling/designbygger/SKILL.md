@@ -17,6 +17,15 @@ Et brief er en beskrivelse af noget, der ikke findes endnu, og som en anden skal
 2. `voice-profil.md` og `virksomhedsprofil.md`: stemme, branche, målgruppe, prisleje. Designet skal matche hvem kunden er.
 3. Findes `designprofil.md` ikke: fastlæg en retning kort her (eller kør designretning først). Gæt aldrig branche eller retning.
 
+## Håndværk i dybden (læs referencerne før du bygger)
+
+Kvaliteten sidder i detaljerne, og de er skrevet ned. Læs den relevante reference i `references/` og byg efter den, ikke efter mavefornemmelse:
+- `references/designsystem.md` - fastlæg et rigt designsystem (æstetisk retning, typografi med rigtige skrifter, farvesystem, spacing, layout, motion), før du bygger. Indeholder 10 retninger, font-anbefalinger og en font-blacklist.
+- `references/html-motor.md` - den fulde HTML-motor: UX-love, usability-principper, wiring-mønstre, tjekliste for selvstændig HTML og et API-cheatsheet.
+- `references/anti-slop-review.md` - kør det byggede design gennem anti-slop-auditten (80-punkts tjekliste, A-F-scoring) og ret manglerne, før du afleverer.
+
+Det er dét håndværk, der løfter output fra "AI-agtigt" til production-grade. Tilpasset fra gstack (MIT).
+
 ## Arbejdsgang
 
 1. **Ram fladen.** Formål, målgruppe, følelse, og den ene ting brugeren skal huske. **GATE: sammenfat i 3-4 linjer og bed om et ja, før du bygger.** Mangler du indhold eller målgruppe, så stop og spørg, opfind det ikke.
