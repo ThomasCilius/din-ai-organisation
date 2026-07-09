@@ -28,7 +28,7 @@ Det er dét håndværk, der løfter output fra "AI-agtigt" til production-grade.
 
 ## Arbejdsgang
 
-1. **Ram fladen.** Formål, målgruppe, følelse, og den ene ting brugeren skal huske. **GATE: sammenfat i 3-4 linjer og bed om et ja, før du bygger.** Mangler du indhold eller målgruppe, så stop og spørg, opfind det ikke.
+1. **Ram fladen og byg med det samme.** Afklar formål, målgruppe, følelse og den ene ting brugeren skal huske ud fra det, der er sagt, og ud fra `designprofil.md`/`virksomhedsprofil.md`. Har brugeren bedt om et design, så **byg det til fulde med det samme, bed ikke om et ja først.** Sig dine antagelser kort i én linje og byg videre på dem. Stop kun og spørg, hvis opgaven er reelt ubyggelig (ingen anelse om flade eller indhold), ellers antag fornuftigt og lever det færdige design.
 2. **Vælg ÉN retning og commit.** Editorial, brutalistisk, luksus, legende, geometrisk, retro-futuristisk, industriel. Fra designprofil.md. Bland aldrig retninger, et trygt gennemsnit er dårligere end én stærk, sammenhængende æstetik med få modige valg.
 3. **Byg det visuelle system.** Typehierarki, farve-variabler, spacing-rytme, layout-logik, motion-regler, overflade/skygge. Brug CSS-variabler, så det hænger sammen, når det vokser.
 4. **Komponér med intention.** Asymmetri hvor det skærper hierarki, overlap hvor det skaber dybde, whitespace hvor det giver fokus. Undgå at defaulte til et symmetrisk card-grid, medmindre det er klart det rigtige.
