@@ -32,7 +32,7 @@ Hele pointen med varianter er at brugeren vælger med øjnene i stedet for at be
 6. **Kvalitetsgate pr. variant (tjek - ret - gentag).** Kør hver variant gennem tjeklisten under "Kvalitetsgate" nedenfor. Ret alle fund og tjek igen. Maks. 3 runder pr. variant - står der stadig fund efter tredje runde, så flag dem for brugeren i stedet for at blive ved.
 7. **Præsentér side om side - reaktion FØR rationale.** Vis varianterne ved siden af hinanden og spørg først: "Hvilken trækker dit øje først - og hvilken føles rigtig?" Hold rationalet tilbage til brugeren har reageret. Forklarer du styrkerne først, styrer du valget i stedet for at afdække smagen. Præsentér neutralt - ingen af dem er "den pæne".
 8. **Log valget.** Når brugeren har valgt: skriv smagshistorik-blokken nederst i `designprofil.md` (vinder + fravalg + brugerens egne ord). Formatet ligger i `references/smagshistorik-og-akser.md`. Det er dét der gør næste opgave hurtigere - den læser smagen frem for at gætte igen.
-9. **Aflevér + næste skridt.** Aflevér variant-dokumentet (se Output) og peg videre: den valgte variant bliver til kravspec i `byggebrief`, og selve byggeriet reviewes i `plan-tjek`.
+9. **Aflevér + næste skridt.** Aflevér variant-dokumentet (se Output) og peg videre: den valgte variant **bygges færdig i `designbygger`** - det er standardvejen (go-do). Kun hvis ejeren bevidst vil bestille arbejdet hos et eksternt bureau, bliver den i stedet til kravspec i `byggebrief`.
 
 **Escape hatch:** Siger brugeren "bare kør" eller "spring spørgsmålene over", så vælg den mest sandsynlige flade og akse selv, generér varianterne, og markér alle antagelser som **[ANTAGELSE]** i variant-dokumentet. Beder de om det igen: respektér det. Jernloven gælder stadig - du kårer stadig ikke vinderen.
 
@@ -83,7 +83,7 @@ Læs `references/anti-template-tjekliste.md` når en variant begynder at ligne e
 2. **Generér aldrig flere end 3 varianter.** Flere valg giver dårligere beslutninger, ikke bedre - to eller tre skarpe bud slår seks lunkne.
 3. **Afvig aldrig fra designprofilens palet eller typografi uden eksplicit flag.** Har en variant brug for et brud, så sig det højt og begrund det.
 4. **Ingen variant slipper gennem uden anti-template- og kontrast-tjek.** En smuk men ulæselig eller skabelonagtig variant er en fejl, ikke et valg.
-5. **Aflevér altid som mockup/kladde - byg, deploy eller send aldrig noget selv.** Varianter er valg-artefakter; selve byggeriet hører til i `byggebrief` og `plan-tjek`.
+5. **Aflevér altid som mockup/kladde - byg, deploy eller send aldrig noget selv.** Varianter er valg-artefakter; selve det færdige design bygges i `designbygger` (standard), og kun ved bevidst ekstern bestilling i `byggebrief`.
 6. AI foreslår - mennesket beslutter. Ved offentligt rettede løsninger (webtilgængelighedsloven) eller tvivl om licens på en foreslået skrift: flag det og henvis til `designretning`, som ejer profilens kontrast- og licenskrav.
 
 ## Selvkorrektion

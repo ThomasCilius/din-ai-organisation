@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Din AI-organisation · 65 skills til danske SMV'er</title>
-<meta name="description" content="Et kurateret sæt Agent Skills til Claude, bygget som et dansk organisationsdiagram: 65 skills fordelt på 10 afdelinger. Fra AI Academy · Claude 0-100.">
+<title>Din AI-organisation · 66 skills til danske SMV'er</title>
+<meta name="description" content="Et kurateret sæt Agent Skills til Claude, bygget som et dansk organisationsdiagram: 66 skills fordelt på 10 afdelinger. Fra AI Academy · Claude 0-100.">
 <style>
 :root{
   --bg:#f6f3ee; --surface:#fffdf9; --ink:#211d17; --muted:#6b6459;
@@ -147,7 +147,7 @@ footer a{color:var(--accent-ink)}
 <body>
 <div class="topbar"><div class="topbar__in">
   <span class="brand">Din <b>AI-organisation</b></span>
-  <input id="q" class="search" type="search" placeholder="Søg i 65 skills…" aria-label="Søg i skills">
+  <input id="q" class="search" type="search" placeholder="Søg i 66 skills…" aria-label="Søg i skills">
   <button id="theme" class="themebtn" type="button" aria-label="Skift lyst/mørkt tema">◐</button>
 </div></div>
 
@@ -156,7 +156,7 @@ footer a{color:var(--accent-ink)}
   <h1>Byg din virksomhed<br>som et AI-hold</h1>
   <p class="lead">Et kurateret sæt Agent Skills til Claude, skåret efter et klassisk dansk organisationsdiagram. Hver afdeling er et hold AI-medarbejdere · hver skill er én afgrænset, tilbagevendende opgave.</p>
   <div class="stats">
-    <span class="stat"><b>65</b><span>skills</span></span>
+    <span class="stat"><b>66</b><span>skills</span></span>
     <span class="stat"><b>10</b><span>afdelinger</span></span>
     <span class="stat"><b>DK</b><span>jobvalideret</span></span>
   </div>
@@ -222,7 +222,7 @@ footer a{color:var(--accent-ink)}
     </button><button class="node node--afd" data-target="dep-9" type="button">
       <span class="node__label">IT &amp; Udvikling</span>
       <span class="node__tag">Design &amp; byg · dirigent</span>
-      <span class="node__count">9 skills</span>
+      <span class="node__count">10 skills</span>
     </button>
   </div>
 </div>
@@ -230,7 +230,7 @@ footer a{color:var(--accent-ink)}
   <div class="notes">
     <div class="note"><h4>Én hjerne, mange forbrugere</h4><p>Alle skills læser <code>virksomhedsprofil.md</code>, <code>voice-profil.md</code> og <code>designprofil.md</code> først — konteksten gives én gang.</p></div>
     <div class="note"><h4>Aldrig-regler er en del af formatet</h4><p>Altid kladde · sender, sletter og bogfører aldrig selv · plan før filhandlinger · citér kilden · AI anbefaler, mennesket beslutter.</p></div>
-    <div class="note"><h4>Artefakt-kæder</h4><p>Hver skill efterlader et navngivet artefakt, som den næste læser — det er dét, der gør 65 løse skills til én organisation.</p></div>
+    <div class="note"><h4>Artefakt-kæder</h4><p>Hver skill efterlader et navngivet artefakt, som den næste læser — det er dét, der gør 66 løse skills til én organisation.</p></div>
     <div class="note"><h4>Modulær installation</h4><p>Start med kernen (<code>03 Viden &amp; Data</code> + <code>01 Direktionen</code>), og vælg de afdelinger, din rolle bruger.</p></div>
   </div>
 
@@ -458,7 +458,7 @@ ARBEJDSREGLER (alt arbejde i denne mappe)
     <div class="install__cols" style="grid-template-columns:1.05fr 1fr">
       <div class="icard">
         <h3>Én kommando, hele organisationen</h3>
-        <p class="sub">En modulær installer lægger de 65 skills på plads, husker præcis hvad den selv har lagt, og rører aldrig dine egne skills. Genkør for at opgradere, afinstallér rent når som helst. Til Claude Code.</p>
+        <p class="sub">En modulær installer lægger de 66 skills på plads, husker præcis hvad den selv har lagt, og rører aldrig dine egne skills. Genkør for at opgradere, afinstallér rent når som helst. Til Claude Code.</p>
         <div class="step"><b>1</b><div><b>Profiler.</b> <span class="inline">operatoer</span> (standard, forretnings-skills aktive) · <span class="inline">udvikler</span> (lægger dev-laget i staging) · <span class="inline">hele-organisationen</span>. Ét valg, ikke to produkter.</div></div>
         <div class="step"><b>2</b><div><b>Idempotent opgradering.</b> Genkør <span class="inline">./install.sh</span> efter en ny kursusversion — den opdaterer skills, fjerner udgåede og rører intet af dit eget.</div></div>
         <div class="step"><b>3</b><div><b>Install-state.</b> Alt den lægger, noteres som <span class="inline">managed</span> i <span class="inline">~/.claude/din-ai-org/install-state.json</span>. Din memory, dine regler og dine egne skills står urørt.</div></div>
@@ -828,7 +828,7 @@ cp -r din-ai-organisation/01-direktionen/*    ~/.claude/skills/</pre><button cla
         <span class="dep__num">10</span>
         <div>
           <h2 class="dep__title">IT &amp; Udvikling</h2>
-          <p class="dep__tag">Design &amp; byg · dirigent · 9 skills</p>
+          <p class="dep__tag">Design &amp; byg · dirigent · 10 skills</p>
         </div>
         <a class="dep__zip" href="releases/10-it-og-udvikling.zip" download>⬇ Zip</a>
       </header>
@@ -840,6 +840,10 @@ cp -r din-ai-organisation/01-direktionen/*    ~/.claude/skills/</pre><button cla
       <h3 class="card__name">byggebrief</h3>
       <p class="card__purpose">Skriver en komplet dansk kravspecifikation (byggebrief.md) via interview med testbare færdig-kriterier og nul pladsholdere - klar til en frisk session, et bureau eller en freelancer.</p>
       <div class="card__triggers"><span class="chip">skriv en kravspec</span><span class="chip">lav en kravspecifikation</span><span class="chip">vi skal have bygget en app/løsning/hjemmeside/automatisering</span><span class="chip">vi vil bestille en løsning hos et bureau</span><span class="chip">beskriv hvad der skal bygges</span><span class="chip">scope det her projekt</span></div>
+    </article><article class="card" data-text="designbygger laver selve designet, ikke et brief nogen andre skal bygge efter: tager designretningen og producerer et færdigt, production-grade, særpræget design som kørende html man kan se, bruge og deploye. dette er standardvejen for visuelt arbejde. lav selve designet byg siden/dashboardet/landingssiden/komponenten design og byg det producér designet lav en side der faktisk ser designet ud gør det færdigt">
+      <h3 class="card__name">designbygger</h3>
+      <p class="card__purpose">Laver SELVE designet, ikke et brief nogen andre skal bygge efter: tager designretningen og producerer et færdigt, production-grade, særpræget design som kørende HTML man kan se, bruge og deploye. Dette er standardvejen for visuelt arbejde.</p>
+      <div class="card__triggers"><span class="chip">lav selve designet</span><span class="chip">byg siden/dashboardet/landingssiden/komponenten</span><span class="chip">design og byg det</span><span class="chip">producér designet</span><span class="chip">lav en side der faktisk ser designet ud</span><span class="chip">gør det færdigt</span></div>
     </article><article class="card" data-text="designretning fungerer som designkonsulent og fastlægger én sammenhængende designretning - stilretning, typografi, farvepalet, spacing og wcag-kontrastkrav - og skriver den til designprofil.md, som både claude og et eksternt bureau kan eksekvere efter uden at gætte. lav en designprofil vælg en designretning hvilke skrifter og farver skal vi bruge hvordan skal vores materialer/slides/side se ud vi mangler en visuel stil/identitet design-brief til bureau">
       <h3 class="card__name">designretning</h3>
       <p class="card__purpose">Fungerer som designkonsulent og fastlægger ÉN sammenhængende designretning - stilretning, typografi, farvepalet, spacing og WCAG-kontrastkrav - og skriver den til designprofil.md, som både Claude og et eksternt bureau kan eksekvere efter uden at gætte.</p>
@@ -875,7 +879,7 @@ cp -r din-ai-organisation/01-direktionen/*    ~/.claude/skills/</pre><button cla
 </main>
 
 <footer><div class="wrap">
-  <strong>Din AI-organisation</strong> · 65 Agent Skills · bygget til kurset <b>Claude 0-100</b>, AI Academy hos thomascilius.dk.<br>
+  <strong>Din AI-organisation</strong> · 66 Agent Skills · bygget til kurset <b>Claude 0-100</b>, AI Academy hos thomascilius.dk.<br>
   Kode og skills: <a href="https://github.com/ThomasCilius/din-ai-organisation" target="_blank" rel="noopener">github.com/ThomasCilius/din-ai-organisation</a> · <a href="https://github.com/ThomasCilius/din-ai-organisation/blob/main/README.md" target="_blank" rel="noopener">README &amp; installationsguide</a>
 </div></footer>
 

@@ -1,8 +1,8 @@
 # Din AI-organisation
 
-En kurateret pakke på **65 Agent Skills** til Claude, bygget til kurset "Claude Desktop 0-100". Du bygger din egen AI-organisation efter et klassisk dansk organisationsdiagram: hver afdeling er et hold AI-medarbejdere, og hver skill er én afgrænset, tilbagevendende opgave, som er valideret mod virkelige danske jobfunktioner i en SMV.
+En kurateret pakke på **66 Agent Skills** til Claude, bygget til kurset "Claude Desktop 0-100". Du bygger din egen AI-organisation efter et klassisk dansk organisationsdiagram: hver afdeling er et hold AI-medarbejdere, og hver skill er én afgrænset, tilbagevendende opgave, som er valideret mod virkelige danske jobfunktioner i en SMV.
 
-Pakken er bevidst modulær. Anthropic anbefaler et loft på cirka 20-50 aktive skills, og 65 er over det med vilje - derfor installerer du kernen plus de afdelinger, der matcher din rolle (typisk 25-35 aktive skills), ikke hele pakken på én gang.
+Pakken er bevidst modulær. Anthropic anbefaler et loft på cirka 20-50 aktive skills, og 66 er over det med vilje - derfor installerer du kernen plus de afdelinger, der matcher din rolle (typisk 25-35 aktive skills), ikke hele pakken på én gang.
 
 ## Organisationsdiagrammet
 
@@ -17,7 +17,7 @@ Pakken er bevidst modulær. Anthropic anbefaler et loft på cirka 20-50 aktive s
           |                                               |
    +--------------+-------------+------------+-------------+--------------+
 Sekretariatet   Salg &      Marketing    Økonomi        HR        IT & Udvikling
-  05 (7)     Kundeservice     07 (9)       08 (5)      09 (7)         10 (9)
+  05 (7)     Kundeservice     07 (9)       08 (5)      09 (7)         10 (10)
                 06 (5)
 ```
 
@@ -132,6 +132,7 @@ Kernen er **03 Viden & Data** (den ejer virksomhedens hub-filer) og **01 Direkti
 |-------|--------|
 | `designretning` | Fastlægger ÉN sammenhængende designretning og skriver hub-filen `designprofil.md`. |
 | `designvarianter` | Genererer 2-3 navngivne designvarianter af samme flade inden for den godkendte designprofil. |
+| `designbygger` | Laver selve det færdige, production-grade design som kørende HTML man kan se og deploye. Go-do frem for handoff-brief. |
 | `byggebrief` | Skriver en komplet dansk kravspecifikation (`byggebrief.md`) via interview - nul pladsholdere. |
 | `plan-tjek` | Ingeniørchef-review af byggeplan eller leverandørforslag før byg: GO / GO-med-ændringer / STOP. |
 | `fejldetektiv` | Systematisk fejlfinding for ikke-udviklere plus professionel fejlrapport til leverandøren. |
@@ -207,7 +208,7 @@ Zips regenereres med `scripts/make-zips.sh` efter ændringer i skills.
 
 ## Konventioner
 
-Alle 65 skills følger den samme opskrift, så de opfører sig ens uanset afdeling.
+Alle 66 skills følger den samme opskrift, så de opfører sig ens uanset afdeling.
 
 - **Danske skill-navne** - "noget du selv ville sige højt". Navnefeltet tillader kun a-z, tal og bindestreg, så æ/ø/å translittereres til ae/oe/aa: `moedeforberedelse`, `opfoelgningsliste`, `budgetopfoelgning`.
 - **Tosprogede triggere** - hver `description` indeholder ordrette triggersætninger på både dansk og engelsk ("skriv et tilbud" / "write a proposal"), skrevet pushy fordi Claude har tendens til at undertrigge.
