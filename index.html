@@ -367,6 +367,15 @@ En tom hjerne er ubrugelig, så:
 Skriv en CLAUDE.md i rodmappen med disse driftsregler, tilpasset mine
 interviewsvar (og med persona-afsnit, hvis jeg valgte en):
 
+PLACERING (hjernens adresse, hold den opdateret)
+Øverst i CLAUDE.md står hjernens kanoniske adresse, så den altid ved hvor den
+selv bor, og hvad der peger på den:
+- Kanonisk sti: [absolut sti til DENNE mappe, fx /Users/mig/Documents/company-brain]
+- Flader der peger herpå: Claude Desktop/Cowork (mappeadgang), Claude Code
+  (DIN_AI_BRAIN + SessionStart-hook), og evt. git-remote.
+Ændrer stien sig, fordi jeg flytter hjernen, opdateres dette felt OG alle
+pegepinde i samme greb (se FLYT).
+
 DE TRE OPERATIONER
 - INGEST - når der kommer nyt (inbox/, eller noget jeg fortæller dig): opret/
   opdater de relevante sider - log-entry altid, Status kun ved sikker viden.
@@ -380,6 +389,16 @@ DE TRE OPERATIONER
   links og oplagte huller. Konsolidér Log → Status, hvor det er entydigt. Alt
   tvetydigt: rapportér kort og ret kun efter godkendelse.
 
+FLYT (remap, når hjernen skal et andet sted hen)
+Når jeg siger &quot;flyt hjernen til [ny sti]&quot; eller &quot;remap&quot;: flyt HELE mappen og
+opdater derefter ALLE pegepinde i ét greb, så intet driver fra hinanden:
+1. Kopiér alle filer og mapper til den nye sti, og verificér at alt kom med.
+2. Opdater PLACERING-feltet i CLAUDE.md til den nye kanoniske sti.
+3. Opdater Claude Code-pegepinden: SessionStart-hookens sti og DIN_AI_BRAIN.
+4. Mind mig om at give Claude Desktop/Cowork adgang til den NYE mappe, og om
+   først at fjerne den gamle kopi, når jeg har bekræftet at alt virker fra den nye.
+Flyt aldrig hjernen ind i appens data-mappe (Bibliotek/Application Support).
+
 SESSIONSSTART (ikke valgfrit - gør det før alt andet)
 Ved begyndelsen af enhver ny samtale i dette workspace: læs 00-index.md og de
 sider den markerer som aktive, FØR du svarer, planlægger eller gør noget som
@@ -387,7 +406,10 @@ helst andet. Ingen undtagelser - heller ikke ved et hurtigt spørgsmål, og
 heller ikke hvis du tror du kender svaret. Kvittér med én linje: &quot;Hjernen er
 indlæst - [N] aktive projekter, sidst opdateret [dato].&quot; Så er hjernens viden i
 spil fra første svar, uden at jeg skal bede om det. Dette er hjernens ambiente
-genkaldelse: åbningsritualet, modstykket til luk-ritualet.
+genkaldelse: åbningsritualet, modstykket til luk-ritualet. Tjek samtidig
+PLACERING: arbejder jeg i den kanoniske sti? Er jeg havnet i appens data-mappe
+(Bibliotek/Application Support) eller et andet sted end forventet, så flag det
+straks og tilbyd at flytte (FLYT), før vi arbejder videre.
 
 LUK-RITUALET
 Når jeg skriver &quot;luk sessionen&quot;: gennemgå samtalen, skriv dagens læring ind i
@@ -426,6 +448,8 @@ ARBEJDSREGLER (alt arbejde i denne mappe)
    - &quot;husk: ...&quot;            → direkte ingest af én oplysning
    - &quot;lint&quot;                 → vedligeholdelses-gennemgang
    - &quot;ny kunde: [navn]&quot; / &quot;nyt projekt: [navn]&quot; → opret side fra skabelonen
+   - &quot;hvor ligger hjernen?&quot;  → vis kanonisk sti + hvilke flader der peger på den
+   - &quot;flyt hjernen til [sti]&quot; → remap: flyt + opdater alle pegepinde (se FLYT)
 
 2. AMBIENT I CLAUDE CODE (hård genkaldelse). Læg en SessionStart-hook i mappens
    .claude/settings.json, der cat&#x27;er 00-index.md ind i konteksten ved hver
