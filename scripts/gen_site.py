@@ -7,8 +7,9 @@ REPO = "https://github.com/ThomasCilius/din-ai-organisation"
 DOMAIN = "skills.thomascilius.dk"
 CC_ONELINER = ("Installer din-ai-organisation for mig: klon " + REPO +
   " (hvis den ikke allerede ligger lokalt), gaa ind i klonen og koer './install.sh install operatoer' "
-  "(eller 'udvikler', hvis jeg ogsaa koder). Det giver en managed, opdaterbar installation med "
-  "install-state og hooks. Vis mig 'status' bagefter.")
+  "(eller 'udvikler', hvis jeg ogsaa koder). Spoerg mig derefter, hvor min company-brain ligger "
+  "(eller skal ligge), og koer './install.sh brain <sti>' - uden den kobling indlaeses hjernen "
+  "aldrig ambient. Vis mig til sidst sundhedstjekket fra './install.sh status'.")
 UPDATE_ONELINER = ("Opdater min din-ai-organisation: find den lokale klon af " + REPO +
   " (klon den hvis den mangler), koer 'git pull', og koer derefter './install.sh update'. "
   "Det henter nyeste og afstemmer alt (skills, dev-lag, hooks) uden at roere mine egne filer.")
@@ -19,8 +20,9 @@ INSTALLER_BLOCK = ("git clone " + REPO + ".git\n"
   "cd din-ai-organisation\n"
   "./install.sh                # operatoer-profil (alle skills)\n"
   "./install.sh udvikler       # + udvikler-lag (staged)\n"
+  "./install.sh brain <sti>    # kobl din company-brain (ambient genkaldelse)\n"
   "./install.sh update         # hent nyeste + geninstaller (afstemmer alt)\n"
-  "./install.sh status         # hvad er installeret\n"
+  "./install.sh status         # sundhedstjek: hooks, Node, hjerne, hub-filer\n"
   "./install.sh uninstall      # fjern kun det, installeren lagde")
 
 DEPTS = [
@@ -372,6 +374,7 @@ footer a{{color:var(--accent-ink)}}
         <div class="step"><b>4</b><div><b>Udvikler-lag efter behov.</b> Vælger du <span class="inline">operatoer</span>, ligger dev-laget klar i <span class="inline">udvikler-lager/</span> — tænd det senere med <span class="inline">./install.sh aktiver-udvikler</span>, uden download, hvis du begynder at kode mere.</div></div>
         <div class="step"><b>5</b><div><b>Ren afinstallation.</b> <span class="inline">./install.sh uninstall</span> fjerner kun det, installeren lagde, aldrig dine egne filer.</div></div>
         <div class="step"><b>6</b><div><b>Hooks-lag (levende hjerne).</b> Installeren wirer merge-sikkert syv hooks ind i <span class="inline">settings.json</span>: ambient brain-genkaldelse, kontinuitet (hvor vi slap), notify, connector-vagt (opdager tabt login), brain-guard og et dev-regel-indeks. Udvikler-laget tilføjer format-on-save, typecheck og commit-gate. Kræver Node.</div></div>
+        <div class="step"><b>7</b><div><b>Kobl hjernen — det vigtigste trin.</b> <span class="inline">./install.sh brain &lt;sti&gt;</span> peger pakken på din company-brain, så <span class="inline">00-index.md</span> indlæses ambient i hver Claude Code-session. Uden koblingen er den ambiente genkaldelse stille slukket. Rækkefølgen er ligegyldig: kør den før eller efter hjernen er bygget. <span class="inline">./install.sh status</span> viser et sundhedstjek af hele kæden.</div></div>
       </div>
       <div class="icard">
         <div class="brainbar"><h3 style="margin:0">Kom i gang</h3></div>

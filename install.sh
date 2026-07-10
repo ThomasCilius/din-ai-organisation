@@ -6,7 +6,8 @@
 #
 #   ./install.sh [install] [profil]   profil: operatoer (default) | hele-organisationen | udvikler
 #   ./install.sh update               hent nyeste + geninstaller (afstemmer skills, dev-lag og hooks)
-#   ./install.sh status               vis installeret profil, version og antal managed skills
+#   ./install.sh brain <sti>          kobl (eller flyt) company-brain'en - saa indlaeses den ambient
+#   ./install.sh status               profil + version + sundhedstjek (hooks, Node, hjerne, hub-filer)
 #   ./install.sh aktiver-udvikler     aktiver det stagede udvikler-lag (hvis payload findes)
 #   ./install.sh uninstall            fjern KUN managed skills + pakke-mappen
 #
@@ -140,6 +141,38 @@ PY
   wire_hooks
 }
 
+# Kobl hjernen: saet brainPath i config.json (idempotent, virker foer OG efter
+# at hjernen er bygget). Stien maa gerne pege paa en mappe der foerst bygges senere.
+do_brain(){
+  local sti="${1:-}"
+  [ -n "$sti" ] || die "brug: ./install.sh brain <sti-til-company-brain-mappen>"
+  sti="$(python3 -c "import os,sys;print(os.path.abspath(os.path.expanduser(sys.argv[1])))" "$sti")"
+  case "$sti" in
+    *"Application Support"*|*"/Library/"*) die "hjernen maa ikke ligge i appens data-mappe ($sti) - vaelg en synlig mappe, fx ~/Documents/company-brain";;
+  esac
+  mkdir -p "$PKG_DIR"
+  python3 - "$PKG_DIR/config.json" "$sti" <<'PY'
+import json, sys, os
+cfgp, brain = sys.argv[1], sys.argv[2]
+prev = json.load(open(cfgp)) if os.path.exists(cfgp) else {}
+prev.update({"package": "din-ai-organisation", "brainPath": brain})
+json.dump(prev, open(cfgp, 'w'), indent=2, ensure_ascii=False)
+open(cfgp, 'a').write('\n')
+PY
+  # soerg for at hook-filer + wiring er paa plads (idempotent; noedvendigt hvis
+  # 'brain' koeres foer 'install', eller settings er blevet nulstillet).
+  if [ ! -f "$PKG_DIR/hooks/brain-inject.js" ] && ls "$HOOKS_SRC"/*.js >/dev/null 2>&1; then
+    mkdir -p "$PKG_DIR/hooks"; cp "$HOOKS_SRC"/*.js "$PKG_DIR/hooks/"
+  fi
+  grep -q 'din-ai-org/hooks/' "$SETTINGS" 2>/dev/null || wire_hooks
+  log "Hjerne koblet: $sti"
+  if [ -f "$sti/00-index.md" ]; then
+    log "00-index.md fundet - hjernen indlaeses ambient fra naeste Claude Code-session."
+  else
+    log "00-index.md findes ikke endnu. Byg hjernen i den mappe med company-brain-prompt.txt - koblingen virker automatisk, saa snart filen findes."
+  fi
+}
+
 do_install(){
   local profile="${1:-operatoer}"
   case "$profile" in
@@ -197,8 +230,28 @@ do_install(){
     udvikler|hele-organisationen) do_activate_dev ;;
     *) [ -n "$(ls -A "$STASH/skills" 2>/dev/null)" ] && log "Udvikler-lag: $(ls "$STASH/skills" | wc -l | tr -d ' ') skills staged - aktiver med './install.sh aktiver-udvikler'" ;;
   esac
-  [ -z "${DIN_AI_BRAIN:-}" ] && log "Tip: saet DIN_AI_BRAIN=~/company-brain foer install, saa hjernen indlaeses ambient (eller redigeer $PKG_DIR/config.json)."
-  printf '\nFaerdig. Naeste skridt: byg din company-brain med %s\n' "$PKG_DIR/company-brain-prompt.txt"
+  # 6) Hjerne-kobling: uden den er ambient genkaldelse stille slukket, saa vi
+  # spoerger (interaktivt) eller siger det hoejt (ikke-interaktivt). DIN_AI_BRAIN
+  # respekteres fortsat, og en eksisterende kobling roeres ikke.
+  local bp
+  bp="$(python3 -c "import json,os;p='$PKG_DIR/config.json';print(json.load(open(p)).get('brainPath','') if os.path.exists(p) else '')" 2>/dev/null || echo '')"
+  if [ -z "$bp" ] && [ -t 0 ]; then
+    printf '\n  Hvor ligger (eller skal) din company-brain ligge?\n'
+    printf '  Enter = %s   ·   egen sti   ·   "-" = spring over\n  > ' "$HOME/Documents/company-brain"
+    local svar; IFS= read -r svar || svar="-"
+    [ -z "$svar" ] && svar="$HOME/Documents/company-brain"
+    [ "$svar" != "-" ] && { do_brain "$svar"; bp="$svar"; }
+  fi
+
+  printf '\nFaerdig. Naeste skridt:\n'
+  log "1) Byg din company-brain: paste $PKG_DIR/company-brain-prompt.txt ind i Claude (peg paa den mappe, hjernen skal bo i)"
+  if [ -z "$bp" ]; then
+    log "2) Kobl hjernen til pakken: ./install.sh brain <sti>   (ellers indlaeses den ALDRIG ambient i Claude Code)"
+  else
+    log "2) Hjernen er koblet ($bp) - indlaeses ambient, naar 00-index.md findes"
+  fi
+  log "3) Tjek det hele: ./install.sh status"
+  log "4) Foerste skills at koere: virksomhedsprofil, toneprofil og designretning (udfylder hub-filerne)"
   rm -rf "$tmp"
 }
 
@@ -214,6 +267,56 @@ ds,da,dc=len(d.get('managedDevSkills',[])),len(d.get('managedDevAgents',[])),len
 if ds or da or dc: print(f"Dev-lag: {ds} skills + {da} agenter + {dc} commands aktive")
 print(f"Install: {d.get('installedAt')}")
 PY
+
+  # Sundhedstjek: hele kaeden install -> settings -> hooks -> hjerne -> hub-filer.
+  # Koer denne, naar noget driller - hver linje siger selv, hvad man goer ved den.
+  printf '\nSundhedstjek:\n'
+  if command -v node >/dev/null 2>&1; then
+    log "[OK]      Node fundet ($(node -v 2>/dev/null)) - hooks kan koere"
+  else
+    log "[MANGLER] Node ikke fundet - hooks (ambient hjerne, kontinuitet) koerer IKKE. Installer fra nodejs.org"
+  fi
+  if grep -q 'din-ai-org/hooks/' "$SETTINGS" 2>/dev/null; then
+    log "[OK]      Hooks wiret i settings.json"
+  else
+    log "[MANGLER] Hooks ikke wiret i settings.json - koer './install.sh update'"
+  fi
+  local mangler
+  mangler="$(python3 - "$STATE" "$SKILLS_DIR" <<'PY'
+import json,sys,os
+d=json.load(open(sys.argv[1]))
+print(sum(1 for s in d.get('managedSkills',[]) if not os.path.isdir(os.path.join(sys.argv[2],s))))
+PY
+)"
+  if [ "$mangler" = "0" ]; then
+    log "[OK]      Alle managed skills ligger i $SKILLS_DIR"
+  else
+    log "[MANGLER] $mangler managed skills mangler paa disk - koer './install.sh update'"
+  fi
+  local bp
+  bp="$(python3 -c "import json,os;p='$PKG_DIR/config.json';print(json.load(open(p)).get('brainPath','') if os.path.exists(p) else '')" 2>/dev/null || echo '')"
+  if [ -z "$bp" ]; then
+    log "[MANGLER] Hjerne ikke koblet - koer './install.sh brain <sti-til-company-brain>'"
+  elif [ -f "$bp/00-index.md" ]; then
+    log "[OK]      Hjerne koblet: $bp (00-index.md indlaeses ambient)"
+    if [ -f "$bp/identity/virksomhedsprofil.md" ]; then
+      log "[OK]      identity/virksomhedsprofil.md - skills kender virksomheden"
+    else
+      log "[VENTER]  identity/virksomhedsprofil.md mangler - oprettes i brain-promptens fase 4 (eller koer skillen 'virksomhedsprofil')"
+    fi
+    if [ -f "$bp/identity/voice-profil.md" ]; then
+      log "[OK]      identity/voice-profil.md"
+    else
+      log "[VENTER]  identity/voice-profil.md mangler - koer skillen 'toneprofil'"
+    fi
+    if [ -f "$bp/identity/designprofil.md" ]; then
+      log "[OK]      identity/designprofil.md"
+    else
+      log "[VENTER]  identity/designprofil.md mangler - koer skillen 'designretning'"
+    fi
+  else
+    log "[MANGLER] Hjerne-sti sat ($bp), men 00-index.md findes ikke - byg hjernen dér med company-brain-prompt.txt"
+  fi
 }
 
 # Aktiver/opdater én staged type (skills/agents/commands/rules) og AFSTEM: fjern
@@ -304,10 +407,11 @@ do_update(){
 
 case "${1:-install}" in
   install)          do_install "${2:-operatoer}";;
+  brain)            do_brain "${2:-}";;
   status)           do_status;;
   aktiver-udvikler) do_activate_dev;;
   uninstall)        do_uninstall;;
   update)           do_update;;
   operatoer|operatør|hele-organisationen|udvikler) do_install "$1";;  # tillad './install.sh <profil>'
-  *) die "ukendt kommando: $1 (install | update | status | aktiver-udvikler | uninstall)";;
+  *) die "ukendt kommando: $1 (install | update | brain <sti> | status | aktiver-udvikler | uninstall)";;
 esac

@@ -116,8 +116,9 @@ PLACERING (hjernens adresse, hold den opdateret)
 Øverst i CLAUDE.md står hjernens kanoniske adresse, så den altid ved hvor den
 selv bor, og hvad der peger på den:
 - Kanonisk sti: [absolut sti til DENNE mappe, fx /Users/mig/Documents/company-brain]
-- Flader der peger herpå: Claude Desktop/Cowork (mappeadgang), Claude Code
-  (DIN_AI_BRAIN + SessionStart-hook), og evt. git-remote.
+- Flader der peger herpå: Claude Desktop/Cowork (mappeadgang) og Claude Code
+  (skill-pakkens hjerne-kobling: `./install.sh brain "[sti]"` / config.json -
+  eller en egen SessionStart-hook, hvis pakken ikke er installeret).
 Ændrer stien sig, fordi jeg flytter hjernen, opdateres dette felt OG alle
 pegepinde i samme greb (se FLYT).
 
@@ -139,7 +140,9 @@ Når jeg siger "flyt hjernen til [ny sti]" eller "remap": flyt HELE mappen og
 opdater derefter ALLE pegepinde i ét greb, så intet driver fra hinanden:
 1. Kopiér alle filer og mapper til den nye sti, og verificér at alt kom med.
 2. Opdater PLACERING-feltet i CLAUDE.md til den nye kanoniske sti.
-3. Opdater Claude Code-pegepinden: SessionStart-hookens sti og DIN_AI_BRAIN.
+3. Opdater Claude Code-pegepinden: har jeg skill-pakken din-ai-organisation
+   installeret, er det ÉN kommando fra pakkens repo-mappe:
+   ./install.sh brain "[ny sti]". Ellers: ret SessionStart-hookens sti manuelt.
 4. Mind mig om at give Claude Desktop/Cowork adgang til den NYE mappe, og om
    først at fjerne den gamle kopi, når jeg har bekræftet at alt virker fra den nye.
 Flyt aldrig hjernen ind i appens data-mappe (Bibliotek/Application Support).
@@ -201,19 +204,26 @@ ARBEJDSREGLER (alt arbejde i denne mappe)
    - "hvor ligger hjernen?"  → vis kanonisk sti + hvilke flader der peger på den
    - "flyt hjernen til [sti]" → remap: flyt + opdater alle pegepinde (se FLYT)
 
-2. AMBIENT I CLAUDE CODE (hård genkaldelse). Læg en SessionStart-hook i mappens
-   .claude/settings.json, der cat'er 00-index.md ind i konteksten ved hver
-   session, med den FAKTISKE absolutte sti til DENNE mappe. Så er hjernen fysisk
-   til stede fra træk ét, ikke kun via CLAUDE.md-reglen.
-   - Skriv en kommando der passer til mit OS: cat på macOS/Linux, type på Windows.
-   - Projekt-scoped (i denne mappe): hooken fyrer kun, når jeg åbner Claude Code
-     i selve hjernemappen. Arbejder jeg i CC i ANDRE mapper - fx mine Git-repos
-     fra GitHub - fyrer den ikke dér. Vil jeg have hjernen ambient i ALLE mine
-     Claude Code-sessioner uanset repo, så flet i stedet samme hook ind i
-     ~/.claude/settings.json - læs den eksisterende fil først og APPEND til
-     SessionStart, overskriv aldrig eksisterende hooks.
-   - Er jeg i Desktop/Cowork i stedet, gør hooken intet; dér dækker
-     SESSIONSSTART-reglen mig allerede. Opret kun hooken, hvis jeg bruger Claude Code.
+2. AMBIENT I CLAUDE CODE (hård genkaldelse). Bruger jeg Claude Code, skal
+   hjernen også være fysisk til stede dér fra træk ét. TJEK FØRST om jeg har
+   skill-pakken din-ai-organisation installeret (findes
+   ~/.claude/din-ai-org/config.json?):
+   - HAR jeg pakken: opret INGEN ny hook - pakkens brain-inject-hook gør
+     allerede arbejdet i alle mine Claude Code-sessioner. Sørg blot for at
+     koblingen peger på DENNE mappe: kør `./install.sh brain "[absolut sti til
+     denne mappe]"` fra pakkens repo-mappe (eller ret "brainPath" i
+     config.json). To hooks der injicerer samme indeks er støj - derfor aldrig
+     begge dele.
+   - Har jeg IKKE pakken: læg en SessionStart-hook i mappens
+     .claude/settings.json, der cat'er 00-index.md ind i konteksten ved hver
+     session, med den FAKTISKE absolutte sti til DENNE mappe. Skriv kommandoen
+     til mit OS: cat på macOS/Linux, type på Windows. Projekt-scoped fyrer den
+     kun, når jeg åbner Claude Code i selve hjernemappen; vil jeg have hjernen
+     ambient i ALLE sessioner, så flet samme hook ind i ~/.claude/settings.json
+     - læs den eksisterende fil først og APPEND til SessionStart, overskriv
+     aldrig eksisterende hooks.
+   - Er jeg i Desktop/Cowork i stedet, gør hooks intet; dér dækker
+     SESSIONSSTART-reglen mig allerede.
 
 3. Tilbyd mig to scheduled tasks - opret dem KUN hvis jeg siger ja:
    - NATLIG HØST (hver aften): gennemgå dagens samtaler i workspacet og skriv
@@ -222,4 +232,11 @@ ARBEJDSREGLER (alt arbejde i denne mappe)
    - UGENTLIG LINT (fredag eftermiddag): kør LINT. Entydige konsolideringer må
      udføres; alt tvetydigt samles i én kort rapport i inbox/ til min godkendelse.
 
-4. Slut af med 5 linjer: "sådan bruger du din hjerne i morgen".
+4. VERIFICÉR opsætningen, før du melder færdig. Har jeg skill-pakken og bruger
+   Claude Code: kør `./install.sh status` fra pakkens repo-mappe og vis mig
+   sundhedstjekket - hjernen skal stå som koblet, og manglende hub-filer skal
+   stå som VENTER med navnet på den skill, der udfylder dem. Er noget rødt:
+   foreslå fixet med det samme (fx `./install.sh brain "[denne mappes sti]"`),
+   ret det, og kør tjekket igen. Uden pakken/kun Desktop: verificér i stedet
+   selv, at 00-index.md findes, og at SESSIONSSTART-reglen står i CLAUDE.md.
+5. Slut af med 5 linjer: "sådan bruger du din hjerne i morgen".

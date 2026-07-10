@@ -141,6 +141,35 @@ Kernen er **03 Viden & Data** (den ejer virksomhedens hub-filer) og **01 Direkti
 | `adgangsstyring` | Vedligeholder `systemoversigt.md` og producerer on-/offboarding-tjeklister og licens-audit. |
 | `sikkerhedstjek` | Vurderer phishing-mails og kører kvartalsvist sikkerheds-basistjek plus hændelsesrespons. |
 
+## Kom i gang (den anbefalede rækkefølge)
+
+Fire trin, så hænger alt sammen fra dag ét:
+
+1. **Vælg hjernens mappe.** En synlig mappe, du selv har valgt, fx `~/Documents/company-brain`. Aldrig inde i appens data-mappe (Bibliotek/Application Support).
+2. **Installér skills-pakken** (Claude Code): `./install.sh` - installeren spørger selv, hvor hjernen ligger eller skal ligge. Bruger du kun Claude Desktop: upload skills som zip i stedet (se nedenfor).
+3. **Byg hjernen:** paste `company-brain-prompt.txt` ind i Claude, peget på mappen fra trin 1. Prompten interviewer dig og bygger struktur + CLAUDE.md.
+4. **Udfyld hub-filerne:** kør skillene `virksomhedsprofil`, `toneprofil` og `designretning` - så kender alle 66 skills din virksomhed, tone og visuelle retning.
+
+Rækkefølgen af 2 og 3 er ligegyldig: koblingen kan altid sættes bagefter med `./install.sh brain <sti>`, og `./install.sh status` viser et sundhedstjek af hele kæden (hooks, Node, hjerne, hub-filer).
+
+**Sådan hænger delene sammen:**
+
+```
+install.sh ──► ~/.claude/skills (66 skills, managed)
+     │    ──► settings.json (7 hooks, merge-sikkert - rører aldrig dine egne)
+     │    ──► config.json { brainPath }  ◄── ./install.sh brain <sti>
+     ▼
+company-brain-prompt.txt ──► bygger hjernen + genererer CLAUDE.md (driftsregler)
+     ▼
+hub-filer i hjernens identity/: virksomhedsprofil.md · voice-profil.md · designprofil.md
+     ▲
+alle 66 skills læser dem ("Find og læs virksomhedsprofil.md ... (altid)")
+     ▲
+brain-inject-hooken indlæser 00-index.md ambient i hver Claude Code-session
+```
+
+Hjernen er sandheden, skills er medarbejderne, hub-filerne er bindeleddet, og hooks gør det ambient. `CLAUDE.md` (genereret af prompten) styrer adfærden i hjernemappen; `settings.json` (skrevet af installeren) styrer hooks globalt. I Claude Desktop/Cowork dækker CLAUDE.md-reglerne alene; i Claude Code sørger hooks for, at hjernen er til stede i alle sessioner.
+
 ## Installationsmodel (modulær)
 
 Installér i lag frem for alt på én gang.
@@ -157,8 +186,9 @@ git clone https://github.com/ThomasCilius/din-ai-organisation.git
 cd din-ai-organisation
 ./install.sh                  # operatoer-profil (alle forretnings-skills)
 ./install.sh udvikler         # + udvikler-lag (staged, taendes senere)
+./install.sh brain <sti>      # kobl din company-brain (ambient genkaldelse)
 ./install.sh update           # hent nyeste + geninstaller (afstemmer alt)
-./install.sh status           # hvad er installeret
+./install.sh status           # sundhedstjek: hooks, Node, hjerne, hub-filer
 ./install.sh aktiver-udvikler # aktiver det stagede udvikler-lag
 ./install.sh uninstall        # fjern KUN det, installeren lagde
 ```
@@ -168,7 +198,7 @@ cd din-ai-organisation
 - **Install-state.** Alt noteres som `managed` i `~/.claude/din-ai-org/install-state.json`. Din memory, dine regler og dine egne skills står urørt.
 - **Udvikler-lag efter behov.** Vælger du `operatoer`, ligger dev-laget klar i `udvikler-lager/` og tændes senere med `aktiver-udvikler` uden download - hvis du begynder at kode mere.
 - **Ren afinstallation.** `uninstall` fjerner kun det, installeren lagde.
-- **Hooks-lag (levende hjerne).** Installeren wirer merge-sikkert syv hooks ind i `settings.json`: **brain-inject** (ambient genkaldelse), **kontinuitet** (session-save/load, "hvor vi slap"), **notify**, **connector-vagt** (`mcp-health`, opdager tabt login på Notion/Gmail/Shopify m.m.), **brain-guard** (beskytter hjernens kernefiler) og **rules-index** (dev-lagets kodestandarder). `uninstall` fjerner kun vores, aldrig dine andre hooks. Kræver Node. Sæt brain-stien med `DIN_AI_BRAIN=~/company-brain ./install.sh`. Aktiverer du udvikler-laget, wires desuden fire **dev-workflow-hooks** (format-on-save, typecheck, console-advarsel, commit-gate).
+- **Hooks-lag (levende hjerne).** Installeren wirer merge-sikkert syv hooks ind i `settings.json`: **brain-inject** (ambient genkaldelse), **kontinuitet** (session-save/load, "hvor vi slap"), **notify**, **connector-vagt** (`mcp-health`, opdager tabt login på Notion/Gmail/Shopify m.m.), **brain-guard** (beskytter hjernens kernefiler) og **rules-index** (dev-lagets kodestandarder). `uninstall` fjerner kun vores, aldrig dine andre hooks. Kræver Node. **Kobl hjernen med `./install.sh brain <sti>`** (installeren spørger også selv ved install) - uden koblingen er den ambiente genkaldelse stille slukket. `./install.sh status` viser om koblingen står rigtigt. Aktiverer du udvikler-laget, wires desuden fire **dev-workflow-hooks** (format-on-save, typecheck, console-advarsel, commit-gate).
 
 > På plads nu: hele pakken. Modulær installer (profiler, install-state, idempotent opgradering, ren afinstallation), 7 kerne-hooks + 4 dev-workflow-hooks (format/typecheck/console/commit-gate), de danske indholds-skills (`vidensarkitektur`, `menneskeliggoer`), og dev-laget med **68 skills + 35 agenter + 37 commands + 89 rules** (kurateret ECC-subset under MIT, se `dev-tier/`). Udvikler-pariteten mod ECC er dermed lukket. Næste: migrationen (swap ECC ud).
 
@@ -181,7 +211,7 @@ Skills uploades pr. stk. som en zip-fil under **Settings > Capabilities > Skills
 **Nemmest - lad Claude Code installere.** Indsæt denne ene linje i Claude Code, så klarer den klon og install:
 
 ```
-Installer din-ai-organisation for mig: klon https://github.com/ThomasCilius/din-ai-organisation (hvis den ikke allerede ligger lokalt), gå ind i klonen og kør ./install.sh install operatoer (eller udvikler, hvis jeg også koder). Det giver en managed, opdaterbar installation. Vis mig status bagefter.
+Installer din-ai-organisation for mig: klon https://github.com/ThomasCilius/din-ai-organisation (hvis den ikke allerede ligger lokalt), gå ind i klonen og kør ./install.sh install operatoer (eller udvikler, hvis jeg også koder). Spørg mig derefter, hvor min company-brain ligger (eller skal ligge), og kør ./install.sh brain <sti> - uden den kobling indlæses hjernen aldrig ambient. Vis mig til sidst sundhedstjekket fra ./install.sh status.
 ```
 
 **Opdater senere.** Indsæt denne, så henter den nyeste og afstemmer alt:
