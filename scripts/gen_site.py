@@ -339,7 +339,7 @@ footer a{{color:var(--accent-ink)}}
   </div>
 
   <section class="install" id="brain">
-    <p class="section-label" style="margin-top:34px">Trin 0 — byg din company brain</p>
+    <p class="section-label" style="margin-top:34px">Trin 1-2 - vælg mappen, byg din company brain</p>
     <div class="install__cols" style="grid-template-columns:1.05fr 1fr">
       <div class="icard">
         <h3>Fundamentet: byg hjernen først</h3>
@@ -363,7 +363,7 @@ footer a{{color:var(--accent-ink)}}
   </section>
 
   <section class="install" id="installer">
-    <p class="section-label" style="margin-top:34px">Installeren — installationen over installationerne</p>
+    <p class="section-label" style="margin-top:34px">Trin 3 - installér skills-pakken (installeren, Claude Code)</p>
     <div class="install__cols" style="grid-template-columns:1.05fr 1fr">
       <div class="icard">
         <h3>Én kommando, hele organisationen</h3>
@@ -380,13 +380,14 @@ footer a{{color:var(--accent-ink)}}
         <div class="brainbar"><h3 style="margin:0">Kom i gang</h3></div>
         <p class="sub" style="margin-top:8px">Klon og kør — resten klarer installeren.</p>
         {copyblock("installerblock", INSTALLER_BLOCK)}
+        <p class="sub" style="margin-top:10px"><b>Trin 4-5, når skills er installeret:</b> kør skillene <span class="inline">virksomhedsprofil</span>, <span class="inline">toneprofil</span> og <span class="inline">designretning</span> (udfylder hub-filerne) - og tjek det hele med <span class="inline">./install.sh status</span>.</p>
         <p class="sub" style="margin-top:10px">Bruger du <b>Claude Desktop</b>? Installeren er til Claude Code — se skill-for-skill-upload nedenfor.</p>
       </div>
     </div>
   </section>
 
   <section class="install" id="install">
-    <p class="section-label" style="margin-top:34px">Installér skills manuelt — <a href="{REPO}" target="_blank" rel="noopener">{REPO.replace('https://','')}</a>{copyicon_inline(REPO, "Kopiér repo-URL")}</p>
+    <p class="section-label" style="margin-top:34px">Trin 3 for Claude Desktop - installér skills manuelt: <a href="{REPO}" target="_blank" rel="noopener">{REPO.replace('https://','')}</a>{copyicon_inline(REPO, "Kopiér repo-URL")}</p>
     <div class="install__cols">
       <div class="icard">
         <h3>Claude Code</h3>

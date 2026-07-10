@@ -141,16 +141,17 @@ Kernen er **03 Viden & Data** (den ejer virksomhedens hub-filer) og **01 Direkti
 | `adgangsstyring` | Vedligeholder `systemoversigt.md` og producerer on-/offboarding-tjeklister og licens-audit. |
 | `sikkerhedstjek` | Vurderer phishing-mails og kører kvartalsvist sikkerheds-basistjek plus hændelsesrespons. |
 
-## Kom i gang (den anbefalede rækkefølge)
+## Kom i gang - følg rækkefølgen
 
-Fire trin, så hænger alt sammen fra dag ét:
+Fem trin, i DENNE rækkefølge. Så hænger alt sammen fra dag ét:
 
 1. **Vælg hjernens mappe.** En synlig mappe, du selv har valgt, fx `~/Documents/company-brain`. Aldrig inde i appens data-mappe (Bibliotek/Application Support).
-2. **Installér skills-pakken** (Claude Code): `./install.sh` - installeren spørger selv, hvor hjernen ligger eller skal ligge. Bruger du kun Claude Desktop: upload skills som zip i stedet (se nedenfor).
-3. **Byg hjernen:** paste `company-brain-prompt.txt` ind i Claude, peget på mappen fra trin 1. Prompten interviewer dig og bygger struktur + CLAUDE.md.
-4. **Udfyld hub-filerne:** kør skillene `virksomhedsprofil`, `toneprofil` og `designretning` - så kender alle 66 skills din virksomhed, tone og visuelle retning.
+2. **Byg hjernen.** Paste `company-brain-prompt.txt` ind i Claude (Cowork/Desktop), peget på mappen fra trin 1. Prompten interviewer dig og bygger struktur + CLAUDE.md.
+3. **Installér skills-pakken.** Claude Code: `./install.sh` - og når installeren spørger, hvor hjernen ligger, svarer du med mappen fra trin 1. Kun Claude Desktop: upload skills som zip i stedet (se nedenfor).
+4. **Udfyld hub-filerne.** Kør skillene `virksomhedsprofil`, `toneprofil` og `designretning` - så kender alle 66 skills din virksomhed, tone og visuelle retning.
+5. **Tjek det hele:** `./install.sh status` - sundhedstjekket skal vise hjernen koblet og hub-filerne på plads.
 
-Rækkefølgen af 2 og 3 er ligegyldig: koblingen kan altid sættes bagefter med `./install.sh brain <sti>`, og `./install.sh status` viser et sundhedstjek af hele kæden (hooks, Node, hjerne, hub-filer).
+(Kom du til at bytte om på 2 og 3? Ingen skade sket: `./install.sh brain <sti>` kobler hjernen bagefter. Men følg rækkefølgen, så slipper du for at tænke over det.)
 
 **Sådan hænger delene sammen:**
 

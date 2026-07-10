@@ -243,15 +243,20 @@ do_install(){
     [ "$svar" != "-" ] && { do_brain "$svar"; bp="$svar"; }
   fi
 
-  printf '\nFaerdig. Naeste skridt:\n'
-  log "1) Byg din company-brain: paste $PKG_DIR/company-brain-prompt.txt ind i Claude (peg paa den mappe, hjernen skal bo i)"
-  if [ -z "$bp" ]; then
-    log "2) Kobl hjernen til pakken: ./install.sh brain <sti>   (ellers indlaeses den ALDRIG ambient i Claude Code)"
+  # Naeste skridt foelger Kom i gang-raekkefoelgen (README) og viser kun det,
+  # der reelt mangler - saa kursisten aldrig skal gaette rakkefoelgen selv.
+  printf '\nFaerdig. Naeste skridt (i denne raekkefoelge):\n'
+  local idx=1
+  if [ -n "$bp" ] && [ -f "$bp/00-index.md" ]; then
+    log "$idx) Hjernen er bygget og koblet ($bp) - indlaeses ambient fra naeste session"; idx=$((idx+1))
+  elif [ -n "$bp" ]; then
+    log "$idx) Byg din company-brain i $bp: paste $PKG_DIR/company-brain-prompt.txt ind i Claude (koblingen staar klar og virker, saa snart hjernen findes)"; idx=$((idx+1))
   else
-    log "2) Hjernen er koblet ($bp) - indlaeses ambient, naar 00-index.md findes"
+    log "$idx) Byg din company-brain: paste $PKG_DIR/company-brain-prompt.txt ind i Claude, peget paa hjernens mappe (fx ~/Documents/company-brain)"; idx=$((idx+1))
+    log "$idx) Kobl hjernen: ./install.sh brain <sti>   (uden koblingen indlaeses den ALDRIG ambient i Claude Code)"; idx=$((idx+1))
   fi
-  log "3) Tjek det hele: ./install.sh status"
-  log "4) Foerste skills at koere: virksomhedsprofil, toneprofil og designretning (udfylder hub-filerne)"
+  log "$idx) Udfyld hub-filerne: koer skillene virksomhedsprofil, toneprofil og designretning"; idx=$((idx+1))
+  log "$idx) Tjek det hele: ./install.sh status"
   rm -rf "$tmp"
 }
 
