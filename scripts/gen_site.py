@@ -232,6 +232,10 @@ a{{color:var(--accent-ink);text-underline-offset:3px}}
 .node__tag{{font-size:12.5px;color:var(--muted)}}
 .node__count{{font-size:11.5px;color:var(--accent-ink);font-weight:600;margin-top:4px;text-transform:uppercase;letter-spacing:.05em}}
 .node--stab .node__count{{color:var(--stab)}}
+.prose{{max-width:780px;margin:0 0 34px}}
+.prose p{{font-size:15.5px;line-height:1.65;color:var(--text);margin:0 0 14px}}
+.prose p strong{{color:var(--heading,inherit)}}
+.prose code{{font-size:13px}}
 .notes{{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin:8px 0}}
 .note{{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px}}
 .note h4{{margin:0 0 6px;font-size:14px;letter-spacing:-.01em}}
@@ -328,6 +332,16 @@ footer a{{color:var(--accent-ink)}}
 </div></header>
 
 <main class="wrap">
+  <section class="prose" id="intro">
+    <p class="section-label">Hvad er det her - og hvordan hænger det sammen?</p>
+    <p><strong>Det du finder på denne side, er en komplet AI-organisation til Claude:</strong> {total} færdige AI-medarbejdere (skills), ordnet som et klassisk dansk organisationsdiagram. Hver afdeling er et hold, og hver skill er én afgrænset, tilbagevendende opgave - tilbuddet, referatet, rykkeren, budgetopfølgningen, illustrationen. Alt er bygget til danske SMV'er og valideret mod rigtige jobfunktioner, ikke oversat fra amerikanske skabeloner.</p>
+    <p><strong>Sådan virker en skill.</strong> En skill er en nedskrevet instruks, Claude selv finder frem, når opgaven dukker op i samtalen. Du skal ikke huske navne eller kommandoer: skriv "lav et tilbud til Nordkøb", og tilbudsmedarbejderen melder sig - med sin faste arbejdsgang, sine spørgsmål, sine gates (intet sendes uden din godkendelse) og sine aldrig-regler. Det er forskellen på en chatbot, der svarer, og en medarbejder, der arbejder.</p>
+    <p><strong>Hjernen er hukommelsen.</strong> Skills uden viden svarer i blinde. Derfor bygger du først en company brain: en helt almindelig mappe med markdown-filer på din egen maskine (byg den med prompten under Trin 1-2). Den rummer hvem I er, jeres kunder, projekter, metoder og drift - og den er DIN. Ingen database, ingen leverandør-silo; bare filer du kan åbne, flytte og tage backup af.</p>
+    <p><strong>Samarbejdet mellem skills og hjerne går gennem tre hub-filer</strong> i hjernens identity/-mappe: <code>virksomhedsprofil.md</code> (hvad I sælger, jeres priser, hvem I siger nej til), <code>voice-profil.md</code> (hvordan I lyder, dokumenteret med citater fra jeres egne tekster) og <code>designprofil.md</code> (hvordan I ser ud). Alle {total} skills læser dem, før de arbejder. Derfor rammer tilbuddet jeres prisliste, LinkedIn-opslaget jeres tone og designet jeres retning - uden at du forklarer det forfra hver gang.</p>
+    <p><strong>Sådan bliver information lagret og samlet op.</strong> Alt nyt lander som daterede log-linjer med kildeangivelse på de relevante sider i hjernen; det faste Status-afsnit opdateres kun, når noget er sikkert. Varige beslutninger føres i <code>beslutninger.md</code> med begrundelse og behandles som afgjort, indtil de udtrykkeligt omgøres - så intet forhandles forfra. Ved hver ny samtale indlæses hjernens indeks, før der svares (i Claude Code sker det automatisk via en indbygget hook), og luk-ritualet skriver dagens læring tilbage, før du går. Resultatet er en organisation, der bliver klogere for hver samtale, i stedet for at glemme alt, når chatten lukker.</p>
+    <p><strong>Kort sagt:</strong> skillsene er hænderne, hjernen er hukommelsen, hub-filerne er bindeleddet, og installationen wirer det hele sammen. Følg rækkefølgen nedenfor: byg hjernen (Trin 1-2), installér skills (Trin 3), udfyld hub-filerne (Trin 4), og tjek det hele med ét sundhedstjek (Trin 5).</p>
+  </section>
+
   <p class="section-label">Organisationsdiagrammet - klik en afdeling</p>
   {chart}
 
