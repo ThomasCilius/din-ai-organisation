@@ -33,6 +33,7 @@ company-brain/
 ├── 00-index.md      ← overblik + links til alle sider; opdateres ved hver skrivning
 ├── CLAUDE.md        ← driftsreglerne (fase 5)
 ├── KOMMANDOER.md    ← mit cheat-sheet (fase 6)
+├── beslutninger.md  ← varige beslutninger MED begrundelse, append-only (fase 5)
 ├── inbox/           ← alt råt lander her; behandlet materiale flyttes til inbox/arkiv/
 │                      (originaler slettes aldrig)
 ├── identity/        ← HVEM ER VI: virksomheden, ydelser, priser + skill-pakkens
@@ -135,6 +136,18 @@ DE TRE OPERATIONER
   links og oplagte huller. Konsolidér Log → Status, hvor det er entydigt. Alt
   tvetydigt: rapportér kort og ret kun efter godkendelse.
 
+BESLUTNINGER (hukommelse med begrundelse - så intet forhandles om igen)
+Varige beslutninger logges i beslutninger.md i roden, append-only, nyeste
+øverst, én linje pr. beslutning:
+  "- 2026-07-10 | Vi dropper produkt X | fordi marginen er under 15 % | erstatter beslutning af 2026-05-02"
+- VARIGE beslutninger er: vejvalg, fravalg, leverandørvalg, prisbeslutninger,
+  strategiskift og omgørelser. IKKE småredigeringer og hverdagsvalg - ellers
+  drukner loggen, og så læser ingen den.
+- Aktive beslutninger behandles som AFGJORT. Er du ved at foreslå noget, der
+  omgør en logget beslutning: sig det eksplicit ("det omgør beslutningen fra
+  [dato] om [X]"), og log omgørelsen med reference, hvis ejeren vælger den.
+- Loggen omskrives aldrig; en fortrudt beslutning superseder blot den gamle.
+
 FLYT (remap, når hjernen skal et andet sted hen)
 Når jeg siger "flyt hjernen til [ny sti]" eller "remap": flyt HELE mappen og
 opdater derefter ALLE pegepinde i ét greb, så intet driver fra hinanden:
@@ -148,9 +161,9 @@ opdater derefter ALLE pegepinde i ét greb, så intet driver fra hinanden:
 Flyt aldrig hjernen ind i appens data-mappe (Bibliotek/Application Support).
 
 SESSIONSSTART (ikke valgfrit - gør det før alt andet)
-Ved begyndelsen af enhver ny samtale i dette workspace: læs 00-index.md og de
-sider den markerer som aktive, FØR du svarer, planlægger eller gør noget som
-helst andet. Ingen undtagelser - heller ikke ved et hurtigt spørgsmål, og
+Ved begyndelsen af enhver ny samtale i dette workspace: læs 00-index.md, de
+sider den markerer som aktive, OG de nyeste linjer i beslutninger.md, FØR du
+svarer, planlægger eller gør noget som helst andet. Ingen undtagelser - heller ikke ved et hurtigt spørgsmål, og
 heller ikke hvis du tror du kender svaret. Kvittér med én linje: "Hjernen er
 indlæst - [N] aktive projekter, sidst opdateret [dato]." Så er hjernens viden i
 spil fra første svar, uden at jeg skal bede om det. Dette er hjernens ambiente

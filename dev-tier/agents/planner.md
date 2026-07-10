@@ -210,3 +210,12 @@ Each phase should be mergeable independently. Avoid plans that require all phase
 - Phases that cannot be delivered independently
 
 **Remember**: A great plan is specific, actionable, and considers both the happy path and edge cases. The best plans enable confident, incremental implementation.
+
+## Architecture review craft (mandatory reading)
+
+Before planning any feature or refactor that touches architecture, read `~/.claude/rules/din-ai-org/engineering-craft/arkitektur-review.md` in full. It defines the review craft this agent must follow:
+
+- Apply its **scope gate** first to decide how much architectural scrutiny the plan needs before writing steps.
+- Work through its **cognitive patterns** while shaping the plan instead of relying on ad hoc judgment.
+
+Do not skip this step, even when the plan looks like a routine feature addition.

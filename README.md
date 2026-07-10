@@ -1,8 +1,8 @@
 # Din AI-organisation
 
-En kurateret pakke på **66 Agent Skills** til Claude, bygget til kurset "Claude Desktop 0-100". Du bygger din egen AI-organisation efter et klassisk dansk organisationsdiagram: hver afdeling er et hold AI-medarbejdere, og hver skill er én afgrænset, tilbagevendende opgave, som er valideret mod virkelige danske jobfunktioner i en SMV.
+En kurateret pakke på **67 Agent Skills** til Claude, bygget til kurset "Claude Desktop 0-100". Du bygger din egen AI-organisation efter et klassisk dansk organisationsdiagram: hver afdeling er et hold AI-medarbejdere, og hver skill er én afgrænset, tilbagevendende opgave, som er valideret mod virkelige danske jobfunktioner i en SMV.
 
-Pakken er bevidst modulær. Anthropic anbefaler et loft på cirka 20-50 aktive skills, og 66 er over det med vilje - derfor installerer du kernen plus de afdelinger, der matcher din rolle (typisk 25-35 aktive skills), ikke hele pakken på én gang.
+Pakken er bevidst modulær. Anthropic anbefaler et loft på cirka 20-50 aktive skills, og 67 er over det med vilje - derfor installerer du kernen plus de afdelinger, der matcher din rolle (typisk 25-35 aktive skills), ikke hele pakken på én gang.
 
 ## Organisationsdiagrammet
 
@@ -17,7 +17,7 @@ Pakken er bevidst modulær. Anthropic anbefaler et loft på cirka 20-50 aktive s
           |                                               |
    +--------------+-------------+------------+-------------+--------------+
 Sekretariatet   Salg &      Marketing    Økonomi        HR        IT & Udvikling
-  05 (7)     Kundeservice     07 (9)       08 (5)      09 (7)         10 (10)
+  05 (7)     Kundeservice     07 (9)       08 (5)      09 (7)         10 (11)
                 06 (5)
 ```
 
@@ -133,6 +133,7 @@ Kernen er **03 Viden & Data** (den ejer virksomhedens hub-filer) og **01 Direkti
 | `designretning` | Fastlægger ÉN sammenhængende designretning og skriver hub-filen `designprofil.md`. |
 | `designvarianter` | Genererer 2-3 navngivne designvarianter af samme flade inden for den godkendte designprofil. |
 | `designbygger` | Laver selve det færdige, production-grade design som kørende HTML man kan se og deploye. Go-do frem for handoff-brief. |
+| `grafiker` | Producerer færdige visuelle aktiver: SVG-illustrationer, ikonsæt, diagrammer og infografik i designprofilens sprog, plus billedprompter til foto-generatorer. |
 | `byggebrief` | Skriver en komplet dansk kravspecifikation (`byggebrief.md`) via interview - nul pladsholdere. |
 | `plan-tjek` | Ingeniørchef-review af byggeplan eller leverandørforslag før byg: GO / GO-med-ændringer / STOP. |
 | `fejldetektiv` | Systematisk fejlfinding for ikke-udviklere plus professionel fejlrapport til leverandøren. |
@@ -148,7 +149,7 @@ Fem trin, i DENNE rækkefølge. Så hænger alt sammen fra dag ét:
 1. **Vælg hjernens mappe.** En synlig mappe, du selv har valgt, fx `~/Documents/company-brain`. Aldrig inde i appens data-mappe (Bibliotek/Application Support).
 2. **Byg hjernen.** Paste `company-brain-prompt.txt` ind i Claude (Cowork/Desktop), peget på mappen fra trin 1. Prompten interviewer dig og bygger struktur + CLAUDE.md.
 3. **Installér skills-pakken.** Claude Code: `./install.sh` - og når installeren spørger, hvor hjernen ligger, svarer du med mappen fra trin 1. Kun Claude Desktop: upload skills som zip i stedet (se nedenfor).
-4. **Udfyld hub-filerne.** Kør skillene `virksomhedsprofil`, `toneprofil` og `designretning` - så kender alle 66 skills din virksomhed, tone og visuelle retning.
+4. **Udfyld hub-filerne.** Kør skillene `virksomhedsprofil`, `toneprofil` og `designretning` - så kender alle 67 skills din virksomhed, tone og visuelle retning.
 5. **Tjek det hele:** `./install.sh status` - sundhedstjekket skal vise hjernen koblet og hub-filerne på plads.
 
 (Kom du til at bytte om på 2 og 3? Ingen skade sket: `./install.sh brain <sti>` kobler hjernen bagefter. Men følg rækkefølgen, så slipper du for at tænke over det.)
@@ -156,7 +157,7 @@ Fem trin, i DENNE rækkefølge. Så hænger alt sammen fra dag ét:
 **Sådan hænger delene sammen:**
 
 ```
-install.sh ──► ~/.claude/skills (66 skills, managed)
+install.sh ──► ~/.claude/skills (67 skills, managed)
      │    ──► settings.json (7 hooks, merge-sikkert - rører aldrig dine egne)
      │    ──► config.json { brainPath }  ◄── ./install.sh brain <sti>
      ▼
@@ -164,7 +165,7 @@ company-brain-prompt.txt ──► bygger hjernen + genererer CLAUDE.md (driftsr
      ▼
 hub-filer i hjernens identity/: virksomhedsprofil.md · voice-profil.md · designprofil.md
      ▲
-alle 66 skills læser dem ("Find og læs virksomhedsprofil.md ... (altid)")
+alle 67 skills læser dem ("Find og læs virksomhedsprofil.md ... (altid)")
      ▲
 brain-inject-hooken indlæser 00-index.md ambient i hver Claude Code-session
 ```
@@ -199,9 +200,9 @@ cd din-ai-organisation
 - **Install-state.** Alt noteres som `managed` i `~/.claude/din-ai-org/install-state.json`. Din memory, dine regler og dine egne skills står urørt.
 - **Udvikler-lag efter behov.** Vælger du `operatoer`, ligger dev-laget klar i `udvikler-lager/` og tændes senere med `aktiver-udvikler` uden download - hvis du begynder at kode mere.
 - **Ren afinstallation.** `uninstall` fjerner kun det, installeren lagde.
-- **Hooks-lag (levende hjerne).** Installeren wirer merge-sikkert syv hooks ind i `settings.json`: **brain-inject** (ambient genkaldelse), **kontinuitet** (session-save/load, "hvor vi slap"), **notify**, **connector-vagt** (`mcp-health`, opdager tabt login på Notion/Gmail/Shopify m.m.), **brain-guard** (beskytter hjernens kernefiler) og **rules-index** (dev-lagets kodestandarder). `uninstall` fjerner kun vores, aldrig dine andre hooks. Kræver Node. **Kobl hjernen med `./install.sh brain <sti>`** (installeren spørger også selv ved install) - uden koblingen er den ambiente genkaldelse stille slukket. `./install.sh status` viser om koblingen står rigtigt. Aktiverer du udvikler-laget, wires desuden fire **dev-workflow-hooks** (format-on-save, typecheck, console-advarsel, commit-gate).
+- **Hooks-lag (levende hjerne).** Installeren wirer merge-sikkert syv hooks ind i `settings.json`: **brain-inject** (ambient genkaldelse), **kontinuitet** (session-save/load, "hvor vi slap"), **notify**, **connector-vagt** (`mcp-health`, opdager tabt login på Notion/Gmail/Shopify m.m.), **brain-guard** (beskytter hjernens kernefiler) og **rules-index** (dev-lagets kodestandarder). `uninstall` fjerner kun vores, aldrig dine andre hooks. Kræver Node. **Kobl hjernen med `./install.sh brain <sti>`** (installeren spørger også selv ved install) - uden koblingen er den ambiente genkaldelse stille slukket. `./install.sh status` viser om koblingen står rigtigt. Aktiverer du udvikler-laget, wires desuden fem **dev-workflow-hooks**: gateguard (fakta-tvang før første redigering af en fil), batch-formatering + typecheck én gang ved Stop (hurtigere end pr. edit), console-advarsel og commit-gate.
 
-> På plads nu: hele pakken. Modulær installer (profiler, install-state, idempotent opgradering, ren afinstallation), 7 kerne-hooks + 4 dev-workflow-hooks (format/typecheck/console/commit-gate), de danske indholds-skills (`vidensarkitektur`, `menneskeliggoer`), og dev-laget med **68 skills + 35 agenter + 37 commands + 89 rules** (kurateret ECC-subset under MIT, se `dev-tier/`). Udvikler-pariteten mod ECC er dermed lukket. Næste: migrationen (swap ECC ud).
+> På plads nu: hele pakken. Modulær installer (profiler, install-state, idempotent opgradering, ren afinstallation), 7 kerne-hooks + 5 dev-workflow-hooks (gateguard/batch-format+typecheck/console/commit-gate), de danske indholds-skills (`vidensarkitektur`, `menneskeliggoer`), og dev-laget med **70 skills + 36 agenter + 37 commands + 94 rules** inkl. engineering-craft-laget (arkitektur-review, qa-loop, ship-canary, beslutningsprotokol, redaktionsvagt) (kurateret ECC-subset under MIT, se `dev-tier/`). Udvikler-pariteten mod ECC er dermed lukket. Næste: migrationen (swap ECC ud).
 
 ### Claude Desktop
 
@@ -244,7 +245,7 @@ Zips regenereres med `scripts/make-zips.sh` efter ændringer i skills.
 
 ## Konventioner
 
-Alle 66 skills følger den samme opskrift, så de opfører sig ens uanset afdeling.
+Alle 67 skills følger den samme opskrift, så de opfører sig ens uanset afdeling.
 
 - **Danske skill-navne** - "noget du selv ville sige højt". Navnefeltet tillader kun a-z, tal og bindestreg, så æ/ø/å translittereres til ae/oe/aa: `moedeforberedelse`, `opfoelgningsliste`, `budgetopfoelgning`.
 - **Tosprogede triggere** - hver `description` indeholder ordrette triggersætninger på både dansk og engelsk ("skriv et tilbud" / "write a proposal"), skrevet pushy fordi Claude har tendens til at undertrigge.

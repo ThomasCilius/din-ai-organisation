@@ -100,9 +100,10 @@ add('SessionStart', 'rules-inject.js'); add('SessionStart', 'mcp-health.js')
 add('Stop', 'session-save.js');         add('Stop', 'notify-done.js')
 add('PreToolUse', 'brain-guard.js', 'Write|Edit')
 if dev:
-    add('PostToolUse', 'dev-format.js', 'Write|Edit')
+    add('PostToolUse', 'dev-accumulate.js', 'Write|Edit')
     add('PostToolUse', 'dev-console-warn.js', 'Write|Edit')
-    add('PostToolUse', 'dev-typecheck.js', 'Write|Edit')
+    add('Stop', 'dev-batch.js')
+    add('PreToolUse', 'dev-gateguard.js', 'Write|Edit')
     add('PreToolUse', 'dev-commit-gate.js', 'Bash')
 for ev in list(hooks):
     if not hooks[ev]: del hooks[ev]
@@ -363,7 +364,7 @@ do_activate_dev(){
   _activate_type agents   "$AGENTS_DIR"   managedDevAgents
   _activate_type commands "$COMMANDS_DIR" managedDevCommands
   _activate_type rules    "$RULES_DIR"    managedDevRules
-  wire_hooks   # dev-laget er nu aktivt: wire dev-workflow-hooks (format/typecheck/commit-gate) ind
+  wire_hooks   # dev-laget er nu aktivt: wire dev-workflow-hooks (gateguard/batch-format+typecheck/console/commit-gate) ind
 }
 
 _remove_list(){

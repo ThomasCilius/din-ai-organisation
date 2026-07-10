@@ -209,3 +209,12 @@ Example architecture for an AI-powered SaaS platform:
 - **10M users**: Event-driven architecture, distributed caching, multi-region
 
 **Remember**: Good architecture enables rapid development, easy maintenance, and confident scaling. The best architecture is simple, clear, and follows established patterns.
+
+## Architecture review craft (mandatory reading)
+
+Before reviewing or proposing any architecture, read `~/.claude/rules/din-ai-org/engineering-craft/arkitektur-review.md` in full. It defines the review craft this agent must follow:
+
+- Apply its **scope gate** first to decide how deep the review should go before spending effort.
+- Work through its **cognitive patterns** during the review instead of relying on ad hoc judgment.
+
+Do not skip this step, even for small or seemingly obvious architectural questions.

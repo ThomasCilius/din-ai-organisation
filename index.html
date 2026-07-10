@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Din AI-organisation · 66 skills til danske SMV'er</title>
-<meta name="description" content="Et kurateret sæt Agent Skills til Claude, bygget som et dansk organisationsdiagram: 66 skills fordelt på 10 afdelinger. Fra AI Academy · Claude 0-100.">
+<title>Din AI-organisation · 67 skills til danske SMV'er</title>
+<meta name="description" content="Et kurateret sæt Agent Skills til Claude, bygget som et dansk organisationsdiagram: 67 skills fordelt på 10 afdelinger. Fra AI Academy · Claude 0-100.">
 <style>
 :root{
   --bg:#f6f3ee; --surface:#fffdf9; --ink:#211d17; --muted:#6b6459;
@@ -147,7 +147,7 @@ footer a{color:var(--accent-ink)}
 <body>
 <div class="topbar"><div class="topbar__in">
   <span class="brand">Din <b>AI-organisation</b></span>
-  <input id="q" class="search" type="search" placeholder="Søg i 66 skills…" aria-label="Søg i skills">
+  <input id="q" class="search" type="search" placeholder="Søg i 67 skills…" aria-label="Søg i skills">
   <button id="theme" class="themebtn" type="button" aria-label="Skift lyst/mørkt tema">◐</button>
 </div></div>
 
@@ -156,7 +156,7 @@ footer a{color:var(--accent-ink)}
   <h1>Byg din virksomhed<br>som et AI-hold</h1>
   <p class="lead">Et kurateret sæt Agent Skills til Claude, skåret efter et klassisk dansk organisationsdiagram. Hver afdeling er et hold AI-medarbejdere · hver skill er én afgrænset, tilbagevendende opgave.</p>
   <div class="stats">
-    <span class="stat"><b>66</b><span>skills</span></span>
+    <span class="stat"><b>67</b><span>skills</span></span>
     <span class="stat"><b>10</b><span>afdelinger</span></span>
     <span class="stat"><b>DK</b><span>jobvalideret</span></span>
   </div>
@@ -222,7 +222,7 @@ footer a{color:var(--accent-ink)}
     </button><button class="node node--afd" data-target="dep-9" type="button">
       <span class="node__label">IT &amp; Udvikling</span>
       <span class="node__tag">Design &amp; byg · dirigent</span>
-      <span class="node__count">10 skills</span>
+      <span class="node__count">11 skills</span>
     </button>
   </div>
 </div>
@@ -230,7 +230,7 @@ footer a{color:var(--accent-ink)}
   <div class="notes">
     <div class="note"><h4>Én hjerne, mange forbrugere</h4><p>Alle skills læser <code>virksomhedsprofil.md</code>, <code>voice-profil.md</code> og <code>designprofil.md</code> først — konteksten gives én gang.</p></div>
     <div class="note"><h4>Aldrig-regler er en del af formatet</h4><p>Altid kladde · sender, sletter og bogfører aldrig selv · plan før filhandlinger · citér kilden · AI anbefaler, mennesket beslutter.</p></div>
-    <div class="note"><h4>Artefakt-kæder</h4><p>Hver skill efterlader et navngivet artefakt, som den næste læser — det er dét, der gør 66 løse skills til én organisation.</p></div>
+    <div class="note"><h4>Artefakt-kæder</h4><p>Hver skill efterlader et navngivet artefakt, som den næste læser — det er dét, der gør 67 løse skills til én organisation.</p></div>
     <div class="note"><h4>Modulær installation</h4><p>Start med kernen (<code>03 Viden &amp; Data</code> + <code>01 Direktionen</code>), og vælg de afdelinger, din rolle bruger.</p></div>
   </div>
 
@@ -288,6 +288,7 @@ company-brain/
 ├── 00-index.md      ← overblik + links til alle sider; opdateres ved hver skrivning
 ├── CLAUDE.md        ← driftsreglerne (fase 5)
 ├── KOMMANDOER.md    ← mit cheat-sheet (fase 6)
+├── beslutninger.md  ← varige beslutninger MED begrundelse, append-only (fase 5)
 ├── inbox/           ← alt råt lander her; behandlet materiale flyttes til inbox/arkiv/
 │                      (originaler slettes aldrig)
 ├── identity/        ← HVEM ER VI: virksomheden, ydelser, priser + skill-pakkens
@@ -390,6 +391,18 @@ DE TRE OPERATIONER
   links og oplagte huller. Konsolidér Log → Status, hvor det er entydigt. Alt
   tvetydigt: rapportér kort og ret kun efter godkendelse.
 
+BESLUTNINGER (hukommelse med begrundelse - så intet forhandles om igen)
+Varige beslutninger logges i beslutninger.md i roden, append-only, nyeste
+øverst, én linje pr. beslutning:
+  &quot;- 2026-07-10 | Vi dropper produkt X | fordi marginen er under 15 % | erstatter beslutning af 2026-05-02&quot;
+- VARIGE beslutninger er: vejvalg, fravalg, leverandørvalg, prisbeslutninger,
+  strategiskift og omgørelser. IKKE småredigeringer og hverdagsvalg - ellers
+  drukner loggen, og så læser ingen den.
+- Aktive beslutninger behandles som AFGJORT. Er du ved at foreslå noget, der
+  omgør en logget beslutning: sig det eksplicit (&quot;det omgør beslutningen fra
+  [dato] om [X]&quot;), og log omgørelsen med reference, hvis ejeren vælger den.
+- Loggen omskrives aldrig; en fortrudt beslutning superseder blot den gamle.
+
 FLYT (remap, når hjernen skal et andet sted hen)
 Når jeg siger &quot;flyt hjernen til [ny sti]&quot; eller &quot;remap&quot;: flyt HELE mappen og
 opdater derefter ALLE pegepinde i ét greb, så intet driver fra hinanden:
@@ -403,9 +416,9 @@ opdater derefter ALLE pegepinde i ét greb, så intet driver fra hinanden:
 Flyt aldrig hjernen ind i appens data-mappe (Bibliotek/Application Support).
 
 SESSIONSSTART (ikke valgfrit - gør det før alt andet)
-Ved begyndelsen af enhver ny samtale i dette workspace: læs 00-index.md og de
-sider den markerer som aktive, FØR du svarer, planlægger eller gør noget som
-helst andet. Ingen undtagelser - heller ikke ved et hurtigt spørgsmål, og
+Ved begyndelsen af enhver ny samtale i dette workspace: læs 00-index.md, de
+sider den markerer som aktive, OG de nyeste linjer i beslutninger.md, FØR du
+svarer, planlægger eller gør noget som helst andet. Ingen undtagelser - heller ikke ved et hurtigt spørgsmål, og
 heller ikke hvis du tror du kender svaret. Kvittér med én linje: &quot;Hjernen er
 indlæst - [N] aktive projekter, sidst opdateret [dato].&quot; Så er hjernens viden i
 spil fra første svar, uden at jeg skal bede om det. Dette er hjernens ambiente
@@ -504,13 +517,13 @@ ARBEJDSREGLER (alt arbejde i denne mappe)
     <div class="install__cols" style="grid-template-columns:1.05fr 1fr">
       <div class="icard">
         <h3>Én kommando, hele organisationen</h3>
-        <p class="sub">En modulær installer lægger de 66 skills på plads, husker præcis hvad den selv har lagt, og rører aldrig dine egne skills. Genkør for at opgradere, afinstallér rent når som helst. Til Claude Code.</p>
+        <p class="sub">En modulær installer lægger de 67 skills på plads, husker præcis hvad den selv har lagt, og rører aldrig dine egne skills. Genkør for at opgradere, afinstallér rent når som helst. Til Claude Code.</p>
         <div class="step"><b>1</b><div><b>Profiler.</b> <span class="inline">operatoer</span> (standard, forretnings-skills aktive) · <span class="inline">udvikler</span> (lægger dev-laget i staging) · <span class="inline">hele-organisationen</span>. Ét valg, ikke to produkter.</div></div>
         <div class="step"><b>2</b><div><b>Idempotent opgradering.</b> Genkør <span class="inline">./install.sh</span> efter en ny kursusversion — den opdaterer skills, fjerner udgåede og rører intet af dit eget.</div></div>
         <div class="step"><b>3</b><div><b>Install-state.</b> Alt den lægger, noteres som <span class="inline">managed</span> i <span class="inline">~/.claude/din-ai-org/install-state.json</span>. Din memory, dine regler og dine egne skills står urørt.</div></div>
         <div class="step"><b>4</b><div><b>Udvikler-lag efter behov.</b> Vælger du <span class="inline">operatoer</span>, ligger dev-laget klar i <span class="inline">udvikler-lager/</span> — tænd det senere med <span class="inline">./install.sh aktiver-udvikler</span>, uden download, hvis du begynder at kode mere.</div></div>
         <div class="step"><b>5</b><div><b>Ren afinstallation.</b> <span class="inline">./install.sh uninstall</span> fjerner kun det, installeren lagde, aldrig dine egne filer.</div></div>
-        <div class="step"><b>6</b><div><b>Hooks-lag (levende hjerne).</b> Installeren wirer merge-sikkert syv hooks ind i <span class="inline">settings.json</span>: ambient brain-genkaldelse, kontinuitet (hvor vi slap), notify, connector-vagt (opdager tabt login), brain-guard og et dev-regel-indeks. Udvikler-laget tilføjer format-on-save, typecheck og commit-gate. Kræver Node.</div></div>
+        <div class="step"><b>6</b><div><b>Hooks-lag (levende hjerne).</b> Installeren wirer merge-sikkert syv hooks ind i <span class="inline">settings.json</span>: ambient brain-genkaldelse, kontinuitet (hvor vi slap), notify, connector-vagt (opdager tabt login), brain-guard og et dev-regel-indeks. Udvikler-laget tilføjer gateguard (fakta-tvang før første redigering), batch-format + typecheck ved Stop og commit-gate. Kræver Node.</div></div>
         <div class="step"><b>7</b><div><b>Kobl hjernen - det vigtigste trin.</b> <span class="inline">./install.sh brain &lt;sti&gt;</span> peger pakken på din company-brain, så <span class="inline">00-index.md</span> indlæses ambient i hver Claude Code-session. Uden koblingen er den ambiente genkaldelse stille slukket. Rækkefølgen er ligegyldig: kør den før eller efter hjernen er bygget. <span class="inline">./install.sh status</span> viser et sundhedstjek af hele kæden.</div></div>
       </div>
       <div class="icard">
@@ -879,7 +892,7 @@ cd din-ai-organisation
         <span class="dep__num">10</span>
         <div>
           <h2 class="dep__title">IT &amp; Udvikling</h2>
-          <p class="dep__tag">Design &amp; byg · dirigent · 10 skills</p>
+          <p class="dep__tag">Design &amp; byg · dirigent · 11 skills</p>
         </div>
         <a class="dep__zip" href="releases/10-it-og-udvikling.zip" download>⬇ Zip</a>
       </header>
@@ -907,6 +920,10 @@ cd din-ai-organisation
       <h3 class="card__name">fejldetektiv</h3>
       <p class="card__purpose">Systematisk fejlfinding for ikke-udviklere efter jernloven &#x27;ingen rettelse uden diagnose&#x27;, plus professionelle fejlrapporter til leverandøren.</p>
       <div class="card__triggers"><span class="chip">ingen rettelse uden diagnose</span><span class="chip">der er en fejl</span><span class="chip">det virker ikke</span><span class="chip">formularen sender ikke</span><span class="chip">siden vil ikke loade</span><span class="chip">systemet er gået ned</span></div>
+    </article><article class="card" data-text="grafiker er virksomhedens grafiker og producerer færdige visuelle aktiver, ikke briefs: svg-illustrationer, ikonsæt, hero-grafik, diagrammer og infografik bygget direkte i designprofilens sprog, plus færdige billedprompter til foto- og rastergeneratorer (gemini, dall-e, midjourney m.fl.). lav en illustration lav et ikonsæt tegn et diagram over... lav en infografik lav grafik til hero-sektionen vi mangler et billede til...">
+      <h3 class="card__name">grafiker</h3>
+      <p class="card__purpose">Er virksomhedens grafiker og PRODUCERER færdige visuelle aktiver, ikke briefs: SVG-illustrationer, ikonsæt, hero-grafik, diagrammer og infografik bygget direkte i designprofilens sprog, plus færdige billedprompter til foto- og rastergeneratorer (Gemini, DALL-E, Midjourney m.fl.).</p>
+      <div class="card__triggers"><span class="chip">lav en illustration</span><span class="chip">lav et ikonsæt</span><span class="chip">tegn et diagram over...</span><span class="chip">lav en infografik</span><span class="chip">lav grafik til hero-sektionen</span><span class="chip">vi mangler et billede til...</span></div>
     </article><article class="card" data-text="klar-tjek beviskrav-baseret uat og leverandør-godkendelse: afprøver hvert færdig-kriterie fra byggebrief.md som en rigtig slutbruger med realistiske danske data (æøå, kommatal, forkerte input), kræver et bevis pr. punkt, skabelontjekker mod designprofil.md og skriver en kategoriseret mangelliste - så du først godkender og betaler når blokerende mangler er lukket. er det her klar til at gå live kan vi godkende leverancen test løsningen inden vi betaler lav en mangelliste uat gennemgå leverancen mod kravspec">
       <h3 class="card__name">klar-tjek</h3>
       <p class="card__purpose">Beviskrav-baseret UAT og leverandør-godkendelse: afprøver hvert færdig-kriterie fra byggebrief.md som en rigtig slutbruger med realistiske danske data (æøå, kommatal, forkerte input), kræver et bevis pr. punkt, skabelontjekker mod designprofil.md og skriver en kategoriseret mangelliste - så du først godkender og betaler når blokerende mangler er lukket.</p>
@@ -930,7 +947,7 @@ cd din-ai-organisation
 </main>
 
 <footer><div class="wrap">
-  <strong>Din AI-organisation</strong> · 66 Agent Skills · bygget til kurset <b>Claude 0-100</b>, AI Academy hos thomascilius.dk.<br>
+  <strong>Din AI-organisation</strong> · 67 Agent Skills · bygget til kurset <b>Claude 0-100</b>, AI Academy hos thomascilius.dk.<br>
   Kode og skills: <a href="https://github.com/ThomasCilius/din-ai-organisation" target="_blank" rel="noopener">github.com/ThomasCilius/din-ai-organisation</a> · <a href="https://github.com/ThomasCilius/din-ai-organisation/blob/main/README.md" target="_blank" rel="noopener">README &amp; installationsguide</a>
 </div></footer>
 

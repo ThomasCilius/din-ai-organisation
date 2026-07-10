@@ -22,6 +22,8 @@ Et brief er en beskrivelse af noget, der ikke findes endnu, og som en anden skal
 Kvaliteten sidder i detaljerne, og de er skrevet ned. Læs den relevante reference i `references/` og byg efter den, ikke efter mavefornemmelse:
 - `references/designsystem.md` - fastlæg et rigt designsystem (æstetisk retning, typografi med rigtige skrifter, farvesystem, spacing, layout, motion), før du bygger. Indeholder 10 retninger, font-anbefalinger og en font-blacklist.
 - `references/html-motor.md` - den fulde HTML-motor: UX-love, usability-principper, wiring-mønstre, tjekliste for selvstændig HTML og et API-cheatsheet.
+- `references/polering.md` - laget mellem designprofil og produktion: HVORFOR noget føles poleret. Koncentriske radier, hit areas, ALLE interaktionstilstande, tekstombrydning/truncation, skyggelag, ikonoptik, spacing-optik vs. matematik. Tilpasset fra ECC (MIT).
+- `references/motion.md` - det fulde motion-system: tokens, spring-presets, decision tree for om motion overhovedet skal findes, prefers-reduced-motion som hård regel, SSR-sikre initialtilstande og copy-paste-mønstre (modal/toast/stagger/page-transition) i CSS-first-form. Tilpasset fra ECC (MIT).
 - `references/anti-slop-review.md` - kør det byggede design gennem anti-slop-auditten (80-punkts tjekliste, A-F-scoring) og ret manglerne, før du afleverer.
 
 Det er dét håndværk, der løfter output fra "AI-agtigt" til production-grade. Tilpasset fra gstack (MIT).
