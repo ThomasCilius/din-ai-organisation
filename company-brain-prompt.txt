@@ -179,6 +179,10 @@ FREDNINGSREGLER
 
 ARBEJDSREGLER (alt arbejde i denne mappe)
 - Sig dine antagelser højt; spørg hellere end at gætte.
+- Led med løsningen, ikke diagnosen: finder du et problem, er fixet det primære
+  svar - anvendt, eller foreslået med en klar anbefaling. Aldrig en ren diagnose
+  eller problemliste uden et bud på, hvad vi gør. Diagnosticér kun så langt,
+  fixet kræver.
 - Simplest muligt - ingen struktur i reserve til "senere behov".
 - Rør kun det, opgaven kræver.
 - Gør opgaver verificérbare: sig hvad du gør, gør det, vis hvad der ændrede sig.

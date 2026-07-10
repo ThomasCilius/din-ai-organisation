@@ -2,7 +2,7 @@
 """Generer index.html (GitHub Pages) fra de faktiske SKILL.md-filer."""
 import glob, os, re, html
 
-ROOT = "/Users/thomasciliushansen/Desktop/01 Projekter/thomascilius.dk/AI Academy/Claude Desktop 0-100/din-ai-organisation"
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 REPO = "https://github.com/ThomasCilius/din-ai-organisation"
 DOMAIN = "skills.thomascilius.dk"
 CC_ONELINER = ("Installer din-ai-organisation for mig: klon " + REPO +
