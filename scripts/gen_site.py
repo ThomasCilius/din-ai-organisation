@@ -57,7 +57,7 @@ def purpose_of(desc):
     cut = re.split(r'\bBrug den\b|\bBrug til\b|\bBrug \b', desc, maxsplit=1)[0].strip()
     if not cut:
         cut = desc.split('.')[0]
-    cut = cut.rstrip(' -- - ')
+    cut = cut.rstrip(' -')
     if cut and not cut.endswith('.'):
         cut += '.'
     return cut
