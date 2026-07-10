@@ -2,7 +2,7 @@
 """
 Instinct CLI - Manage instincts for Continuous Learning v2
 
-v2.1: Project-scoped instincts — different projects get different instincts,
+v2.1: Project-scoped instincts - different projects get different instincts,
       with global instincts applied universally.
 
 Commands:
@@ -32,7 +32,7 @@ try:
     import fcntl
     _HAS_FCNTL = True
 except ImportError:
-    _HAS_FCNTL = False  # Windows — skip file locking
+    _HAS_FCNTL = False  # Windows - skip file locking
 
 # ─────────────────────────────────────────────
 # Configuration
@@ -150,7 +150,7 @@ def detect_project() -> dict:
     if project_root:
         project_root = project_root.rstrip("/")
 
-    # 3. No project — global fallback
+    # 3. No project - global fallback
     if not project_root:
         return {
             "id": "global",
@@ -1321,7 +1321,7 @@ def cmd_prune(args) -> int:
             if expired:
                 print(f"\n[DRY RUN] Would prune {len(expired)} pending instinct(s) older than {max_age} days:\n")
                 for item in expired:
-                    print(f"  - {item['name']} (age: {item['age_days']}d) — {item['path']}")
+                    print(f"  - {item['name']} (age: {item['age_days']}d) - {item['path']}")
             else:
                 print(f"No pending instincts older than {max_age} days.")
             print(f"\nSummary: {len(expired)} would be pruned, {len(remaining)} remaining")

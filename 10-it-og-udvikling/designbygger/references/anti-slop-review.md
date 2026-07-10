@@ -22,16 +22,16 @@ evidence: every finding should carry at least one.
 
 Pick a depth up front:
 
-- **Quick** — Homepage + 2 key pages. First Impression + Design System Extraction +
+- **Quick** - Homepage + 2 key pages. First Impression + Design System Extraction +
   abbreviated checklist. Fastest path to a design score.
-- **Full (default)** — Systematic review of all pages reachable from the homepage
+- **Full (default)** - Systematic review of all pages reachable from the homepage
   (5-8 pages). Full checklist, responsive screenshots, interaction-flow testing.
   Produces a complete audit with letter grades.
-- **Deep** — 10-15 pages, every interaction flow, exhaustive checklist. For pre-launch
+- **Deep** - 10-15 pages, every interaction flow, exhaustive checklist. For pre-launch
   audits or major redesigns.
-- **Diff-aware** — When reviewing a feature branch, scope to the pages the branch's
+- **Diff-aware** - When reviewing a feature branch, scope to the pages the branch's
   changed files map to, and compare quality before/after.
-- **Regression** — Run the full audit, then load a previously saved baseline and compare
+- **Regression** - Run the full audit, then load a previously saved baseline and compare
   per-category grade deltas, new findings, and resolved findings.
 
 Before evaluating, look for a design-system doc in the repo (`DESIGN.md`,
@@ -424,8 +424,8 @@ Compare screenshots and observations across pages for:
 ### Scoring System
 
 **Dual headline scores:**
-- **Design Score: {A-F}** — weighted average of all 10 categories.
-- **AI Slop Score: {A-F}** — standalone grade with a pithy verdict.
+- **Design Score: {A-F}** - weighted average of all 10 categories.
+- **AI Slop Score: {A-F}** - standalone grade with a pithy verdict.
 
 **Per-category grades:**
 - **A:** Intentional, polished, delightful. Shows design thinking.
@@ -478,13 +478,13 @@ deltas, new findings, and resolved findings.
 ## Design Critique Format
 
 Use structured feedback, not opinions:
-- **"I notice..."** — observation (e.g., "I notice the primary CTA competes with the
+- **"I notice..."** - observation (e.g., "I notice the primary CTA competes with the
   secondary action").
-- **"I wonder..."** — question (e.g., "I wonder if users will understand what 'Process'
+- **"I wonder..."** - question (e.g., "I wonder if users will understand what 'Process'
   means here").
-- **"What if..."** — suggestion (e.g., "What if we moved search to a more prominent
+- **"What if..."** - suggestion (e.g., "What if we moved search to a more prominent
   position?").
-- **"I think... because..."** — reasoned opinion (e.g., "I think the spacing between
+- **"I think... because..."** - reasoned opinion (e.g., "I think the spacing between
   sections is too uniform because it doesn't create hierarchy").
 
 Tie everything to user goals and product objectives. Always suggest specific improvements
@@ -494,7 +494,7 @@ alongside problems.
 
 ## Design Hard Rules
 
-**Classifier — determine the rule set before evaluating:**
+**Classifier - determine the rule set before evaluating:**
 - **MARKETING / LANDING PAGE** (hero-driven, brand-forward, conversion-focused) → apply
   Landing Page Rules.
 - **APP UI** (workspace-driven, data-dense, task-focused: dashboards, admin, settings) →
@@ -502,7 +502,7 @@ alongside problems.
 - **HYBRID** (marketing shell with app-like sections) → apply Landing Page Rules to the
   hero/marketing sections, App UI Rules to the functional sections.
 
-**Hard rejection criteria** (instant-fail patterns — flag if ANY apply):
+**Hard rejection criteria** (instant-fail patterns - flag if ANY apply):
 1. Generic SaaS card grid as the first impression
 2. Beautiful image with weak brand
 3. Strong headline with no clear action
@@ -523,8 +523,8 @@ alongside problems.
 **Landing page rules** (apply when classifier = MARKETING/LANDING):
 - First viewport reads as one composition, not a dashboard
 - Brand-first hierarchy: brand > headline > body > CTA
-- Typography: expressive, purposeful — no default stacks (Inter, Roboto, Arial, system)
-- No flat single-color backgrounds — use gradients, images, subtle patterns
+- Typography: expressive, purposeful - no default stacks (Inter, Roboto, Arial, system)
+- No flat single-color backgrounds - use gradients, images, subtle patterns
 - Hero: full-bleed, edge-to-edge, no inset/tiled/rounded variants
 - Hero budget: brand, one headline, one supporting sentence, one CTA group, one image
 - No cards in the hero. Cards only when the card IS the interaction
@@ -541,7 +541,7 @@ alongside problems.
 - Dense but readable, minimal chrome
 - Organize: primary workspace, navigation, secondary context, one accent
 - Avoid: dashboard-card mosaics, thick borders, decorative gradients, ornamental icons
-- Copy: utility language — orientation, status, action. Not mood/brand/aspiration
+- Copy: utility language - orientation, status, action. Not mood/brand/aspiration
 - Cards only when the card IS the interaction
 - Section headings state what the area is or what the user can do ("Selected KPIs",
   "Plan status")
@@ -551,10 +551,10 @@ alongside problems.
 - No default font stacks (Inter, Roboto, Arial, system)
 - One job per section
 - "If deleting 30% of the copy improves it, keep deleting"
-- Cards earn their existence — no decorative card grids
+- Cards earn their existence - no decorative card grids
 - NEVER use small, low-contrast type (body text < 16px or contrast ratio < 4.5:1 on body
   text)
-- NEVER put labels inside form fields as the only label (placeholder-as-label pattern —
+- NEVER put labels inside form fields as the only label (placeholder-as-label pattern  - 
   labels must be visible when the field has content)
 - ALWAYS preserve visited vs unvisited link distinction (visited links must have a
   different color)
@@ -575,7 +575,7 @@ alongside problems.
    solution for...")
 10. Cookie-cutter section rhythm (hero → 3 features → testimonials → pricing → CTA,
     every section the same height)
-11. `system-ui` or `-apple-system` as the PRIMARY display/body font — the "I gave up on
+11. `system-ui` or `-apple-system` as the PRIMARY display/body font - the "I gave up on
     typography" signal. Pick a real typeface.
 
 Source: [OpenAI "Designing Delightful Frontends with GPT-5.4"](https://developers.openai.com/blog/designing-delightful-frontends-with-gpt-5-4)
@@ -585,7 +585,7 @@ Source: [OpenAI "Designing Delightful Frontends with GPT-5.4"](https://developer
 
 An independent design pass (a second model or a fresh reviewer) reviewing the same page
 against the litmus checks and hard-rejection list surfaces blind spots. Focus that pass
-on **consistency patterns across the codebase** — are spacing values systematic? one
+on **consistency patterns across the codebase** - are spacing values systematic? one
 color system or scattered? consistent breakpoint set? consistent accessibility approach?
 Merge its findings into the triage, tagged so cross-reviewer agreement is visible.
 
@@ -618,17 +618,17 @@ For each fixable finding, in impact order:
 
 ### 8b. Fix
 - Read the source, understand the context.
-- Make the **minimal fix** — the smallest change that resolves the design issue.
+- Make the **minimal fix** - the smallest change that resolves the design issue.
 - CSS-only changes are preferred (safer, more reversible).
 - Do NOT refactor surrounding code, add features, or "improve" unrelated things.
 - Optional: for findings where the intended design isn't obvious from the description
-  (layout, hierarchy, spacing — not a trivial hex/padding fix), produce a quick "target"
+  (layout, hierarchy, spacing - not a trivial hex/padding fix), produce a quick "target"
   reference of what the corrected version should look like first, then fix the source to
   match. Makes the gap between current and intended visceral, not abstract.
 
 ### 8c. Commit
 - One commit per fix. Never bundle multiple fixes.
-- Message format: `style(design): FINDING-NNN — short description`.
+- Message format: `style(design): FINDING-NNN - short description`.
 
 ### 8d. Re-test
 - Navigate back to the affected page, re-screenshot, check the console for errors, and
@@ -654,7 +654,7 @@ Every 5 fixes (or after any revert), compute the design-fix risk level:
 DESIGN-FIX RISK:
   Start at 0%
   Each revert:                        +15%
-  Each CSS-only file change:          +0%   (safe — styling only)
+  Each CSS-only file change:          +0%   (safe - styling only)
   Each JSX/TSX/component file change: +5%   per file
   After fix 10:                       +1%   per additional fix
   Touching unrelated files:           +20%
@@ -671,7 +671,7 @@ to continue.
 
 1. Re-run the audit on all affected pages.
 2. Compute the final design score and AI slop score.
-3. **If final scores are WORSE than baseline:** WARN prominently — something regressed.
+3. **If final scores are WORSE than baseline:** WARN prominently - something regressed.
 
 **Per-finding report additions:** Fix Status (verified / best-effort / reverted /
 deferred), commit reference, files changed, before/after screenshots.
@@ -691,7 +691,7 @@ AI slop score X → Y."
 2. **Screenshots are evidence.** Every finding needs at least one screenshot. Use
    annotated screenshots to highlight elements.
 3. **Be specific and actionable.** "Change X to Y because Z", not "the spacing feels off."
-4. **Evaluate the rendered site, not the source code** — until the fix loop. (Exception:
+4. **Evaluate the rendered site, not the source code** - until the fix loop. (Exception:
    offer to write `DESIGN.md` from extracted observations.)
 5. **AI Slop detection is your superpower.** Most developers can't tell whether their site
    looks AI-generated. You can. Be direct about it.

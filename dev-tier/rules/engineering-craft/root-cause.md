@@ -63,7 +63,7 @@ Before testing your hypothesis, check whether the bug matches a known failure sh
 
 Also worth checking: any project TODO/known-issues list for a related entry, and `git log` for prior fixes in the same area. Again: recurring bugs in the same files are an architectural smell, not bad luck.
 
-**If the bug matches no known pattern:** search externally for the failure. Search the error *category* and framework, not the raw message, e.g. "{framework} {generic error type}" or "{library} {component} known issues." **Sanitize before searching** — strip hostnames, IPs, file paths, SQL fragments, and any customer or proprietary data out of the query. Search the shape of the problem, not your private data. If a documented cause or a known dependency bug surfaces, carry it into Phase 3 as a candidate hypothesis.
+**If the bug matches no known pattern:** search externally for the failure. Search the error *category* and framework, not the raw message, e.g. "{framework} {generic error type}" or "{library} {component} known issues." **Sanitize before searching** - strip hostnames, IPs, file paths, SQL fragments, and any customer or proprietary data out of the query. Search the shape of the problem, not your private data. If a documented cause or a known dependency bug surfaces, carry it into Phase 3 as a candidate hypothesis.
 
 ---
 
@@ -76,9 +76,9 @@ Before writing ANY fix, verify the hypothesis. This is the phase people skip, an
 2. **If the hypothesis is wrong,** do not patch over it and do not immediately guess again. First consider searching for the (sanitized) error to see if others hit the same cause. Then return to Phase 1: gather more evidence and form a *new* hypothesis grounded in what you just learned. Every failed hypothesis narrows the space, but only if you actually update on the evidence instead of guessing randomly.
 
 3. **The 3-strike rule.** If three hypotheses fail, STOP. Three misses usually means this is not a simple bug where you're one guess away. It's often an architectural issue: the fault is in how the pieces fit together, not in a single line. Escalate the decision instead of grinding. Present the situation and the options:
-   - **Continue** — you have a genuinely new, evidence-backed hypothesis worth testing.
-   - **Escalate** — this needs someone with deeper system knowledge; hand off with everything you've gathered.
-   - **Instrument and wait** — add logging around the area and catch it with real data next time it fires.
+   - **Continue** - you have a genuinely new, evidence-backed hypothesis worth testing.
+   - **Escalate** - this needs someone with deeper system knowledge; hand off with everything you've gathered.
+   - **Instrument and wait** - add logging around the area and catch it with real data next time it fires.
 
 **Red flags that mean slow down:**
 - "Quick fix for now." There is no "for now." A fix that doesn't address the root cause is a future bug with a delay timer. Fix it right or escalate.
@@ -96,7 +96,7 @@ Only once the root cause is confirmed by evidence.
 2. **Minimal diff.** Fewest files touched, fewest lines changed. Resist the urge to refactor adjacent code while you're in there. A tight diff is easy to review, easy to reason about, and easy to revert if you're wrong.
 
 3. **Write a regression test** that:
-   - **Fails without the fix** (run it against the unpatched code and watch it fail — this proves the test actually exercises the bug), and
+   - **Fails without the fix** (run it against the unpatched code and watch it fail - this proves the test actually exercises the bug), and
    - **Passes with the fix** (proves the fix works).
    A regression test that doesn't fail before the fix is testing nothing. The fail-then-pass sequence is what makes it meaningful.
 
@@ -108,7 +108,7 @@ Only once the root cause is confirmed by evidence.
 
 ## Phase 5: Verification and Report
 
-**Fresh verification is not optional.** Reproduce the original bug scenario, exactly as it was reported, and confirm it is actually fixed. Not "should be fixed" — observed, with your own eyes, fixed. Then run the test suite and read the output.
+**Fresh verification is not optional.** Reproduce the original bug scenario, exactly as it was reported, and confirm it is actually fixed. Not "should be fixed" - observed, with your own eyes, fixed. Then run the test suite and read the output.
 
 Never say "this should fix it." Verify and prove it.
 
@@ -128,9 +128,9 @@ Status:          DONE | DONE_WITH_CONCERNS | BLOCKED
 ```
 
 Status meanings:
-- **DONE** — root cause found, fix applied, regression test written, full suite passes.
-- **DONE_WITH_CONCERNS** — fixed, but you can't fully verify (e.g. an intermittent bug, or it needs staging to confirm). State the concern plainly.
-- **BLOCKED** — root cause still unclear after real investigation. Escalate with what you tried and what you'd try next.
+- **DONE** - root cause found, fix applied, regression test written, full suite passes.
+- **DONE_WITH_CONCERNS** - fixed, but you can't fully verify (e.g. an intermittent bug, or it needs staging to confirm). State the concern plainly.
+- **BLOCKED** - root cause still unclear after real investigation. Escalate with what you tried and what you'd try next.
 
 If the investigation surfaced a durable, non-obvious insight about this codebase (a pattern, a pitfall, an architectural weakness, a recurring fault line), write it down somewhere the next investigation will find it. Recurring bugs in the same area are the ones most worth documenting, because the next one is coming.
 

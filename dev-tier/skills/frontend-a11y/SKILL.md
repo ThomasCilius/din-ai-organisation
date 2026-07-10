@@ -82,7 +82,7 @@ Missing `htmlFor` / `id` pairing and disconnected error messages are the most co
 ### Label Connection
 
 ```tsx
-// BAD: label has no connection to input — screen readers cannot associate them
+// BAD: label has no connection to input - screen readers cannot associate them
 <label>Email</label>
 <input type="email" />
 
@@ -136,12 +136,12 @@ Errors must be identified in text with a suggestion for correction (SC 3.3.3). N
 ### aria-label vs aria-labelledby
 
 ```tsx
-// aria-label: inline string label — use when no visible label text exists
+// aria-label: inline string label - use when no visible label text exists
 <button aria-label="Close modal">
   <XIcon />
 </button>
 
-// aria-labelledby: references another element's text — use when a visible label exists
+// aria-labelledby: references another element's text - use when a visible label exists
 <section aria-labelledby="section-title">
   <h2 id="section-title">Recent Orders</h2>
   {/* content */}
@@ -165,7 +165,7 @@ Errors must be identified in text with a suggestion for correction (SC 3.3.3). N
 ```tsx
 // Use aria-live to announce content that updates without a page reload
 // polite: waits for user to finish current action before announcing
-// assertive: interrupts immediately — use only for urgent errors
+// assertive: interrupts immediately - use only for urgent errors
 
 export function StatusMessage({ message, isError }: { message: string; isError?: boolean }) {
   return (
@@ -383,7 +383,7 @@ Automated tools catch roughly a third of WCAG failures. Combine both layers; nei
 // BAD: positive tabIndex creates unpredictable tab order
 <button tabIndex={3}>Submit</button>
 
-// BAD: aria-hidden on a focusable element — keyboard users get trapped
+// BAD: aria-hidden on a focusable element - keyboard users get trapped
 <button aria-hidden="true">Open</button>
 
 // BAD: role="button" on div without keyboard handler

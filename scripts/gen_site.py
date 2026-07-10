@@ -57,7 +57,7 @@ def purpose_of(desc):
     cut = re.split(r'\bBrug den\b|\bBrug til\b|\bBrug \b', desc, maxsplit=1)[0].strip()
     if not cut:
         cut = desc.split('.')[0]
-    cut = cut.rstrip(' -–—')
+    cut = cut.rstrip(' -- - ')
     if cut and not cut.endswith('.'):
         cut += '.'
     return cut
@@ -328,13 +328,13 @@ footer a{{color:var(--accent-ink)}}
 </div></header>
 
 <main class="wrap">
-  <p class="section-label">Organisationsdiagrammet — klik en afdeling</p>
+  <p class="section-label">Organisationsdiagrammet - klik en afdeling</p>
   {chart}
 
   <div class="notes">
-    <div class="note"><h4>Én hjerne, mange forbrugere</h4><p>Alle skills læser <code>virksomhedsprofil.md</code>, <code>voice-profil.md</code> og <code>designprofil.md</code> først — konteksten gives én gang.</p></div>
+    <div class="note"><h4>Én hjerne, mange forbrugere</h4><p>Alle skills læser <code>virksomhedsprofil.md</code>, <code>voice-profil.md</code> og <code>designprofil.md</code> først - konteksten gives én gang.</p></div>
     <div class="note"><h4>Aldrig-regler er en del af formatet</h4><p>Altid kladde · sender, sletter og bogfører aldrig selv · plan før filhandlinger · citér kilden · AI anbefaler, mennesket beslutter.</p></div>
-    <div class="note"><h4>Artefakt-kæder</h4><p>Hver skill efterlader et navngivet artefakt, som den næste læser — det er dét, der gør {total} løse skills til én organisation.</p></div>
+    <div class="note"><h4>Artefakt-kæder</h4><p>Hver skill efterlader et navngivet artefakt, som den næste læser - det er dét, der gør {total} løse skills til én organisation.</p></div>
     <div class="note"><h4>Modulær installation</h4><p>Start med kernen (<code>03 Viden &amp; Data</code> + <code>01 Direktionen</code>), og vælg de afdelinger, din rolle bruger.</p></div>
   </div>
 
@@ -369,19 +369,19 @@ footer a{{color:var(--accent-ink)}}
         <h3>Én kommando, hele organisationen</h3>
         <p class="sub">En modulær installer lægger de {total} skills på plads, husker præcis hvad den selv har lagt, og rører aldrig dine egne skills. Genkør for at opgradere, afinstallér rent når som helst. Til Claude Code.</p>
         <div class="step"><b>1</b><div><b>Profiler.</b> <span class="inline">operatoer</span> (standard, forretnings-skills aktive) · <span class="inline">udvikler</span> (lægger dev-laget i staging) · <span class="inline">hele-organisationen</span>. Ét valg, ikke to produkter.</div></div>
-        <div class="step"><b>2</b><div><b>Idempotent opgradering.</b> Genkør <span class="inline">./install.sh</span> efter en ny kursusversion — den opdaterer skills, fjerner udgåede og rører intet af dit eget.</div></div>
+        <div class="step"><b>2</b><div><b>Idempotent opgradering.</b> Genkør <span class="inline">./install.sh</span> efter en ny kursusversion - den opdaterer skills, fjerner udgåede og rører intet af dit eget.</div></div>
         <div class="step"><b>3</b><div><b>Install-state.</b> Alt den lægger, noteres som <span class="inline">managed</span> i <span class="inline">~/.claude/din-ai-org/install-state.json</span>. Din memory, dine regler og dine egne skills står urørt.</div></div>
-        <div class="step"><b>4</b><div><b>Udvikler-lag efter behov.</b> Vælger du <span class="inline">operatoer</span>, ligger dev-laget klar i <span class="inline">udvikler-lager/</span> — tænd det senere med <span class="inline">./install.sh aktiver-udvikler</span>, uden download, hvis du begynder at kode mere.</div></div>
+        <div class="step"><b>4</b><div><b>Udvikler-lag efter behov.</b> Vælger du <span class="inline">operatoer</span>, ligger dev-laget klar i <span class="inline">udvikler-lager/</span> - tænd det senere med <span class="inline">./install.sh aktiver-udvikler</span>, uden download, hvis du begynder at kode mere.</div></div>
         <div class="step"><b>5</b><div><b>Ren afinstallation.</b> <span class="inline">./install.sh uninstall</span> fjerner kun det, installeren lagde, aldrig dine egne filer.</div></div>
         <div class="step"><b>6</b><div><b>Hooks-lag (levende hjerne).</b> Installeren wirer merge-sikkert syv hooks ind i <span class="inline">settings.json</span>: ambient brain-genkaldelse, kontinuitet (hvor vi slap), notify, connector-vagt (opdager tabt login), brain-guard og et dev-regel-indeks. Udvikler-laget tilføjer gateguard (fakta-tvang før første redigering), batch-format + typecheck ved Stop og commit-gate. Kræver Node.</div></div>
         <div class="step"><b>7</b><div><b>Kobl hjernen - det vigtigste trin.</b> <span class="inline">./install.sh brain &lt;sti&gt;</span> peger pakken på din company-brain, så <span class="inline">00-index.md</span> indlæses ambient i hver Claude Code-session. Uden koblingen er den ambiente genkaldelse stille slukket. Rækkefølgen er ligegyldig: kør den før eller efter hjernen er bygget. <span class="inline">./install.sh status</span> viser et sundhedstjek af hele kæden.</div></div>
       </div>
       <div class="icard">
         <div class="brainbar"><h3 style="margin:0">Kom i gang</h3></div>
-        <p class="sub" style="margin-top:8px">Klon og kør — resten klarer installeren.</p>
+        <p class="sub" style="margin-top:8px">Klon og kør - resten klarer installeren.</p>
         {copyblock("installerblock", INSTALLER_BLOCK)}
         <p class="sub" style="margin-top:10px"><b>Trin 4-5, når skills er installeret:</b> kør skillene <span class="inline">virksomhedsprofil</span>, <span class="inline">toneprofil</span> og <span class="inline">designretning</span> (udfylder hub-filerne) - og tjek det hele med <span class="inline">./install.sh status</span>.</p>
-        <p class="sub" style="margin-top:10px">Bruger du <b>Claude Desktop</b>? Installeren er til Claude Code — se skill-for-skill-upload nedenfor.</p>
+        <p class="sub" style="margin-top:10px">Bruger du <b>Claude Desktop</b>? Installeren er til Claude Code - se skill-for-skill-upload nedenfor.</p>
       </div>
     </div>
   </section>
@@ -404,12 +404,12 @@ footer a{{color:var(--accent-ink)}}
         <h3>Claude Desktop</h3>
         <p class="sub">Upload én skill-mappe ad gangen som .zip.</p>
         <div class="step"><b>1</b><div>Hent repoet: grøn <span class="inline">Code</span>-knap på GitHub → <span class="inline">Download ZIP</span> (eller klon som ovenfor).</div></div>
-        <div class="step"><b>2</b><div>Pak den enkelte skill-mappe (den med <span class="inline">SKILL.md</span> i) som en <span class="inline">.zip</span> — fx <span class="inline">virksomhedsprofil/</span>.</div></div>
+        <div class="step"><b>2</b><div>Pak den enkelte skill-mappe (den med <span class="inline">SKILL.md</span> i) som en <span class="inline">.zip</span> - fx <span class="inline">virksomhedsprofil/</span>.</div></div>
         <div class="step"><b>3</b><div>I Claude Desktop: <span class="inline">Settings → Capabilities → Skills → Upload skill</span>, og vælg zip-filen. Gentag pr. skill.</div></div>
-        <div class="step"><b>4</b><div>Start altid med <span class="inline">virksomhedsprofil</span> — den bygger hub-filen, alle andre skills læser.</div></div>
+        <div class="step"><b>4</b><div>Start altid med <span class="inline">virksomhedsprofil</span> - den bygger hub-filen, alle andre skills læser.</div></div>
       </div>
     </div>
-    <p class="sub" style="margin-top:14px">Vil du hente en <b>hel afdeling</b>? Brug <span class="inline">⬇ Zip</span>-knappen ved hver afdeling nedenfor — pak ud i <span class="inline">~/.claude/skills/</span> (Claude Code), eller træk de enkelte skill-mapper ud til Desktop-upload.</p>
+    <p class="sub" style="margin-top:14px">Vil du hente en <b>hel afdeling</b>? Brug <span class="inline">⬇ Zip</span>-knappen ved hver afdeling nedenfor - pak ud i <span class="inline">~/.claude/skills/</span> (Claude Code), eller træk de enkelte skill-mapper ud til Desktop-upload.</p>
   </section>
 
   <p class="section-label" style="margin-top:34px">Alle afdelinger &amp; skills</p>

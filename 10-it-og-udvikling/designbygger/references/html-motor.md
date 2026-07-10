@@ -106,16 +106,16 @@ else a few taps away with an obvious path to get there.
 Before generating anything, decide which mode you are in. The mode determines your
 source of truth:
 
-- **approved-mockup** — you have an approved image/PNG of the target screen.
+- **approved-mockup** - you have an approved image/PNG of the target screen.
   The mockup is the source of truth; pixel-match it.
-- **plan-driven** — you have a written brief, spec, or plan describing the UI
+- **plan-driven** - you have a written brief, spec, or plan describing the UI
   (purpose, audience, visual feel, content structure, constraints) but no image.
   The prose is the source of truth.
-- **freeform** — you have only a loose description. Gather what the user wants:
+- **freeform** - you have only a loose description. Gather what the user wants:
   purpose/audience, visual feel (dark/light, playful/serious, dense/spacious),
   content structure (hero, features, pricing, etc.), and any reference sites they
   like. Their answers plus the refinement loop become the source of truth.
-- **evolve** — a prior finalized HTML exists. Apply new changes on top, preserving
+- **evolve** - a prior finalized HTML exists. Apply new changes on top, preserving
   any custom edits, rather than regenerating from scratch.
 
 Also pick a **screen name** (e.g. `landing-page`, `dashboard`, `pricing`). One
@@ -178,8 +178,8 @@ Check whether the project uses a frontend framework (e.g. inspect `package.json`
 `react`, `svelte`, `vue`, `@angular/core`, `solid-js`, `preact`).
 
 If a framework is detected, ask the user which output format they want:
-- **A) Vanilla HTML** — self-contained preview file (recommended for the first pass).
-- **B) Framework component** — framework-native with Pretext hooks. If chosen, ask a
+- **A) Vanilla HTML** - self-contained preview file (recommended for the first pass).
+- **B) Framework component** - framework-native with Pretext hooks. If chosen, ask a
   follow-up: TypeScript or JavaScript.
 
 If no framework is detected, default to vanilla HTML with no question.
@@ -246,7 +246,7 @@ API usage patterns; follow them exactly.
 import { prepare, layout } from './pretext-inline.js'
 // Or if inlined: const { prepare, layout } = window.Pretext
 
-// 1. PREPARE — one-time, after fonts load
+// 1. PREPARE - one-time, after fonts load
 await document.fonts.ready
 const elements = document.querySelectorAll('[data-pretext]')
 const prepared = new Map()
@@ -257,7 +257,7 @@ for (const el of elements) {
   prepared.set(el, prepare(text, font))
 }
 
-// 2. LAYOUT — cheap, call on every resize
+// 2. LAYOUT - cheap, call on every resize
 function relayout() {
   for (const [el, handle] of prepared) {
     const { height } = layout(handle, el.clientWidth, parseFloat(getComputedStyle(el).lineHeight))
@@ -269,7 +269,7 @@ function relayout() {
 new ResizeObserver(() => relayout()).observe(document.body)
 relayout()
 
-// 4. CONTENT-EDITABLE — re-prepare when text changes
+// 4. CONTENT-EDITABLE - re-prepare when text changes
 for (const el of elements) {
   if (el.contentEditable === 'true') {
     new MutationObserver(() => {

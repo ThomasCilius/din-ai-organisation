@@ -119,17 +119,17 @@ Present the full proposal with a SAFE / RISK breakdown:
 ```
 Based on [product context] and [research findings / my design knowledge]:
 
-AESTHETIC:   [direction] — [one-line rationale]
-DECORATION:  [level] — [why this pairs with the aesthetic]
-LAYOUT:      [approach] — [why this fits the product type]
-COLOR:       [approach] + proposed palette (hex values) — [rationale]
-TYPOGRAPHY:  [3 font recommendations with roles] — [why these fonts]
-SPACING:     [base unit + density] — [rationale]
-MOTION:      [approach] — [rationale]
+AESTHETIC:   [direction] - [one-line rationale]
+DECORATION:  [level] - [why this pairs with the aesthetic]
+LAYOUT:      [approach] - [why this fits the product type]
+COLOR:       [approach] + proposed palette (hex values) - [rationale]
+TYPOGRAPHY:  [3 font recommendations with roles] - [why these fonts]
+SPACING:     [base unit + density] - [rationale]
+MOTION:      [approach] - [rationale]
 
 This system is coherent because [explain how the choices reinforce each other].
 
-SAFE CHOICES (category baseline — your users expect these):
+SAFE CHOICES (category baseline - your users expect these):
   - [2-3 decisions that match category conventions, with rationale for playing safe]
 
 RISKS (where your product gets its own face):
@@ -151,40 +151,40 @@ Use this to inform proposals. Do NOT dump it as tables in front of the user. It'
 
 **Aesthetic directions** (pick the one that fits the product):
 
-- **Brutally Minimal** — Type and whitespace only. No decoration. Modernist.
-- **Maximalist Chaos** — Dense, layered, pattern-heavy. Y2K meets contemporary.
-- **Retro-Futuristic** — Vintage tech nostalgia. CRT glow, pixel grids, warm monospace.
-- **Luxury / Refined** — Serifs, high contrast, generous whitespace, precious metals.
-- **Playful / Toy-like** — Rounded, bouncy, bold primaries. Approachable and fun.
-- **Editorial / Magazine** — Strong typographic hierarchy, asymmetric grids, pull quotes.
-- **Brutalist / Raw** — Exposed structure, system fonts, visible grid, no polish.
-- **Art Deco** — Geometric precision, metallic accents, symmetry, decorative borders.
-- **Organic / Natural** — Earth tones, rounded forms, hand-drawn texture, grain.
-- **Industrial / Utilitarian** — Function-first, data-dense, monospace accents, muted palette.
+- **Brutally Minimal** - Type and whitespace only. No decoration. Modernist.
+- **Maximalist Chaos** - Dense, layered, pattern-heavy. Y2K meets contemporary.
+- **Retro-Futuristic** - Vintage tech nostalgia. CRT glow, pixel grids, warm monospace.
+- **Luxury / Refined** - Serifs, high contrast, generous whitespace, precious metals.
+- **Playful / Toy-like** - Rounded, bouncy, bold primaries. Approachable and fun.
+- **Editorial / Magazine** - Strong typographic hierarchy, asymmetric grids, pull quotes.
+- **Brutalist / Raw** - Exposed structure, system fonts, visible grid, no polish.
+- **Art Deco** - Geometric precision, metallic accents, symmetry, decorative borders.
+- **Organic / Natural** - Earth tones, rounded forms, hand-drawn texture, grain.
+- **Industrial / Utilitarian** - Function-first, data-dense, monospace accents, muted palette.
 
 **Decoration levels:**
 
-- **minimal** — typography does all the work
-- **intentional** — subtle texture, grain, or background treatment
-- **expressive** — full creative direction, layered depth, patterns
+- **minimal** - typography does all the work
+- **intentional** - subtle texture, grain, or background treatment
+- **expressive** - full creative direction, layered depth, patterns
 
 **Layout approaches:**
 
-- **grid-disciplined** — strict columns, predictable alignment
-- **creative-editorial** — asymmetry, overlap, grid-breaking
-- **hybrid** — grid for the app, creative for marketing
+- **grid-disciplined** - strict columns, predictable alignment
+- **creative-editorial** - asymmetry, overlap, grid-breaking
+- **hybrid** - grid for the app, creative for marketing
 
 **Color approaches:**
 
-- **restrained** — 1 accent + neutrals, color is rare and meaningful
-- **balanced** — primary + secondary, semantic colors for hierarchy
-- **expressive** — color as a primary design tool, bold palettes
+- **restrained** - 1 accent + neutrals, color is rare and meaningful
+- **balanced** - primary + secondary, semantic colors for hierarchy
+- **expressive** - color as a primary design tool, bold palettes
 
 **Motion approaches:**
 
-- **minimal-functional** — only transitions that aid comprehension
-- **intentional** — subtle entrance animations, meaningful state transitions
-- **expressive** — full choreography, scroll-driven, playful
+- **minimal-functional** - only transitions that aid comprehension
+- **intentional** - subtle entrance animations, meaningful state transitions
+- **expressive** - full choreography, scroll-driven, playful
 
 **Font recommendations by purpose:**
 
@@ -297,7 +297,7 @@ If you extracted tokens from an approved mockup in Phase 5, use those as the pri
 Write `DESIGN.md` to the project root with this structure:
 
 ```markdown
-# Design System — [Project Name]
+# Design System - [Project Name]
 
 ## Product Context
 - **What this is:** [1-2 sentence description]
@@ -312,21 +312,21 @@ Write `DESIGN.md` to the project root with this structure:
 - **Reference sites:** [URLs, if research was done]
 
 ## Typography
-- **Display/Hero:** [font name] — [rationale]
-- **Body:** [font name] — [rationale]
+- **Display/Hero:** [font name] - [rationale]
+- **Body:** [font name] - [rationale]
 - **UI/Labels:** [font name or "same as body"]
-- **Data/Tables:** [font name] — [rationale, must support tabular-nums]
+- **Data/Tables:** [font name] - [rationale, must support tabular-nums]
 - **Code:** [font name]
 - **Loading:** [CDN URL or self-hosted strategy]
 - **Scale:** [modular scale with specific px/rem values for each level]
 
 ## Color
 - **Approach:** [restrained / balanced / expressive]
-- **Primary:** [hex] — [what it represents, usage]
-- **Secondary:** [hex] — [usage]
+- **Primary:** [hex] - [what it represents, usage]
+- **Secondary:** [hex] - [usage]
 - **Neutrals:** [warm/cool grays, hex range from lightest to darkest]
 - **Semantic:** success [hex], warning [hex], error [hex], info [hex]
-- **Dark mode:** [strategy — redesign surfaces, reduce saturation 10-20%]
+- **Dark mode:** [strategy - redesign surfaces, reduce saturation 10-20%]
 
 ## Spacing
 - **Base unit:** [4px or 8px]
@@ -337,7 +337,7 @@ Write `DESIGN.md` to the project root with this structure:
 - **Approach:** [grid-disciplined / creative-editorial / hybrid]
 - **Grid:** [columns per breakpoint]
 - **Max content width:** [value]
-- **Border radius:** [hierarchical scale — e.g., sm:4px, md:8px, lg:12px, full:9999px]
+- **Border radius:** [hierarchical scale - e.g., sm:4px, md:8px, lg:12px, full:9999px]
 
 ## Motion
 - **Approach:** [minimal-functional / intentional / expressive]

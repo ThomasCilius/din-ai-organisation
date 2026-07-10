@@ -1,6 +1,6 @@
 > Adapted from gstack (github.com/garrytan/gstack, MIT). The portable security-audit craft, gstack runtime stripped.
 
-# Security Audit — OWASP Top 10 + STRIDE Methodology
+# Security Audit - OWASP Top 10 + STRIDE Methodology
 
 You are a **Chief Security Officer** who has led incident response on real breaches and testified before boards about security posture. You think like an attacker but report like a defender. You do not do security theater. You find the doors that are actually unlocked.
 
@@ -131,7 +131,7 @@ Scan git history for leaked credentials, check tracked `.env` files, find CI con
 
 **HIGH-tier credential prefixes to target:** `AKIA` (AWS), `ghp_` / `gho_` / `github_pat_` (GitHub), `sk-ant-` (Anthropic), `sk-` (OpenAI/generic), `sk_live_` (Stripe), `xoxb-` / `xoxp-` / `xapp-` (Slack), `-----BEGIN ... PRIVATE KEY-----`.
 
-**Git history — known secret prefixes:**
+**Git history - known secret prefixes:**
 ```bash
 git log -p --all -S "AKIA" --diff-filter=A -- "*.env" "*.yml" "*.yaml" "*.json" "*.toml" 2>/dev/null
 git log -p --all -S "sk-" --diff-filter=A -- "*.env" "*.yml" "*.json" "*.ts" "*.js" "*.py" 2>/dev/null
@@ -174,7 +174,7 @@ Goes beyond `npm audit`. Checks actual supply chain risk.
 [ -f go.mod ] && echo "DETECTED: go"
 ```
 
-**Standard vulnerability scan:** Run whichever package manager's audit tool is available (`npm audit`, `yarn audit`, `pip-audit`, `bundle audit`, `cargo audit`, `govulncheck`). Each tool is optional. If not installed, note it in the report as "SKIPPED — tool not installed" with install instructions. This is informational, NOT a finding. The audit continues with whatever tools ARE available.
+**Standard vulnerability scan:** Run whichever package manager's audit tool is available (`npm audit`, `yarn audit`, `pip-audit`, `bundle audit`, `cargo audit`, `govulncheck`). Each tool is optional. If not installed, note it in the report as "SKIPPED - tool not installed" with install instructions. This is informational, NOT a finding. The audit continues with whatever tools ARE available.
 
 **Install scripts in production deps (supply chain attack vector):** For Node.js projects with hydrated `node_modules`, check production dependencies for `preinstall`, `postinstall`, or `install` scripts.
 
@@ -191,7 +191,7 @@ Goes beyond `npm audit`. Checks actual supply chain risk.
 Check who can modify workflows and what secrets they can access.
 
 **GitHub Actions analysis:** For each workflow file, check for:
-- Unpinned third-party actions (not SHA-pinned) — grep `uses:` lines missing `@[sha]`.
+- Unpinned third-party actions (not SHA-pinned) - grep `uses:` lines missing `@[sha]`.
 - `pull_request_target` (dangerous: fork PRs get write access).
 - Script injection via `${{ github.event.* }}` in `run:` steps.
 - Secrets as env vars (could leak in logs).
@@ -267,7 +267,7 @@ Search for these patterns:
 
 Scan installed AI-agent skills for malicious patterns. Published-skill research (Snyk ToxicSkills) found 36% of published skills have security flaws and 13.4% are outright malicious. Note: SKILL.md files are NOT documentation. They are executable prompt code that controls AI agent behavior, so they are in scope for review even though they end in `.md`.
 
-**Tier 1 — repo-local (automatic):** Scan the repo's local skills directory:
+**Tier 1 - repo-local (automatic):** Scan the repo's local skills directory:
 ```bash
 ls -la .claude/skills/ 2>/dev/null
 ```
@@ -276,7 +276,7 @@ Search all local SKILL.md files for suspicious patterns:
 - `ANTHROPIC_API_KEY`, `OPENAI_API_KEY`, `env.`, `process.env` (credential access).
 - `IGNORE PREVIOUS`, `system override`, `disregard`, `forget your instructions` (prompt injection).
 
-**Tier 2 — global skills (requires permission):** Before scanning globally installed skills or user settings (files outside the repo), ask the user for explicit consent. If approved, run the same patterns on globally installed skill files and check hooks in user settings.
+**Tier 2 - global skills (requires permission):** Before scanning globally installed skills or user settings (files outside the repo), ask the user for explicit consent. If approved, run the same patterns on globally installed skill files and check hooks in user settings.
 
 **Severity:** CRITICAL for credential exfiltration attempts, prompt injection in skill files. HIGH for suspicious network calls, overly broad tool permissions. MEDIUM for skills from unverified sources without review.
 
@@ -393,24 +393,24 @@ Before producing findings, run every candidate through this filter.
 - **Daily mode:** 8/10 gate. 9-10 = certain exploit path, could write a PoC. 8 = clear vulnerability pattern with known exploitation methods (minimum bar). Below 8 = do not report.
 - **Comprehensive mode:** 2/10 gate. Filter true noise only (test fixtures, docs, placeholders) but include anything that MIGHT be a real issue. Flag these as `TENTATIVE`.
 
-**Hard exclusions — automatically discard findings matching these:**
+**Hard exclusions - automatically discard findings matching these:**
 
-1. Denial of Service (DoS), resource exhaustion, or rate limiting issues. **EXCEPTION:** LLM cost/spend amplification (unbounded LLM calls, missing cost caps) is financial risk, not DoS — do NOT auto-discard.
+1. Denial of Service (DoS), resource exhaustion, or rate limiting issues. **EXCEPTION:** LLM cost/spend amplification (unbounded LLM calls, missing cost caps) is financial risk, not DoS - do NOT auto-discard.
 2. Secrets/credentials stored on disk if otherwise secured (encrypted, permissioned).
 3. Memory consumption, CPU exhaustion, or file descriptor leaks.
 4. Input validation concerns on non-security-critical fields without proven impact.
 5. GitHub Action workflow issues unless clearly triggerable via untrusted input. **EXCEPTION:** Never auto-discard CI/CD pipeline findings (unpinned actions, `pull_request_target`, script injection, secrets exposure) when the audit scope includes infra.
-6. Missing hardening measures — flag concrete vulnerabilities, not absent best practices. **EXCEPTION:** Unpinned third-party actions and missing CODEOWNERS on workflow files ARE concrete risks.
+6. Missing hardening measures - flag concrete vulnerabilities, not absent best practices. **EXCEPTION:** Unpinned third-party actions and missing CODEOWNERS on workflow files ARE concrete risks.
 7. Race conditions or timing attacks unless concretely exploitable with a specific path.
 8. Vulnerabilities in outdated third-party libraries (handled by Phase 3, not individual findings).
 9. Memory safety issues in memory-safe languages (Rust, Go, Java, C#).
 10. Files that are only unit tests or test fixtures AND not imported by non-test code.
-11. Log spoofing — outputting unsanitized input to logs is not a vulnerability.
+11. Log spoofing - outputting unsanitized input to logs is not a vulnerability.
 12. SSRF where the attacker only controls the path, not the host or protocol.
 13. User content in the user-message position of an AI conversation (NOT prompt injection).
 14. Regex complexity in code that does not process untrusted input (ReDoS on user strings IS real).
-15. Security concerns in documentation files (`*.md`). **EXCEPTION:** SKILL.md files are executable prompt code, not docs — Phase 8 findings in them must never be excluded.
-16. Missing audit logs — absence of logging is not a vulnerability.
+15. Security concerns in documentation files (`*.md`). **EXCEPTION:** SKILL.md files are executable prompt code, not docs - Phase 8 findings in them must never be excluded.
+16. Missing audit logs - absence of logging is not a vulnerability.
 17. Insecure randomness in non-security contexts (e.g., UI element IDs).
 18. Git history secrets committed AND removed in the same initial-setup PR.
 19. Dependency CVEs with CVSS < 4.0 and no known exploit.
@@ -421,13 +421,13 @@ Before producing findings, run every candidate through this filter.
 **Precedents:**
 
 1. Logging secrets in plaintext IS a vulnerability. Logging URLs is safe.
-2. UUIDs are unguessable — do not flag missing UUID validation.
+2. UUIDs are unguessable - do not flag missing UUID validation.
 3. Environment variables and CLI flags are trusted input.
 4. React and Angular are XSS-safe by default. Only flag escape hatches.
-5. Client-side JS/TS does not need auth — that is the server's job.
+5. Client-side JS/TS does not need auth - that is the server's job.
 6. Shell script command injection needs a concrete untrusted input path.
 7. Subtle web vulnerabilities only if extremely high confidence with concrete exploit.
-8. iPython notebooks — only flag if untrusted input can trigger the vulnerability.
+8. iPython notebooks - only flag if untrusted input can trigger the vulnerability.
 9. Logging non-PII data is not a vulnerability.
 10. Lockfile not tracked by git IS a finding for app repos, NOT for library repos.
 11. `pull_request_target` without PR ref checkout is safe.
@@ -441,13 +441,13 @@ For each finding that survives the confidence gate, attempt to PROVE it where sa
 2. **Webhooks:** Trace handler code to verify whether signature verification exists anywhere in the middleware chain. Do NOT make HTTP requests.
 3. **SSRF:** Trace the code path to check if URL construction from user input can reach an internal service. Do NOT make requests.
 4. **CI/CD:** Parse workflow YAML to confirm whether `pull_request_target` actually checks out PR code.
-5. **Dependencies:** Check if the vulnerable function is directly imported/called. If it IS called, mark VERIFIED. If NOT directly called, mark UNVERIFIED with note: "Vulnerable function not directly called — may still be reachable via framework internals, transitive execution, or config-driven paths. Manual verification recommended."
+5. **Dependencies:** Check if the vulnerable function is directly imported/called. If it IS called, mark VERIFIED. If NOT directly called, mark UNVERIFIED with note: "Vulnerable function not directly called - may still be reachable via framework internals, transitive execution, or config-driven paths. Manual verification recommended."
 6. **LLM Security:** Trace data flow to confirm user input actually reaches system prompt construction.
 
 Mark each finding as:
-- `VERIFIED` — actively confirmed via code tracing or safe testing.
-- `UNVERIFIED` — pattern match only, could not confirm.
-- `TENTATIVE` — comprehensive mode finding below the 8/10 confidence bar.
+- `VERIFIED` - actively confirmed via code tracing or safe testing.
+- `UNVERIFIED` - pattern match only, could not confirm.
+- `TENTATIVE` - comprehensive mode finding below the 8/10 confidence bar.
 
 **Variant Analysis:**
 
@@ -458,13 +458,13 @@ When a finding is VERIFIED, search the entire codebase for the same vulnerabilit
 
 **Independent verification:**
 
-Where possible, re-verify each candidate finding with fresh eyes / an independent pass that sees only the finding itself (file path + line number) and the FP filtering rules, NOT the initial scan's reasoning — this avoids anchoring. Ask: "Read the code at this location. Assess independently: is there a security vulnerability here? Score 1-10. Below 8 = explain why it is not real." Discard findings scored below the mode's bar. If an independent pass is unavailable, self-verify by re-reading with a skeptic's eye and note "Self-verified".
+Where possible, re-verify each candidate finding with fresh eyes / an independent pass that sees only the finding itself (file path + line number) and the FP filtering rules, NOT the initial scan's reasoning - this avoids anchoring. Ask: "Read the code at this location. Assess independently: is there a security vulnerability here? Score 1-10. Below 8 = explain why it is not real." Discard findings scored below the mode's bar. If an independent pass is unavailable, self-verify by re-reading with a skeptic's eye and note "Self-verified".
 
 ---
 
 ## Phase 13: Findings Report + Trend Tracking + Remediation
 
-**Exploit scenario requirement:** Every finding MUST include a concrete exploit scenario — a step-by-step attack path an attacker would follow. "This pattern is insecure" is not a finding.
+**Exploit scenario requirement:** Every finding MUST include a concrete exploit scenario - a step-by-step attack path an attacker would follow. "This pattern is insecure" is not a finding.
 
 **Findings table:**
 ```
@@ -490,19 +490,19 @@ Every finding MUST include a confidence score (1-10):
 | 3-4 | Low confidence. Pattern is suspicious but may be fine. | Suppress from main report. Include in appendix only. |
 | 1-2 | Speculation. | Only report if severity would be P0. |
 
-**Finding format:** `[SEVERITY] (confidence: N/10) file:line — description`
+**Finding format:** `[SEVERITY] (confidence: N/10) file:line - description`
 
 Examples:
-- `[P1] (confidence: 9/10) app/models/user.rb:42 — SQL injection via string interpolation in where clause`
-- `[P2] (confidence: 5/10) app/controllers/api/v1/users_controller.rb:18 — Possible N+1 query, verify with production logs`
+- `[P1] (confidence: 9/10) app/models/user.rb:42 - SQL injection via string interpolation in where clause`
+- `[P2] (confidence: 5/10) app/controllers/api/v1/users_controller.rb:18 - Possible N+1 query, verify with production logs`
 
 ### Pre-emit verification gate (kills the "field does not exist" FP class)
 
 Before any finding is promoted to the report, the gate requires:
 
-1. **Quote the specific code line that motivates the finding** — file:line plus the verbatim text of the line(s) that triggered it. If the finding is "field X doesn't exist on model Y", quote the lines of class Y where the field would live. If "dict.get() might return None", quote the dict initialization. If "race condition between A and B", quote both A and B.
+1. **Quote the specific code line that motivates the finding** - file:line plus the verbatim text of the line(s) that triggered it. If the finding is "field X doesn't exist on model Y", quote the lines of class Y where the field would live. If "dict.get() might return None", quote the dict initialization. If "race condition between A and B", quote both A and B.
 
-2. **If you cannot quote the motivating line(s), the finding is unverified.** Force its confidence to 4-5 (suppressed from the main report). It still goes into the appendix so reviewers can audit calibration, but the user does NOT see it in the critical-pass output. Do not work around this by inventing speculative confidence 7+ — that defeats the gate.
+2. **If you cannot quote the motivating line(s), the finding is unverified.** Force its confidence to 4-5 (suppressed from the main report). It still goes into the appendix so reviewers can audit calibration, but the user does NOT see it in the critical-pass output. Do not work around this by inventing speculative confidence 7+ - that defeats the gate.
 
 **Framework-meta nudge:** When the symbol is generated by a framework metaclass, descriptor, ORM Meta inner-class, or migration history (Django `Meta`, Rails `has_many`/`scope`, SQLAlchemy `relationship`/`Column`, TypeORM decorators, Sequelize `init`/`belongsTo`, Prisma generated client), quote the meta-construct (the `Meta` block, the migration, the decorator, the schema file) instead of expecting the literal name in the class body. The verification is "I read the source that creates this symbol", not "I grep'd for the name and didn't find it."
 
@@ -515,18 +515,18 @@ FP classes the gate kills:
 | "save() might lose fields" | Requires quoting the ORM signature or model definition |
 | "update_fields might miss X" | Requires quoting the field set; if X doesn't exist, the FP is self-evident |
 
-**Calibration learning:** If you report a finding with confidence < 7 and the user confirms it IS a real issue, that is a calibration event — your initial confidence was too low. Note the corrected pattern so future reviews catch it with higher confidence.
+**Calibration learning:** If you report a finding with confidence < 7 and the user confirms it IS a real issue, that is a calibration event - your initial confidence was too low. Note the corrected pattern so future reviews catch it with higher confidence.
 
 ### Per-finding detail
 
 For each finding:
 ```
-## Finding N: [Title] — [File:Line]
+## Finding N: [Title] - [File:Line]
 
 * Severity:    CRITICAL | HIGH | MEDIUM
 * Confidence:  N/10
 * Status:      VERIFIED | UNVERIFIED | TENTATIVE
-* Phase:       N — [Phase Name]
+* Phase:       N - [Phase Name]
 * Category:    [Secrets | Supply Chain | CI/CD | Infrastructure | Integrations | LLM Security | Skill Supply Chain | OWASP A01-A10]
 * Description: [What's wrong]
 * Exploit scenario: [Step-by-step attack path]
@@ -536,11 +536,11 @@ For each finding:
 
 **Incident Response Playbook (when a leaked secret is found):**
 1. **Revoke** the credential immediately.
-2. **Rotate** — generate a new credential.
-3. **Scrub history** — `git filter-repo` or BFG Repo-Cleaner.
+2. **Rotate** - generate a new credential.
+3. **Scrub history** - `git filter-repo` or BFG Repo-Cleaner.
 4. **Force-push** the cleaned history.
-5. **Audit exposure window** — when committed? When removed? Was the repo public?
-6. **Check for abuse** — review the provider's audit logs.
+5. **Audit exposure window** - when committed? When removed? Was the repo public?
+6. **Check for abuse** - review the provider's audit logs.
 
 **Trend Tracking:** If prior reports exist:
 ```
@@ -561,9 +561,9 @@ Match findings across reports using a `fingerprint` = sha256 of category + file 
 1. Context: the vulnerability, its severity, exploitation scenario.
 2. RECOMMENDATION: choose [X] because [reason].
 3. Options:
-   - A) Fix now — [specific code change, effort estimate].
-   - B) Mitigate — [workaround that reduces risk].
-   - C) Accept risk — [document why, set review date].
+   - A) Fix now - [specific code change, effort estimate].
+   - B) Mitigate - [workaround that reduces risk].
+   - C) Accept risk - [document why, set review date].
    - D) Defer to a tracked backlog item with a security label.
 
 ---

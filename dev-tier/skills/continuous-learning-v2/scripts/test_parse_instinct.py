@@ -1,15 +1,15 @@
 """Tests for continuous-learning-v2 instinct-cli.py
 
 Covers:
-  - parse_instinct_file() — content preservation, edge cases
-  - _validate_file_path() — path traversal blocking
-  - detect_project() — project detection with mocked git/env
-  - load_all_instincts() — loading from project + global dirs, dedup
-  - _load_instincts_from_dir() — directory scanning
-  - cmd_projects() — listing projects from registry
-  - cmd_status() — status display
-  - _promote_specific() — single instinct promotion
-  - _promote_auto() — auto-promotion across projects
+  - parse_instinct_file() - content preservation, edge cases
+  - _validate_file_path() - path traversal blocking
+  - detect_project() - project detection with mocked git/env
+  - load_all_instincts() - loading from project + global dirs, dedup
+  - _load_instincts_from_dir() - directory scanning
+  - cmd_projects() - listing projects from registry
+  - cmd_status() - status display
+  - _promote_specific() - single instinct promotion
+  - _promote_auto() - auto-promotion across projects
 """
 
 import importlib.util
