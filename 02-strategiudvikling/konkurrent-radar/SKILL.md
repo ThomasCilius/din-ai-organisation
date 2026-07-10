@@ -67,6 +67,16 @@ Radaren overvåger og beskriver - den beslutter ikke og anbefaler ikke handlinge
 - SKIDT: "Vi bør sænke vores timepris med 10 % for at matche dem."
 - GODT: "Beslutningsspørgsmål: Nordjysk Montage ligger nu 80 kr. under vores timepris (deres prisliste, 03-07-2026). Skal vi (a) holde prisen og sælge på efterservice, (b) matche, eller (c) undersøge det nærmere? Til (c): kør `beslutningsgrundlag`."
 
+## Varsler og modtræk
+
+En radar der kun observerer, opdager truslen når den er landet. For de 2-3 vigtigste konkurrent-scenarier (fx "konkurrent A går ind i vores geografi", "prispres nedefra", "de ansætter sig til vores kernekompetence") definerer du sammen med ledelsen:
+
+1. **Varslet:** det OBSERVERBARE tidlige signal - noget man faktisk kan se i en navngiven kilde: jobopslag i et bestemt område, en prisændring på deres liste, en ny lokation, en ny certificering eller autorisation. Aldrig "de bliver stærkere" eller "de satser mere" - det kan ingen holde øje med.
+2. **Modtrækket:** ledelsens forhåndsbeslutning på formen "ser vi X, gør vi Y" (fx "slår de sælgerstillinger op vest for Storebælt, fremrykker vi vores egen sælgeransættelse"). Modtrækket besluttes af ledelsen NÅR listen laves - i fredstid, hvor der er ro til at tænke. Radaren udløser det aldrig selv; den melder kun når varslet lyser, og minder om hvad ledelsen selv har besluttet.
+3. **Ejeren:** hvem holder øje med signalet, og i hvilken kilde. Et varsel uden ejer bliver ikke set.
+
+Varslerne skrives ind i `konkurrentkort.md`, og hver kvartalsrapport tjekker dem af: lyser varslet, eller lyser det ikke? Et varsel der lyser, rapporteres som fakta med kilde + dato plus det forhåndsbesluttede modtræk som påmindelse - beslutningen om at udløse det er stadig ledelsens. Definér varslerne første gang ved førstegangsopbygningen (spor B) eller ved næste kvartalskørsel, og revidér listen når kortet ændrer sig væsentligt.
+
 ## Konkurrentkortets faste felter
 
 Pr. konkurrent (fuld skabelon i `references/konkurrentkort-skabelon.md`):
@@ -94,6 +104,7 @@ Gengiv listen med kryds i dit svar, punkt for punkt, før du afleverer:
 - [ ] Hver ændring har et "hvad betyder det for os", og reaktioner er formuleret som beslutningsspørgsmål - ikke anbefalede handlinger.
 - [ ] Delta-rapporten er max 2 sider, ændringer først.
 - [ ] Historik i konkurrentkortet er bevaret, intet slettet.
+- [ ] Er der defineret varsler i kortet: hvert varsel er tjekket af (lyser / lyser ikke) med kilde + dato.
 
 ### Fakta vs. tolkning: skidt/godt
 
@@ -132,6 +143,7 @@ To navngivne filer, faste strukturer (fulde skabeloner i `references/konkurrentk
 # Konkurrent-radar Q[x] [aar]
 ## Ændringer siden sidst (fakta - kilde + dato pr. punkt)
 ## Hvad betyder det for os (tolkning pr. ændring)
+## Varselstatus (pr. defineret varsel: lyser / lyser ikke, kilde + dato - lyser det: nævn det forhåndsbesluttede modtræk)
 ## Beslutningsspørgsmål til ledelsen (kan være tom)
 ## Ikke undersøgt / ved ikke (altid med)
 ## Kilder (altid med)

@@ -39,6 +39,7 @@ Brugeren har ingen anden til at læse det vigtige tilbud igennem. Svarer du "ser
    - Passage 1 - formål: svarer dokumentet på modtagerens stærkeste indvending? Fører det naturligt til den beslutning brugeren ønsker? Testen er konkret: kan du pege på det afsnit der besvarer indvendingen? Kan du ikke, er det et KRITISK fund.
    - Passage 2 - rød tråd: hver central påstand testes for belæg og konsekvens (se "Rød tråd-testen" nedenfor).
    - Passage 3 - dokumenttypens tjekliste, punkt for punkt.
+   - Passage 4 - steelman før dommen: formulér det stærkeste MODargument mod dokumentets konklusion i fuld styrke. Består konklusionen det, styrkes den - og det skriver du i notatet. Består den ikke, er det et KRITISK fund. Afsig aldrig dommen før denne passage er kørt.
 5. **Skriv reviewnotatet** efter skabelonen i ## Output. Læs `references/eksempel-reviewnotat.md` første gang du bruger skillen, og når du er i tvivl om hvor konkret et fund skal være - det viser niveauet.
 6. **Tjek - ret - gentag.** Gennemgå dit eget notat mod tjeklisten før aflevering (nedenfor), ret alle fund og gennemgå igen. Max 3 runder - herefter aflever og markér åbne punkter eksplicit.
 7. **Aflevér.** Notatet som kladdefil + dommen i chatten i én sætning. Tilbyd derefter at formulere de konkrete rettelser - men først efter brugeren har set fundene, aldrig som rettet original.
@@ -69,6 +70,10 @@ Hver central påstand i dokumentet skal bestå kæden: **påstand → belæg →
 - Påstande uden belæg markeres eksplicit i notatet som "påstand uden belæg" - med tre mulige forslag: find kilden, blødgør formuleringen eller slet påstanden.
 - Tal, satser og lovhenvisninger der kan efterprøves (priser, datoer, gebyrer, frister) skal have en kilde. Stammer tallet fra hukommelsen - dit eller brugerens - så flag det til opslag (fx retsinformation.dk for lovstof) frem for at lade det stå.
 
+**Evidensmærkning:** Mærk dokumentets bærende påstande når du tester dem: [F]akta (observeret, med kilde), [I]nferens (udledt af fakta), [A]ntagelse (hul udfyldt med skøn), [E]stimat (regnet på antagelser). Det farligste fund er en [A] forklædt som [F] - "markedet vokser 15 %" uden kilde er en antagelse i faktatøj og markeres som VÆSENTLIGT fund. Fuld standard: `references/evidensstandard.md` i `beslutningsgrundlag`-skillen - læs den når dokumentet er et beslutningsoplæg eller bankmateriale.
+
+**Rødt flag - den uforandrede overbevisning:** Bærer dokumentet præg af at forfatterens overbevisning tydeligvis aldrig har ændret sig undervejs (alle fund peger samme vej, ingen forkastede alternativer, intet "det overraskede os at..."), så led aktivt efter hvad der blev ignoreret: modstridende tal, fravalgte kilder, det alternativ der aldrig blev undersøgt. Finder du det, er det et VÆSENTLIGT fund - og spor det i notatet.
+
 ## Anti-pleaser
 
 Dommen er altid én af tre: **send / send ikke / send efter rettelser**. Ingen fjerde mulighed, ingen "det er op til dig". Det svageste punkt udpeges ALTID - også i et godt dokument, for et godt dokument har stadig ét punkt der er svagere end resten, og det er dét kunden vil bore i.
@@ -95,6 +100,8 @@ Gengiv listen med kryds i dit svar, punkt for punkt:
 - [ ] Dommen står først og er én af de tre tilladte.
 - [ ] Det svageste punkt er udpeget - med citat.
 - [ ] Modtageranalysen står i notatet, og det fremgår om dokumentet svarer på den stærkeste indvending.
+- [ ] Steelman-kravet er opfyldt: det stærkeste modargument mod dokumentets konklusion er formuleret FØR dommen, og notatet siger om konklusionen består det.
+- [ ] Bærende påstande er mærket [F]/[I]/[A]/[E], og ingen [A] står forklædt som [F] uden at være flaget.
 - [ ] Hvert fund har niveau, ordret citat, problem og konkret forslag.
 - [ ] Fundene står i rækkefølgen KRITISK → VÆSENTLIGT → POLÉR.
 - [ ] Ingen påstand i mine egne forslag er uden belæg - satser og lovstof er flaget til opslag med kilde, aldrig skrevet fra hukommelsen.
@@ -131,6 +138,9 @@ Fast struktur - brug præcis denne skabelon:
 
 ## Modtageranalyse
 [Modtager, beslutning, stærkeste indvending - og om dokumentet svarer på den]
+
+## Steelman af konklusionen (altid med)
+[Det stærkeste modargument mod dokumentets konklusion i fuld styrke - og om konklusionen består det]
 
 ## Fund
 | Niveau | Citat | Problem | Forslag |

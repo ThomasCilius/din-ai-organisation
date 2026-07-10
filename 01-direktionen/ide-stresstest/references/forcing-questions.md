@@ -12,7 +12,9 @@ Rygraden er de seks markedsspørgsmål. Til at grave i svarene bruger du de fire
 6. [Alternativ-generering før dommen](#alternativ-generering-foer-dommen)
 7. [Escape hatch-protokol](#escape-hatch-protokol)
 8. [De fire presteknikker](#de-fire-presteknikker)
-9. [Rækkefølge-heuristik](#raekkefoelge-heuristik)
+9. [Antagelsesstigen](#antagelsesstigen)
+10. [Hypotese-pre-mortem](#hypotese-pre-mortem)
+11. [Rækkefølge-heuristik](#raekkefoelge-heuristik)
 
 ## Sådan bruger du biblioteket
 
@@ -207,6 +209,51 @@ Fire navngivne teknikker med formulering, acceptkriterier og røde flag - brug d
 - **Grav videre indtil du hører:** en NAVNGIVET fortrængt aktivitet: hvilket projekt, hvilken kunde, hvor mange timer om ugen, hvis penge ("det tager de 8 timer om ugen jeg ellers bruger på salg").
 - **Røde flag:** "det kan jeg godt klare oveni" (så fortrænger det søvn eller drift - begge dele er dyrere); "vi finder tiden" (hvem er vi, og hvor?).
 - **Opfølgning:** "Er det her vigtigere end [den navngivne aktivitet]? Hvis ja - skal vi så også beslutte at stoppe eller nedskalere den?"
+
+## Antagelsesstigen
+
+**Formulering:** "For at din idé virker - hvad skal ellers være sandt? Og for at DET er sandt - hvad skal så være sandt?"
+
+**Hvorfor det virker:** De fleste idéer hviler på en kæde af forudsætninger, hvor ét brudt led vælter det hele. Stigen gør kæden synlig, så du kan finde det svageste led og teste DET først - i stedet for det led der er nemmest eller sjovest at teste.
+
+**Hvornår:** Ved go/no-go med væsentlig nedside, som forlængelse af "Hvad skal være sandt?" - stigen stabler svarene i kæde i stedet for at lade dem ligge som løs liste.
+
+**Sådan bygges stigen:**
+
+1. Skriv idéen øverst.
+2. Spørg "hvad skal være sandt for at det her holder?" - svaret er forudsætning 1.
+3. Gentag på forudsætning 1: "og hvad skal være sandt for DET?" - bliv ved til svaret kan tjekkes direkte med adfærd eller tal.
+4. Udpeg det svageste led: den forudsætning der er mest usikker OG vælter mest hvis den brister.
+5. Test det svageste led FØRST - før der bruges penge på resten.
+
+**Gennemregnet eksempel (butik nr. 2):**
+
+- *Idé:* "Vi åbner butik nr. 2 i nabobyen."
+- *Forudsætning 1:* Omsætningen i butik 1 kan gentages et nyt sted.
+- *For at 1 er sandt:* Kunderne kommer for beliggenheden og sortimentet - ikke for ejeren bag disken.
+- *For at DET er sandt:* Butikken skal kunne sælge på niveau uden at ejeren er til stede.
+- *Svageste led:* "Kunderne kommer ikke for ejeren." Det er en antagelse om kundeadfærd ingen har testet - og brister den, dør butik nr. 2 uanset husleje og beliggenhed.
+- *Testen:* Lad en medarbejder drive butik 1 alle lørdage i 6 uger, og sammenlign lørdagsomsætningen med samme periode sidste år. Falder den mere end fx 15 %, er kunderne ejerens - ikke butikkens - og butik nr. 2 skal gentænkes før der skrives lejekontrakt.
+
+- **Grav videre indtil du hører:** en kæde på mindst 2-3 led hvor det nederste kan tjekkes med adfærd eller tal - ikke holdninger.
+- **Røde flag:** stiger der stopper ved "kunderne vil have det" (utestbart); brugeren udpeger det led der er nemmest at teste i stedet for det svageste; en test af et robust led mens det svage står urørt.
+- **Opfølgning:** "Hvad er den billigste test af netop det svageste led - og hvad er dit exitkriterium?" (peger direkte ind i `billigste-test.md`).
+
+## Hypotese-pre-mortem
+
+Pre-mortem på selve undersøgelsen, ikke kun på beslutningen. Hvor pre-mortemet (presteknik 1) spørger "beslutningen gik galt - hvad skete der?", spørger hypotese-pre-mortemet til de blinde vinkler i jeres egen analyse.
+
+**Formulering:** "Antag at vi undersøger idéen grundigt, konkluderer - og TAGER FEJL. Hvad viste det sig senere, at vi havde overset?"
+
+**Hvorfor det virker:** Undersøgelser søger som regel bekræftelse: man finder de tal der støtter idéen og kalder det analyse. Ved at antage at konklusionen ER forkert, tvinges de steder frem man ikke ledte - fordi man ikke ville finde noget der.
+
+**Hvornår:** Ved go/no-go med væsentlig nedside, lige efter antagelsesstigen - stigen finder det svageste led i det I VED; hypotese-pre-mortemet finder det I slet ikke har kigget på.
+
+**Sådan bruges svarene:** Hvert svar ("vi overså at konkurrenten var i gang med det samme", "vi overså at de tre interesserede kunder aldrig havde budget") omsættes til ét konkret tjek der udføres FØR beslutningen - ikke en bekymring der noteres og glemmes. Kan et svar ikke omsættes til et tjek, omformuleres det til det kan.
+
+- **Grav videre indtil du hører:** 2-3 oversete forhold med mekanisme, hver med et tilhørende tjek der kan udføres inden beslutningen (hvem tjekker hvad, hvornår).
+- **Røde flag:** svar der bare gentager kendte risici fra pre-mortemet; "det kunne vi ikke have vidst" (så er der ikke ledt grundigt nok); tjek der først kan udføres EFTER beslutningen.
+- **Opfølgning:** "Hvilket af de tjek gør mest ondt at springe over - og hvornår udfører du det?"
 
 ## Rækkefølge-heuristik
 

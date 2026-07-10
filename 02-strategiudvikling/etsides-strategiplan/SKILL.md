@@ -39,6 +39,7 @@ En plan der kun rummer valg forpligter ingen: alle kan nikke til "flere kunder o
      - Røde flag: "teamet", "salg", to navne på samme battle.
    - **Budget:** "Har hvert battle en post i budgettet - eller skal det markeres UFINANSIERET?"
    - **Nøgletal:** "Hvilke 5-7 tal viser om strategien virker?" Foreslå selv ud fra virksomhedsprofilen: omsætning pr. kundesegment, dækningsgrad, kundeafgang/genkøb, ordrebeholdning, medarbejderomsætning.
+   - **Vendepunkter:** "Hvilke 2-3 signaler vil betyde 'planen virker ikke - revidér'?" Grav videre indtil hvert signal kan aflæses i planens egne nøgletal (fx "to kvartaler i træk under X i nøgletal Y"). Røde flag: mavefornemmelser ("hvis det føles forkert"), signaler uden tal.
    - Spring spørgsmål over som referatet eller tidligere svar allerede dækker.
 
 3. **Brief.** Sammenfat valg, fravalg, battles, ejere og nøgletal i 5-8 linjer. **HARD GATE: producér INTET før briefen er godkendt.** Mangler du information til at skrive briefen, så stop og spørg - opfind aldrig svar for at komme videre.
@@ -79,6 +80,7 @@ Felt-for-felt-vejledning, formuleringsmønstre og et komplet udfyldt eksempel: l
 - **Én side (hård):** ledelsesversionen fylder max én A4-side - i praksis max ca. 450 ord. Kan det ikke være der, er der truffet for få valg; skær battles eller detaljer, aldrig fravalgene.
 - **Lakmustesten:** en medarbejder skal kunne genfortælle planen efter én gennemlæsning. Kan du ikke selv genfortælle den i 5 sætninger, er den for kompliceret.
 - **Revisionsdisciplin:** planen er et levende dokument med versionsdato og ændringslog. Ændringer midt i året kræver et `strategi-tjek` der begrunder dem - strategien omskrives ikke fordi ugen var dårlig.
+- **Vendepunkter:** planen navngiver 2-3 signaler der betyder "planen virker ikke - revidér", hvert på én linje og aflæseligt i planens egne nøgletal (fx "to kvartaler i træk under 55 % dækningsgrad"), plus tjek-kadencen (typisk kvartalets `strategi-tjek`). Vendepunkter er ikke kursskifte på ét datapunkt (se aldrig-regel 5) - de er den på forhånd aftalte grænse hvor et strategi-tjek SKAL udløses, så revision bliver en regel og ikke en mavefornemmelse.
 
 Tjekliste før aflevering (gengiv listen med kryds i dit svar, punkt for punkt):
 
@@ -87,6 +89,7 @@ Tjekliste før aflevering (gengiv listen med kryds i dit svar, punkt for punkt):
 - [ ] Hvert battle kan besvares ja/nej ved årets udgang
 - [ ] Hvert battle har præcis én navngiven ejer - aldrig "teamet"
 - [ ] Hvert battle har budgetpost eller UFINANSIERET-markering
+- [ ] Planen har 2-3 vendepunkter med tjek-kadence - hver på én linje og aflæselig i planens egne nøgletal
 - [ ] Nul ord fra Sig aldrig-listen (kør buzzword-scan mod `references/sprogregler-og-testbarhed.md`)
 - [ ] Ledelsesversionen fylder max én A4-side (ca. 450 ord)
 - [ ] Versionsdato og status (UDKAST) fremgår øverst
@@ -140,6 +143,7 @@ Skriv altid til to navngivne filer:
 ## Must-win battles (3-5, hver med ejer + budgetstatus)
 ## Fravalg (mindst lige saa mange som battles)
 ## Noegletal (5-7)
+## Vendepunkter (2-3 signaler, aflaeselige i noegletallene, med tjek-kadence)
 ## Antagelser og aabne spoergsmaal (altid med - inkl. UFINANSIERET og UAFKLARET)
 ## Kilder og aendringslog (altid med)
 ```

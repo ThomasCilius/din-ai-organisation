@@ -37,12 +37,14 @@ Tre påmindelser der gælder hele vejen igennem:
    - **Spørg:** "Hvilke tal har du selv?" - regnskabstal, indhentede tilbud, priser, kundedata. Egne tal er primærkilder og skal bruges før eksterne.
    - **Spørg:** "Hvornår skal beslutningen træffes?" Deadline afgør hvor dyb researchen kan være.
 2. **Brief.** Sammenfat i 5-8 linjer: beslutningsspørgsmål, modtager, deadline, kendte tal, hvad der skal researches, og hvad brugeren hælder til. **HARD GATE: producér INTET før briefen er godkendt.** Mangler du oplysninger til briefen: stop og spørg - udfyld aldrig hullerne selv.
-3. **Research.** Læs `references/kildehierarki.md` før første opslag. Læg en kort researchplan (påstand for påstand: hvilken kilde skal belægge den), og følg kildehierarkiet: primærkilder først. Budget: højst 3 opslag pr. nøglepåstand - lykkes det ikke, markeres påstanden UBEKRÆFTET, og du går videre med en note under åbne spørgsmål. Har du ikke adgang til websøgning: sig det med det samme, byg på brugerens egne filer og markér alle eksterne tal UBEKRÆFTET med besked om hvor brugeren selv kan slå dem op.
+3. **Research.** Læs `references/kildehierarki.md` og `references/evidensstandard.md` før første opslag - al evidens i grundlaget mærkes efter evidensstandarden. Læg en kort researchplan (påstand for påstand: hvilken kilde skal belægge den), og følg kildehierarkiet: primærkilder først. Budget: højst 3 opslag pr. nøglepåstand - lykkes det ikke, markeres påstanden UBEKRÆFTET, og du går videre med en note under åbne spørgsmål. Har du ikke adgang til websøgning: sig det med det samme, byg på brugerens egne filer og markér alle eksterne tal UBEKRÆFTET med besked om hvor brugeren selv kan slå dem op.
 4. **Regn.** Beslutningens økonomi vises som regnestykke, ikke som konklusion: investering, årlig effekt på dækningsbidrag eller omkostninger, tilbagebetalingstid. Alle inputtal har status (se nedenfor), og SKØN vises altid med det bagvedliggende regnestykke.
-5. **Steelman.** Læs `references/steelman-og-modargumenter.md`. Formulér det stærkeste argument MOD din anbefaling i fuld styrke - med egne kilder - plus ét falsifikationskriterium: "hvis X viser sig, ændres konklusionen".
+5. **Steelman.** Læs `references/steelman-og-modargumenter.md`. Formulér det stærkeste argument MOD din anbefaling i fuld styrke - med egne kilder - plus ét falsifikationskriterium: "hvis X viser sig, ændres konklusionen". To krav oveni:
+   - **Vendepunkter:** formulér mindst 2 konkrete, observerbare datapunkter der VENDER anbefalingen - hver med hvad anbefalingen så flipper til ("hvis X observeres, skifter anbefalingen til Y"). Vage formuleringer ("hvis det går dårligt") tæller ikke - datapunktet skal kunne aflæses i tal eller hændelser.
+   - **Vinder-ved-default-værnet:** det fravalgte alternativ skal bestå SAMME granskning som anbefalingen. Skriv ét afsnit hvor alternativet steelmanes med kilder - taber alternativet kun fordi det aldrig blev undersøgt, er anbefalingen en default, ikke en anbefaling.
 6. **Skriv udkastet** efter skabelonen i ## Output. Fuld skabelon med udfyldt eksempel står i `references/skabelon-og-eksempel.md` - læs den før du skriver dit første grundlag.
 7. **Tjek - ret - gentag.** Gennemgå udkastet mod tjeklisten nedenfor, ret alle fund, gennemgå igen - højst 3 runder. Står der stadig fund efter tredje runde: aflevér alligevel, list de resterende fund under åbne spørgsmål, og sig det klart i din besked.
-8. **Aflevér.** Kladden + forslag til ét næste skridt (fx "book mødet med banken" eller "indhent det manglende tilbud først").
+8. **Aflevér.** Kladden + forslag til ét næste skridt (fx "book mødet med banken" eller "indhent det manglende tilbud først"). Afslutningsdisciplin: grundlaget slutter altid med første handling inden 5 hverdage, én navngiven ejer (én person, aldrig "vi" eller "teamet") og en opfølgningsdato - og mind brugeren om at føre den trufne beslutning i hjernens `beslutninger.md` med begrundelse, så den ikke skal gentages om et halvt år.
 
 **Escape hatch:** Siger brugeren "spring spørgsmålene over", så stil kun de 2 vigtigste (beslutningsspørgsmålet og modtageren) og fortsæt. Beder de om det igen: respektér det, men markér udfyldte huller som [ANTAGELSE] i outputtet.
 
@@ -67,6 +69,8 @@ Hver påstand får kilde OG dato: både datoen for tallet og datoen for dit opsl
 - **VERIFICERET** - du har selv set primærkilden i denne session og citerer den med dato.
 - **UBEKRÆFTET** - tallet er fundet (sekundær kilde, brugerens hukommelse, ældre notat), men ikke efterprøvet mod primærkilden.
 - **SKØN** - en antagelse. Vis altid regnestykket bag skønnet, så læseren selv kan justere det.
+
+**Evidensmærkning ([F]/[I]/[A]/[E]):** Læs `references/evidensstandard.md` før fakta-afsnittet skrives, og mærk al evidens efter den: [F]akta, [I]nferens, [A]ntagelse eller [E]stimat. Mærket supplerer statussen: status siger hvor godt tallet er belagt, mærket siger hvilken slags påstand det er. Standarden rummer også tal-reglen (værdi + enhed + periode + kilde), kravet om 2 uafhængige kilder på bærende påstande (enkeltkilde flages eksplicit), konfidens i procent og smell testen på tal.
 
 **Friskhedsregel:** Tal ældre end 12 måneder flages med årstal ("2024-tal - nyere findes muligvis"). Satser, priser, gebyrer og lovkrav slås op på ny hver gang (skat.dk, retsinformation.dk, Nationalbanken) - de hardcodes aldrig og hentes aldrig fra hukommelsen, for de forældes.
 
@@ -125,8 +129,17 @@ Fast struktur - brug præcis disse overskrifter (fuld skabelon med eksempel i `r
 ## Det stærkeste modargument
 [Steelman i fuld styrke med kilder + falsifikationskriterium: "hvis X viser sig, ændres konklusionen"]
 
+## Det fravalgte alternativ (altid med)
+[Ét afsnit hvor alternativet steelmanes med samme granskning som anbefalingen - hvorfor det trods sin styrke fravælges]
+
+## Vendepunkter (altid med)
+[Minimum 2 konkrete, observerbare datapunkter der VENDER anbefalingen - hver med hvad anbefalingen så flipper til: "hvis X observeres, skifter anbefalingen til Y"]
+
 ## Antagelser og åbne spørgsmål (altid med)
 [Alle SKØN og UBEKRÆFTEDE tal samlet + hvad der billigst kan afklare dem]
+
+## Første handling og opfølgning (altid med)
+[Første handling inden 5 hverdage + én navngiven ejer + opfølgningsdato - og note om at beslutningen føres i hjernens beslutninger.md når den er truffet]
 
 ## Kilder (altid med)
 [Nummereret liste: kilde, hvad den belægger, dato for tal, dato for opslag]
@@ -140,6 +153,10 @@ Tjekliste før aflevering (gengiv listen med kryds i dit svar, punkt for punkt):
 - [ ] Anbefalingen hviler ikke på UBEKRÆFTEDE tal alene.
 - [ ] Det stærkeste modargument står i fuld styrke - ville en modstander af beslutningen nikke genkendende?
 - [ ] Der er ét falsifikationskriterium.
+- [ ] Al evidens er mærket [F]/[I]/[A]/[E] efter `references/evidensstandard.md` - og bærende påstande har 2 uafhængige kilder eller er flaget som enkeltkilde.
+- [ ] Der er minimum 2 vendepunkter - konkrete, observerbare, hver med hvad anbefalingen flipper til.
+- [ ] Det fravalgte alternativ er steelmanet med samme granskning som anbefalingen - det taber ikke ved default.
+- [ ] Grundlaget slutter med første handling inden 5 hverdage, én navngiven ejer og en opfølgningsdato.
 - [ ] Tal ældre end 12 måneder er flaget; satser og lovkrav er slået op på ny, ikke fra hukommelsen.
 - [ ] Konklusionen har konfidens (høj/middel/lav) med begrundelse - og ved lav: forslag til billigste afklaring.
 - [ ] Dokumentet slutter med en anbefaling, ikke et referat.

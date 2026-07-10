@@ -32,8 +32,32 @@ Indholdet i `dev-tier/` er **kurateret og videredistribueret under MIT** (se
   selvkritik-håndværk, og `ide-stresstest`-referencen forcing-questions.md
   på office-hours.
 
+**management-consulting** af gcamilo, https://github.com/gcamilo/management-consulting (MIT)
+- Udsnit (2026-07-10): evidensstandarden
+  (`01-direktionen/beslutningsgrundlag/references/evidensstandard.md`),
+  KILL CONDITIONS-/output-kontrakten og "vinder-ved-default"-værnet, destilleret
+  ind i operatør-skillsene beslutningsgrundlag, etsides-strategiplan,
+  second-opinion og problemknuser.
+
+**claude-skill-management-consultant-B1** af DogInfantry,
+https://github.com/DogInfantry/claude-skill-management-consultant-B1 (Apache 2.0)
+- Udsnit (2026-07-10): problemløsnings-funnel'en, hypotese-invaliderings-
+  disciplinen (antagelsesstige, pre-mortem), indsigt-til-handling-værktøjerne
+  (første handling inden 5 hverdage, ejer, eskalering), scenario-varsler med
+  forhåndsbesluttede modtræk, regressionsevals-mønstret og omkostningsjagt-
+  tjeklisten - destilleret ind i problemknuser, ide-stresstest, konkurrent-radar,
+  skill-opskrift, budgetopfoelgning og company-brain-prompten. Konsulent-
+  karrierelaget (caseinterview, honorar, MBB-vertikaler) er bevidst udeladt.
+- NOTICE (bevaret jf. Apache 2.0): "claude-skill-management-consultant-B1,
+  Copyright (c) 2026 DogInfantry. Original repository:
+  https://github.com/DogInfantry/claude-skill-management-consultant-B1".
+
+*(aapersh/strategy-skills-for-claude er bevidst IKKE genbrugt - repoet har
+ingen licens; kun offentligt kendte metode-idéer er beskrevet med egne ord.)*
+
 Dette lag er **valgfrit** og installeres kun med `udvikler`-profilen eller ved
 `./install.sh aktiver-udvikler`. Operatør-profilen rører det ikke.
 
-De 67 danske operatør-skills i pakkens afdelingsmapper er derimod original
-kursusindhold og hører ikke under denne attribution.
+De danske operatør-skills i pakkens afdelingsmapper er original kursusindhold;
+hvor en skill bygger på destilleret craft fra kilderne ovenfor, bærer dens
+referencefil sin egen kildelinje.

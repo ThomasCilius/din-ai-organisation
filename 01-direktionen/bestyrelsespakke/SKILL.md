@@ -37,7 +37,7 @@ Hvorfor: bestyrelsen og banken træffer beslutninger på tallene, og direktøren
 
 4. **Disposition.** Sammenfat i 5-8 linjer: spor, periode, hvilke nøgletal der indgår (og fra hvilke kilder), beslutningspunkter, kendte `[MANGLER]`-huller. **HARD GATE: producér INTET før dispositionen er godkendt.** Mangler du oplysninger til at lave dispositionen: stop og spørg frem for at udfylde hullerne med antagelser.
 
-5. **Producér.** Følg skabelonen fra det valgte reference-dokument slavisk - fast struktur gør pakken sammenlignelig fra møde til møde, og det er halvdelen af dens værdi for bestyrelsen. Skriv nøgletals- og afvigelsesafsnittet efter `references/noegletal-og-afvigelser.md`.
+5. **Producér.** Følg skabelonen fra det valgte reference-dokument slavisk - fast struktur gør pakken sammenlignelig fra møde til møde, og det er halvdelen af dens værdi for bestyrelsen. Kør ghost-testen FØR du skriver afsnittene færdige, og åbn direktionens højdepunkter med SCQA-formen (begge beskrevet nedenfor). Skriv nøgletals- og afvigelsesafsnittet efter `references/noegletal-og-afvigelser.md`.
 
 6. **Selskabsretligt tjek** (spor a, c og d). Læs `references/selskabsret-tjekliste.md` og kør de fire kontrolspørgsmål. Flager tjekket presset likviditet, kapitaltab eller going concern-tvivl, SKAL det stå i pakken under risici - en pakke der tier om det, udsætter bestyrelsen for ansvar den ikke ved den har.
 
@@ -60,6 +60,26 @@ De fem faste afsnit, i denne rækkefølge (fuld skabelon i `references/bestyrels
 5. **Beslutningspunkter og orienteringspunkter** - SKARPT adskilt, beslutningspunkter først.
 
 Udsendelsesnorm: 5-7 dage før mødet. Nævn det altid ved aflevering.
+
+### SCQA-åbningen (fast form på direktionens højdepunkter)
+
+Højdepunkterne åbner altid med fire led i fast rækkefølge - så bestyrelsen på 30 sekunder ved hvad mødet reelt handler om:
+
+1. **Situation** - det bestyrelsen allerede ved (1-2 linjer, ingen historiefortælling).
+2. **Komplikation** - hvad der har ændret sig siden sidst, og hvorfor det betyder noget nu.
+3. **Spørgsmål** - det ene spørgsmål mødet skal svare på.
+4. **Svar** - direktionens svar eller indstilling i én sætning.
+
+Regel: **fylder resuméet mere end 8 linjer, er tanken ikke skarp nok.** Kog ned til beslutningen og det der bærer den - resten hører hjemme i afsnit 2-6, ikke i åbningen.
+
+### Ghost-testen (før du bygger siderne)
+
+Skriv ALLE sidetitler som handlingssætninger FØRST - hele sætninger der siger konklusionen, ikke emneetiketter ("Dækningsgraden faldt 3 point pga. to tabte servicekontrakter", ikke "Økonomi"). Læs dem så i rækkefølge, uden indhold under:
+
+- Fortæller titlerne historien alene, er strukturen klar - byg siderne.
+- Gør de ikke, er strukturen ikke klar endnu - flyt og skær i titlerne, før du skriver ét afsnit mere.
+
+De faste hovedoverskrifter (afsnit 1-6) ligger fast af hensyn til sammenlignelighed - ghost-testen gælder alt under dem: underoverskrifter, punktoverskrifter og sidetitlerne i en slide-version (pdf/pptx). Testen fanger en rodet pakke mens den stadig er ti linjer, ikke ti sider.
 
 ### Beslutningspunkt-format
 
@@ -111,6 +131,8 @@ Gengiv listen med kryds i dit svar, punkt for punkt:
 - [ ] Hver væsentlig afvigelse har alle tre led: hvad / hvorfor / hvad gør vi
 - [ ] Det selskabsretlige tjek er kørt, og eventuelle flag (likviditet, kapitaltab) står i pakken - ikke kun i din besked
 - [ ] Direktionens højdepunkter fylder maksimalt en halv side
+- [ ] Højdepunkterne åbner med SCQA (Situation/Komplikation/Spørgsmål/Svar) på maksimalt 8 linjer
+- [ ] Ghost-testen er kørt: alle undertitler er handlingssætninger, og de fortæller historien læst i rækkefølge
 - [ ] Ingen satser, gebyrer eller lovkrav fra hukommelsen - alt aktuelt er slået op eller markeret til opslag
 - [ ] Filnavn og struktur følger ## Output præcist
 

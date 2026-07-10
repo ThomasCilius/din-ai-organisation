@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Din AI-organisation · 67 skills til danske SMV'er</title>
-<meta name="description" content="Et kurateret sæt Agent Skills til Claude, bygget som et dansk organisationsdiagram: 67 skills fordelt på 10 afdelinger. Fra AI Academy · Claude 0-100.">
+<title>Din AI-organisation · 68 skills til danske SMV'er</title>
+<meta name="description" content="Et kurateret sæt Agent Skills til Claude, bygget som et dansk organisationsdiagram: 68 skills fordelt på 10 afdelinger. Fra AI Academy · Claude 0-100.">
 <style>
 :root{
   --bg:#f6f3ee; --surface:#fffdf9; --ink:#211d17; --muted:#6b6459;
@@ -147,7 +147,7 @@ footer a{color:var(--accent-ink)}
 <body>
 <div class="topbar"><div class="topbar__in">
   <span class="brand">Din <b>AI-organisation</b></span>
-  <input id="q" class="search" type="search" placeholder="Søg i 67 skills…" aria-label="Søg i skills">
+  <input id="q" class="search" type="search" placeholder="Søg i 68 skills…" aria-label="Søg i skills">
   <button id="theme" class="themebtn" type="button" aria-label="Skift lyst/mørkt tema">◐</button>
 </div></div>
 
@@ -156,7 +156,7 @@ footer a{color:var(--accent-ink)}
   <h1>Byg din virksomhed<br>som et AI-hold</h1>
   <p class="lead">Et kurateret sæt Agent Skills til Claude, skåret efter et klassisk dansk organisationsdiagram. Hver afdeling er et hold AI-medarbejdere · hver skill er én afgrænset, tilbagevendende opgave.</p>
   <div class="stats">
-    <span class="stat"><b>67</b><span>skills</span></span>
+    <span class="stat"><b>68</b><span>skills</span></span>
     <span class="stat"><b>10</b><span>afdelinger</span></span>
     <span class="stat"><b>DK</b><span>jobvalideret</span></span>
   </div>
@@ -178,7 +178,7 @@ footer a{color:var(--accent-ink)}
     <button class="node node--direktion" data-target="dep-0" type="button">
       <span class="node__label">Direktionen</span>
       <span class="node__tag">Beslutninger &amp; kontrakter</span>
-      <span class="node__count">6 skills</span>
+      <span class="node__count">7 skills</span>
     </button><button class="node node--direktion" data-target="dep-1" type="button">
       <span class="node__label">Strategiudvikling</span>
       <span class="node__tag">Retning, kadence, årshjul</span>
@@ -230,7 +230,7 @@ footer a{color:var(--accent-ink)}
   <div class="notes">
     <div class="note"><h4>Én hjerne, mange forbrugere</h4><p>Alle skills læser <code>virksomhedsprofil.md</code>, <code>voice-profil.md</code> og <code>designprofil.md</code> først — konteksten gives én gang.</p></div>
     <div class="note"><h4>Aldrig-regler er en del af formatet</h4><p>Altid kladde · sender, sletter og bogfører aldrig selv · plan før filhandlinger · citér kilden · AI anbefaler, mennesket beslutter.</p></div>
-    <div class="note"><h4>Artefakt-kæder</h4><p>Hver skill efterlader et navngivet artefakt, som den næste læser — det er dét, der gør 67 løse skills til én organisation.</p></div>
+    <div class="note"><h4>Artefakt-kæder</h4><p>Hver skill efterlader et navngivet artefakt, som den næste læser — det er dét, der gør 68 løse skills til én organisation.</p></div>
     <div class="note"><h4>Modulær installation</h4><p>Start med kernen (<code>03 Viden &amp; Data</code> + <code>01 Direktionen</code>), og vælg de afdelinger, din rolle bruger.</p></div>
   </div>
 
@@ -402,6 +402,12 @@ Varige beslutninger logges i beslutninger.md i roden, append-only, nyeste
   omgør en logget beslutning: sig det eksplicit (&quot;det omgør beslutningen fra
   [dato] om [X]&quot;), og log omgørelsen med reference, hvis ejeren vælger den.
 - Loggen omskrives aldrig; en fortrudt beslutning superseder blot den gamle.
+- En beslutning er først FÆRDIG, når den har: en FØRSTE HANDLING inden 5
+  hverdage (så lille at den ikke kan skrumpes - fx én samtale, ét opkald), en
+  navngiven ejer (én person, aldrig &quot;vi&quot;) og en opfølgningsdato. En beslutning
+  uden første skridt er informeret passivitet - flag den.
+- Står en beslutning som &quot;afventer&quot; i over 4 uger: flag den ved SESSIONSSTART
+  (&quot;beslutningen om [X] fra [dato] venter stadig - beslut, skrot eller sæt dato&quot;).
 
 FLYT (remap, når hjernen skal et andet sted hen)
 Når jeg siger &quot;flyt hjernen til [ny sti]&quot; eller &quot;remap&quot;: flyt HELE mappen og
@@ -517,7 +523,7 @@ ARBEJDSREGLER (alt arbejde i denne mappe)
     <div class="install__cols" style="grid-template-columns:1.05fr 1fr">
       <div class="icard">
         <h3>Én kommando, hele organisationen</h3>
-        <p class="sub">En modulær installer lægger de 67 skills på plads, husker præcis hvad den selv har lagt, og rører aldrig dine egne skills. Genkør for at opgradere, afinstallér rent når som helst. Til Claude Code.</p>
+        <p class="sub">En modulær installer lægger de 68 skills på plads, husker præcis hvad den selv har lagt, og rører aldrig dine egne skills. Genkør for at opgradere, afinstallér rent når som helst. Til Claude Code.</p>
         <div class="step"><b>1</b><div><b>Profiler.</b> <span class="inline">operatoer</span> (standard, forretnings-skills aktive) · <span class="inline">udvikler</span> (lægger dev-laget i staging) · <span class="inline">hele-organisationen</span>. Ét valg, ikke to produkter.</div></div>
         <div class="step"><b>2</b><div><b>Idempotent opgradering.</b> Genkør <span class="inline">./install.sh</span> efter en ny kursusversion — den opdaterer skills, fjerner udgåede og rører intet af dit eget.</div></div>
         <div class="step"><b>3</b><div><b>Install-state.</b> Alt den lægger, noteres som <span class="inline">managed</span> i <span class="inline">~/.claude/din-ai-org/install-state.json</span>. Din memory, dine regler og dine egne skills står urørt.</div></div>
@@ -578,7 +584,7 @@ cd din-ai-organisation
         <span class="dep__num">01</span>
         <div>
           <h2 class="dep__title">Direktionen</h2>
-          <p class="dep__tag">Beslutninger &amp; kontrakter · 6 skills</p>
+          <p class="dep__tag">Beslutninger &amp; kontrakter · 7 skills</p>
         </div>
         <a class="dep__zip" href="releases/01-direktionen.zip" download>⬇ Zip</a>
       </header>
@@ -602,6 +608,10 @@ cd din-ai-organisation
       <h3 class="card__name">kontrakt-tjek</h3>
       <p class="card__purpose">Gennemgår kontrakter og aftaler før underskrift og flager risici efter alvorlighed - hvert fund med ordret klausulcitat - og siger klart hvornår en rigtig advokat skal ind over.</p>
       <div class="card__triggers"><span class="chip">tjek denne kontrakt</span><span class="chip">gennemgå aftalen før jeg skriver under</span><span class="chip">må jeg skrive under på det her</span><span class="chip">er der noget farligt i den her leverandøraftale</span><span class="chip">hvad betyder den her klausul</span><span class="chip">review this contract</span></div>
+    </article><article class="card" data-text="problemknuser fører et rodet forretningsproblem gennem en fast tragt - problemformulering, spørgsmålstræ, hypoteser med dødstest, målrettede analyser, syntese - og slutter i en eksekveret beslutning med første handling, navngiven ejer og opfølgningsdato. hvorfor taber vi penge på x kunderne smutter skal vi omorganisere vi har et problem med... find ud af hvad der er galt hvorfor falder omsætningen/ordrerne/belægningen">
+      <h3 class="card__name">problemknuser</h3>
+      <p class="card__purpose">Fører et rodet forretningsproblem gennem en fast tragt - problemformulering, spørgsmålstræ, hypoteser med dødstest, målrettede analyser, syntese - og slutter i en EKSEKVERET beslutning med første handling, navngiven ejer og opfølgningsdato.</p>
+      <div class="card__triggers"><span class="chip">hvorfor taber vi penge på X</span><span class="chip">kunderne smutter</span><span class="chip">skal vi omorganisere</span><span class="chip">vi har et problem med...</span><span class="chip">find ud af hvad der er galt</span><span class="chip">hvorfor falder omsætningen/ordrerne/belægningen</span></div>
     </article><article class="card" data-text="second-opinion giver en kritisk second opinion på vigtige udkast før afsendelse - tilbud, vigtige mails, planer, beslutningsoplæg, byggebriefs og præsentationer. tager stilling (send / send ikke / send efter rettelser) og leverer prioriterede fund i tre niveauer med citat. giv mig en second opinion læs mit tilbud igennem tjek den her mail før jeg sender den er det her godt nok? kig min plan igennem gennemgå mit udkast">
       <h3 class="card__name">second-opinion</h3>
       <p class="card__purpose">Giver en kritisk second opinion på vigtige udkast før afsendelse - tilbud, vigtige mails, planer, beslutningsoplæg, byggebriefs og præsentationer. Tager stilling (send / send ikke / send efter rettelser) og leverer prioriterede fund i tre niveauer med citat.</p>
@@ -947,7 +957,7 @@ cd din-ai-organisation
 </main>
 
 <footer><div class="wrap">
-  <strong>Din AI-organisation</strong> · 67 Agent Skills · bygget til kurset <b>Claude 0-100</b>, AI Academy hos thomascilius.dk.<br>
+  <strong>Din AI-organisation</strong> · 68 Agent Skills · bygget til kurset <b>Claude 0-100</b>, AI Academy hos thomascilius.dk.<br>
   Kode og skills: <a href="https://github.com/ThomasCilius/din-ai-organisation" target="_blank" rel="noopener">github.com/ThomasCilius/din-ai-organisation</a> · <a href="https://github.com/ThomasCilius/din-ai-organisation/blob/main/README.md" target="_blank" rel="noopener">README &amp; installationsguide</a>
 </div></footer>
 

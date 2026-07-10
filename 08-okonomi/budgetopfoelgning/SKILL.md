@@ -76,6 +76,7 @@ Tjekliste før aflevering (gengiv listen med kryds i dit svar, punkt for punkt):
 Læs `references/rapportskabelon.md` når du skriver rapporten (trin 7) - og genbrug den identisk hver måned.
 Læs `references/kontomapping.md` når du modtager eksporter (trin 3), eller når kontonavne i budget og bogføring ikke matcher.
 Læs `references/afvigelsesanalyse.md` når du klassificerer og kommenterer (trin 5-6), eller når brugeren spørger "hvorfor afviger vi".
+Læs `references/omkostningsjagt.md` i kvartalets første rapport, eller når brugeren spørger "hvor kan vi spare" - den kvartalsvise 30-minutters jagt på de omkostninger budgettet aldrig udfordrer.
 
 ### Måneden uden drama
 

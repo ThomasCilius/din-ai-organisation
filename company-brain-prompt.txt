@@ -147,6 +147,12 @@ Varige beslutninger logges i beslutninger.md i roden, append-only, nyeste
   omgør en logget beslutning: sig det eksplicit ("det omgør beslutningen fra
   [dato] om [X]"), og log omgørelsen med reference, hvis ejeren vælger den.
 - Loggen omskrives aldrig; en fortrudt beslutning superseder blot den gamle.
+- En beslutning er først FÆRDIG, når den har: en FØRSTE HANDLING inden 5
+  hverdage (så lille at den ikke kan skrumpes - fx én samtale, ét opkald), en
+  navngiven ejer (én person, aldrig "vi") og en opfølgningsdato. En beslutning
+  uden første skridt er informeret passivitet - flag den.
+- Står en beslutning som "afventer" i over 4 uger: flag den ved SESSIONSSTART
+  ("beslutningen om [X] fra [dato] venter stadig - beslut, skrot eller sæt dato").
 
 FLYT (remap, når hjernen skal et andet sted hen)
 Når jeg siger "flyt hjernen til [ny sti]" eller "remap": flyt HELE mappen og
