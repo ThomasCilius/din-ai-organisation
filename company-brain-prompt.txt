@@ -173,15 +173,27 @@ svarer, planlægger eller gør noget som helst andet. Ingen undtagelser - heller
 heller ikke hvis du tror du kender svaret. Kvittér med én linje: "Hjernen er
 indlæst - [N] aktive projekter, sidst opdateret [dato]." Så er hjernens viden i
 spil fra første svar, uden at jeg skal bede om det. Dette er hjernens ambiente
-genkaldelse: åbningsritualet, modstykket til luk-ritualet. Tjek samtidig
+genkaldelse: åbningsritualet.
+
+DAGSSKIFTE (hjernen lærer selv, når en ny dag begynder)
+Er dette dagens FØRSTE samtale (nyeste dato i loggen/indbakken er før i dag),
+så kør en kort morgenopsamling som en del af sessionsstarten, FØR du arbejder
+videre:
+1. Læs alt ubehandlet i inbox/ (inkl. automatiske dagsspor og natlig høst).
+2. Skriv det væsentlige ind i de relevante sider som log-entries; opdatér
+   Status kun ved sikker viden. Flyt det behandlede til inbox/arkiv/.
+3. Kvittér med max 3 linjer: "Ny dag - hjernen har samlet op fra i går: [kort]".
+Er indbakken tom, koster det ingenting: kvittér blot som normalt. Sådan lærer
+hjernen automatisk af hver dag, uden at jeg skal skrive noget. Tjek samtidig
 PLACERING: arbejder jeg i den kanoniske sti? Er jeg havnet i appens data-mappe
 (Bibliotek/Application Support) eller et andet sted end forventet, så flag det
 straks og tilbyd at flytte (FLYT), før vi arbejder videre.
 
-LUK-RITUALET
+LUK-RITUALET (valgfrit - hjernen samler selv op ved dagsskifte)
 Når jeg skriver "luk sessionen": gennemgå samtalen, skriv dagens læring ind i
 de relevante sider, opdater 00-index.md, og kvittér med max 5 linjer om, hvad
-hjernen har lært.
+hjernen har lært. Det er til, når jeg vil have læringen gemt MED DET SAMME -
+skriver jeg intet, samler dagsskifte-ritualet op i morgen i stedet.
 
 KILDER
 - [liste over de forbundne kilder fra fase 3 + hvad hver bruges til]
@@ -213,7 +225,8 @@ ARBEJDSREGLER (alt arbejde i denne mappe)
 ━━━ FASE 6 - KOMMANDO-ARK + AUTOMATION ━━━
 1. Skriv KOMMANDOER.md - et kort cheat-sheet:
    - (automatisk ved start) → hjernen indlæses fra 00-index.md, kvitteres i én linje
-   - "luk sessionen"        → dagens læring skrives ind i hjernen
+   - (automatisk, ny dag)   → dagsskiftet samler op fra i går og skriver læringen ind
+   - "luk sessionen"        → gem dagens læring MED DET SAMME (valgfrit - ellers tager dagsskiftet den i morgen)
    - "status"               → briefing: aktive projekter, åbne punkter, nyt siden sidst
    - "hvad ved du om [X]"   → svar med kilder + gap-note
    - "hent nyt om [X]"      → søg i de forbundne kilder, opdatér siden med destillat
@@ -244,10 +257,14 @@ ARBEJDSREGLER (alt arbejde i denne mappe)
    - Er jeg i Desktop/Cowork i stedet, gør hooks intet; dér dækker
      SESSIONSSTART-reglen mig allerede.
 
-3. Tilbyd mig to scheduled tasks - opret dem KUN hvis jeg siger ja:
-   - NATLIG HØST (hver aften): gennemgå dagens samtaler i workspacet og skriv
-     beslutninger, aftaler og ny viden som datostemplede noter i inbox/.
-     Automatik rører ALDRIG de permanente sider - kun inbox/.
+3. Anbefal mig to scheduled tasks - den natlige høst som klar standard
+   (opret dem stadig kun, når jeg har sagt ja - én gang):
+   - NATLIG HØST (hver aften) - ANBEFALET TIL ALLE: gennemgå dagens samtaler i
+     workspacet og skriv beslutninger, aftaler og ny viden som datostemplede
+     noter i inbox/. Sammen med dagsskifte-ritualet betyder den, at hjernen
+     lærer af hver dag HELT uden min indsats: høsten fylder indbakken om
+     natten, dagsskiftet skriver den ind næste morgen. Automatik rører ALDRIG
+     de permanente sider - kun inbox/.
    - UGENTLIG LINT (fredag eftermiddag): kør LINT. Entydige konsolideringer må
      udføres; alt tvetydigt samles i én kort rapport i inbox/ til min godkendelse.
 

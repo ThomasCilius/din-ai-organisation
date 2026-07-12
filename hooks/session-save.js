@@ -35,5 +35,25 @@ try {
   const when = new Date().toISOString().slice(0, 16).replace('T', ' ');
   fs.writeFileSync(path.join(sessionsDir, slugify(cwd) + '.json'),
     JSON.stringify({ when, cwd, topics }, null, 2));
+
+  // Dagsspor til hjernens indbakke: automatisk opsamling uden brugerhandling.
+  // Roerer KUN inbox/ (kvalitetsport-princippet: automatik skriver aldrig i
+  // permanente sider). Dagsskifte-ritualet i CLAUDE.md hoester noterne naeste dag.
+  try {
+    const cfgPath = path.join(__dirname, '..', 'config.json');
+    const cfg = fs.existsSync(cfgPath) ? JSON.parse(fs.readFileSync(cfgPath, 'utf8')) : {};
+    const bp = cfg.brainPath;
+    if (bp && fs.existsSync(path.join(bp, '00-index.md')) && topics.length) {
+      const inbox = path.join(bp, 'inbox');
+      fs.mkdirSync(inbox, { recursive: true });
+      const day = new Date().toISOString().slice(0, 10);
+      const f = path.join(inbox, day + '-claude-code-spor.md');
+      if (!fs.existsSync(f)) fs.writeFileSync(f,
+        '# Claude Code-spor ' + day + '\n\nAutomatisk dagsspor (session-save-hooken). ' +
+        'Hoestes af dagsskifte-ritualet - flyt til inbox/arkiv/ naar behandlet.\n\n');
+      const hhmm = new Date().toTimeString().slice(0, 5);
+      fs.appendFileSync(f, '- ' + hhmm + ' [' + path.basename(cwd) + ']: ' + topics.join(' · ') + '\n');
+    }
+  } catch (_) { /* dagsspor er best-effort */ }
 } catch (e) { /* aldrig blokere Stop */ }
 process.exit(0);

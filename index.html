@@ -181,7 +181,7 @@ footer a{color:var(--accent-ink)}
     <p><strong>Men de fleste bruger den som en klogere søgeboks - og det er problemet.</strong> Uden fast viden svarer AI'en i blinde, og du forklarer virksomheden forfra i hver eneste samtale. Uden faste arbejdsgange bliver hver opgave et nyt eksperiment med nyt resultat. Og det, I lærer sammen, fordamper, når chatten lukker. En chatbot, der svarer, er ikke en medarbejder, der arbejder - forskellen er ikke modellen, det er opsætningen.</p>
     <p><strong>Denne side ER opsætningen: en komplet AI-organisation.</strong> 68 færdige AI-medarbejdere (skills) i et klassisk dansk organisationsdiagram - hver skill er én afgrænset, tilbagevendende opgave (tilbuddet, referatet, rykkeren, budgetopfølgningen, illustrationen) med sin faste arbejdsgang, sine gates (intet sendes uden din godkendelse) og sine aldrig-regler. Du skal ikke huske kommandoer: skriv "lav et tilbud til Nordkøb", og den rette medarbejder melder sig. Alt er bygget til danske SMV'er og valideret mod rigtige jobfunktioner, ikke oversat fra amerikanske skabeloner.</p>
     <p>Under skillsene ligger hukommelsen: <strong>company brain'en</strong> - en helt almindelig mappe med markdown-filer (rene tekstfiler, du selv kan åbne og læse) på din egen maskine. Ingen database, ingen leverandør-silo; bare filer du kan åbne, flytte og tage backup af. Samarbejdet mellem skills og hjerne går gennem tre hub-filer i hjernens identity/-mappe: <code>virksomhedsprofil.md</code> (hvad I sælger, jeres priser, hvem I siger nej til), <code>voice-profil.md</code> (hvordan I lyder, dokumenteret med citater fra jeres egne tekster) og <code>designprofil.md</code> (hvordan I ser ud). Alle 68 skills læser dem, før de arbejder - derfor rammer tilbuddet jeres prisliste og opslaget jeres tone, uden at du forklarer det forfra.</p>
-    <p>Og viden samles op i stedet for at fordampe. Undervejs i arbejdet skriver Claude selv nyt ind i hjernen som daterede noter med kilde, og varige beslutninger gemmes i <code>beslutninger.md</code> MED begrundelsen - de står ved magt, til du udtrykkeligt ændrer dem, så intet diskuteres forfra. Når du starter en ny samtale, læser Claude hjernens indeks, FØR den svarer: i Claude Desktop/Cowork via en fast åbningsregel, prompten har skrevet ind (virker, så snart du arbejder i hjernemappen), og i Claude Code automatisk i alle sessioner via en indbygget hook. Når du er færdig, skriver du bare <em>"luk sessionen"</em> - så gennemgår Claude samtalen, gemmer dagens læring de rigtige steder og kvitterer med, hvad hjernen har lært. Det er luk-ritualet: én sætning fra dig, resten er automatik. (Vil du helt slippe, kan hjernen også sættes op med en natlig opsamling, der hver aften lægger dagens beslutninger i hjernens indbakke.) Organisationen bliver klogere for hver samtale.</p>
+    <p>Og viden samles op i stedet for at fordampe. Undervejs i arbejdet skriver Claude selv nyt ind i hjernen som daterede noter med kilde, og varige beslutninger gemmes i <code>beslutninger.md</code> MED begrundelsen - de står ved magt, til du udtrykkeligt ændrer dem, så intet diskuteres forfra. Når du starter en ny samtale, læser Claude hjernens indeks, FØR den svarer: i Claude Desktop/Cowork via en fast åbningsregel, prompten har skrevet ind (virker, så snart du arbejder i hjernemappen), og i Claude Code automatisk i alle sessioner via en indbygget hook. Og læringen kræver ingenting af dig: ved <strong>dagsskiftet</strong> - dagens første samtale - samler Claude selv op fra i går (automatiske dagsspor og den natlige høst lander i hjernens indbakke, og morgenopsamlingen skriver det væsentlige ind) og kvitterer kort med, hvad hjernen har lært. Vil du gemme med det samme, kan du stadig skrive <em>"luk sessionen"</em> - men skriver du intet, tager dagsskiftet den i morgen. Organisationen bliver klogere for hver dag.</p>
     <p><strong>Næste skridt er installationen - og rækkefølgen er hele pointen:</strong> byg hjernen (Trin 1-2), installér skills (Trin 3), udfyld hub-filerne (Trin 4), og tjek det hele med ét sundhedstjek (Trin 5). Det hele står klar lige nedenfor.</p>
   </section>
 
@@ -442,15 +442,27 @@ svarer, planlægger eller gør noget som helst andet. Ingen undtagelser - heller
 heller ikke hvis du tror du kender svaret. Kvittér med én linje: &quot;Hjernen er
 indlæst - [N] aktive projekter, sidst opdateret [dato].&quot; Så er hjernens viden i
 spil fra første svar, uden at jeg skal bede om det. Dette er hjernens ambiente
-genkaldelse: åbningsritualet, modstykket til luk-ritualet. Tjek samtidig
+genkaldelse: åbningsritualet.
+
+DAGSSKIFTE (hjernen lærer selv, når en ny dag begynder)
+Er dette dagens FØRSTE samtale (nyeste dato i loggen/indbakken er før i dag),
+så kør en kort morgenopsamling som en del af sessionsstarten, FØR du arbejder
+videre:
+1. Læs alt ubehandlet i inbox/ (inkl. automatiske dagsspor og natlig høst).
+2. Skriv det væsentlige ind i de relevante sider som log-entries; opdatér
+   Status kun ved sikker viden. Flyt det behandlede til inbox/arkiv/.
+3. Kvittér med max 3 linjer: &quot;Ny dag - hjernen har samlet op fra i går: [kort]&quot;.
+Er indbakken tom, koster det ingenting: kvittér blot som normalt. Sådan lærer
+hjernen automatisk af hver dag, uden at jeg skal skrive noget. Tjek samtidig
 PLACERING: arbejder jeg i den kanoniske sti? Er jeg havnet i appens data-mappe
 (Bibliotek/Application Support) eller et andet sted end forventet, så flag det
 straks og tilbyd at flytte (FLYT), før vi arbejder videre.
 
-LUK-RITUALET
+LUK-RITUALET (valgfrit - hjernen samler selv op ved dagsskifte)
 Når jeg skriver &quot;luk sessionen&quot;: gennemgå samtalen, skriv dagens læring ind i
 de relevante sider, opdater 00-index.md, og kvittér med max 5 linjer om, hvad
-hjernen har lært.
+hjernen har lært. Det er til, når jeg vil have læringen gemt MED DET SAMME -
+skriver jeg intet, samler dagsskifte-ritualet op i morgen i stedet.
 
 KILDER
 - [liste over de forbundne kilder fra fase 3 + hvad hver bruges til]
@@ -482,7 +494,8 @@ ARBEJDSREGLER (alt arbejde i denne mappe)
 ━━━ FASE 6 - KOMMANDO-ARK + AUTOMATION ━━━
 1. Skriv KOMMANDOER.md - et kort cheat-sheet:
    - (automatisk ved start) → hjernen indlæses fra 00-index.md, kvitteres i én linje
-   - &quot;luk sessionen&quot;        → dagens læring skrives ind i hjernen
+   - (automatisk, ny dag)   → dagsskiftet samler op fra i går og skriver læringen ind
+   - &quot;luk sessionen&quot;        → gem dagens læring MED DET SAMME (valgfrit - ellers tager dagsskiftet den i morgen)
    - &quot;status&quot;               → briefing: aktive projekter, åbne punkter, nyt siden sidst
    - &quot;hvad ved du om [X]&quot;   → svar med kilder + gap-note
    - &quot;hent nyt om [X]&quot;      → søg i de forbundne kilder, opdatér siden med destillat
@@ -513,10 +526,14 @@ ARBEJDSREGLER (alt arbejde i denne mappe)
    - Er jeg i Desktop/Cowork i stedet, gør hooks intet; dér dækker
      SESSIONSSTART-reglen mig allerede.
 
-3. Tilbyd mig to scheduled tasks - opret dem KUN hvis jeg siger ja:
-   - NATLIG HØST (hver aften): gennemgå dagens samtaler i workspacet og skriv
-     beslutninger, aftaler og ny viden som datostemplede noter i inbox/.
-     Automatik rører ALDRIG de permanente sider - kun inbox/.
+3. Anbefal mig to scheduled tasks - den natlige høst som klar standard
+   (opret dem stadig kun, når jeg har sagt ja - én gang):
+   - NATLIG HØST (hver aften) - ANBEFALET TIL ALLE: gennemgå dagens samtaler i
+     workspacet og skriv beslutninger, aftaler og ny viden som datostemplede
+     noter i inbox/. Sammen med dagsskifte-ritualet betyder den, at hjernen
+     lærer af hver dag HELT uden min indsats: høsten fylder indbakken om
+     natten, dagsskiftet skriver den ind næste morgen. Automatik rører ALDRIG
+     de permanente sider - kun inbox/.
    - UGENTLIG LINT (fredag eftermiddag): kør LINT. Entydige konsolideringer må
      udføres; alt tvetydigt samles i én kort rapport i inbox/ til min godkendelse.
 
