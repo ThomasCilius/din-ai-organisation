@@ -114,7 +114,47 @@ direktion = [ (i,d) for i,d in enumerate(data) if d['tier']=='direktion' ]
 stab      = [ (i,d) for i,d in enumerate(data) if d['tier']=='stab' ]
 afd       = [ (i,d) for i,d in enumerate(data) if d['tier']=='afd' ]
 
+# Klassisk organogram som inline-SVG til mobil: auto-genereret fra samme data
+# (aldrig foraeldede tal), tema-bevidst via CSS-variabler, skarp paa alle skaerme.
+def _svg_box(x, y, w, h, num, label, count, cls):
+    return (f'<g class="ob {cls}"><rect x="{x}" y="{y}" width="{w}" height="{h}" rx="7"/>'
+            f'<text x="{x+w/2}" y="{y+15}" class="ob__num">{num}</text>'
+            f'<text x="{x+w/2}" y="{y+29}" class="ob__lbl">{esc(label)}</text>'
+            f'<text x="{x+w/2}" y="{y+42}" class="ob__cnt">{count} skills</text></g>')
+
+_short = {"01-direktionen": "Direktionen", "02-strategiudvikling": "Strategi",
+          "03-viden-og-data": "Viden & Data", "04-programledelse": "Programled.",
+          "05-sekretariatet": "Sekretariat", "06-salg-og-kundeservice": "Salg",
+          "07-marketing": "Marketing", "08-okonomi": "Økonomi",
+          "09-hr": "HR", "10-it-og-udvikling": "IT & Udv."}
+
+def _mini_org_svg():
+    W, BH = 360, 48
+    parts = ['<svg class="orgsvg__img" viewBox="0 0 360 302" role="img" '
+             'aria-label="Organisationsdiagram: Direktionen øverst, stabene Viden & Data og Programledelse i midten, seks afdelinger nederst">']
+    # streger foerst (bag kasserne)
+    parts.append('<path class="ol" d="M180 52 V64 M96 116 H264 M96 112 V120 M264 112 V120 '
+                 'M180 168 V180 M34 180 H326 M34 180 V188 M92 180 V188 M151 180 V188 '
+                 'M209 180 V188 M268 180 V188 M326 180 V188" />')
+    # tier 1: direktion (2 kasser)
+    for k, (i, d) in enumerate(direktion):
+        parts.append(_svg_box(64 + k * 120, 4, 112, BH, d['folder'][:2], _short[d['folder']], len(d['skills']), 'ob--dir'))
+    # tier 2: stab (2 kasser)
+    for k, (i, d) in enumerate(stab):
+        parts.append(_svg_box(40 + k * 168, 120, 112, BH, d['folder'][:2], _short[d['folder']], len(d['skills']), 'ob--stab'))
+    # tier 3: 6 afdelinger i 2 raekker a 3 (fuld kassehoejde, saa teksten kan vaere der)
+    for k, (i, d) in enumerate(afd):
+        col, row = k % 3, k // 3
+        parts.append(_svg_box(11 + col * 117, 188 + row * 56, 108, BH,
+                              d['folder'][:2], _short[d['folder']], len(d['skills']), 'ob--afd'))
+    parts.append('</svg>')
+    return ''.join(parts)
+
 chart = f'''
+<div class="orgsvg" aria-hidden="false">
+  {_mini_org_svg()}
+  <p class="orgsvg__note">Strukturen i overblik - tryk på en afdeling nedenfor for at se dens skills.</p>
+</div>
 <div class="chart">
   <div class="chart__tier chart__tier--top">
     {''.join(dept_box(d,i) for i,d in direktion)}
@@ -299,9 +339,22 @@ pre.cmd.wrapline{{white-space:pre-wrap;word-break:break-word}}
 .noresult{{color:var(--muted);padding:30px 0;font-size:15px}}
 footer{{border-top:1px solid var(--line);margin-top:60px;padding:34px 0;color:var(--muted);font-size:13.5px}}
 footer a{{color:var(--accent-ink)}}
+.orgsvg{{display:none}}
+.orgsvg__img{{width:100%;height:auto;display:block}}
+.orgsvg .ol{{stroke:var(--afd-line);stroke-width:2;fill:none}}
+.orgsvg .ob rect{{fill:var(--surface);stroke:var(--line);stroke-width:1.5}}
+.orgsvg .ob--dir rect{{stroke:var(--accent)}}
+.orgsvg .ob--stab rect{{stroke:var(--stab)}}
+.orgsvg text{{text-anchor:middle;font-family:var(--sans,inherit)}}
+.orgsvg .ob__num{{font-size:9.5px;fill:var(--muted);font-weight:600;letter-spacing:.06em}}
+.orgsvg .ob__lbl{{font-size:11.5px;fill:var(--ink);font-weight:700}}
+.orgsvg .ob__cnt{{font-size:9.5px;fill:var(--accent-ink);font-weight:600}}
+.orgsvg .ob--stab .ob__cnt{{fill:var(--stab)}}
+.orgsvg__note{{font-size:12.5px;color:var(--muted);margin:8px 0 0;text-align:center}}
 @media (max-width:560px){{
   /* Grid i stedet for column-flex: flex-basis:200px ville ellers blive HOEJDEN
      paa hver node og give et 1.800px hoejt diagram af kaempeknapper. */
+  .orgsvg{{display:block;margin:0 0 20px}}
   .chart__tier{{display:grid;grid-template-columns:1fr 1fr;gap:10px}}
   .chart__spine{{height:18px;justify-self:center}}
   .node,.node--afd{{flex:none;max-width:none;min-width:0;padding:12px 13px}}
