@@ -132,10 +132,16 @@ def _mini_org_svg():
     W, BH = 360, 48
     parts = ['<svg class="orgsvg__img" viewBox="0 0 360 302" role="img" '
              'aria-label="Organisationsdiagram: Direktionen øverst, stabene Viden & Data og Programledelse i midten, seks afdelinger nederst">']
-    # streger foerst (bag kasserne)
-    parts.append('<path class="ol" d="M180 52 V64 M96 116 H264 M96 112 V120 M264 112 V120 '
-                 'M180 168 V180 M34 180 H326 M34 180 V188 M92 180 V188 M151 180 V188 '
-                 'M209 180 V188 M268 180 V188 M326 180 V188" />')
+    # Streger foerst (bag kasserne). Alle koordinater er kassecentre:
+    # tier1-centre x=120/240 (y4..52) -> bus y64 -> spine x180 -> fordelerlinje y96
+    # tier2-centre x=96/264 (y120..168) -> bus y176 -> tier3-centre x=65/182/299
+    # (row1 y188..236, row2 y244..292 - kolonnevis forbindelse mellem raekkerne).
+    parts.append('<path class="ol" d="'
+                 'M120 52 V64 M240 52 V64 M120 64 H240 M180 64 V96 '
+                 'M96 96 H264 M96 96 V120 M264 96 V120 '
+                 'M96 168 V176 M264 168 V176 M65 176 H299 '
+                 'M65 176 V188 M182 176 V188 M299 176 V188 '
+                 'M65 236 V244 M182 236 V244 M299 236 V244" />')
     # tier 1: direktion (2 kasser)
     for k, (i, d) in enumerate(direktion):
         parts.append(_svg_box(64 + k * 120, 4, 112, BH, d['folder'][:2], _short[d['folder']], len(d['skills']), 'ob--dir'))
