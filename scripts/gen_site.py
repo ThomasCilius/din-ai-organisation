@@ -452,6 +452,24 @@ footer a{{color:var(--accent-ink)}}
     </div>
   </section>
 
+  <section class="install" id="opdater">
+    <p class="section-label" style="margin-top:34px">Bagefter - sådan opdaterer du</p>
+    <div class="install__cols">
+      <div class="icard">
+        <h3>Claude Code: én sætning</h3>
+        <p class="sub">Pakken udvikler sig løbende - nye skills, skarpere arbejdsgange, bedre hooks. Når du vil have nyeste version, indsætter du bare denne i Claude Code:</p>
+        {copyblock("ccupdate2", UPDATE_ONELINER, "wrapline")}
+        <p class="sub" style="margin-top:10px"><b>Trygt at køre, når som helst:</b> opdateringen henter nyt, fjerner udgået og rører ALDRIG din hjerne, dine egne skills eller dine indstillinger - den ved præcis, hvad den selv har lagt. Kør den, når der annonceres nyt på kurset, eller bare en gang om måneden.</p>
+      </div>
+      <div class="icard">
+        <h3>Claude Desktop: hent og genupload</h3>
+        <div class="step"><b>a</b><div>Hent den nye zip for de afdelinger, du bruger (<span class="inline">⬇ Zip</span>-knapperne nedenfor).</div></div>
+        <div class="step"><b>b</b><div>Upload de skills, du bruger, igen under <span class="inline">Settings → Capabilities → Skills</span> - en ny upload med samme navn erstatter den gamle.</div></div>
+        <div class="step"><b>c</b><div>Din hjerne skal IKKE opdateres - den er din egen og bliver kun klogere af sig selv. Kun skills og prompten på denne side har versioner.</div></div>
+      </div>
+    </div>
+  </section>
+
   <p class="section-label" style="margin-top:34px">Alle afdelinger &amp; skills</p>
   <div id="deps">
     {''.join(sections)}
