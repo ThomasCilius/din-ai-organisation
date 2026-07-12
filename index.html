@@ -182,7 +182,7 @@ footer a{color:var(--accent-ink)}
     <p><strong>Denne side ER opsætningen: en komplet AI-organisation.</strong> 68 færdige AI-medarbejdere (skills) i et klassisk dansk organisationsdiagram - hver skill er én afgrænset, tilbagevendende opgave (tilbuddet, referatet, rykkeren, budgetopfølgningen, illustrationen) med sin faste arbejdsgang, sine gates (intet sendes uden din godkendelse) og sine aldrig-regler. Du skal ikke huske kommandoer: skriv "lav et tilbud til Nordkøb", og den rette medarbejder melder sig. Alt er bygget til danske SMV'er og valideret mod rigtige jobfunktioner, ikke oversat fra amerikanske skabeloner.</p>
     <p>Under skillsene ligger hukommelsen: <strong>company brain'en</strong> - en helt almindelig mappe med markdown-filer (rene tekstfiler, du selv kan åbne og læse) på din egen maskine. Ingen database, ingen leverandør-silo; bare filer du kan åbne, flytte og tage backup af. Samarbejdet mellem skills og hjerne går gennem tre hub-filer i hjernens identity/-mappe: <code>virksomhedsprofil.md</code> (hvad I sælger, jeres priser, hvem I siger nej til), <code>voice-profil.md</code> (hvordan I lyder, dokumenteret med citater fra jeres egne tekster) og <code>designprofil.md</code> (hvordan I ser ud). Alle 68 skills læser dem, før de arbejder - derfor rammer tilbuddet jeres prisliste og opslaget jeres tone, uden at du forklarer det forfra.</p>
     <p>Og viden samles op i stedet for at fordampe. Undervejs i arbejdet skriver Claude selv nyt ind i hjernen som daterede noter med kilde, og varige beslutninger gemmes i <code>beslutninger.md</code> MED begrundelsen - de står ved magt, til du udtrykkeligt ændrer dem, så intet diskuteres forfra. Når du starter en ny samtale, læser Claude hjernens indeks, FØR den svarer: i Claude Desktop/Cowork via en fast åbningsregel, prompten har skrevet ind (virker, så snart du arbejder i hjernemappen), og i Claude Code automatisk i alle sessioner via en indbygget hook. Og læringen kræver ingenting af dig: ved <strong>dagsskiftet</strong> - dagens første samtale - samler Claude selv op fra i går (automatiske dagsspor og den natlige høst lander i hjernens indbakke, og morgenopsamlingen skriver det væsentlige ind) og kvitterer kort med, hvad hjernen har lært. Vil du gemme med det samme, kan du stadig skrive <em>"luk sessionen"</em> - men skriver du intet, tager dagsskiftet den i morgen. Organisationen bliver klogere for hver dag.</p>
-    <p><strong>Næste skridt er installationen - og rækkefølgen er hele pointen:</strong> byg hjernen (Trin 1-2), installér skills (Trin 3), udfyld hub-filerne (Trin 4), og tjek det hele med ét sundhedstjek (Trin 5). Det hele står klar lige nedenfor.</p>
+    <p><strong>Næste skridt er installationen - og rækkefølgen er hele pointen. Fem trin, ét ad gangen:</strong> 1) vælg hjernens mappe · 2) byg hjernen · 3) installér skills · 4) udfyld hub-filerne · 5) tjek det hele. Hvert trin står forklaret nedenfor, i præcis den rækkefølge.</p>
   </section>
 
   <p class="section-label">Organisationsdiagrammet - klik en afdeling</p>
@@ -248,16 +248,23 @@ footer a{color:var(--accent-ink)}
     <div class="note"><h4>Modulær installation</h4><p>Start med kernen (<code>03 Viden &amp; Data</code> + <code>01 Direktionen</code>), og vælg de afdelinger, din rolle bruger.</p></div>
   </div>
 
+  <section class="install" id="trin1">
+    <p class="section-label" style="margin-top:34px">Trin 1 - vælg hjernens mappe</p>
+    <div class="icard">
+      <p class="sub" style="margin:0">Opret en helt almindelig, synlig mappe på din computer, hvor hjernen skal bo - fx <span class="inline">Dokumenter/company-brain</span>. Det tager 10 sekunder, og det er ALT, hvad trin 1 er. Én regel: vælg selv mappen, og lad aldrig appen placere den for dig - ellers ender hjernen gemt dybt i appens systemmapper, hvor du ikke kan finde, flytte eller tage backup af den.</p>
+    </div>
+  </section>
+
   <section class="install" id="brain">
-    <p class="section-label" style="margin-top:34px">Trin 1-2 - vælg mappen, byg din company brain</p>
+    <p class="section-label" style="margin-top:34px">Trin 2 - byg din company brain</p>
     <div class="install__cols" style="grid-template-columns:1.05fr 1fr">
       <div class="icard">
         <h3>Fundamentet: byg hjernen først</h3>
         <p class="sub">En AI-organisation uden en hjerne svarer i blinde. Byg hjernen → installér skills → skillene arbejder oven på den.</p>
-        <div class="step"><b>1</b><div>Åbn en ny <span class="inline">Cowork</span>-samtale i Claude Desktop med adgang til en <b>tom mappe</b> (fx <span class="inline">company-brain/</span>).</div></div>
-        <div class="step"><b>2</b><div>Kopiér hele prompten til højre ind. Claude interviewer dig og bygger hjernen fase for fase (0-6).</div></div>
-        <div class="step"><b>3</b><div>Medbring <b>3-5 dokumenter</b> til seedingen - en tom hjerne giver tomme svar.</div></div>
-        <div class="step"><b>4</b><div>Pakkens hub-filer (<span class="inline">virksomhedsprofil.md</span>, <span class="inline">voice-profil.md</span>, <span class="inline">designprofil.md</span>) bor i hjernens <span class="inline">identity/</span> - alle skills læser dem derfra.</div></div>
+        <div class="step"><b>a</b><div>Åbn en ny <span class="inline">Cowork</span>-samtale i Claude Desktop, og giv den adgang til mappen fra trin 1 (via mappevælgeren).</div></div>
+        <div class="step"><b>b</b><div>Kopiér hele prompten til højre ind. Claude interviewer dig og bygger hjernen fase for fase - du svarer bare på spørgsmålene.</div></div>
+        <div class="step"><b>c</b><div>Medbring <b>3-5 dokumenter</b> (gamle tilbud, prisliste, om os-tekst) - en tom hjerne giver tomme svar.</div></div>
+        <div class="step"><b>d</b><div>Til sidst viser Claude dig hjernen og svarer på et prøvespørgsmål fra den. Så er trin 2 færdigt.</div></div>
         <p class="sub" style="margin-top:12px"><b>Har du allerede en hjerne?</b> Findes <span class="inline">00-index.md</span> i mappen, er Trin 0 gjort - spring bygningen over og installér skills oven på den.</p>
         <p style="margin:16px 0 0"><a class="btn" href="company-brain-bootstrap.md">Læs guiden &amp; facilitator-noter</a></p>
       </div>
@@ -574,14 +581,13 @@ cd din-ai-organisation
 ./install.sh update         # hent nyeste + geninstaller (afstemmer alt)
 ./install.sh status         # sundhedstjek: hooks, Node, hjerne, hub-filer
 ./install.sh uninstall      # fjern kun det, installeren lagde</pre><button class="copy-icon" data-copy="installerblock" data-tip="Kopiér" aria-label="Kopiér" type="button"><svg class="i-copy" viewBox="0 0 24 24" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg><svg class="i-check" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></button></div>
-        <p class="sub" style="margin-top:10px"><b>Trin 4-5, når skills er installeret:</b> kør skillene <span class="inline">virksomhedsprofil</span>, <span class="inline">toneprofil</span> og <span class="inline">designretning</span> (udfylder hub-filerne) - og tjek det hele med <span class="inline">./install.sh status</span>.</p>
-        <p class="sub" style="margin-top:10px">Bruger du <b>Claude Desktop</b>? Installeren er til Claude Code - se skill-for-skill-upload nedenfor.</p>
+        <p class="sub" style="margin-top:10px">Bruger du <b>Claude Desktop</b>? Installeren er til Claude Code - brug zip-upload i stedet (alternativet lige nedenfor).</p>
       </div>
     </div>
   </section>
 
   <section class="install" id="install">
-    <p class="section-label" style="margin-top:34px">Trin 3 for Claude Desktop - installér skills manuelt: <a href="https://github.com/ThomasCilius/din-ai-organisation" target="_blank" rel="noopener">github.com/ThomasCilius/din-ai-organisation</a><button class="copy-icon inline-copy" data-copy-text="https://github.com/ThomasCilius/din-ai-organisation" data-tip="Kopiér" aria-label="Kopiér repo-URL" type="button"><svg class="i-copy" viewBox="0 0 24 24" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg><svg class="i-check" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></button></p>
+    <p class="section-label" style="margin-top:34px">Trin 3, alternativ (Claude Desktop) - installér skills manuelt: <a href="https://github.com/ThomasCilius/din-ai-organisation" target="_blank" rel="noopener">github.com/ThomasCilius/din-ai-organisation</a><button class="copy-icon inline-copy" data-copy-text="https://github.com/ThomasCilius/din-ai-organisation" data-tip="Kopiér" aria-label="Kopiér repo-URL" type="button"><svg class="i-copy" viewBox="0 0 24 24" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg><svg class="i-check" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></button></p>
     <div class="install__cols">
       <div class="icard">
         <h3>Claude Code</h3>
@@ -606,6 +612,26 @@ cd din-ai-organisation
       </div>
     </div>
     <p class="sub" style="margin-top:14px">Vil du hente en <b>hel afdeling</b>? Brug <span class="inline">⬇ Zip</span>-knappen ved hver afdeling nedenfor - pak ud i <span class="inline">~/.claude/skills/</span> (Claude Code), eller træk de enkelte skill-mapper ud til Desktop-upload.</p>
+  </section>
+
+  <section class="install" id="trin4">
+    <p class="section-label" style="margin-top:34px">Trin 4 - udfyld hub-filerne (så alle skills kender jer)</p>
+    <div class="icard">
+      <p class="sub" style="margin:0 0 10px">Kør de tre skills, der skriver hub-filerne - bare sig sætningerne til Claude, én ad gangen:</p>
+      <div class="step"><b>a</b><div>"Opret vores virksomhedsprofil" → skillen <span class="inline">virksomhedsprofil</span> henter jeres stamdata og interviewer dig om resten.</div></div>
+      <div class="step"><b>b</b><div>"Lav vores toneprofil" → skillen <span class="inline">toneprofil</span> analyserer jeres egne tekster og fastholder, hvordan I lyder.</div></div>
+      <div class="step"><b>c</b><div>"Fastlæg vores designretning" → skillen <span class="inline">designretning</span> vælger stil, farver og typografi sammen med dig.</div></div>
+      <p class="sub" style="margin-top:10px">Fra nu af rammer tilbuddet jeres priser, opslaget jeres tone og designet jeres retning - uden at du forklarer noget forfra.</p>
+    </div>
+  </section>
+
+  <section class="install" id="trin5">
+    <p class="section-label" style="margin-top:34px">Trin 5 - tjek at det hele hænger sammen</p>
+    <div class="icard">
+      <p class="sub" style="margin:0 0 10px"><b>Claude Code:</b> kør sundhedstjekket - det viser med [OK] og [MANGLER], om hooks, hjerne og hub-filer står rigtigt, og hvad du gør ved hver linje, der mangler:</p>
+      <div class="codewrap"><pre class="cmd " id="statusblock">./install.sh status</pre><button class="copy-icon" data-copy="statusblock" data-tip="Kopiér" aria-label="Kopiér" type="button"><svg class="i-copy" viewBox="0 0 24 24" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg><svg class="i-check" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></button></div>
+      <p class="sub" style="margin-top:10px"><b>Kun Claude Desktop?</b> Spørg i stedet Claude: "hvor ligger hjernen?" - den skal svare med mappen fra trin 1 og bekræfte, at hub-filerne findes. Gør den det, er du i mål: organisationen arbejder, og hjernen lærer selv af hver dag.</p>
+    </div>
   </section>
 
   <p class="section-label" style="margin-top:34px">Alle afdelinger &amp; skills</p>
