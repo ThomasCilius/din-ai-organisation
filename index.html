@@ -103,6 +103,7 @@ pre.cmd.wrapline{white-space:pre-wrap;word-break:break-word}
 .brainbar{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
 .codewrap{position:relative}
 .codewrap pre.cmd{padding-right:46px}
+.copy-icon::after{content:"";position:absolute;inset:-8px} /* 46px hit-area, visuel stoerrelse uaendret */
 .copy-icon{position:absolute;top:8px;right:8px;width:30px;height:30px;display:inline-flex;align-items:center;
   justify-content:center;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--muted);
   cursor:pointer;transition:color .12s ease,border-color .12s ease}
@@ -158,6 +159,12 @@ footer a{color:var(--accent-ink)}
   /* Grid i stedet for column-flex: flex-basis:200px ville ellers blive HOEJDEN
      paa hver node og give et 1.800px hoejt diagram af kaempeknapper. */
   .orgsvg{display:block;margin:0 0 20px}
+  /* Inline grid-template (1.05fr 1fr) paa Trin 2/3 ville ellers klemme kortene
+     til ~170px-spalter side om side paa mobil. */
+  .install__cols{grid-template-columns:1fr !important}
+  .topbar__in{gap:10px;padding:10px 16px}
+  .brand{font-size:14px;white-space:nowrap}
+  .search{min-width:0}
   .chart__tier{display:grid;grid-template-columns:1fr 1fr;gap:10px}
   .chart__spine{height:18px;justify-self:center}
   .node,.node--afd{flex:none;max-width:none;min-width:0;padding:12px 13px}
