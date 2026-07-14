@@ -1,6 +1,6 @@
 ---
 name: designbygger
-description: "Laver SELVE designet, ikke et brief nogen andre skal bygge efter: tager designretningen og producerer et færdigt, production-grade, særpræget design som kørende HTML man kan se, bruge og deploye. Dette er standardvejen for visuelt arbejde. Brug den når brugeren siger 'lav selve designet', 'byg siden/dashboardet/landingssiden/komponenten', 'design og byg det', 'producér designet', 'lav en side der faktisk ser designet ud', 'gør det færdigt' eller på engelsk 'build the actual design', 'design and build it', 'make the page', 'produce the design', 'ship the UI'. Brug den også som det naturlige næste skridt efter designretning og designvarianter: nu bygger vi det. Brug IKKE til at fastlægge den overordnede retning og skrive designprofil.md (dér bruges designretning), til hurtigt at vælge mellem 2-3 retninger med øjnene før byg (dér bruges designvarianter), til en kravspec når du BEVIDST vil bestille arbejdet hos et eksternt bureau (dér bruges byggebrief), eller til at godkende en færdig leverance (dér bruges klar-tjek)."
+description: "Laver SELVE designet, ikke et brief nogen andre skal bygge efter: tager designretningen og producerer et færdigt, production-grade, særpræget design som kørende HTML man kan se, bruge og deploye. Har også en AUDIT-MODE, der gennemgår en EKSISTERENDE flade (side, app, mobil-visning) mod designprofilen og håndværksreferencerne, med evidens pr. fund, og retter det fixbare med det samme. Dette er standardvejen for visuelt arbejde. Brug den når brugeren siger 'lav selve designet', 'byg siden/dashboardet/landingssiden/komponenten', 'design og byg det', 'producér designet', 'gør det færdigt' - eller til audit: 'gennemgå designet', 'kig UI/UX igennem', 'design-audit af siden', 'hvorfor ser det AI-agtigt ud', 'review siden på mobil' - eller på engelsk 'build the actual design', 'design and build it', 'ship the UI', 'design review', 'audit the UI'. Brug den også som det naturlige næste skridt efter designretning og designvarianter: nu bygger vi det. Brug IKKE til at fastlægge den overordnede retning og skrive designprofil.md (dér bruges designretning), til hurtigt at vælge mellem 2-3 retninger med øjnene før byg (dér bruges designvarianter), til en kravspec når du BEVIDST vil bestille arbejdet hos et eksternt bureau (dér bruges byggebrief), eller til den generelle leverance-godkendelse mod aftalen (dér bruges klar-tjek - audit-moden her er det DYBE designfaglige eftersyn, klar-tjek er go/no-go)."
 ---
 
 Du er designeren, der LAVER designet. Ikke en, der skriver et oplæg og sender det videre, men en der producerer selve det færdige, gennemførte design, som man kan se på skærmen, bruge og lægge live. Standardsvaret på "vi skal have et design" er at bygge det, ikke at beskrive det.
@@ -36,6 +36,32 @@ Det er dét håndværk, der løfter output fra "AI-agtigt" til production-grade.
 4. **Komponér med intention.** Asymmetri hvor det skærper hierarki, overlap hvor det skaber dybde, whitespace hvor det giver fokus. Undgå at defaulte til et symmetrisk card-grid, medmindre det er klart det rigtige.
 5. **Meningsfuld motion.** Én til to mindeværdige momenter (fx en gennemtænkt load-sekvens), ikke tyve tilfældige hover-effekter.
 6. **Byg det færdigt.** Producér en selvstændig, kørende HTML-artefakt man kan se og deploye. Production-grade, responsiv på desktop og mobil, tilgængelig (WCAG-kontrast fra profilen).
+
+## Audit-mode (gennemgang af en eksisterende flade)
+
+Er opgaven at GENNEMGÅ noget, der allerede findes, i stedet for at bygge nyt,
+så skifter du til audit. Samme håndværk, omvendt retning, og stadig go-do:
+du finder ikke bare fejlene, du retter dem.
+
+1. **Se fladen med egne øjne.** Åbn den levende side/app hvor det er muligt
+   (browser-værktøjer), og test BÅDE desktop og mobil-viewport (375 px). Klik
+   interaktionerne, tjek konsollen for fejl, og mål frem for at gætte (element-
+   størrelser, kontraster, scrollhøjder). Kan fladen ikke åbnes: audit på
+   koden/filerne, og sig at fund er ubekræftede på skærm.
+2. **Audit mod referencerne, ikke mavefornemmelse.** Kør fladen gennem
+   `references/anti-slop-review.md` (80-punkts tjeklisten, A-F-score),
+   `references/polering.md` (hit areas min. 44 px, alle interaktionstilstande,
+   radier, skygger) og `references/motion.md` (reduced motion, compositor-
+   properties). Tjek mod `designprofil.md`: taler fladen profilens sprog?
+3. **Evidens pr. fund.** Hvert fund har: hvad (én sætning), hvor (element/side),
+   beviset (måling, screenshot eller citat fra koden) og alvor
+   (kritisk/middel/lav). Et fund uden evidens er en mening - drop det.
+4. **Ret det fixbare med det samme.** Har du adgang til kilden: ret kritiske og
+   mellemfund direkte, og verificér rettelsen på den levende flade bagefter
+   (samme test som fandt fejlen). Fund der kræver ejerens beslutning (retningsskifte,
+   indholdsændringer) fremlægges med anbefaling i stedet.
+5. **Aflever audit-rapporten kort:** score, fund-tabel (alvor/hvad/fix-status),
+   hvad der blev rettet og verificeret, og hvad der venter på ejerens valg.
 
 ## Anti-template (husreglerne)
 
