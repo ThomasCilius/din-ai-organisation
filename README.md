@@ -1,8 +1,8 @@
 # Din AI-organisation
 
-En kurateret pakke på **68 Agent Skills** til Claude, bygget til kurset "Claude Desktop 0-100". Du bygger din egen AI-organisation efter et klassisk dansk organisationsdiagram: hver afdeling er et hold AI-medarbejdere, og hver skill er én afgrænset, tilbagevendende opgave, som er valideret mod virkelige danske jobfunktioner i en SMV.
+En kurateret pakke på **74 Agent Skills** til Claude, bygget til kurset "Claude Desktop 0-100". Du bygger din egen AI-organisation efter et klassisk dansk organisationsdiagram: hver afdeling er et hold AI-medarbejdere, og hver skill er én afgrænset, tilbagevendende opgave, som er valideret mod virkelige danske jobfunktioner i en SMV.
 
-Pakken er bevidst modulær. Anthropic anbefaler et loft på cirka 20-50 aktive skills, og 68 er over det med vilje - derfor installerer du kernen plus de afdelinger, der matcher din rolle (typisk 25-35 aktive skills), ikke hele pakken på én gang.
+Pakken er bevidst modulær. Anthropic anbefaler et loft på cirka 20-50 aktive skills, og 74 er over det med vilje - derfor installerer du kernen plus de afdelinger, der matcher din rolle (typisk 25-35 aktive skills), ikke hele pakken på én gang.
 
 ## Organisationsdiagrammet
 
@@ -15,9 +15,9 @@ Pakken er bevidst modulær. Anthropic anbefaler et loft på cirka 20-50 aktive s
     STAB: Viden & Data      STAB: Programledelse          |
     03 (6) "hjernen"        04 (6) "styringsrygraden"     |
           |                                               |
-   +--------------+-------------+------------+-------------+--------------+
-Sekretariatet   Salg &      Marketing    Økonomi        HR        IT & Udvikling
-  05 (7)     Kundeservice     07 (9)       08 (5)      09 (7)         10 (11)
+   +--------------+-------------+------------+-------------+--------------+---------------+
+Sekretariatet   Salg &      Marketing    Økonomi        HR      IT & Udvikling  Produktudvikling
+  05 (7)     Kundeservice     07 (9)       08 (5)      09 (7)      10 (11)          11 (6)
                 06 (5)
 ```
 
@@ -143,6 +143,19 @@ Kernen er **03 Viden & Data** (den ejer virksomhedens hub-filer) og **01 Direkti
 | `adgangsstyring` | Vedligeholder `systemoversigt.md` og producerer on-/offboarding-tjeklister og licens-audit. |
 | `sikkerhedstjek` | Vurderer phishing-mails og kører kvartalsvist sikkerheds-basistjek plus hændelsesrespons. |
 
+### 11 - Produktudvikling
+
+| Skill | Formål |
+|-------|--------|
+| `kundeinterview` | Forbereder discovery-interviews efter mor-test-princippet (fortid og adfærd, aldrig pitch) og destillerer dem bagefter til JTBD-referater og mønstre. |
+| `antagelses-tjek` | Kortlægger idéens risikable antagelser i otte kategorier og designer det billigste adfærds-eksperiment for de 1-3 farligste - succesgrænse sat før testen. |
+| `vaerditilbud` | Formulerer et flosklefrit værditilbud for én ydelse til ét segment efter den seksdelte JTBD-skabelon - klar til salg og marketing. |
+| `produkt-etside` | Samler forretningshypotesen for én ny ydelse på én side, hver rubrik markeret [VIDEN] eller [ANTAGELSE], versioneret pr. eksperiment. |
+| `lanceringsplan` | Lægger lanceringen: brohoved-segment, budskab med belæg, max 3 kanaler og 90-dages tidslinje med succeskriterier sat på forhånd. |
+| `nordstjerne-maal` | Vælger én kundecentreret nordstjernemetrik plus 3-5 input-metrikker - og forklarer hvorfor omsætning aldrig er nordstjernen. |
+
+Afdelingens metodegrundlag er kurateret fra [pm-skills](https://github.com/phuryn/pm-skills) af Paweł Huryn (MIT-licens) og klassikerne bag: Fitzpatrick ("The Mom Test"), Torres ("Continuous Discovery Habits"), Savoia ("The Right It"), Maurya (Lean Canvas) og Olsen ("The Lean Product Playbook") - oversat, omskrevet til opskriftsformatet og tilpasset danske SMV'er frem for tech-produktchefer.
+
 ## Kom i gang - følg rækkefølgen
 
 Fem trin, i DENNE rækkefølge. Så hænger alt sammen fra dag ét:
@@ -150,7 +163,7 @@ Fem trin, i DENNE rækkefølge. Så hænger alt sammen fra dag ét:
 1. **Vælg hjernens mappe.** En synlig mappe, du selv har valgt, fx `~/Documents/company-brain`. Aldrig inde i appens data-mappe (Bibliotek/Application Support).
 2. **Byg hjernen.** Paste `company-brain-prompt.txt` ind i Claude (Cowork/Desktop), peget på mappen fra trin 1. Prompten interviewer dig og bygger struktur + CLAUDE.md.
 3. **Installér skills-pakken.** Claude Code: `./install.sh` - og når installeren spørger, hvor hjernen ligger, svarer du med mappen fra trin 1. Kun Claude Desktop: upload skills som zip i stedet (se nedenfor).
-4. **Udfyld hub-filerne.** Kør skillene `virksomhedsprofil`, `toneprofil` og `designretning` - så kender alle 68 skills din virksomhed, tone og visuelle retning.
+4. **Udfyld hub-filerne.** Kør skillene `virksomhedsprofil`, `toneprofil` og `designretning` - så kender alle 74 skills din virksomhed, tone og visuelle retning.
 5. **Tjek det hele:** `./install.sh status` - sundhedstjekket skal vise hjernen koblet og hub-filerne på plads.
 
 (Kom du til at bytte om på 2 og 3? Ingen skade sket: `./install.sh brain <sti>` kobler hjernen bagefter. Men følg rækkefølgen, så slipper du for at tænke over det.)
@@ -158,7 +171,7 @@ Fem trin, i DENNE rækkefølge. Så hænger alt sammen fra dag ét:
 **Sådan hænger delene sammen:**
 
 ```
-install.sh ──► ~/.claude/skills (68 skills, managed)
+install.sh ──► ~/.claude/skills (74 skills, managed)
      │    ──► settings.json (7 hooks, merge-sikkert - rører aldrig dine egne)
      │    ──► config.json { brainPath }  ◄── ./install.sh brain <sti>
      ▼
@@ -166,7 +179,7 @@ company-brain-prompt.txt ──► bygger hjernen + genererer CLAUDE.md (driftsr
      ▼
 hub-filer i hjernens identity/: virksomhedsprofil.md · voice-profil.md · designprofil.md
      ▲
-alle 68 skills læser dem ("Find og læs virksomhedsprofil.md ... (altid)")
+alle 74 skills læser dem ("Find og læs virksomhedsprofil.md ... (altid)")
      ▲
 brain-inject-hooken indlæser 00-index.md ambient i hver Claude Code-session
 ```
@@ -246,7 +259,7 @@ Zips regenereres med `scripts/make-zips.sh` efter ændringer i skills.
 
 ## Konventioner
 
-Alle 68 skills følger den samme opskrift, så de opfører sig ens uanset afdeling.
+Alle 74 skills følger den samme opskrift, så de opfører sig ens uanset afdeling.
 
 - **Danske skill-navne** - "noget du selv ville sige højt". Navnefeltet tillader kun a-z, tal og bindestreg, så æ/ø/å translittereres til ae/oe/aa: `moedeforberedelse`, `opfoelgningsliste`, `budgetopfoelgning`.
 - **Tosprogede triggere** - hver `description` indeholder ordrette triggersætninger på både dansk og engelsk ("skriv et tilbud" / "write a proposal"), skrevet pushy fordi Claude har tendens til at undertrigge.
@@ -260,6 +273,7 @@ Alle 68 skills følger den samme opskrift, så de opfører sig ens uanset afdeli
   - **Byggerejsen:** `ide-stresstest` -> `designretning` -> `designvarianter` -> `byggebrief` -> `plan-tjek` -> byg -> `fejldetektiv` -> `klar-tjek` -> `procedure-skriver`
   - **Projektlivscyklus:** `ide-stresstest` / `beslutningsgrundlag` -> `projekt-kickoff` -> `risiko-issue-log` -> `portefolje-status` -> `projekt-prioritering` -> `projekt-lukning`
   - **Salgsflow:** `kundeemner` -> `moedeforberedelse` (salgstilstand) -> `tilbud` -> `pipeline-gennemgang` -> `kundegennemgang`
+  - **Produktrejsen:** `kundeinterview` -> `antagelses-tjek` -> `vaerditilbud` -> `produkt-etside` -> `lanceringsplan` -> `nordstjerne-maal` - med `ide-stresstest` som go/no-go-port undervejs og aflevering til marketing- og salgskæderne ved lancering
 
 På tværs af kæderne er `program-styring` (04) dirigenten for store, tværgående initiativer: den nedbryder ét initiativ i arbejdsstrømme og mapper hver strøm til den skill der løser den. Den virker dual-mode - Desktop-dirigeret (mennesket åbner hver afdelingsskill i rækkefølge) eller Claude Code-subagent-dispatch (én subagent pr. strøm) - og leverer status videre til `portefolje-status` og `risiko-issue-log`.
 

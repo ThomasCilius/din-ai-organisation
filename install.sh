@@ -25,15 +25,16 @@ STASH="$PKG_DIR/udvikler-lager"
 STATE="$PKG_DIR/install-state.json"
 SETTINGS="$CLAUDE_HOME/settings.json"
 HOOKS_SRC="$REPO_ROOT/hooks"
-VERSION="1.0.0"
+VERSION="1.1.0"
 
 DEPTS=(01-direktionen 02-strategiudvikling 03-viden-og-data 04-programledelse \
-       05-sekretariatet 06-salg-og-kundeservice 07-marketing 08-okonomi 09-hr 10-it-og-udvikling)
+       05-sekretariatet 06-salg-og-kundeservice 07-marketing 08-okonomi 09-hr 10-it-og-udvikling \
+       11-produktudvikling)
 
 log(){ printf '  %s\n' "$*"; }
 die(){ printf 'FEJL: %s\n' "$*" >&2; exit 1; }
 
-# Operatoer-skill-mapper fra repoet (alle mapper med en SKILL.md under de 10 afdelinger).
+# Operatoer-skill-mapper fra repoet (alle mapper med en SKILL.md under de 11 afdelinger).
 operator_skills(){
   local d s
   for d in "${DEPTS[@]}"; do

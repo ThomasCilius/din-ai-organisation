@@ -36,6 +36,7 @@ DEPTS = [
     ("08-okonomi",            "Økonomi",                "Bilag, likviditet, priser",   "afd"),
     ("09-hr",                 "HR",                     "People & Culture + skill-byg", "afd"),
     ("10-it-og-udvikling",    "IT & Udvikling",         "Design & byg · dirigent",     "afd"),
+    ("11-produktudvikling",   "Produktudvikling",       "Fra idé til lancering",       "afd"),
 ]
 
 def parse_fm(txt):
@@ -126,29 +127,30 @@ _short = {"01-direktionen": "Direktionen", "02-strategiudvikling": "Strategi",
           "03-viden-og-data": "Viden & Data", "04-programledelse": "Programled.",
           "05-sekretariatet": "Sekretariat", "06-salg-og-kundeservice": "Salg",
           "07-marketing": "Marketing", "08-okonomi": "Økonomi",
-          "09-hr": "HR", "10-it-og-udvikling": "IT & Udv."}
+          "09-hr": "HR", "10-it-og-udvikling": "IT & Udv.",
+          "11-produktudvikling": "Produktudv."}
 
 def _mini_org_svg():
     W, BH = 360, 48
-    parts = ['<svg class="orgsvg__img" viewBox="0 0 360 302" role="img" '
-             'aria-label="Organisationsdiagram: Direktionen øverst, stabene Viden & Data og Programledelse i midten, seks afdelinger nederst">']
+    parts = ['<svg class="orgsvg__img" viewBox="0 0 360 358" role="img" '
+             'aria-label="Organisationsdiagram: Direktionen øverst, stabene Viden & Data og Programledelse i midten, syv afdelinger nederst">']
     # Streger foerst (bag kasserne). Alle koordinater er kassecentre:
     # tier1-centre x=120/240 (y4..52) -> bus y64 -> spine x180 -> fordelerlinje y96
     # tier2-centre x=96/264 (y120..168) -> bus y176 -> tier3-centre x=65/182/299
-    # (row1 y188..236, row2 y244..292 - kolonnevis forbindelse mellem raekkerne).
+    # (row1 y188..236, row2 y244..292, row3 y300..348 - kolonnevis forbindelse mellem raekkerne).
     parts.append('<path class="ol" d="'
                  'M120 52 V64 M240 52 V64 M120 64 H240 M180 64 V96 '
                  'M96 96 H264 M96 96 V120 M264 96 V120 '
                  'M96 168 V176 M264 168 V176 M65 176 H299 '
                  'M65 176 V188 M182 176 V188 M299 176 V188 '
-                 'M65 236 V244 M182 236 V244 M299 236 V244" />')
+                 'M65 236 V244 M182 236 V244 M299 236 V244 M65 292 V300" />')
     # tier 1: direktion (2 kasser)
     for k, (i, d) in enumerate(direktion):
         parts.append(_svg_box(64 + k * 120, 4, 112, BH, d['folder'][:2], _short[d['folder']], len(d['skills']), 'ob--dir'))
     # tier 2: stab (2 kasser)
     for k, (i, d) in enumerate(stab):
         parts.append(_svg_box(40 + k * 168, 120, 112, BH, d['folder'][:2], _short[d['folder']], len(d['skills']), 'ob--stab'))
-    # tier 3: 6 afdelinger i 2 raekker a 3 (fuld kassehoejde, saa teksten kan vaere der)
+    # tier 3: afdelinger i raekker a 3 (fuld kassehoejde, saa teksten kan vaere der)
     for k, (i, d) in enumerate(afd):
         col, row = k % 3, k // 3
         parts.append(_svg_box(11 + col * 117, 188 + row * 56, 108, BH,
@@ -207,7 +209,7 @@ HTML = f'''<!doctype html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Din AI-organisation · {total} skills til danske SMV'er</title>
-<meta name="description" content="Et kurateret sæt Agent Skills til Claude, bygget som et dansk organisationsdiagram: {total} skills fordelt på 10 afdelinger. Fra AI Academy · Claude 0-100.">
+<meta name="description" content="Et kurateret sæt Agent Skills til Claude, bygget som et dansk organisationsdiagram: {total} skills fordelt på {len(data)} afdelinger. Fra AI Academy · Claude 0-100.">
 <style>
 :root{{
   --bg:#f6f3ee; --surface:#fffdf9; --ink:#211d17; --muted:#6b6459;
@@ -390,7 +392,7 @@ footer a{{color:var(--accent-ink)}}
   <p class="lead">Et kurateret sæt Agent Skills til Claude, skåret efter et klassisk dansk organisationsdiagram. Hver afdeling er et hold AI-medarbejdere · hver skill er én afgrænset, tilbagevendende opgave.</p>
   <div class="stats">
     <span class="stat"><b>{total}</b><span>skills</span></span>
-    <span class="stat"><b>10</b><span>afdelinger</span></span>
+    <span class="stat"><b>{len(data)}</b><span>afdelinger</span></span>
     <span class="stat"><b>DK</b><span>jobvalideret</span></span>
   </div>
   <div class="btnrow">
