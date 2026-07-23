@@ -150,6 +150,8 @@ To navngivne filer, faste strukturer (fulde skabeloner i `references/konkurrentk
 
 Tre uger før strategidagen: aflevér desuden en kondenseret étsides udgave af kortet som input til `strategidag-forberedelse`.
 
+**3. Efter behov: `battlecard-[konkurrent].md`** - når salget møder én bestemt konkurrent i konkrete tilbudssituationer ("lav et battlecard", "hvad siger vi når kunden nævner X?"), kondenseres kortets kildebelagte fakta plus tabt/vundet-erfaringer til et internt salgsopslag: læs `references/battlecard-skabelon.md`. Kun kortets fakta - kræver det ny research, køres en researchplan med HARD GATE som i spor A, og battlecardet genbesøges ved hver kvartalsrunde.
+
 ## Relaterede skills
 
 - For dybdeboring på ÉN konkret beslutning ("skal vi matche deres pris?", "skal vi gå ind i deres segment?"), brug `beslutningsgrundlag` (Direktionen) - radaren overvåger og beskriver, den bygger ikke business cases.
