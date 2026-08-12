@@ -1,54 +1,104 @@
 ---
 name: skill-health
-description: Show skill portfolio health dashboard with charts and analytics
+description: Strukturelt sundhedstjek af alle skills i ~/.claude/skills - navnefelter, beskrivelser, dubletter og døde referencer
 command: true
 ---
 
-# Skill Health Dashboard
+# Skill Health
 
-Shows a comprehensive health dashboard for all skills in the portfolio with success rate sparklines, failure pattern clustering, pending amendments, and version history.
+Kører et strukturelt sundhedstjek af hele skill-porteføljen i `~/.claude/skills`. Motoren ligger i denne fil og kræver kun python3 - ingen eksterne scripts eller måledata.
+
+## Hvad tjekkes
+
+1. **Mangler SKILL.md** - en skill-mappe uden manifest indlæses aldrig.
+2. **Frontmatter-navn vs. mappenavn** - et name-felt der peger på en anden skill, er typisk en kopi der aldrig blev færdiggjort.
+3. **Manglende description** - uden beskrivelse kan Claude ikke vælge skillen.
+4. **Description over 1024 tegn** - harnessets grænse. Hold beskrivelsen kort og læg triggerteksten i sektionen "Hvornår denne skill bruges".
+5. **Byte-identiske dubletter** - to mapper med præcis samme SKILL.md betyder at mindst én er en pladsholder med forkert indhold.
+6. **Døde referencer** - `references/`-filer som SKILL.md nævner, men som ikke findes. Peger referencen på en anden skills mappe og findes dér, rapporteres den som info, ikke fejl.
 
 ## Implementation
 
-Run the skill health CLI in dashboard mode:
+Kør motoren:
 
 ```bash
-ECC_ROOT="${CLAUDE_PLUGIN_ROOT:-$(node -e "var p=require('path'),f=require('fs'),h=require('os').homedir(),d=p.join(h,'.claude'),q=p.join('scripts','lib','utils.js');if(!f.existsSync(p.join(d,q))){try{var b=p.join(d,'plugins','cache','everything-claude-code');for(var o of f.readdirSync(b))for(var v of f.readdirSync(p.join(b,o))){var c=p.join(b,o,v);if(f.existsSync(p.join(c,q))){d=c;break}}}catch(x){}}console.log(d)")}"
-node "$ECC_ROOT/scripts/skills-health.js" --dashboard
-```
+python3 - <<'PY'
+import hashlib, pathlib, re
+from collections import defaultdict
 
-For a specific panel only:
+SKILLS = pathlib.Path.home() / ".claude" / "skills"
+if not SKILLS.is_dir():
+    raise SystemExit("FEJL: " + str(SKILLS) + " findes ikke")
 
-```bash
-ECC_ROOT="${CLAUDE_PLUGIN_ROOT:-$(node -e "var p=require('path'),f=require('fs'),h=require('os').homedir(),d=p.join(h,'.claude'),q=p.join('scripts','lib','utils.js');if(!f.existsSync(p.join(d,q))){try{var b=p.join(d,'plugins','cache','everything-claude-code');for(var o of f.readdirSync(b))for(var v of f.readdirSync(p.join(b,o))){var c=p.join(b,o,v);if(f.existsSync(p.join(c,q))){d=c;break}}}catch(x){}}console.log(d)")}"
-node "$ECC_ROOT/scripts/skills-health.js" --dashboard --panel failures
-```
+mapper = sorted(p for p in SKILLS.iterdir() if p.is_dir() and not p.name.startswith("."))
+mangler_md = []; navnefejl = []; uden_desc = []; lange_desc = []
+doede_refs = []; kryds = []
+hashes = defaultdict(list)
 
-For machine-readable output:
+for d in mapper:
+    f = d / "SKILL.md"
+    if not f.is_file():
+        mangler_md.append(d.name)
+        continue
+    tekst = f.read_text(encoding="utf-8", errors="replace")
+    hashes[hashlib.md5(tekst.encode("utf-8")).hexdigest()].append(d.name)
+    nm = re.search(r"^name:\s*['\"]?([A-Za-z0-9._-]+)['\"]?\s*$", tekst, re.M)
+    if nm and nm.group(1) != d.name:
+        navnefejl.append(d.name + " (frontmatter: " + nm.group(1) + ")")
+    dm = re.search(r"^description:\s*(.+)$", tekst, re.M)
+    if not dm:
+        uden_desc.append(d.name)
+    else:
+        desc = dm.group(1).strip().strip('"')
+        if len(desc) > 1024:
+            lange_desc.append(d.name + " (" + str(len(desc)) + " tegn)")
+    for ref in sorted(set(re.findall(r"references/[A-Za-z0-9_æøåÆØÅ.-]+\.md", tekst))):
+        if (d / ref).is_file():
+            continue
+        basenavn = ref.split("/")[-1]
+        andre = sorted(set(p.parent.parent.name for p in SKILLS.glob("*/references/" + basenavn)))
+        if andre:
+            kryds.append(d.name + " -> " + ref + " (findes i: " + ", ".join(andre) + ")")
+        else:
+            doede_refs.append(d.name + " -> " + ref)
 
-```bash
-ECC_ROOT="${CLAUDE_PLUGIN_ROOT:-$(node -e "var p=require('path'),f=require('fs'),h=require('os').homedir(),d=p.join(h,'.claude'),q=p.join('scripts','lib','utils.js');if(!f.existsSync(p.join(d,q))){try{var b=p.join(d,'plugins','cache','everything-claude-code');for(var o of f.readdirSync(b))for(var v of f.readdirSync(p.join(b,o))){var c=p.join(b,o,v);if(f.existsSync(p.join(c,q))){d=c;break}}}catch(x){}}console.log(d)")}"
-node "$ECC_ROOT/scripts/skills-health.js" --dashboard --json
-```
+dubletter = [" == ".join(sorted(n)) for n in hashes.values() if len(n) > 1]
 
-## Usage
+fund = 0
+print("SKILLS I ALT: " + str(len(mapper)))
+for titel, linjer in [
+    ("Mangler SKILL.md", mangler_md),
+    ("Frontmatter-navn matcher ikke mappenavn", navnefejl),
+    ("Mangler description", uden_desc),
+    ("Description over 1024 tegn (harness-graensen)", lange_desc),
+    ("Byte-identiske SKILL.md-dubletter (pladsholder-kopier)", dubletter),
+    ("Refererede references-filer der ikke findes nogen steder", doede_refs),
+]:
+    print("")
+    print("-- " + titel + " (" + str(len(linjer)) + "):")
+    print("\n".join("   " + l for l in linjer) if linjer else "   ingen")
+    fund += len(linjer)
 
-```
-/skill-health                    # Full dashboard view
-/skill-health --panel failures   # Only failure clustering panel
-/skill-health --json             # Machine-readable JSON output
+if kryds:
+    print("")
+    print("-- Info (ikke fejl): kryds-referencer til andre skills (" + str(len(kryds)) + "):")
+    print("\n".join("   " + k for k in kryds))
+
+print("")
+print("ALT SUNDT: 0 fund." if fund == 0 else "I ALT " + str(fund) + " FUND - se ovenfor.")
+PY
 ```
 
 ## What to Do
 
-1. Run the skills-health.js script with --dashboard flag
-2. Display the output to the user
-3. If any skills are declining, highlight them and suggest running /evolve
-4. If there are pending amendments, suggest reviewing them
+1. Kør motoren og vis resultatet for brugeren i samme sektioner - fund først, konklusionen til sidst.
+2. **0 fund:** sig det i én linje og stop.
+3. **Fund i managed skills** (installeret af din-ai-organisation - se `managedSkills` i `~/.claude/din-ai-org/install-state.json`): ret aldrig kun den lokale kopi. Ret kilden i din-ai-organisation-repoet og kør `./install.sh update`, ellers ruller næste opdatering rettelsen tilbage.
+4. **Fund i brugerens egne skills:** foreslå den konkrete rettelse (ret name-feltet, tilføj description, opret eller ret referencen) og udfør den efter accept.
+5. **Mange dubletter eller navnefejl på én gang** tyder på en fejlkørt batch-proces: undersøg tidsstempler (`stat -f "%Sm %N" <mapper>`) og find kilden, før der rettes.
 
-## Panels
+## Usage
 
-- **Success Rate (30d)** - Sparkline charts showing daily success rates per skill
-- **Failure Patterns** - Clustered failure reasons with horizontal bar chart
-- **Pending Amendments** - Amendment proposals awaiting review
-- **Version History** - Timeline of version snapshots per skill
+```
+/skill-health          # fuldt tjek af ~/.claude/skills
+```
