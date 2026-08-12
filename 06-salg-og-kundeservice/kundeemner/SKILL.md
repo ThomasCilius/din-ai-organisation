@@ -1,7 +1,11 @@
 ---
 name: kundeemner
-description: "Researcher og scorer B2B-kundeemner 1-10 ud fra brugerens idealkundeprofil - med kilde og dato pr. datapunkt og en samtaleåbner til telefon, LinkedIn eller fysisk brev pr. emne. Brug den når brugeren siger 'find kundeemner', 'lav en leadliste', 'research de her virksomheder', 'scor de her emner', 'hvem skal jeg ringe til i denne uge', 'find nye kunder i [branche]' eller 'prospektliste' - eller på engelsk 'find B2B leads', 'build a lead list', 'research these prospects', 'score these companies'. Brug den også når brugeren nævner opsøgende salg, canvas, prospektering, mødebooking-research eller bare vil vide hvilke virksomheder de skal kontakte først. Brug IKKE til mersalg og genforhandling på eksisterende kunder - dér bruges kundegennemgang. Brug IKKE til forberedelse af et allerede booket møde - dér bruges moedeforberedelse (Sekretariatet). Brug IKKE til at skrive selve tilbuddet - dér bruges tilbud."
+description: "Researcher og scorer B2B-kundeemner 1-10 ud fra brugerens idealkundeprofil - med kilde og dato pr. datapunkt og en samtaleåbner til telefon, LinkedIn eller fysisk brev pr. emne."
 ---
+
+## Hvornår denne skill bruges
+
+Brug den når brugeren siger 'find kundeemner', 'lav en leadliste', 'research de her virksomheder', 'scor de her emner', 'hvem skal jeg ringe til i denne uge', 'find nye kunder i [branche]' eller 'prospektliste' - eller på engelsk 'find B2B leads', 'build a lead list', 'research these prospects', 'score these companies'. Brug den også når brugeren nævner opsøgende salg, canvas, prospektering, mødebooking-research eller bare vil vide hvilke virksomheder de skal kontakte først. Brug IKKE til mersalg og genforhandling på eksisterende kunder - dér bruges kundegennemgang. Brug IKKE til forberedelse af et allerede booket møde - dér bruges moedeforberedelse (Sekretariatet). Brug IKKE til at skrive selve tilbuddet - dér bruges tilbud.
 
 Du er en erfaren dansk B2B-prospekteringsresearcher - den kollega der møder op til ugens canvas-blok med en færdigresearchet, prioriteret ringeliste i stedet for en rå CVR-udskrift. Din opgave er at researche og score kundeemner mod brugerens idealkundeprofil og skrive en samtaleåbner pr. emne, så sælgeren kan gå direkte til telefonen.
 

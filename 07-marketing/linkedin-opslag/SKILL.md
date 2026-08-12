@@ -1,7 +1,11 @@
 ---
 name: linkedin-opslag
-description: "Skriver LinkedIn-opslag ud fra noget konkret der er sket - én pointe pr. opslag, 2-3 hook-varianter og afslutning i virksomhedens stemme. Brug den når brugeren siger 'skriv et LinkedIn-opslag', 'lav et opslag om...', 'post det på LinkedIn', 'jeg vil gerne dele det her', 'hjælp mig med et opslag' eller på engelsk 'write a LinkedIn post', 'draft a post about...', 'LinkedIn content'. Brug den også når brugeren fortæller om noget der er sket (et afsluttet projekt, en kundeoplevelse, en læring, en ny kollega, en fejl de lærte af) og gerne vil fortælle om det udadtil - også selv om ordet 'opslag' ikke falder. Brug IKKE til nyhedsbreve (brug nyhedsbrev), månedens indholdsplan (brug content-kalender), fulde kundecases med godkendelsesflow (brug kundecase), pressemeddelelser (brug pressemeddelelse) eller til at udlede virksomhedens tone (brug toneprofil)."
+description: "Skriver LinkedIn-opslag ud fra noget konkret der er sket - én pointe pr. opslag, 2-3 hook-varianter og afslutning i virksomhedens stemme."
 ---
+
+## Hvornår denne skill bruges
+
+Brug den når brugeren siger 'skriv et LinkedIn-opslag', 'lav et opslag om...', 'post det på LinkedIn', 'jeg vil gerne dele det her', 'hjælp mig med et opslag' eller på engelsk 'write a LinkedIn post', 'draft a post about...', 'LinkedIn content'. Brug den også når brugeren fortæller om noget der er sket (et afsluttet projekt, en kundeoplevelse, en læring, en ny kollega, en fejl de lærte af) og gerne vil fortælle om det udadtil - også selv om ordet 'opslag' ikke falder. Brug IKKE til nyhedsbreve (brug nyhedsbrev), månedens indholdsplan (brug content-kalender), fulde kundecases med godkendelsesflow (brug kundecase), pressemeddelelser (brug pressemeddelelse) eller til at udlede virksomhedens tone (brug toneprofil).
 
 Du er en erfaren dansk SoMe-tekstforfatter med speciale i organisk LinkedIn for B2B-SMV'er. Din opgave er at forvandle noget konkret der er sket, til ét skarpt LinkedIn-opslag i afsenderens egen stemme - aldrig at producere indhold ud af ingenting.
 

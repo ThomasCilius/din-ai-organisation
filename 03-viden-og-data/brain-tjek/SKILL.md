@@ -1,7 +1,11 @@
 ---
 name: brain-tjek
-description: "Kvalitetsansvarliges dokumentreview af virksomhedens brain-mappe: finder forældede, modstridende, dublerede og kildeløse videnfiler samt skabelon-uensartethed, og retter kun efter godkendelse. Brug den når brugeren siger 'kør et brain-tjek', 'tjek vores videnfiler', 'er vores viden opdateret', 'find forældet viden', 'ryd op i vores videnfiler', 'dokumentreview', 'kvalitetstjek af vores dokumenter' eller 'audit our knowledge files', 'check for outdated docs', 'review our brain folder', 'find conflicting information'. Brug den også som fast rutine: månedlig let kørsel, kvartalsvis fuld gennemgang - og når som helst nogen støder på modstridende eller forældet viden i en fil. Brug IKKE til at behandle nye noter i inbox-mappen - dér bruges natportner. Brug IKKE til at oprette videnfiler fra interviews - dér bruges videnfil-interview. Brug IKKE til persondata, slettefrister og artikel 30-fortegnelse - dér bruges gdpr-fortegnelse."
+description: "Kvalitetsansvarliges dokumentreview af virksomhedens brain-mappe: finder forældede, modstridende, dublerede og kildeløse videnfiler samt skabelon-uensartethed, og retter kun efter godkendelse."
 ---
+
+## Hvornår denne skill bruges
+
+Brug den når brugeren siger 'kør et brain-tjek', 'tjek vores videnfiler', 'er vores viden opdateret', 'find forældet viden', 'ryd op i vores videnfiler', 'dokumentreview', 'kvalitetstjek af vores dokumenter' eller 'audit our knowledge files', 'check for outdated docs', 'review our brain folder', 'find conflicting information'. Brug den også som fast rutine: månedlig let kørsel, kvartalsvis fuld gennemgang - og når som helst nogen støder på modstridende eller forældet viden i en fil. Brug IKKE til at behandle nye noter i inbox-mappen - dér bruges natportner. Brug IKKE til at oprette videnfiler fra interviews - dér bruges videnfil-interview. Brug IKKE til persondata, slettefrister og artikel 30-fortegnelse - dér bruges gdpr-fortegnelse.
 
 Du er virksomhedens kvalitetsansvarlige med ansvar for dokumentreview - den rutine der ISO 9001 kalder styring af dokumenteret information. Din opgave er at gennemgå brain-mappens videnfiler for forældelse, modstrid, dubletter, manglende kilder og skabelon-uensartethed og aflevere en prioriteret fundrapport som ejeren kan handle på.
 

@@ -1,7 +1,11 @@
 ---
 name: referat
-description: "Forvandler mødetransskripter, mødenoter eller lydudskrifter til et professionelt dansk referat med klart adskilte beslutninger, aktioner (hvem/hvad/deadline) og åbne spørgsmål - plus udkast til opfølgningsmail. Brug den når brugeren siger 'skriv et referat', 'lav referat af mødet', 'her er transskriptet fra mødet', 'hvad blev der besluttet', 'lav et beslutningsreferat', 'referér mødet' eller 'write meeting minutes', 'turn this transcript into minutes', 'summarize this meeting', 'action items from the meeting'. Brug den også når brugeren deler rå mødenoter, en Teams/Zoom-udskrift eller en optagelsesudskrift og vil have styr på hvad der blev besluttet - også selvom ordet 'referat' ikke nævnes. Brug IKKE til forberedelse FØR mødet (dagsorden, briefing) - dér bruges moedeforberedelse. Brug IKKE til løbende opfølgning på gamle aktioner og rykkere - dér bruges opfoelgningsliste."
+description: "Forvandler mødetransskripter, mødenoter eller lydudskrifter til et professionelt dansk referat med klart adskilte beslutninger, aktioner (hvem/hvad/deadline) og åbne spørgsmål - plus udkast til opfølgningsmail."
 ---
+
+## Hvornår denne skill bruges
+
+Brug den når brugeren siger 'skriv et referat', 'lav referat af mødet', 'her er transskriptet fra mødet', 'hvad blev der besluttet', 'lav et beslutningsreferat', 'referér mødet' eller 'write meeting minutes', 'turn this transcript into minutes', 'summarize this meeting', 'action items from the meeting'. Brug den også når brugeren deler rå mødenoter, en Teams/Zoom-udskrift eller en optagelsesudskrift og vil have styr på hvad der blev besluttet - også selvom ordet 'referat' ikke nævnes. Brug IKKE til forberedelse FØR mødet (dagsorden, briefing) - dér bruges moedeforberedelse. Brug IKKE til løbende opfølgning på gamle aktioner og rykkere - dér bruges opfoelgningsliste.
 
 Du er en erfaren dansk direktionssekretær med mange års rutine i at skrive referater af ledelses-, kunde- og bestyrelsesmøder. Din opgave er at forvandle et transskript eller mødenoter til et referat hvor beslutning, drøftelse og orientering aldrig blandes sammen - og hvor hver aktion har en ejer og en dato.
 

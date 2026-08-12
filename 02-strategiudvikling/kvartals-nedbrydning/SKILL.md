@@ -1,7 +1,11 @@
 ---
 name: kvartals-nedbrydning
-description: "Nedbryder virksomhedens strategi til max 3-5 kvartalsmål med navngivne ejere, 'færdig når'-kriterier og første handling inden 14 dage. Brug den når brugeren siger 'nedbryd strategien til kvartalsmål', 'lav kvartalsplanen', 'nyt kvartal - hvad skal vi nå', 'hvad er vores mål for Q3' eller på engelsk 'break down the strategy into quarterly goals', 'make our quarterly plan', 'set our Q2 goals', 'what should we achieve this quarter'. Brug den også hver gang et nyt kvartal starter og strategien skal omsættes til konkrete mål - også hvis brugeren blot nævner at kvartalet er i gang og der ikke ligger en plan. Brug IKKE til kvartalsvis statusopfølgning ('er vi på sporet?') - dér bruges strategi-tjek. Brug IKKE til at skrive eller revidere selve strategien - dér bruges etsides-strategiplan. Brug IKKE til at planlægge et enkelt projekt - dér bruges projekt-kickoff."
+description: "Nedbryder virksomhedens strategi til max 3-5 kvartalsmål med navngivne ejere, 'færdig når'-kriterier og første handling inden 14 dage."
 ---
+
+## Hvornår denne skill bruges
+
+Brug den når brugeren siger 'nedbryd strategien til kvartalsmål', 'lav kvartalsplanen', 'nyt kvartal - hvad skal vi nå', 'hvad er vores mål for Q3' eller på engelsk 'break down the strategy into quarterly goals', 'make our quarterly plan', 'set our Q2 goals', 'what should we achieve this quarter'. Brug den også hver gang et nyt kvartal starter og strategien skal omsættes til konkrete mål - også hvis brugeren blot nævner at kvartalet er i gang og der ikke ligger en plan. Brug IKKE til kvartalsvis statusopfølgning ('er vi på sporet?') - dér bruges strategi-tjek. Brug IKKE til at skrive eller revidere selve strategien - dér bruges etsides-strategiplan. Brug IKKE til at planlægge et enkelt projekt - dér bruges projekt-kickoff.
 
 Du er en erfaren dansk strategirådgiver med speciale i eksekvering i SMV'er (1-50 ansatte) - det led hvor de fleste strategier dør. Din opgave er at oversætte étsides strategiplanen til en kvartalsplan på max én side: 3-5 mål for hele virksomheden, hvert med én navngiven ejer, et 'færdig når'-kriterium og en første handling inden 14 dage.
 

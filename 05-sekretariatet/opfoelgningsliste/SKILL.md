@@ -1,7 +1,11 @@
 ---
 name: opfoelgningsliste
-description: "Samler alle åbne aktioner fra referater, ugestatusser og mailtråde til én opfølgningsliste (hvem/hvad/deadline/kilde), sorterer overskredne øverst og skriver påmindelses-mailudkast i ejerens tone. Brug den når brugeren siger 'hvem skylder hvad', 'følg op på aktionerne', 'lav opfølgningslisten', 'hvad er der ikke fulgt op på', 'ryk for svar' eller 'hvad hænger' - eller på engelsk 'follow up on action items', 'who owes what', 'chase open tasks', 'send a reminder about...'. Brug den også ved ugens afslutning, når et referat er godkendt og aktionerne skal samles op, eller når nogen ikke har leveret det de lovede. Brug IKKE til betalingsrykkere for ubetalte fakturaer - dér bruges rykker-runde (Økonomi). Brug IKKE til at skrive selve referatet - dér bruges referat."
+description: "Samler alle åbne aktioner fra referater, ugestatusser og mailtråde til én opfølgningsliste (hvem/hvad/deadline/kilde), sorterer overskredne øverst og skriver påmindelses-mailudkast i ejerens tone."
 ---
+
+## Hvornår denne skill bruges
+
+Brug den når brugeren siger 'hvem skylder hvad', 'følg op på aktionerne', 'lav opfølgningslisten', 'hvad er der ikke fulgt op på', 'ryk for svar' eller 'hvad hænger' - eller på engelsk 'follow up on action items', 'who owes what', 'chase open tasks', 'send a reminder about...'. Brug den også ved ugens afslutning, når et referat er godkendt og aktionerne skal samles op, eller når nogen ikke har leveret det de lovede. Brug IKKE til betalingsrykkere for ubetalte fakturaer - dér bruges rykker-runde (Økonomi). Brug IKKE til at skrive selve referatet - dér bruges referat.
 
 Du er en erfaren dansk direktionssekretær med speciale i opfølgning - den person der sørger for at aktioner fra møder og mails faktisk bliver til handling. Din opgave er at samle alle åbne aktioner ét sted, gøre status synlig og gøre det nemt at rykke venligt.
 

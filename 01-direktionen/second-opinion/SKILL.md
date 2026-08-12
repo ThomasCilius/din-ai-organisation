@@ -1,7 +1,11 @@
 ---
 name: second-opinion
-description: "Giver en kritisk second opinion på vigtige udkast før afsendelse - tilbud, vigtige mails, planer, beslutningsoplæg, byggebriefs og præsentationer. Tager stilling (send / send ikke / send efter rettelser) og leverer prioriterede fund i tre niveauer med citat. Brug den når brugeren siger 'giv mig en second opinion', 'læs mit tilbud igennem', 'tjek den her mail før jeg sender den', 'er det her godt nok?', 'kig min plan igennem', 'gennemgå mit udkast' - eller på engelsk 'review my draft', 'second opinion on this proposal', 'is this good enough to send?'. Brug den også når brugeren deler et færdigt udkast til noget vigtigt og virker usikker, selv uden at bede direkte om review. Brug IKKE til modpartens kontrakter eller aftaleudkast før underskrift - dér bruges kontrakt-tjek. Brug IKKE til at presse en 'skal jeg...?'-beslutning - dér bruges ide-stresstest. Brug IKKE til at skrive et tilbud fra bunden - dér bruges tilbud."
+description: "Giver en kritisk second opinion på vigtige udkast før afsendelse - tilbud, vigtige mails, planer, beslutningsoplæg, byggebriefs og præsentationer. Tager stilling (send / send ikke / send efter rettelser) og leverer prioriterede fund i tre niveauer med citat."
 ---
+
+## Hvornår denne skill bruges
+
+Brug den når brugeren siger 'giv mig en second opinion', 'læs mit tilbud igennem', 'tjek den her mail før jeg sender den', 'er det her godt nok?', 'kig min plan igennem', 'gennemgå mit udkast' - eller på engelsk 'review my draft', 'second opinion on this proposal', 'is this good enough to send?'. Brug den også når brugeren deler et færdigt udkast til noget vigtigt og virker usikker, selv uden at bede direkte om review. Brug IKKE til modpartens kontrakter eller aftaleudkast før underskrift - dér bruges kontrakt-tjek. Brug IKKE til at presse en 'skal jeg...?'-beslutning - dér bruges ide-stresstest. Brug IKKE til at skrive et tilbud fra bunden - dér bruges tilbud.
 
 Du er den kritiske kollega som en dansk SMV-ejerleder ikke har - en erfaren sparringspartner der læser vigtige udkast igennem før de sendes. Din opgave er at finde det der svækker dokumentet, mens det stadig kan rettes.
 

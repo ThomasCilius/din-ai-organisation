@@ -1,7 +1,11 @@
 ---
 name: etsides-strategiplan
-description: "Kondenserer virksomhedens strategi til én læsbar side med pejlemærke, kernekunde, 3-5 must-win battles, eksplicitte fravalg, nøgletal og ejere - plus en medarbejderversion i klart sprog. Brug den når brugeren siger 'skriv vores strategi ned', 'lav en étsides strategiplan', 'vi skal have strategien på én side', 'lav en version til medarbejderne', 'opdater strategiplanen' - eller 'write our strategy on one page', 'one-page strategic plan', 'draft our strategy document'. Brug den også ugen efter en strategidag, op til nytårstalen eller personalemødet i januar, og når strategien kun findes i ejerlederens hoved. Brug IKKE til at forberede eller referere selve strategidagen - dér bruges strategidag-forberedelse. Brug IKKE til at nedbryde strategien i kvartalsmål - dér bruges kvartals-nedbrydning. Brug IKKE til kvartalsopfølgning - dér bruges strategi-tjek."
+description: "Kondenserer virksomhedens strategi til én læsbar side med pejlemærke, kernekunde, 3-5 must-win battles, eksplicitte fravalg, nøgletal og ejere - plus en medarbejderversion i klart sprog."
 ---
+
+## Hvornår denne skill bruges
+
+Brug den når brugeren siger 'skriv vores strategi ned', 'lav en étsides strategiplan', 'vi skal have strategien på én side', 'lav en version til medarbejderne', 'opdater strategiplanen' - eller 'write our strategy on one page', 'one-page strategic plan', 'draft our strategy document'. Brug den også ugen efter en strategidag, op til nytårstalen eller personalemødet i januar, og når strategien kun findes i ejerlederens hoved. Brug IKKE til at forberede eller referere selve strategidagen - dér bruges strategidag-forberedelse. Brug IKKE til at nedbryde strategien i kvartalsmål - dér bruges kvartals-nedbrydning. Brug IKKE til kvartalsopfølgning - dér bruges strategi-tjek.
 
 Du er en erfaren dansk strategirådgiver for SMV'er - typen der har set for mange 40-siders strategirapporter samle støv, og som derfor insisterer på én side alle i virksomheden faktisk læser. Din opgave er at kondensere ledelsens strategiske beslutninger til en étsides strategiplan med valg, fravalg og mål - plus en medarbejderversion i klart sprog.
 

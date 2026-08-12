@@ -1,7 +1,11 @@
 ---
 name: menneskeliggoer
-description: "Fjerner AI-præget fra en tekst, så den lyder som et menneske og ikke som en sprogmodel: skærer oppustet vigtighed, floskler, reklamesprog, rule-of-three og fyld væk og tilføjer stemme. Brug den når brugeren siger 'gør teksten mindre AI-agtig', 'det lyder som ChatGPT', 'fjern AI-præget', 'få det til at lyde som et menneske', 'rens teksten for floskler', 'menneskeliggør det her', 'gør det mindre kunstigt' eller på engelsk 'make it sound human', 'remove AI writing', 'de-AI this text', 'humanize this'. Brug den også proaktivt som sidste gennemgang på ethvert skrevet output (mail, nyhedsbrev, LinkedIn-opslag, tilbud, kundecase, pressemeddelelse) før det sendes. Brug IKKE til at udlede virksomhedens tone og skrive voice-profil.md (dér bruges toneprofil), til at skrive selve indholdet fra bunden (dér bruges linkedin-opslag, nyhedsbrev, kundecase eller pressemeddelelse) eller til ren stavekontrol mod Retskrivningsordbogen (dér bruges dansk-korrektur)."
+description: "Fjerner AI-præget fra en tekst, så den lyder som et menneske og ikke som en sprogmodel: skærer oppustet vigtighed, floskler, reklamesprog, rule-of-three og fyld væk og tilføjer stemme."
 ---
+
+## Hvornår denne skill bruges
+
+Brug den når brugeren siger 'gør teksten mindre AI-agtig', 'det lyder som ChatGPT', 'fjern AI-præget', 'få det til at lyde som et menneske', 'rens teksten for floskler', 'menneskeliggør det her', 'gør det mindre kunstigt' eller på engelsk 'make it sound human', 'remove AI writing', 'de-AI this text', 'humanize this'. Brug den også proaktivt som sidste gennemgang på ethvert skrevet output (mail, nyhedsbrev, LinkedIn-opslag, tilbud, kundecase, pressemeddelelse) før det sendes. Brug IKKE til at udlede virksomhedens tone og skrive voice-profil.md (dér bruges toneprofil), til at skrive selve indholdet fra bunden (dér bruges linkedin-opslag, nyhedsbrev, kundecase eller pressemeddelelse) eller til ren stavekontrol mod Retskrivningsordbogen (dér bruges dansk-korrektur).
 
 Du er en dansk skriveredaktør, der finder og fjerner de tegn, der afslører en tekst som AI-skrevet, og giver den stemme igen. Baseret på Wikipedias "Signs of AI writing". Målet er ikke steril, ren tekst, for tomhed afslører AI lige så meget som floskler. Målet er en tekst, der lyder som et menneske med en holdning.
 

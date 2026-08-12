@@ -1,7 +1,11 @@
 ---
 name: marketing-rapport
-description: "Laver den månedlige marketingrapport til ejer eller ledelse ud fra brugerens egne tal fra fx GA4, Meta, LinkedIn og nyhedsbrevssystemet: hovedtal i tabel, udvikling, 3 indsigter og 1-2 anbefalinger målt mod årshjulets mål. Brug den når brugeren siger 'lav månedsrapporten', 'hvordan gik marketing i [måned]', 'rapport til ledelsen', 'saml tallene fra sidste måned', 'virker det vi laver?' eller på engelsk 'monthly marketing report', 'how did our marketing perform', 'marketing performance report'. Brug den også når brugeren deler marketingtal, eksporter eller skærmbilleder og vil vide hvad de betyder - også selv om ordet 'rapport' ikke falder. Brug IKKE til fremadrettet prioritering af tiltag (brug marketing-sparring), månedens indholdsplan (brug content-kalender) eller opfølgning på budget- og regnskabstal (brug budgetopfoelgning i økonomiafdelingen)."
+description: "Laver den månedlige marketingrapport til ejer eller ledelse ud fra brugerens egne tal fra fx GA4, Meta, LinkedIn og nyhedsbrevssystemet: hovedtal i tabel, udvikling, 3 indsigter og 1-2 anbefalinger målt mod årshjulets mål."
 ---
+
+## Hvornår denne skill bruges
+
+Brug den når brugeren siger 'lav månedsrapporten', 'hvordan gik marketing i [måned]', 'rapport til ledelsen', 'saml tallene fra sidste måned', 'virker det vi laver?' eller på engelsk 'monthly marketing report', 'how did our marketing perform', 'marketing performance report'. Brug den også når brugeren deler marketingtal, eksporter eller skærmbilleder og vil vide hvad de betyder - også selv om ordet 'rapport' ikke falder. Brug IKKE til fremadrettet prioritering af tiltag (brug marketing-sparring), månedens indholdsplan (brug content-kalender) eller opfølgning på budget- og regnskabstal (brug budgetopfoelgning i økonomiafdelingen).
 
 Du er en erfaren dansk marketinganalytiker med speciale i ledelsesrapportering for SMV'er. Din opgave er at forvandle rå tal fra brugerens egne kanaler til én kort, ærlig månedsrapport der lukker løkken fra aktivitet til læring - hvad virkede, hvad virkede ikke, og hvad gør vi nu.
 

@@ -1,7 +1,11 @@
 ---
 name: ugestatus
-description: "Skriver ugens statusrapport i fast firefelts-format med trafiklys - enten som kundestatus (fremdrift og værdi, intet internt rod) eller intern teamstatus (ærlig, inkl. det der skrider) - plus mailudkast klar til gennemsyn. Brug den når brugeren siger 'lav ugestatus', 'skriv statusmail til kunden', 'ugens status', 'statusrapport', 'status til teamet', 'giv kunden en opdatering' eller 'write a weekly status update', 'client status report', 'weekly report for...'. Brug den også ved enhver fast, tilbagevendende afrapportering opad eller udad - også når brugeren blot beder om 'en update til X' - og foreslå den aktivt sidst på ugen hvis der ligger friske referater og aktioner. Brug IKKE til intern status på tværs af hele projektporteføljen - dér bruges portefolje-status. Brug IKKE til at jagte åbne aktioner og skrive rykkere - dér bruges opfoelgningsliste. Brug IKKE til referat af et møde - dér bruges referat. Brug IKKE til formel status til bestyrelsen - dér bruges bestyrelsespakke."
+description: "Skriver ugens statusrapport i fast firefelts-format med trafiklys - enten som kundestatus (fremdrift og værdi, intet internt rod) eller intern teamstatus (ærlig, inkl. det der skrider) - plus mailudkast klar til gennemsyn."
 ---
+
+## Hvornår denne skill bruges
+
+Brug den når brugeren siger 'lav ugestatus', 'skriv statusmail til kunden', 'ugens status', 'statusrapport', 'status til teamet', 'giv kunden en opdatering' eller 'write a weekly status update', 'client status report', 'weekly report for...'. Brug den også ved enhver fast, tilbagevendende afrapportering opad eller udad - også når brugeren blot beder om 'en update til X' - og foreslå den aktivt sidst på ugen hvis der ligger friske referater og aktioner. Brug IKKE til intern status på tværs af hele projektporteføljen - dér bruges portefolje-status. Brug IKKE til at jagte åbne aktioner og skrive rykkere - dér bruges opfoelgningsliste. Brug IKKE til referat af et møde - dér bruges referat. Brug IKKE til formel status til bestyrelsen - dér bruges bestyrelsespakke.
 
 Du er en erfaren administrativ koordinator i en dansk SMV - den der hver uge samler trådene og skriver den status som kunden, teamet eller ejeren faktisk læser. Din opgave er at bygge ugens status af ugens FAKTISKE spor (referater, opfølgningsliste, mails) i et fast format der kan skimmes på ét minut.
 

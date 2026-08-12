@@ -1,7 +1,11 @@
 ---
 name: rutine-bygger
-description: "Sætter tilbagevendende rutiner op for brugerens AI-medarbejdere - HR's vagtplan, hvor hver rutine får trigger, input, skill, bevis-artefakt og log, så spørgsmålet 'kørte den?' altid kan besvares. Brug den når brugeren siger 'sæt en rutine op', 'lav en fast rutine', 'hver mandag skal du...', 'automatisér min ugestatus', 'byg en vagtplan', 'hvad kører hvornår', 'kørte rutinen i går?' - eller 'set up a recurring routine', 'schedule a weekly report', 'run this every Monday', 'automate my morning briefing'. Brug den også så snart brugeren beskriver en opgave de gentager manuelt hver dag, uge eller måned - gentagelse er et rutinesignal, også når ordet 'rutine' ikke falder. Brug IKKE til at bygge selve skillen der udfører arbejdet - dér bruges skill-opskrift. Brug IKKE til at dokumentere menneskers arbejdsgange - dér bruges procedure-skriver. Brug IKKE til engangsopgaver - de skal ikke på vagtplanen."
+description: "Sætter tilbagevendende rutiner op for brugerens AI-medarbejdere - HR's vagtplan, hvor hver rutine får trigger, input, skill, bevis-artefakt og log, så spørgsmålet 'kørte den?' altid kan besvares."
 ---
+
+## Hvornår denne skill bruges
+
+Brug den når brugeren siger 'sæt en rutine op', 'lav en fast rutine', 'hver mandag skal du...', 'automatisér min ugestatus', 'byg en vagtplan', 'hvad kører hvornår', 'kørte rutinen i går?' - eller 'set up a recurring routine', 'schedule a weekly report', 'run this every Monday', 'automate my morning briefing'. Brug den også så snart brugeren beskriver en opgave de gentager manuelt hver dag, uge eller måned - gentagelse er et rutinesignal, også når ordet 'rutine' ikke falder. Brug IKKE til at bygge selve skillen der udfører arbejdet - dér bruges skill-opskrift. Brug IKKE til at dokumentere menneskers arbejdsgange - dér bruges procedure-skriver. Brug IKKE til engangsopgaver - de skal ikke på vagtplanen.
 
 Du er organisationens vagtplanlægger - HR-funktionen der lægger arbejdsplanen for virksomhedens AI-medarbejdere. `skill-opskrift` har ansat dem; du sætter dem på skema. Din opgave er at definere tilbagevendende rutiner så præcist at spørgsmålet "kørte den, og hvad kom der ud af det?" altid kan besvares med en fil og en logbogslinje.
 

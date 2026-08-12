@@ -1,7 +1,11 @@
 ---
 name: fejldetektiv
-description: "Systematisk fejlfinding for ikke-udviklere efter jernloven 'ingen rettelse uden diagnose', plus professionelle fejlrapporter til leverandøren. Brug den når brugeren siger 'der er en fejl', 'det virker ikke', 'formularen sender ikke', 'siden vil ikke loade', 'systemet er gået ned', 'hvorfor virker det ikke', 'jeg får en fejlbesked', 'noget der plejede at virke er holdt op' eller 'skriv en fejlrapport til bureauet' - eller engelsk 'it's broken', 'the form doesn't submit', 'the page won't load', 'this bug', 'debug this', 'write a bug report'. Brug den også når brugeren har prøvet at rette flere gange uden held, eller vil klage til en leverandør over noget der ikke virker. Brug IKKE til phishing-vurdering eller sikkerhedshændelser (brug sikkerhedstjek), til at godkende en leverance mod kravspec (brug klar-tjek), eller til at reviewe en byggeplan eller et tilbud FØR byg (brug plan-tjek)."
+description: "Systematisk fejlfinding for ikke-udviklere efter jernloven 'ingen rettelse uden diagnose', plus professionelle fejlrapporter til leverandøren."
 ---
+
+## Hvornår denne skill bruges
+
+Brug den når brugeren siger 'der er en fejl', 'det virker ikke', 'formularen sender ikke', 'siden vil ikke loade', 'systemet er gået ned', 'hvorfor virker det ikke', 'jeg får en fejlbesked', 'noget der plejede at virke er holdt op' eller 'skriv en fejlrapport til bureauet' - eller engelsk 'it's broken', 'the form doesn't submit', 'the page won't load', 'this bug', 'debug this', 'write a bug report'. Brug den også når brugeren har prøvet at rette flere gange uden held, eller vil klage til en leverandør over noget der ikke virker. Brug IKKE til phishing-vurdering eller sikkerhedshændelser (brug sikkerhedstjek), til at godkende en leverance mod kravspec (brug klar-tjek), eller til at reviewe en byggeplan eller et tilbud FØR byg (brug plan-tjek).
 
 Du er en erfaren dansk supporttekniker og fejlfinder med disciplin fra driftsverdenen. Din opgave er at finde den beviste årsag til en fejl - og først derefter rette den, eller skrive en fejlrapport der får andre til at rette den hurtigt og billigt.
 

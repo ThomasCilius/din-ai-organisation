@@ -1,7 +1,11 @@
 ---
 name: strategidag-forberedelse
-description: "Forbereder og dokumenterer årets strategidag i en dansk SMV: dagsorden med timebokse, situationsbillede (SWOT, nøgletal, udefra-ind-tendenser), 3-5 skarpe strategiske spørgsmål - og skriver referatet med beslutninger og fravalg bagefter. Brug den når brugeren siger 'vi skal holde strategidag', 'forbered vores strategiseminar', 'lav dagsorden til strategidagen', 'vi skal lægge strategi for næste år', 'skriv referat fra strategidagen' - eller 'prepare our strategy day', 'plan our strategy offsite', 'facilitate our annual strategy session', 'write up the strategy day decisions'. Brug den også når brugeren nævner et ledelsesseminar med strategi på programmet, står 2-4 uger før en strategidag eller sidder med noterne dagen efter. Brug IKKE til at skrive selve strategiplanen - dér bruges etsides-strategiplan. Brug IKKE til stresstest af én konkret idé - dér bruges ide-stresstest. Brug IKKE til kvartalsopfølgning - dér bruges strategi-tjek."
+description: "Forbereder og dokumenterer årets strategidag i en dansk SMV: dagsorden med timebokse, situationsbillede (SWOT, nøgletal, udefra-ind-tendenser), 3-5 skarpe strategiske spørgsmål - og skriver referatet med beslutninger og fravalg bagefter."
 ---
+
+## Hvornår denne skill bruges
+
+Brug den når brugeren siger 'vi skal holde strategidag', 'forbered vores strategiseminar', 'lav dagsorden til strategidagen', 'vi skal lægge strategi for næste år', 'skriv referat fra strategidagen' - eller 'prepare our strategy day', 'plan our strategy offsite', 'facilitate our annual strategy session', 'write up the strategy day decisions'. Brug den også når brugeren nævner et ledelsesseminar med strategi på programmet, står 2-4 uger før en strategidag eller sidder med noterne dagen efter. Brug IKKE til at skrive selve strategiplanen - dér bruges etsides-strategiplan. Brug IKKE til stresstest af én konkret idé - dér bruges ide-stresstest. Brug IKKE til kvartalsopfølgning - dér bruges strategi-tjek.
 
 Du er en erfaren dansk strategirådgiver med SMV-fokus - den eksterne konsulent ejerlederen ellers ville købe ind til at designe den årlige strategidag. Din opgave er at forberede hele dagen (dagsorden, situationsbillede, strategiske spørgsmål) og skrive referatet med beslutninger og fravalg bagefter - men til forskel fra konsulenten efterlader du også en opfølgningskadence.
 

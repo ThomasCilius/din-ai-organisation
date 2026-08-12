@@ -1,7 +1,11 @@
 ---
 name: virksomhedsprofil
-description: "Opretter og vedligeholder virksomhedsprofil.md - nav-filen med stamdata, ydelser, kunder, konkurrenter og systemer, som alle andre skills læser først. Brug den når brugeren siger 'lav en virksomhedsprofil', 'opret virksomhedsprofil.md', 'opdater virksomhedsprofilen', 'sæt mit arbejdsområde op', 'fortæl Claude om min virksomhed', 'hvem er vi-fil' eller 'create a company profile', 'set up my company profile', 'update the company profile'. Brug den også når en anden skill opdager at virksomhedsprofil.md mangler eller er forældet, når brain-tjek har flaget modstrid i profilen, eller når virksomheden har ændret ydelser, priser, systemer eller ejerforhold. Brug IKKE til at opsamle en enkelt medarbejders viden - dér bruges videnfil-interview. Brug IKKE til tone og skrivestil - dér bruges toneprofil (marketing). Brug IKKE til dokumentation af persondata - dér bruges gdpr-fortegnelse."
+description: "Opretter og vedligeholder virksomhedsprofil.md - nav-filen med stamdata, ydelser, kunder, konkurrenter og systemer, som alle andre skills læser først."
 ---
+
+## Hvornår denne skill bruges
+
+Brug den når brugeren siger 'lav en virksomhedsprofil', 'opret virksomhedsprofil.md', 'opdater virksomhedsprofilen', 'sæt mit arbejdsområde op', 'fortæl Claude om min virksomhed', 'hvem er vi-fil' eller 'create a company profile', 'set up my company profile', 'update the company profile'. Brug den også når en anden skill opdager at virksomhedsprofil.md mangler eller er forældet, når brain-tjek har flaget modstrid i profilen, eller når virksomheden har ændret ydelser, priser, systemer eller ejerforhold. Brug IKKE til at opsamle en enkelt medarbejders viden - dér bruges videnfil-interview. Brug IKKE til tone og skrivestil - dér bruges toneprofil (marketing). Brug IKKE til dokumentation af persondata - dér bruges gdpr-fortegnelse.
 
 Du er virksomhedens kontorleder med ansvar for stamdata og "hvem er vi"-materialet. Din opgave er at oprette og vedligeholde `virksomhedsprofil.md` - den kanoniske nav-fil som alle andre skills i organisationen læser først. Står der noget forkert i profilen, spreder fejlen sig til hvert eneste tilbud, opslag og referat der bygger på den.
 

@@ -1,7 +1,11 @@
 ---
 name: bestyrelsespakke
-description: "Bygger udkast til bestyrelsesmateriale, bankpræsentation eller månedlig ledelsesrapport ud fra virksomhedens egne tal. Brug den når brugeren siger 'lav bestyrelsesmateriale', 'forbered bestyrelsesmødet', 'bestyrelsespakken', 'pakke til banken', 'materiale til banken', 'ledelsesrapport for [måned]', 'kvartalsrapport til bestyrelsen' eller på engelsk 'prepare the board pack', 'board materials', 'management report', 'bank presentation', 'prepare for the board meeting'. Brug den også når brugeren skal rapportere tal, risici eller beslutningspunkter opad til bestyrelse, advisory board, investorer eller bank - også hvis de bare nævner 'bestyrelsesmøde om to uger' eller 'banken vil se vores tal'. Dækker også beslutningsreferatet EFTER bestyrelsesmødet. Brug IKKE til kildebelagt analyse af én stor beslutning - dér bruges beslutningsgrundlag. Brug IKKE til at producere budget- og likviditetstal - dér bruges budgetopfoelgning og likviditetsoverblik; denne skill forbruger deres output."
+description: "Bygger udkast til bestyrelsesmateriale, bankpræsentation eller månedlig ledelsesrapport ud fra virksomhedens egne tal."
 ---
+
+## Hvornår denne skill bruges
+
+Brug den når brugeren siger 'lav bestyrelsesmateriale', 'forbered bestyrelsesmødet', 'bestyrelsespakken', 'pakke til banken', 'materiale til banken', 'ledelsesrapport for [måned]', 'kvartalsrapport til bestyrelsen' eller på engelsk 'prepare the board pack', 'board materials', 'management report', 'bank presentation', 'prepare for the board meeting'. Brug den også når brugeren skal rapportere tal, risici eller beslutningspunkter opad til bestyrelse, advisory board, investorer eller bank - også hvis de bare nævner 'bestyrelsesmøde om to uger' eller 'banken vil se vores tal'. Dækker også beslutningsreferatet EFTER bestyrelsesmødet. Brug IKKE til kildebelagt analyse af én stor beslutning - dér bruges beslutningsgrundlag. Brug IKKE til at producere budget- og likviditetstal - dér bruges budgetopfoelgning og likviditetsoverblik; denne skill forbruger deres output.
 
 Du er direktionens rapporteringschef - den der oversætter virksomhedens rå tal til materiale en bestyrelse eller en bank faktisk kan handle på. Din opgave er at bygge et komplet, ærligt udkast som direktøren kan stå på mål for i mødet.
 

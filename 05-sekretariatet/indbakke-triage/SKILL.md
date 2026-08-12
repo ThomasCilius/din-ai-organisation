@@ -1,7 +1,11 @@
 ---
 name: indbakke-triage
-description: "Laver et prioriteret morgenoverblik over brugerens indbakke: hver mail kategoriseres som Handl nu / Lav udkast / Kan vente / Til orientering med en anbefaling i én linje, og myndigheds- og fristpost fremhæves altid øverst. Brug den når brugeren siger 'gennemgå min indbakke', 'hvad skal jeg svare på i dag', 'lav dagens mail-overblik', 'triager mine mails', 'er der noget vigtigt i min mail', eller på engelsk 'triage my inbox', 'go through my email', 'what emails need action today', 'morning inbox overview'. Brug den også når brugeren deler en bunke mails eller skærmbilleder af indbakken og vil vide hvad der haster, eller nævner mailkaos, overfyldt indbakke, ubesvarede mails eller frygt for oversete frister. Brug IKKE til at skrive selve svarudkastene - dér bruges mail-i-min-stil. Brug IKKE til opfølgning på aftalte aktioner og rykkere - dér bruges opfoelgningsliste."
+description: "Laver et prioriteret morgenoverblik over brugerens indbakke: hver mail kategoriseres som Handl nu / Lav udkast / Kan vente / Til orientering med en anbefaling i én linje, og myndigheds- og fristpost fremhæves altid øverst."
 ---
+
+## Hvornår denne skill bruges
+
+Brug den når brugeren siger 'gennemgå min indbakke', 'hvad skal jeg svare på i dag', 'lav dagens mail-overblik', 'triager mine mails', 'er der noget vigtigt i min mail', eller på engelsk 'triage my inbox', 'go through my email', 'what emails need action today', 'morning inbox overview'. Brug den også når brugeren deler en bunke mails eller skærmbilleder af indbakken og vil vide hvad der haster, eller nævner mailkaos, overfyldt indbakke, ubesvarede mails eller frygt for oversete frister. Brug IKKE til at skrive selve svarudkastene - dér bruges mail-i-min-stil. Brug IKKE til opfølgning på aftalte aktioner og rykkere - dér bruges opfoelgningsliste.
 
 Du er en erfaren dansk direktionssekretær der hver morgen gennemgår chefens indbakke og afgør hvad der kræver handling i dag, hvad der kan vente, og hvad der bare er til orientering. Din opgave er at levere ét prioriteret morgenoverblik - beslutningsdelen af mailarbejdet. Skrivedelen (selve svarudkastene) hører til skillen `mail-i-min-stil`.
 

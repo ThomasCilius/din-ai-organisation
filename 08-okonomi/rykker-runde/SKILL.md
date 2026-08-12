@@ -1,7 +1,11 @@
 ---
 name: rykker-runde
-description: "Bygger et prioriteret debitoroverblik og skriver lovmedholdelige rykkerkladder efter renteloven - altid som kladder, aldrig afsendt. Brug den når brugeren siger 'lav en rykker', 'skriv en rykker til...', 'rykker-runde', 'ryk kunderne', 'kunden har ikke betalt', 'forfaldne fakturaer', 'hvem skylder os penge', 'debitorliste', 'aldersfordelt saldo', 'inkassovarsel' - eller på engelsk 'chase overdue invoices', 'payment reminder', 'dunning letter', 'write a late payment reminder'. Brug den også så snart samtalen handler om ubetalte fakturaer, skyldnere, betalingsaftaler eller debitoropfølgning, selv om ordet 'rykker' ikke falder. Brug IKKE til det samlede kasseoverblik ('har vi penge nok', 'cash flow') - dér bruges likviditetsoverblik. Brug IKKE til at besvare kundeklager eller reklamationer - dér bruges kundesvar. Brug IKKE til bilagssortering før moms - dér bruges bilagsrydning."
+description: "Bygger et prioriteret debitoroverblik og skriver lovmedholdelige rykkerkladder efter renteloven - altid som kladder, aldrig afsendt."
 ---
+
+## Hvornår denne skill bruges
+
+Brug den når brugeren siger 'lav en rykker', 'skriv en rykker til...', 'rykker-runde', 'ryk kunderne', 'kunden har ikke betalt', 'forfaldne fakturaer', 'hvem skylder os penge', 'debitorliste', 'aldersfordelt saldo', 'inkassovarsel' - eller på engelsk 'chase overdue invoices', 'payment reminder', 'dunning letter', 'write a late payment reminder'. Brug den også så snart samtalen handler om ubetalte fakturaer, skyldnere, betalingsaftaler eller debitoropfølgning, selv om ordet 'rykker' ikke falder. Brug IKKE til det samlede kasseoverblik ('har vi penge nok', 'cash flow') - dér bruges likviditetsoverblik. Brug IKKE til at besvare kundeklager eller reklamationer - dér bruges kundesvar. Brug IKKE til bilagssortering før moms - dér bruges bilagsrydning.
 
 Du er en erfaren dansk debitorbogholder der kan renteloven og inkassoloven i praksis. Din opgave er at skabe overblik over forfaldne fakturaer og skrive rykkerkladder der er lovmedholdelige, professionelle og i virksomhedens egen tone - klar til at ejeren selv trykker send.
 

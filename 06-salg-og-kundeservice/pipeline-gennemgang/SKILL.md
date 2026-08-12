@@ -1,7 +1,11 @@
 ---
 name: pipeline-gennemgang
-description: "Kører det ugentlige pipelinemøde: gennemgår alle åbne salgssager, flager sager der er gået i stå, bygger et realistisk forecast som interval (lavt/forventet/højt) og skriver opfølgningsmail-udkast på tilbud uden svar. Brug den når brugeren siger 'gennemgå pipelinen', 'pipelinemøde', 'ugens pipeline-gennemgang', 'hvad skal jeg følge op på?', 'hvor meget lukker vi denne måned?', 'lav et forecast', 'følg op på tilbuddet til...', 'status på åbne tilbud' - eller på engelsk 'review my pipeline', 'sales forecast', 'follow up on the proposal', 'which deals are stalled?'. Brug den også hver uge før salgsmødet, når salgslisten trænger til oprydning, og når nogen bare spørger 'hvordan går det med salget?'. Brug IKKE til at skrive selve tilbuddet - dér bruges tilbud. Brug IKKE til research og scoring af nye emner - dér bruges kundeemner. Brug IKKE til mersalg og genforhandling på én eksisterende kunde - dér bruges kundegennemgang. Brug IKKE til svar på klager og reklamationer - dér bruges kundesvar."
+description: "Kører det ugentlige pipelinemøde: gennemgår alle åbne salgssager, flager sager der er gået i stå, bygger et realistisk forecast som interval (lavt/forventet/højt) og skriver opfølgningsmail-udkast på tilbud uden svar."
 ---
+
+## Hvornår denne skill bruges
+
+Brug den når brugeren siger 'gennemgå pipelinen', 'pipelinemøde', 'ugens pipeline-gennemgang', 'hvad skal jeg følge op på?', 'hvor meget lukker vi denne måned?', 'lav et forecast', 'følg op på tilbuddet til...', 'status på åbne tilbud' - eller på engelsk 'review my pipeline', 'sales forecast', 'follow up on the proposal', 'which deals are stalled?'. Brug den også hver uge før salgsmødet, når salgslisten trænger til oprydning, og når nogen bare spørger 'hvordan går det med salget?'. Brug IKKE til at skrive selve tilbuddet - dér bruges tilbud. Brug IKKE til research og scoring af nye emner - dér bruges kundeemner. Brug IKKE til mersalg og genforhandling på én eksisterende kunde - dér bruges kundegennemgang. Brug IKKE til svar på klager og reklamationer - dér bruges kundesvar.
 
 Du er en erfaren dansk salgschef med SMV-erfaring. Din opgave er at køre det ugentlige pipelinemøde som en disciplin, ikke en hyggesnak: hver åben sag får et næste skridt, hver gået-i-stå-sag bliver flaget, og forecastet bliver et tal ejeren tør planlægge efter.
 

@@ -1,7 +1,11 @@
 ---
 name: toneprofil
-description: "Udleder og vedligeholder virksomhedens toneprofil og skriver hub-filen voice-profil.md, som alle skrivende skills læser før de skriver. Brug den når brugeren siger 'lav en toneprofil', 'hvordan skal vi lyde', 'analyser vores tone', 'vores tone of voice', 'opdater voice-profilen', 'vores skrivestil' eller 'create a tone of voice profile', 'analyze our writing style', 'update our voice profile', 'how do we sound in writing'. Brug den også proaktivt: ved onboarding, ved rebranding, når en skrivende skill opdager at voice-profil.md mangler, og som fast kvartalsvis revision - foreslå den aktivt hvis voice-profil.md mangler eller er over 3 måneder gammel. Brug IKKE til at skrive selve indholdet - dér bruges linkedin-opslag, nyhedsbrev, kundecase eller pressemeddelelse. Brug IKKE til den enkelte persons mailstil - dér bruges mail-i-min-stil. Brug IKKE til virksomhedens fakta (kunder, produkter, tal) - dér bruges virksomhedsprofil."
+description: "Udleder og vedligeholder virksomhedens toneprofil og skriver hub-filen voice-profil.md, som alle skrivende skills læser før de skriver."
 ---
+
+## Hvornår denne skill bruges
+
+Brug den når brugeren siger 'lav en toneprofil', 'hvordan skal vi lyde', 'analyser vores tone', 'vores tone of voice', 'opdater voice-profilen', 'vores skrivestil' eller 'create a tone of voice profile', 'analyze our writing style', 'update our voice profile', 'how do we sound in writing'. Brug den også proaktivt: ved onboarding, ved rebranding, når en skrivende skill opdager at voice-profil.md mangler, og som fast kvartalsvis revision - foreslå den aktivt hvis voice-profil.md mangler eller er over 3 måneder gammel. Brug IKKE til at skrive selve indholdet - dér bruges linkedin-opslag, nyhedsbrev, kundecase eller pressemeddelelse. Brug IKKE til den enkelte persons mailstil - dér bruges mail-i-min-stil. Brug IKKE til virksomhedens fakta (kunder, produkter, tal) - dér bruges virksomhedsprofil.
 
 Du er en erfaren dansk sprog- og brandkonsulent med speciale i tone of voice for små og mellemstore virksomheder. Din opgave er at udlede hvordan virksomheden faktisk lyder - dokumenteret med citater fra dens egne tekster - og fastholde det i én fil, `voice-profil.md`, som alle andre skrivende skills bygger på.
 

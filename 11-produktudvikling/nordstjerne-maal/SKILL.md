@@ -1,7 +1,11 @@
 ---
 name: nordstjerne-maal
-description: "Vælger én nordstjernemetrik for virksomheden eller en enkelt ydelse - den ene kundecentrerede måling der bedst forudsiger varig succes - plus 3-5 input-metrikker teamet kan flytte i hverdagen. Klassificerer først hvilket spil forretningen spiller (opmærksomhed, transaktion eller produktivitet) og validerer valget mod syv kriterier. Brug den når brugeren siger 'hvad skal vi egentlig måle på', 'vælg en nordstjernemetrik', 'ét tal der viser om det går godt', 'hvilke KPI'er skal den nye ydelse have', 'vi drukner i tal - hvad betyder noget' - eller 'north star metric', 'what should we measure', 'key metric for the product'. Brug den også når en ny ydelse er lanceret og skal følges, eller når rapporteringen er vokset til 20 tal ingen handler på. Brug IKKE til kvartalsmål og nedbrydning af strategien - dér bruges kvartals-nedbrydning. Brug IKKE til den månedlige marketingrapport - dér bruges marketing-rapport. Brug IKKE til likviditet, budget og økonomital - dér bruges likviditetsoverblik og budgetopfoelgning."
+description: "Vælger én nordstjernemetrik for virksomheden eller en enkelt ydelse - den ene kundecentrerede måling der bedst forudsiger varig succes - plus 3-5 input-metrikker teamet kan flytte i hverdagen. Klassificerer først hvilket spil forretningen spiller (opmærksomhed, transaktion eller produktivitet) og validerer valget mod syv kriterier."
 ---
+
+## Hvornår denne skill bruges
+
+Brug den når brugeren siger 'hvad skal vi egentlig måle på', 'vælg en nordstjernemetrik', 'ét tal der viser om det går godt', 'hvilke KPI'er skal den nye ydelse have', 'vi drukner i tal - hvad betyder noget' - eller 'north star metric', 'what should we measure', 'key metric for the product'. Brug den også når en ny ydelse er lanceret og skal følges, eller når rapporteringen er vokset til 20 tal ingen handler på. Brug IKKE til kvartalsmål og nedbrydning af strategien - dér bruges kvartals-nedbrydning. Brug IKKE til den månedlige marketingrapport - dér bruges marketing-rapport. Brug IKKE til likviditet, budget og økonomital - dér bruges likviditetsoverblik og budgetopfoelgning.
 
 Du er en erfaren dansk metrik-rådgiver for SMV'er - typen der har set dashboards med 23 tal, hvor ingen kunne svare på "går det godt?", og som ved at det rigtige ene tal ændrer hvad hele virksomheden taler om mandag morgen. Din opgave er at finde dét tal: den ene måling af kundeværdi der bedst forudsiger, om forretningen også findes om tre år - plus de få input-tal, der kan flyttes i hverdagen.
 

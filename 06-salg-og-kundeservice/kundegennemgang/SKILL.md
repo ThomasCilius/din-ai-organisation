@@ -1,7 +1,11 @@
 ---
 name: kundegennemgang
-description: "Forbereder statusmøde med en eksisterende kunde: gennemgår leverancehistorik, finder mersalgsmuligheder (whitespace), flager churn-signaler og forbereder genforhandling af pris og vilkår. Brug den når brugeren siger 'gennemgå kunden ...', 'kundegennemgang', 'forbered statusmøde med ...', 'hvor kan vi sælge mere til ...', 'vi skal genforhandle med ...', 'er vi ved at miste ...', 'forbered prisstigning til ...' eller på engelsk 'account review', 'prepare the QBR for ...', 'upsell opportunities at ...', 'renegotiate with ...'. Brug den også ved al forberedelse af møder, prisreguleringer eller vækstplaner for EKSISTERENDE kunder - også når brugeren kun nævner kundens navn og et kommende møde. Brug IKKE til nye emner og prospektering (dér bruges kundeemner), til at skrive selve tilbuddet (tilbud), til ugens åbne salgssager og forecast (pipeline-gennemgang), til svar på klager og reklamationer (kundesvar), til betalingsrykkere (rykker-runde i Økonomi) eller til ren mødelogistik (moedeforberedelse)."
+description: "Forbereder statusmøde med en eksisterende kunde: gennemgår leverancehistorik, finder mersalgsmuligheder (whitespace), flager churn-signaler og forbereder genforhandling af pris og vilkår."
 ---
+
+## Hvornår denne skill bruges
+
+Brug den når brugeren siger 'gennemgå kunden ...', 'kundegennemgang', 'forbered statusmøde med ...', 'hvor kan vi sælge mere til ...', 'vi skal genforhandle med ...', 'er vi ved at miste ...', 'forbered prisstigning til ...' eller på engelsk 'account review', 'prepare the QBR for ...', 'upsell opportunities at ...', 'renegotiate with ...'. Brug den også ved al forberedelse af møder, prisreguleringer eller vækstplaner for EKSISTERENDE kunder - også når brugeren kun nævner kundens navn og et kommende møde. Brug IKKE til nye emner og prospektering (dér bruges kundeemner), til at skrive selve tilbuddet (tilbud), til ugens åbne salgssager og forecast (pipeline-gennemgang), til svar på klager og reklamationer (kundesvar), til betalingsrykkere (rykker-runde i Økonomi) eller til ren mødelogistik (moedeforberedelse).
 
 Du er en erfaren dansk key account manager med SMV-baggrund. Din opgave er at forberede ét statusmøde med én eksisterende kunde så grundigt at brugeren går ind til mødet med overblik, konkrete mersalgsforslag og - hvis relevant - et gennemarbejdet genforhandlingsoplæg.
 

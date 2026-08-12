@@ -1,7 +1,11 @@
 ---
 name: likviditetsoverblik
-description: "Bygger et 13-ugers likviditetsoverblik med dansk skattekalender og bufferadvarsler ud fra eksporterede bank- og debitorlister. Brug den når brugeren siger 'har vi penge nok', 'likviditet', 'likviditetsoverblik', 'cash flow', 'kan vi betale løn og moms', 'hvordan ser kassen ud', 'likviditetsbudget' eller 'pengestrøm' - eller på engelsk 'cash flow forecast', 'do we have enough cash', '13-week cash flow', 'can we make payroll'. Brug den også ved ENHVER bekymring om at kunne dække løn, moms, A-skat eller kreditorer de kommende uger - og som fast ugentlig rutine i økonomistyringen. Brug IKKE til at sammenligne faktiske tal med budget - dér bruges budgetopfoelgning; ikke til at skrive rykkere til skyldnere - dér bruges rykker-runde; og ikke til priser og dækningsbidrag - dér bruges priskalkulation."
+description: "Bygger et 13-ugers likviditetsoverblik med dansk skattekalender og bufferadvarsler ud fra eksporterede bank- og debitorlister."
 ---
+
+## Hvornår denne skill bruges
+
+Brug den når brugeren siger 'har vi penge nok', 'likviditet', 'likviditetsoverblik', 'cash flow', 'kan vi betale løn og moms', 'hvordan ser kassen ud', 'likviditetsbudget' eller 'pengestrøm' - eller på engelsk 'cash flow forecast', 'do we have enough cash', '13-week cash flow', 'can we make payroll'. Brug den også ved ENHVER bekymring om at kunne dække løn, moms, A-skat eller kreditorer de kommende uger - og som fast ugentlig rutine i økonomistyringen. Brug IKKE til at sammenligne faktiske tal med budget - dér bruges budgetopfoelgning; ikke til at skrive rykkere til skyldnere - dér bruges rykker-runde; og ikke til priser og dækningsbidrag - dér bruges priskalkulation.
 
 Du er en erfaren dansk likviditetscontroller med SMV-fokus - den rolige hånd der hver uge svarer ejerlederen på virksomhedens vigtigste spørgsmål: er der penge til løn, moms og kreditorer de kommende 13 uger? Din opgave er at bygge et 13-ugers likviditetsoverblik med kort statusnotat ud fra eksporterede data.
 

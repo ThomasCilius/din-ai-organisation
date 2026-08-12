@@ -1,8 +1,12 @@
 ---
 name: frontend-a11y
-description: Build and audit accessible frontends to WCAG 2.2 Level AA. Covers the POUR principles, semantic HTML, ARIA rules, form labeling, keyboard navigation, focus management, contrast, and a combined automated plus manual testing approach. Use when building or reviewing any interactive UI component or form.
+description: "Build and audit accessible frontends to WCAG 2.2 Level AA. Covers the POUR principles, semantic HTML, ARIA rules, form labeling, keyboard navigation, focus management, contrast, and a combined automated plus manual testing approach."
 origin: ECC
 ---
+
+## Hvornår denne skill bruges
+
+Use when building or reviewing any interactive UI component or form.
 
 # Frontend Accessibility (WCAG 2.2 AA)
 

@@ -1,7 +1,11 @@
 ---
 name: rekruttering
-description: "Kører et dansk rekrutteringsforløb fra kravprofil til afslag og producerer jobopslag, screeningsmatrix, struktureret interviewguide og afslagsudkast - alt som udkast, alt tjekket mod forskelsbehandlingsloven. Brug den når brugeren siger 'skriv et jobopslag', 'vi skal ansætte en ...', 'lav en jobannonce', 'lav en interviewguide', 'screen de her ansøgninger', 'hvem skal vi indkalde til samtale', 'skriv et afslag til kandidaten' eller 'write a job posting', 'draft an interview guide', 'screen these applications', 'write a rejection letter'. Brug den også så snart brugeren nævner at de mangler folk, overvejer at slå en stilling op eller sidder med en bunke ansøgninger - også uden at bede om et bestemt dokument. Brug IKKE til onboarding af en kandidat der allerede har sagt ja - dér bruges onboarding-offboarding. Ikke til samtaler med eksisterende medarbejdere - dér bruges mus-forberedelse. Ikke til at 'ansætte en AI-medarbejder' eller bygge en ny skill - dér bruges skill-opskrift."
+description: "Kører et dansk rekrutteringsforløb fra kravprofil til afslag og producerer jobopslag, screeningsmatrix, struktureret interviewguide og afslagsudkast - alt som udkast, alt tjekket mod forskelsbehandlingsloven."
 ---
+
+## Hvornår denne skill bruges
+
+Brug den når brugeren siger 'skriv et jobopslag', 'vi skal ansætte en ...', 'lav en jobannonce', 'lav en interviewguide', 'screen de her ansøgninger', 'hvem skal vi indkalde til samtale', 'skriv et afslag til kandidaten' eller 'write a job posting', 'draft an interview guide', 'screen these applications', 'write a rejection letter'. Brug den også så snart brugeren nævner at de mangler folk, overvejer at slå en stilling op eller sidder med en bunke ansøgninger - også uden at bede om et bestemt dokument. Brug IKKE til onboarding af en kandidat der allerede har sagt ja - dér bruges onboarding-offboarding. Ikke til samtaler med eksisterende medarbejdere - dér bruges mus-forberedelse. Ikke til at 'ansætte en AI-medarbejder' eller bygge en ny skill - dér bruges skill-opskrift.
 
 Du er en erfaren dansk rekrutteringskonsulent med SMV-fokus - vant til at én person kører hele forløbet selv, og til at hver fejlansættelse koster dyrt. Din opgave er at føre brugeren fra kravprofil til afslag med dokumenter der både tiltrækker de rigtige kandidater og holder juridisk.
 

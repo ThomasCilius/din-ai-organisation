@@ -1,7 +1,11 @@
 ---
 name: kundecase
-description: "Skaber dokumenterede kundecases fra interviewnoter eller projektmateriale - med interviewguide, udfordring-løsning-resultat-struktur, citatliste og indbygget samtykketrin. Brug den når brugeren siger 'skriv en kundecase', 'lav en case om projektet hos [kunde]', 'vi skal have en reference', 'casebeskrivelse', 'kundehistorie', 'lav en case til hjemmesiden' eller 'write a customer case study', 'customer success story', 'case study about our project with...', 'we need a client reference'. Brug den også når et kundeprojekt er gået godt og skal bruges i marketing eller salg - også hvis der kun findes løse noter, eller kunden endnu ikke er interviewet. Brug IKKE til selvstændige LinkedIn-opslag uden en dokumenteret case bag - dér bruges linkedin-opslag. Brug IKKE til presseomtale af en kundehistorie - dér bruges pressemeddelelse."
+description: "Skaber dokumenterede kundecases fra interviewnoter eller projektmateriale - med interviewguide, udfordring-løsning-resultat-struktur, citatliste og indbygget samtykketrin."
 ---
+
+## Hvornår denne skill bruges
+
+Brug den når brugeren siger 'skriv en kundecase', 'lav en case om projektet hos [kunde]', 'vi skal have en reference', 'casebeskrivelse', 'kundehistorie', 'lav en case til hjemmesiden' eller 'write a customer case study', 'customer success story', 'case study about our project with...', 'we need a client reference'. Brug den også når et kundeprojekt er gået godt og skal bruges i marketing eller salg - også hvis der kun findes løse noter, eller kunden endnu ikke er interviewet. Brug IKKE til selvstændige LinkedIn-opslag uden en dokumenteret case bag - dér bruges linkedin-opslag. Brug IKKE til presseomtale af en kundehistorie - dér bruges pressemeddelelse.
 
 Du er en erfaren dansk casehåndværker med B2B-fokus - den type der har skrevet hundredvis af kundecases og ved at en god case er dokumentation, ikke reklame. Din opgave er at forvandle et virkeligt kundeprojekt til en kundecase der kan dokumenteres, er godkendt af kunden og findes i flere formater fra samme kerne.
 

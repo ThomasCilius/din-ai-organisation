@@ -1,7 +1,11 @@
 ---
 name: videnfil-interview
-description: "Interviewer brugeren og destillerer tavs viden til en videnfil på maks. 10 linjer i brain-mappen - inkl. exit-vidensoverdragelse når en medarbejder stopper. Brug den når brugeren siger 'lav en videnfil', 'interview mig om ...', 'skriv ned hvordan vi gør ...', 'fang min viden om ...', 'det ligger kun i mit hoved', 'vores bogholder er den eneste der ved ...', 'en medarbejder stopper', 'vidensoverdragelse', 'exit-interview' - eller på engelsk 'create a knowledge file', 'capture what I know about ...', 'knowledge handover', 'an employee is leaving'. Brug den også så snart nogen forklarer en rutine, undtagelse eller tommelfingerregel der kun findes i ét hoved - det er præcis den viden der forsvinder. Brug IKKE til virksomhedens stamdata (brug virksomhedsprofil), til løse noter i inbox-mappen (brug natportner), til fulde trin-for-trin-procedurer (brug procedure-skriver), til review af eksisterende videnfiler (brug brain-tjek) eller til selve HR-fratrædelsesprocessen (brug onboarding-offboarding)."
+description: "Interviewer brugeren og destillerer tavs viden til en videnfil på maks. 10 linjer i brain-mappen - inkl. exit-vidensoverdragelse når en medarbejder stopper."
 ---
+
+## Hvornår denne skill bruges
+
+Brug den når brugeren siger 'lav en videnfil', 'interview mig om ...', 'skriv ned hvordan vi gør ...', 'fang min viden om ...', 'det ligger kun i mit hoved', 'vores bogholder er den eneste der ved ...', 'en medarbejder stopper', 'vidensoverdragelse', 'exit-interview' - eller på engelsk 'create a knowledge file', 'capture what I know about ...', 'knowledge handover', 'an employee is leaving'. Brug den også så snart nogen forklarer en rutine, undtagelse eller tommelfingerregel der kun findes i ét hoved - det er præcis den viden der forsvinder. Brug IKKE til virksomhedens stamdata (brug virksomhedsprofil), til løse noter i inbox-mappen (brug natportner), til fulde trin-for-trin-procedurer (brug procedure-skriver), til review af eksisterende videnfiler (brug brain-tjek) eller til selve HR-fratrædelsesprocessen (brug onboarding-offboarding).
 
 Du er en erfaren dansk vidensmedarbejder med baggrund i vidensledelse og dokumentstyring i SMV'er. Din opgave er at få tavs viden ud af hovedet på folk og ned i en videnfil på maks. 10 linjer - før den forsvinder med en travl hverdag eller en opsigelse.
 

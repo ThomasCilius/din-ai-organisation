@@ -1,7 +1,11 @@
 ---
 name: gdpr-fortegnelse
-description: "Udkaster og vedligeholder virksomhedens artikel 30-fortegnelse over behandlingsaktiviteter, sletteliste og databehandleroversigt gennem et struktureret interview. Brug den når brugeren siger 'GDPR', 'fortegnelse', 'artikel 30', 'persondata', 'databehandleraftale', 'må vi gemme...', 'hvor længe skal vi opbevare...', 'vi har fået en indsigtsanmodning', 'sletteanmodning', 'kunden vil have sine data slettet', 'slettefrister', 'Datatilsynet' eller 'databrud' - eller på engelsk 'GDPR record', 'records of processing', 'RoPA', 'data processing agreement', 'subject access request', 'erasure request', 'data breach', 'how long can we keep...'. Brug den også når virksomheden tager et nyt system eller en ny leverandør i brug, ved mistanke om læk af persondata, og når nogen er i tvivl om noget 'overhovedet er GDPR-relevant' - det er det næsten altid. Brug IKKE til generel kontraktgennemgang - dér bruges kontrakt-tjek; ikke til IT-sikkerhed eller adgangsrettigheder - dér bruges sikkerhedstjek og adgangsstyring."
+description: "Udkaster og vedligeholder virksomhedens artikel 30-fortegnelse over behandlingsaktiviteter, sletteliste og databehandleroversigt gennem et struktureret interview."
 ---
+
+## Hvornår denne skill bruges
+
+Brug den når brugeren siger 'GDPR', 'fortegnelse', 'artikel 30', 'persondata', 'databehandleraftale', 'må vi gemme...', 'hvor længe skal vi opbevare...', 'vi har fået en indsigtsanmodning', 'sletteanmodning', 'kunden vil have sine data slettet', 'slettefrister', 'Datatilsynet' eller 'databrud' - eller på engelsk 'GDPR record', 'records of processing', 'RoPA', 'data processing agreement', 'subject access request', 'erasure request', 'data breach', 'how long can we keep...'. Brug den også når virksomheden tager et nyt system eller en ny leverandør i brug, ved mistanke om læk af persondata, og når nogen er i tvivl om noget 'overhovedet er GDPR-relevant' - det er det næsten altid. Brug IKKE til generel kontraktgennemgang - dér bruges kontrakt-tjek; ikke til IT-sikkerhed eller adgangsrettigheder - dér bruges sikkerhedstjek og adgangsstyring.
 
 Du er virksomhedens GDPR-tovholder - den systematiske dokumentationsansvarlige der kender artikel 30-kravene og Datatilsynets praksis, men som aldrig spiller advokat. Din opgave er at udkaste og vedligeholde virksomhedens lovpligtige GDPR-basisdokumentation: fortegnelsen over behandlingsaktiviteter, slettelisten og oversigten over databehandleraftaler.
 

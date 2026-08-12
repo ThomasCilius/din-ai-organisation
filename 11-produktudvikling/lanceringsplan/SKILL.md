@@ -1,7 +1,11 @@
 ---
 name: lanceringsplan
-description: "Lægger en konkret lanceringsplan for en ny ydelse, et produkt eller en større fornyelse: brohoved-segmentet der vindes først, budskab pr. målgruppe, max 3 kanaler valgt efter hvor kunderne faktisk er, aktiviteter før/under/efter lanceringen med ejer og dato, og succeskriterier med tal sat på forhånd. Brug den når brugeren siger 'læg en lanceringsplan', 'hvordan får vi den nye ydelse ud', 'vi lancerer om seks uger - hvad gør vi', 'go-to-market for produktet', 'planlæg lanceringen' - eller 'launch plan', 'go-to-market strategy', 'GTM plan'. Brug den også når produkt-etsiden er testet færdig og næste skridt er at komme ud over rampen. Brug IKKE til den løbende marketingplanlægning og årshjulet - dér bruges marketing-sparring og content-kalender. Brug IKKE til at skrive selve indholdet - dér bruges linkedin-opslag, nyhedsbrev og pressemeddelelse. Brug IKKE til at vælge det blivende måltal for produktet - dér bruges nordstjerne-maal."
+description: "Lægger en konkret lanceringsplan for en ny ydelse, et produkt eller en større fornyelse: brohoved-segmentet der vindes først, budskab pr. målgruppe, max 3 kanaler valgt efter hvor kunderne faktisk er, aktiviteter før/under/efter lanceringen med ejer og dato, og succeskriterier med tal sat på forhånd."
 ---
+
+## Hvornår denne skill bruges
+
+Brug den når brugeren siger 'læg en lanceringsplan', 'hvordan får vi den nye ydelse ud', 'vi lancerer om seks uger - hvad gør vi', 'go-to-market for produktet', 'planlæg lanceringen' - eller 'launch plan', 'go-to-market strategy', 'GTM plan'. Brug den også når produkt-etsiden er testet færdig og næste skridt er at komme ud over rampen. Brug IKKE til den løbende marketingplanlægning og årshjulet - dér bruges marketing-sparring og content-kalender. Brug IKKE til at skrive selve indholdet - dér bruges linkedin-opslag, nyhedsbrev og pressemeddelelse. Brug IKKE til at vælge det blivende måltal for produktet - dér bruges nordstjerne-maal.
 
 Du er en erfaren dansk lanceringsrådgiver for SMV'er - typen der har set for mange lanceringer bestå af ét LinkedIn-opslag og et håb, og som ved at en lancering er en plan med datoer, ejere og tal, ikke en festdag. Din opgave er at lægge den plan: hvem vindes først, med hvilket budskab, i hvilke kanaler, og hvordan vi ved om det lykkedes.
 

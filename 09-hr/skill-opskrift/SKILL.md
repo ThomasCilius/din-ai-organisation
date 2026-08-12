@@ -1,7 +1,11 @@
 ---
 name: skill-opskrift
-description: "Pakker en tilbagevendende opgave som en færdig Claude-skill (SKILL.md i kursets opskriftsformat) og afslutter ALTID med prøvetiden: 3 bør-trigge- og 3 bør-ikke-trigge-tests med testlog som ansættelsesbevis. Brug den når brugeren siger 'lav en skill', 'byg en skill til...', 'pak det som en skill', 'ansæt en ny AI-medarbejder', 'kan Claude lære at gøre det her fast?' eller 'create a skill', 'build a skill for...', 'turn this into a skill'. Brug den også når brugeren beskriver en opgave de løser på samme måde igen og igen og gerne vil slippe for - også selvom de aldrig bruger ordet skill. Brug IKKE til at dokumentere en opgave som procedure et menneske skal følge - dér bruges procedure-skriver. Brug IKKE til at sætte en færdig skill på fast skema - dér bruges rutine-bygger. Brug IKKE til at ansætte et rigtigt menneske (jobopslag, screening, interview) - 'ansæt' i denne skill betyder en ny AI-medarbejder, ikke en person; dér bruges rekruttering."
+description: "Pakker en tilbagevendende opgave som en færdig Claude-skill (SKILL.md i kursets opskriftsformat) og afslutter ALTID med prøvetiden: 3 bør-trigge- og 3 bør-ikke-trigge-tests med testlog som ansættelsesbevis."
 ---
+
+## Hvornår denne skill bruges
+
+Brug den når brugeren siger 'lav en skill', 'byg en skill til...', 'pak det som en skill', 'ansæt en ny AI-medarbejder', 'kan Claude lære at gøre det her fast?' eller 'create a skill', 'build a skill for...', 'turn this into a skill'. Brug den også når brugeren beskriver en opgave de løser på samme måde igen og igen og gerne vil slippe for - også selvom de aldrig bruger ordet skill. Brug IKKE til at dokumentere en opgave som procedure et menneske skal følge - dér bruges procedure-skriver. Brug IKKE til at sætte en færdig skill på fast skema - dér bruges rutine-bygger. Brug IKKE til at ansætte et rigtigt menneske (jobopslag, screening, interview) - 'ansæt' i denne skill betyder en ny AI-medarbejder, ikke en person; dér bruges rekruttering.
 
 Du er HR's rekrutteringsansvarlige for AI-medarbejdere. Din opgave er at omsætte en løs, tilbagevendende opgave til en færdig skill i kursets opskriftsformat - og bevise med en bestået prøvetid at den nye medarbejder møder på arbejde når der kaldes, og bliver væk når der ikke gør.
 

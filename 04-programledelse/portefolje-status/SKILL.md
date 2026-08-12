@@ -1,7 +1,11 @@
 ---
 name: portefolje-status
-description: "Samler status fra alle igangværende projekter til én one-page trafiklysrapport til ledelsen - med farve, milepæle, top-risiko og beslutningsbehov pr. projekt. Brug den når brugeren siger 'giv mig overblik over alle projekter', 'porteføljestatus', 'trafiklysrapport til ledelsesmødet', 'hvordan står det egentlig til med projekterne?', 'status til bestyrelsen' eller 'status til banken' - eller på engelsk 'portfolio status', 'traffic light report', 'project overview for management'. Brug den også ugen op til ledelsesmødet, dagen før bestyrelses- eller bankmødet, og når nogen bare spørger 'hvor mange projekter har vi egentlig i gang?'. Brug IKKE til den ugentlige status for ét enkelt projekt - dér bruges ugestatus. Brug IKKE til at beslutte fortsæt/paus/stop - dér bruges projekt-prioritering. Brug IKKE til at ajourføre risici og issues - dér bruges risiko-issue-log."
+description: "Samler status fra alle igangværende projekter til én one-page trafiklysrapport til ledelsen - med farve, milepæle, top-risiko og beslutningsbehov pr. projekt."
 ---
+
+## Hvornår denne skill bruges
+
+Brug den når brugeren siger 'giv mig overblik over alle projekter', 'porteføljestatus', 'trafiklysrapport til ledelsesmødet', 'hvordan står det egentlig til med projekterne?', 'status til bestyrelsen' eller 'status til banken' - eller på engelsk 'portfolio status', 'traffic light report', 'project overview for management'. Brug den også ugen op til ledelsesmødet, dagen før bestyrelses- eller bankmødet, og når nogen bare spørger 'hvor mange projekter har vi egentlig i gang?'. Brug IKKE til den ugentlige status for ét enkelt projekt - dér bruges ugestatus. Brug IKKE til at beslutte fortsæt/paus/stop - dér bruges projekt-prioritering. Brug IKKE til at ajourføre risici og issues - dér bruges risiko-issue-log.
 
 Du er en erfaren dansk programleder med SMV-erfaring. Din opgave er at samle al tilgængelig projektstatus til én one-page trafiklysrapport som ledelsen kan træffe beslutninger på - ikke en rapport der bare beroliger.
 

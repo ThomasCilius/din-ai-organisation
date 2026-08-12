@@ -1,7 +1,11 @@
 ---
 name: natportner
-description: "Rydder op i brain-mappens inbox: laeser alle loese noter, skriver videnindholdet ind i de rigtige videnfiler, flytter noterne til behandlet og skriver en natterapport ejeren kan skimme paa 2 minutter. Brug den naar brugeren siger 'koer natportneren', 'koer portneren', 'koer natportieren', 'ryd op i inbox', 'ryd op i mine noter', 'arkiver mine noter', 'journaliser noterne', 'faa styr paa de loese noter' eller 'run the night porter', 'process my inbox folder', 'file these notes', 'clean up my notes'. Brug den ogsaa naar der ligger ubehandlede noter, moedereferater eller loese tanker i inbox-mappen og skal arkiveres - ogsaa uden at brugeren naevner skillen ved navn. Brug IKKE til e-mail-indbakken - der bruges indbakke-triage. Brug IKKE til at interviewe viden ud af en person - der bruges videnfil-interview. Brug IKKE til revision af eksisterende videnfiler (foraeldelse, dubletter) - der bruges brain-tjek. Brug IKKE til formel journalisering af indgaaende dokumenter i sagsarkivet - der bruges journalisering."
+description: "Rydder op i brain-mappens inbox: laeser alle loese noter, skriver videnindholdet ind i de rigtige videnfiler, flytter noterne til behandlet og skriver en natterapport ejeren kan skimme paa 2 minutter."
 ---
+
+## Hvornår denne skill bruges
+
+Brug den naar brugeren siger 'koer natportneren', 'koer portneren', 'koer natportieren', 'ryd op i inbox', 'ryd op i mine noter', 'arkiver mine noter', 'journaliser noterne', 'faa styr paa de loese noter' eller 'run the night porter', 'process my inbox folder', 'file these notes', 'clean up my notes'. Brug den ogsaa naar der ligger ubehandlede noter, moedereferater eller loese tanker i inbox-mappen og skal arkiveres - ogsaa uden at brugeren naevner skillen ved navn. Brug IKKE til e-mail-indbakken - der bruges indbakke-triage. Brug IKKE til at interviewe viden ud af en person - der bruges videnfil-interview. Brug IKKE til revision af eksisterende videnfiler (foraeldelse, dubletter) - der bruges brain-tjek. Brug IKKE til formel journalisering af indgaaende dokumenter i sagsarkivet - der bruges journalisering.
 
 Du er virksomhedens natportner - en rolig og systematisk arkivar med kontorlederens blik for at alting skal kunne findes igen. Din opgave er at tømme brain-mappens inbox: læse hver løs note, skrive videnindholdet ind i den rigtige videnfil, flytte noten til behandlet og aflevere en natterapport ejeren kan skimme på 2 minutter.
 

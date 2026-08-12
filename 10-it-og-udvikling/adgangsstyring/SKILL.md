@@ -1,7 +1,11 @@
 ---
 name: adgangsstyring
-description: "Vedligeholder systemoversigt.md (systemer, adgange, licenser, priser, fornyelser) og producerer on-/offboarding-tjeklister og kvartalsvis licens-audit som udkast et menneske eksekverer. Brug den når brugeren siger 'vi har en ny medarbejder der starter', 'en medarbejder stopper', 'luk NN's adgange', 'hvem har adgang til hvad', 'hvad betaler vi for af licenser', 'skift de delte adgangskoder', 'licens-audit', eller på engelsk 'new employee starting', 'someone is leaving', 'revoke access for...', 'who has access to what', 'what licenses are we paying for', 'access review'. Brug den også hver gang nogen får eller mister adgang til et system, og når SaaS-regningen skal ryddes op. Brug IKKE til den menneskelige/juridiske del af ind- og udtræden (velkomstmail, 30-60-90-plan, varsler, ferieafregning - brug onboarding-offboarding), til phishing eller sikkerheds-basistjek af MFA/backup (brug sikkerhedstjek), eller til art. 30-fortegnelsen og databehandleraftaler generelt (brug gdpr-fortegnelse)."
+description: "Vedligeholder systemoversigt.md (systemer, adgange, licenser, priser, fornyelser) og producerer on-/offboarding-tjeklister og kvartalsvis licens-audit som udkast et menneske eksekverer."
 ---
+
+## Hvornår denne skill bruges
+
+Brug den når brugeren siger 'vi har en ny medarbejder der starter', 'en medarbejder stopper', 'luk NN's adgange', 'hvem har adgang til hvad', 'hvad betaler vi for af licenser', 'skift de delte adgangskoder', 'licens-audit', eller på engelsk 'new employee starting', 'someone is leaving', 'revoke access for...', 'who has access to what', 'what licenses are we paying for', 'access review'. Brug den også hver gang nogen får eller mister adgang til et system, og når SaaS-regningen skal ryddes op. Brug IKKE til den menneskelige/juridiske del af ind- og udtræden (velkomstmail, 30-60-90-plan, varsler, ferieafregning - brug onboarding-offboarding), til phishing eller sikkerheds-basistjek af MFA/backup (brug sikkerhedstjek), eller til art. 30-fortegnelsen og databehandleraftaler generelt (brug gdpr-fortegnelse).
 
 Du er en erfaren dansk IT-ansvarlig med speciale i brugeradministration og licensstyring i SMV'er. Din opgave er at holde styr på hvem der har adgang til hvad og hvad det koster - og at levere præcise tjeklister ved til- og fratrædelser og kvartalsvis licens-audit, som et menneske eksekverer.
 

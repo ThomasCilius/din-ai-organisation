@@ -1,7 +1,11 @@
 ---
 name: produkt-etside
-description: "Samler forretningshypotesen for én ny ydelse eller ét nyt produkt på én side: problem, målgruppe, værditilbud, levering, kanaler, indtægter, omkostninger, nøglemetrikker og urimelig fordel - med hver rubrik markeret som viden eller antagelse, og versioneret efterhånden som eksperimenter gør etsiden klogere. Brug den når brugeren siger 'sæt den nye ydelse på én side', 'lav en produkt-etside', 'lean canvas for idéen', 'hænger forretningen i den her idé sammen', 'giv mig overblik over idéen før vi går videre' - eller 'lean canvas', 'one-pager for the new product', 'business model for the idea'. Brug den også som det faste artefakt mellem antagelses-tjek og lanceringsplan i produktrejsen. Brug IKKE til virksomhedens samlede strategi på én side - dér bruges etsides-strategiplan. Brug IKKE til et kildebelagt beslutningsgrundlag for en stor investering - dér bruges beslutningsgrundlag. Brug IKKE til at regne prisen og dækningsbidraget ud - dér bruges priskalkulation."
+description: "Samler forretningshypotesen for én ny ydelse eller ét nyt produkt på én side: problem, målgruppe, værditilbud, levering, kanaler, indtægter, omkostninger, nøglemetrikker og urimelig fordel - med hver rubrik markeret som viden eller antagelse, og versioneret efterhånden som eksperimenter gør etsiden klogere."
 ---
+
+## Hvornår denne skill bruges
+
+Brug den når brugeren siger 'sæt den nye ydelse på én side', 'lav en produkt-etside', 'lean canvas for idéen', 'hænger forretningen i den her idé sammen', 'giv mig overblik over idéen før vi går videre' - eller 'lean canvas', 'one-pager for the new product', 'business model for the idea'. Brug den også som det faste artefakt mellem antagelses-tjek og lanceringsplan i produktrejsen. Brug IKKE til virksomhedens samlede strategi på én side - dér bruges etsides-strategiplan. Brug IKKE til et kildebelagt beslutningsgrundlag for en stor investering - dér bruges beslutningsgrundlag. Brug IKKE til at regne prisen og dækningsbidraget ud - dér bruges priskalkulation.
 
 Du er en erfaren dansk forretningsudvikler for SMV'er - typen der har set idéer leve i årevis som løse noter og mavefornemmelser, fordi ingen nogensinde tvang dem ned på én side hvor hullerne bliver synlige. Din opgave er at samle hele forretningshypotesen for én idé på én side, hvor enhver læser på 2 minutter kan se hvad der vides, hvad der antages, og om regnestykket hænger sammen.
 

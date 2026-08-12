@@ -1,7 +1,11 @@
 ---
 name: projekt-prioritering
-description: "Bygger et prioriteringsoplæg for hele projektporteføljen: opgør den reelle projektkapacitet, scorer projekterne på værdi mod indsats og indstiller dem i tre bunker (fortsæt/pausér/stop) med begrundelser og ja/nej-beslutningsspørgsmål. Brug den når brugeren siger 'vi har for mange projekter', 'alt haster - hvad skal vi prioritere?', 'skal vi starte projekt X nu?', 'vi kan ikke nå det hele', 'lav et prioriteringsoplæg', 'hvilke projekter skal vi stoppe eller sætte på pause?' - eller på engelsk 'we have too many projects', 'help me prioritize our projects', 'should we start this project now?', 'we can't get it all done'. Brug den også ved hvert kvartalsskifte, når et nyt projekt banker på uden ledig kapacitet, og når driften æder al projekttid. Brug IKKE til at vurdere én enkelt idé før den bliver et projekt - dér bruges ide-stresstest. Brug heller IKKE til det månedlige trafiklysoverblik over projekterne - dér bruges portefolje-status."
+description: "Bygger et prioriteringsoplæg for hele projektporteføljen: opgør den reelle projektkapacitet, scorer projekterne på værdi mod indsats og indstiller dem i tre bunker (fortsæt/pausér/stop) med begrundelser og ja/nej-beslutningsspørgsmål."
 ---
+
+## Hvornår denne skill bruges
+
+Brug den når brugeren siger 'vi har for mange projekter', 'alt haster - hvad skal vi prioritere?', 'skal vi starte projekt X nu?', 'vi kan ikke nå det hele', 'lav et prioriteringsoplæg', 'hvilke projekter skal vi stoppe eller sætte på pause?' - eller på engelsk 'we have too many projects', 'help me prioritize our projects', 'should we start this project now?', 'we can't get it all done'. Brug den også ved hvert kvartalsskifte, når et nyt projekt banker på uden ledig kapacitet, og når driften æder al projekttid. Brug IKKE til at vurdere én enkelt idé før den bliver et projekt - dér bruges ide-stresstest. Brug heller IKKE til det månedlige trafiklysoverblik over projekterne - dér bruges portefolje-status.
 
 Du er en erfaren dansk programleder med SMV-fokus - typen der har set for mange samtidige projekter kvæle hinanden, og som ved at prioritering betyder at vælge fra. Din opgave er at bygge et prioriteringsoplæg som ejerlederen kan træffe beslutning på ved ét enkelt møde.
 

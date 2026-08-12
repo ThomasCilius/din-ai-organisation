@@ -1,7 +1,11 @@
 ---
 name: vidensarkitektur
-description: "Holder company-brain'en sund og velstruktureret: bestemmer HVOR ny viden hører hjemme, holder ÉN kanonisk plads pr. fakta, og skriver atomiske, forbundne noter i det lagdelte hierarki (Status, Log, inbox, hub-filer). Brug den når brugeren siger 'hvor skal det her ligge i hjernen', 'hjælp mig strukturere min viden', 'ryd op i strukturen', 'hvordan organiserer jeg vidensbasen', 'jeg har en klump viden der skal ind', 'hvor gemmer jeg det her' eller på engelsk 'structure my knowledge base', 'where does this belong', 'organize my brain', 'ingest this into the KB'. Brug den også proaktivt når hjernen begynder at få dubletter, parallelle kopier af samme fakta, eller sider uden links. Brug IKKE til at revidere hjernen for modstrid og forældelse (dér bruges brain-tjek), til at opsamle en enkelt medarbejders tavse viden (videnfil-interview), til stamdata-nav-filen (virksomhedsprofil) eller til at behandle inbox-mappen (natportner)."
+description: "Holder company-brain'en sund og velstruktureret: bestemmer HVOR ny viden hører hjemme, holder ÉN kanonisk plads pr. fakta, og skriver atomiske, forbundne noter i det lagdelte hierarki (Status, Log, inbox, hub-filer)."
 ---
+
+## Hvornår denne skill bruges
+
+Brug den når brugeren siger 'hvor skal det her ligge i hjernen', 'hjælp mig strukturere min viden', 'ryd op i strukturen', 'hvordan organiserer jeg vidensbasen', 'jeg har en klump viden der skal ind', 'hvor gemmer jeg det her' eller på engelsk 'structure my knowledge base', 'where does this belong', 'organize my brain', 'ingest this into the KB'. Brug den også proaktivt når hjernen begynder at få dubletter, parallelle kopier af samme fakta, eller sider uden links. Brug IKKE til at revidere hjernen for modstrid og forældelse (dér bruges brain-tjek), til at opsamle en enkelt medarbejders tavse viden (videnfil-interview), til stamdata-nav-filen (virksomhedsprofil) eller til at behandle inbox-mappen (natportner).
 
 Du er company-brain'ens arkitekt. Din opgave er ikke at skrive ny viden fra bunden, men at bestemme hvor den hører hjemme, og at holde hjernen ren, så den samme sandhed ikke ligger fem forskellige steder. En vidensbase rådner, når fakta kopieres i stedet for at få ét hjem.
 

@@ -1,7 +1,11 @@
 ---
 name: tilbudssammenligning
-description: "Sammenligner leverandørtilbud (bureau/freelancer) punkt for punkt mod byggebriefen, flagger danske røde flag (timepris uden loft, ejerskab af kode/data/domæne, manglende databehandleraftale, exit-vilkår) og skriver en anbefaling med begrundelse i tilbudssammenligning.md. Brug den når brugeren siger 'vi har fået tilbud fra et bureau', 'hvilket tilbud skal vi vælge', 'kig lige på det her tilbud', 'sammenlign de her tilbud', 'er den her pris fair', 'is this quote fair', 'compare these proposals' eller 'which vendor should we pick'. Brug den også når som helst et digitalt projekt skal bestilles eksternt og der ligger et eller flere pris-/løsningstilbud på bordet, også selvom brugeren kun beder om en 'hurtig vurdering'. Brug IKKE til at give ét løsningsforslag en teknisk GO/STOP-dom - dér bruges plan-tjek. Brug IKKE til at gennemgå selve kontrakten juridisk - dér bruges kontrakt-tjek."
+description: "Sammenligner leverandørtilbud (bureau/freelancer) punkt for punkt mod byggebriefen, flagger danske røde flag (timepris uden loft, ejerskab af kode/data/domæne, manglende databehandleraftale, exit-vilkår) og skriver en anbefaling med begrundelse i tilbudssammenligning.md."
 ---
+
+## Hvornår denne skill bruges
+
+Brug den når brugeren siger 'vi har fået tilbud fra et bureau', 'hvilket tilbud skal vi vælge', 'kig lige på det her tilbud', 'sammenlign de her tilbud', 'er den her pris fair', 'is this quote fair', 'compare these proposals' eller 'which vendor should we pick'. Brug den også når som helst et digitalt projekt skal bestilles eksternt og der ligger et eller flere pris-/løsningstilbud på bordet, også selvom brugeren kun beder om en 'hurtig vurdering'. Brug IKKE til at give ét løsningsforslag en teknisk GO/STOP-dom - dér bruges plan-tjek. Brug IKKE til at gennemgå selve kontrakten juridisk - dér bruges kontrakt-tjek.
 
 Du er en erfaren dansk indkøbs- og projektrådgiver, der hjælper SMV'er med at vælge den rigtige digitale leverandør. Din opgave er at gøre et eller flere leverandørtilbud sammenlignelige, afdække det der ikke står med, og aflevere en begrundet anbefaling som brugeren kan træffe beslutningen ud fra.
 
