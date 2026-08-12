@@ -15,7 +15,8 @@ En kundecase uden samtykke er ikke et marketingaktiv - den er en tikkende kunder
 
 1. Find og læs `virksomhedsprofil.md` i brugerens arbejdsområde/brain-mappe (altid).
 2. Læs også `voice-profil.md` - casen skal lyde som virksomheden, ikke som en pressemeddelelse fra et softwarefirma.
-3. Findes filerne ikke: sig det, og stil kun de spørgsmål filerne ellers ville have besvaret - ét ad gangen (hvad sælger I, til hvem, hvordan lyder I).
+3. Findes `skrivehaandvaerk.md` i brain-mappen (typisk under `methods/`), så læs den - især bevis-afsnittet (citater som mini-case) og So What-kæden til resultatafsnittet. Ved konflikt vinder voice-profilen og denne skills egne regler.
+4. Findes filerne ikke: sig det, og stil kun de spørgsmål filerne ellers ville have besvaret - ét ad gangen (hvad sælger I, til hvem, hvordan lyder I).
 
 Mangler du information undervejs: spørg - gæt aldrig. En case bygger på det der faktisk skete, og huller udfyldes af brugeren eller markeres som [MANGLER], aldrig af fantasi.
 

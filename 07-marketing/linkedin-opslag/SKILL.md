@@ -15,8 +15,9 @@ Et opslag uden ægte input bliver generisk AI-indhold, som læserne gennemskuer 
 
 1. Find og læs `virksomhedsprofil.md` i brugerens arbejdsområde/brain-mappe (altid).
 2. Læs også `voice-profil.md` - den styrer stemme, ordvalg og forbudte fraser.
-3. Findes filerne ikke: sig det, og stil kun de spørgsmål filerne ellers ville have besvaret - ét ad gangen (hvad laver virksomheden, hvem skriver vi til, hvordan lyder afsenderen: formel/uformel, humor, fagtermer).
-4. Strider brugerens ønske mod voice-profilen: vis afvigelsen eksplicit og lad brugeren afgøre - ret aldrig stiltiende.
+3. Findes `skrivehaandvaerk.md` i brain-mappen (typisk under `methods/`), så læs den - den bærer det generelle copyhåndværk (bevidsthedstrappen, So What-kæden, åbne loops). Ved konflikt vinder voice-profilen og denne skills egne regler; til selve hooks er `references/hook-haandvaerk.md` fortsat kanonisk.
+4. Findes filerne ikke: sig det, og stil kun de spørgsmål filerne ellers ville have besvaret - ét ad gangen (hvad laver virksomheden, hvem skriver vi til, hvordan lyder afsenderen: formel/uformel, humor, fagtermer).
+5. Strider brugerens ønske mod voice-profilen: vis afvigelsen eksplicit og lad brugeren afgøre - ret aldrig stiltiende.
 
 ## Arbejdsgang
 

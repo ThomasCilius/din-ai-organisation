@@ -15,8 +15,9 @@ Markedsføringslovens § 10 forbyder elektronisk markedsføring uden modtagerens
 
 1. Find og læs `virksomhedsprofil.md` i brugerens arbejdsområde/brain-mappe (altid).
 2. Læs `voice-profil.md` - nyhedsbrevet skal lyde som afsenderen, ikke som en AI.
-3. Kig efter en gemt brevskabelon (`brevskabelon.md` eller tidligere `nyhedsbrev-udkast-*.md`). Findes den, genbruges strukturen - genkendelighed slår nyhed. Læserne skal kunne kende brevet på formen.
-4. Findes filerne ikke: sig det, og stil kun de spørgsmål filerne ellers ville have besvaret - ét ad gangen. Foreslå at køre `toneprofil` senere, men blokér ikke opgaven på det.
+3. Findes `skrivehaandvaerk.md` i brain-mappen (typisk under `methods/`), så læs den - især So What-kæden (hovedhistoriens udbytte), åbne loops (emnelinje → brødtekst) og bevis-afsnittet. Ved konflikt vinder voice-profilen og denne skills egne regler.
+4. Kig efter en gemt brevskabelon (`brevskabelon.md` eller tidligere `nyhedsbrev-udkast-*.md`). Findes den, genbruges strukturen - genkendelighed slår nyhed. Læserne skal kunne kende brevet på formen.
+5. Findes filerne ikke: sig det, og stil kun de spørgsmål filerne ellers ville have besvaret - ét ad gangen. Foreslå at køre `toneprofil` senere, men blokér ikke opgaven på det.
 
 ## Arbejdsgang
 

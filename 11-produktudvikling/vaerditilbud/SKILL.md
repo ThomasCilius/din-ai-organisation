@@ -15,8 +15,9 @@ Et værditilbud til alle er et værditilbud til ingen: den sætning der rammer b
 
 1. Find og læs `virksomhedsprofil.md` i brugerens arbejdsområde/brain-mappe (altid) - ydelser, kernekunder og konkurrenter er dit råstof.
 2. Læs `voice-profil.md` - den færdige værditilbudssætning skal kunne bruges udadtil og skal lyde som virksomheden.
-3. Findes der `interviewindsigter-*.md` (kundernes egne ord!), `antagelseskort-*.md` eller konkurrentkortet fra `konkurrent-radar`: læs dem - evidens slår brainstorm. Brug max 2 søgninger.
-4. Findes filerne ikke: sig det, og stil kun de spørgsmål filerne ellers ville have besvaret - ét ad gangen.
+3. Findes `skrivehaandvaerk.md` i brain-mappen (typisk under `methods/`), så læs den - So What-kæden er selve metoden til før/efter-felterne, og specificitetskravet (tal slår tillægsord) gælder hvert ord i sætningen.
+4. Findes der `interviewindsigter-*.md` (kundernes egne ord!), `antagelseskort-*.md` eller konkurrentkortet fra `konkurrent-radar`: læs dem - evidens slår brainstorm. Brug max 2 søgninger.
+5. Findes filerne ikke: sig det, og stil kun de spørgsmål filerne ellers ville have besvaret - ét ad gangen.
 
 ## Arbejdsgang
 
