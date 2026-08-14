@@ -19,8 +19,10 @@ En beskrivelse af en illustration er ikke en illustration. Kan aktivet bygges di
 
 1. `designprofil.md` (ejet af designretning): farver, typografi, stilretning, kontrastkrav. Alle aktiver taler designprofilens sprog, ellers ligner de indkøbt clipart.
 2. `voice-profil.md` og `virksomhedsprofil.md`: branche, målgruppe, prisleje, tone. En revisors infografik og et gaming-brands infografik er ikke samme tegning.
-3. `references/billedprompter.md`: brief-skema, prompt-regler og skabeloner pr. genre, når opgaven er raster.
+3. `references/billedprompter.md`: hele spor B. Afklaring af om opgaven overhovedet er raster, brief-skemaet der udfyldes FØR prompten skrives, promptreglerne der virker på tværs af generatorer, skabeloner pr. genre, tre-varianter-mønstret, sådan holdes billederne inden for designprofilen, kritik-tjeklisten brugeren kører på generatorens output, reglen om tekst i billedet, leveringsformat, faldgruber samt rettigheder og ansvar.
 4. Findes `designprofil.md` ikke: fastlæg en minimal stilkontrakt her (2-3 farver, streg, hjørner) og sig det, eller kør designretning først. Gæt aldrig stil.
+
+Er `designprofil.md` og en reference uenige, gælder samme forrang som i designbygger: **profilen vinder på valget** (farve, stil, streg), **referencen vinder på udførelsen** (promptform, filformat, kvalitetsgate). Skal et aktiv bruge fladens CSS-tokens, er de kanoniske navne dem i `designbygger/references/html-motor.md` §3.
 
 ## To spor
 

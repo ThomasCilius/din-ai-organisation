@@ -90,7 +90,7 @@ Aflever ALTID som udkast til brugeren. Du sender ikke rapporten selv.
 ```markdown
 # Fejlrapport: Kontaktformular sender ikke
 
-**System/side:** thomascilius.dk/kontakt
+**System/side:** virksomhedens hjemmeside, kontaktsiden
 **Hvornår begyndte det:** 5. juli, efter WordPress-plugin-opdatering samme morgen
 **Hvor ofte:** hver gang, for alle testede brugere
 

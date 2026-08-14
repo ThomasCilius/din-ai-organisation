@@ -24,13 +24,34 @@ Et brief er en beskrivelse af noget, der ikke findes endnu, og som en anden skal
 ## Håndværk i dybden (læs referencerne før du bygger)
 
 Kvaliteten sidder i detaljerne, og de er skrevet ned. Læs den relevante reference i `references/` og byg efter den, ikke efter mavefornemmelse:
-- `references/designsystem.md` - fastlæg et rigt designsystem (æstetisk retning, typografi med rigtige skrifter, farvesystem, spacing, layout, motion), før du bygger. Indeholder 10 retninger, font-anbefalinger og en font-blacklist.
-- `references/html-motor.md` - den fulde HTML-motor: UX-love, usability-principper, wiring-mønstre, tjekliste for selvstændig HTML og et API-cheatsheet.
-- `references/polering.md` - laget mellem designprofil og produktion: HVORFOR noget føles poleret. Koncentriske radier, hit areas, ALLE interaktionstilstande, tekstombrydning/truncation, skyggelag, ikonoptik, spacing-optik vs. matematik. Tilpasset fra ECC (MIT).
-- `references/motion.md` - det fulde motion-system: tokens, spring-presets, decision tree for om motion overhovedet skal findes, prefers-reduced-motion som hård regel, SSR-sikre initialtilstande og copy-paste-mønstre (modal/toast/stagger/page-transition) i CSS-first-form. Tilpasset fra ECC (MIT).
-- `references/anti-slop-review.md` - kør det byggede design gennem anti-slop-auditten (80-punkts tjekliste, A-F-scoring) og ret manglerne, før du afleverer.
+- `references/designsystem.md` - fastlæg systemet, før du bygger fladen: beslutningsrækkefølge i otte trin, 11 stilretninger med troværdighedsvalg og dødsfælder, skriftparringer med licenskrav og en font-blacklist, farveskala bygget i oklch med semantiske roller og hårde kontrastgates, spacing og densitet, overflader, layout-arketyper, token-blokken og en gate på fjorten punkter, der skal være grøn før første komponent.
+- `references/html-motor.md` - den fulde HTML-motor: leverancekontrakt for både den selvstændige artefakt og komponenten ind i et eksisterende produkt, skelet og skip-link, nul eksterne afhængigheder (indlejrede skrifter, ikoner, billeder), det kanoniske tokenkatalog med oversættelsestabel og mørkt tema, layout og bevidste gitterbrud, UX-love omsat til kode, wiring-mønstre (mobilmenu, faner, accordion, modal, dropdown, felter, formular, filtre), indholdets tilstande og fejlskærme, afleveringstjekliste og API-huskeliste.
+- `references/polering.md` - laget mellem designprofil og produktion: HVORFOR noget føles poleret. Koncentriske radier, klikflader på mindst 44 px, alle otte interaktionstilstande, tekst i virkeligheden (lange danske ord, tomme værdier, truncation), skyggelag i tre lag, ikonoptik, optisk vs. matematisk spacing samt kanter og dividers.
+- `references/motion.md` - det fulde motion-system: beslutningstræet for om der overhovedet skal være bevægelse, motion-tokens (varigheder, easing, forsinkelser, flytteafstande), fjederkurver i ren CSS med `linear()`, hvad der må animeres, `prefers-reduced-motion` som hård regel, færdige mønstre (indgang, stagger, modal, toast, sidetransition, feedback, fold ud, skeleton, scroll-drevet), motion ind i et eksisterende produkt, ydelse og de hyppigste årsager til hak, plus tjekliste.
+- `references/anti-slop-review.md` - kør det byggede design gennem anti-slop-auditten: slop-tells, regelsæt pr. fladetype, 100-punkts tjekliste i klyngerne A-M med røde dræberpunkter, karakter A-F med afleveringstærskel, velviljekonto, evidenskrav pr. fund, rettelsesløkke med stopregler, rapportformat og en hurtig-audit på 20 punkter.
 
-Det er dét håndværk, der løfter output fra "AI-agtigt" til production-grade. Tilpasset fra gstack (MIT).
+Det er dét håndværk, der løfter output fra "AI-agtigt" til production-grade.
+
+### Forrang, når to kilder er uenige
+
+Referencerne overlapper med vilje, men hvert emne har præcis én ejer. De øvrige filer må henvise til ejeren; de må aldrig sætte en konkurrerende værdi.
+
+| Emne | Ejerfil |
+|---|---|
+| Retningsvalg, palet, skrifter, spacing-skalaens udgangspunkt, kontrastniveau (AA/AAA) | `designprofil.md` |
+| Typeskala, linjehøjde, målbredde, farveroller, konkrete kontrastgates, spacing-skala, radieskalaens trin, lagantal, ikonsæt, layout-arketyper, token-blokken | `references/designsystem.md` |
+| Kanonisk tokennavnesprog i koden, skelet, indlejring, layout-mekanik, wiring og tastaturmodel, validering, indholdets tilstande, fejlskærme, mørkt tema som CSS, print og mail | `references/html-motor.md` |
+| Koncentriske radier, klikflader, interaktionstilstande, fokusringens udseende, skyggelære og skyggeskala, ikonoptik, optisk spacing, kanter og dividers | `references/polering.md` |
+| Varigheder, easing, forsinkelser, flytteafstande, hvad der må animeres, reduceret bevægelse, motion-budget | `references/motion.md` |
+| Slop-tells, fladetypens regelsæt, tjeklisten, scoring, velviljekonto, evidenskrav og rapportformat | `references/anti-slop-review.md` |
+| Tekstens stemme og sprog | `voice-profil.md` |
+
+To regler afgør resten:
+
+1. **Reference mod reference:** ejerfilen for emnet vinder, og du følger dens værdi uændret. Finder du to filer, der sætter forskellige værdier for det samme emne, er det en fejl i pakken, ikke et valg du skal træffe på stedet: byg efter ejerfilen, og skriv modsigelsen i afleveringen.
+2. **Reference mod `designprofil.md`:** profilen vinder på **valget** - hvilken farve, hvilken skrift, hvilken retning, hvilket kontrastniveau. Referencen vinder på **udførelsen** - hvordan valget bliver til kode, der virker, måler rigtigt og ikke hakker. Profilen kan sige, at accenten er flaskegrøn; den kan ikke sætte fokusringen til at fade ind.
+
+Er profilen tavs om et punkt, afgør ejerfilen det, og valget skrives ned i systemfilen, så næste flade ikke gætter forfra.
 
 ## Arbejdsgang
 
@@ -53,10 +74,12 @@ du finder ikke bare fejlene, du retter dem.
    størrelser, kontraster, scrollhøjder). Kan fladen ikke åbnes: audit på
    koden/filerne, og sig at fund er ubekræftede på skærm.
 2. **Audit mod referencerne, ikke mavefornemmelse.** Kør fladen gennem
-   `references/anti-slop-review.md` (80-punkts tjeklisten, A-F-score),
+   `references/anti-slop-review.md` (100-punkts tjeklisten, karakter A-F, eller
+   hurtig-auditten på 20 punkter når tiden er knap),
    `references/polering.md` (hit areas min. 44 px, alle interaktionstilstande,
-   radier, skygger) og `references/motion.md` (reduced motion, compositor-
-   properties). Tjek mod `designprofil.md`: taler fladen profilens sprog?
+   radier, skygger) og `references/motion.md` (reduceret bevægelse, compositor-
+   egenskaber). Tjek mod `designprofil.md`: taler fladen profilens sprog? Ved
+   uenighed gælder forrangsreglen ovenfor.
 3. **Evidens pr. fund.** Hvert fund har: hvad (én sætning), hvor (element/side),
    beviset (måling, screenshot eller citat fra koden) og alvor
    (kritisk/middel/lav). Et fund uden evidens er en mening - drop det.
