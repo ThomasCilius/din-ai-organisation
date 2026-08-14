@@ -376,10 +376,10 @@ pre.cmd.wrapline{{white-space:pre-wrap;word-break:break-word}}
   padding:13px 22px;font-weight:600;font-size:14.5px;font-family:inherit;cursor:pointer;white-space:nowrap}}
 .nb__form button:hover{{background:var(--accent-ink);color:#fff}}
 .nb__hp{{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}}
+.nb__ico{{flex:none;opacity:.85}}
 .nb__svar{{margin:12px 0 0;font-size:14px;font-weight:600;color:var(--accent-ink);min-height:1em}}
 .nb__svar[data-fejl]{{color:#a1291b}}
-.nb__hjaelp{{margin:10px 0 0;font-size:12.5px;color:var(--muted);line-height:1.55}}
-.nb__alt{{display:inline-block;margin-top:14px;font-size:14px;color:var(--muted);text-decoration:none;
+.nb__alt{{display:inline-flex;align-items:center;gap:8px;margin-top:14px;font-size:14px;color:var(--muted);text-decoration:none;
   border-bottom:1px solid var(--line)}}
 .nb__alt:hover{{color:var(--accent-ink);border-bottom-color:var(--accent)}}
 @media (max-width:880px){{
@@ -498,8 +498,7 @@ footer a{{color:var(--accent-ink)}}
         <button type="submit">Tilmeld →</button>
       </form>
       <p id="nbsvar" class="nb__svar" role="status" aria-live="polite"></p>
-      <p class="nb__hjaelp">Dobbelt opt-in: du får en mail, du skal bekræfte. Tilmeldingen håndteres på thomascilius.dk.</p>
-      <a class="nb__alt" href="https://www.linkedin.com/in/thomascilius" target="_blank" rel="noopener">Eller følg med på LinkedIn →</a>
+      <a class="nb__alt" href="https://www.linkedin.com/in/thomascilius" target="_blank" rel="noopener"><svg class="nb__ico" viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.78 2.5 4.78 5.76V21h-4v-5.6c0-1.34-.02-3.07-1.9-3.07-1.9 0-2.2 1.46-2.2 2.97V21H9z"/></svg><span>Eller følg med på LinkedIn →</span></a>
     </div>
   </div>
 </div></section>
