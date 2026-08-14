@@ -8,7 +8,7 @@
 <style>
 :root{
   --bg:#f7f5f1; --surface:#ffffff; --ink:#13161a; --muted:#65696f;
-  --line:#ced1d4; --accent:#ca8a10; --accent-soft:#f9e1c0; --accent-ink:#ae5100;
+  --line:#ced1d4; --band:#eeebe5; --accent:#ca8a10; --accent-soft:#f9e1c0; --accent-ink:#a84a00;
   --btn-flade:#ca8a10; --btn-tekst:#13161a;
   --stab:#3f6b63; --stab-soft:#e0ece9; --afd-line:#d8cfc0; --code-bg:#2b2117; --code-ink:#f3e7d4;
   --radius:14px; --maxw:1120px;
@@ -18,16 +18,16 @@
 }
 @media (prefers-color-scheme:dark){
   :root{ --bg:#0b121a; --surface:#151b21; --ink:#f7f5f1; --muted:#a0a5ab;
-    --line:#36383a; --accent:#ca8a10; --accent-soft:#3a2c17; --accent-ink:#e8a93a;
+    --line:#36383a; --band:#151b21; --accent:#ca8a10; --accent-soft:#3a2c17; --accent-ink:#e8a93a;
     --btn-flade:#ca8a10; --btn-tekst:#13161a;
     --stab:#6fb3a6; --stab-soft:#1e2e2a; --afd-line:#3a3227; --code-bg:#0f0c08; --code-ink:#e9dcc6; }
 }
 :root[data-theme=dark]{ --bg:#0b121a; --surface:#151b21; --ink:#f7f5f1; --muted:#a0a5ab;
-  --line:#36383a; --accent:#ca8a10; --accent-soft:#3a2c17; --accent-ink:#e8a93a;
+  --line:#36383a; --band:#151b21; --accent:#ca8a10; --accent-soft:#3a2c17; --accent-ink:#e8a93a;
   --btn-flade:#ca8a10; --btn-tekst:#13161a;
   --stab:#6fb3a6; --stab-soft:#1e2e2a; --afd-line:#3a3227; --code-bg:#0f0c08; --code-ink:#e9dcc6; }
 :root[data-theme=light]{ --bg:#f7f5f1; --surface:#ffffff; --ink:#13161a; --muted:#65696f;
-  --line:#ced1d4; --accent:#ca8a10; --accent-soft:#f9e1c0; --accent-ink:#ae5100;
+  --line:#ced1d4; --band:#eeebe5; --accent:#ca8a10; --accent-soft:#f9e1c0; --accent-ink:#a84a00;
   --btn-flade:#ca8a10; --btn-tekst:#13161a;
   --stab:#3f6b63; --stab-soft:#e0ece9; --afd-line:#d8cfc0; --code-bg:#2b2117; --code-ink:#f3e7d4; }
 *{box-sizing:border-box}
@@ -154,16 +154,31 @@ pre.cmd.wrapline{white-space:pre-wrap;word-break:break-word}
 .chip{font-size:11.5px;color:var(--muted);background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:3px 9px}
 .dep.dim,.card.hide{display:none}
 .noresult{color:var(--muted);padding:30px 0;font-size:15px}
-.staytuned{margin:44px 0 8px}
-.stcard{display:flex;gap:28px;align-items:center;justify-content:space-between;flex-wrap:wrap;
-  background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:30px clamp(20px,3.5vw,38px)}
-.stcard h2{margin:0 0 8px;font-size:clamp(20px,2.4vw,26px);letter-spacing:-.01em}
-.stcard p{margin:0;color:var(--muted);font-size:14.5px;max-width:52ch;line-height:1.6}
-.stbtns{display:flex;gap:10px;flex-wrap:wrap;flex:0 1 auto;min-width:0}
-@media (max-width:760px){
-  .stcard{flex-direction:column;align-items:flex-start;gap:20px}
-  .stbtns{width:100%}
-  .stbtns .btn{flex:1 1 auto;justify-content:center}
+.nyband{background:var(--band);border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  margin:52px 0 8px;padding:clamp(38px,5vw,62px) 0}
+.nb__grid{display:grid;grid-template-columns:1.15fr 1fr;gap:clamp(28px,4vw,64px);align-items:end}
+.nb__eyebrow{font-size:12.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--accent-ink);
+  font-weight:600;margin:0 0 12px}
+.nb__head h2{font-family:var(--serif);font-size:clamp(28px,3.4vw,46px);line-height:1.06;
+  letter-spacing:-.018em;margin:0;font-weight:600}
+.nb__lead{margin:16px 0 0;color:var(--muted);font-size:15.5px;line-height:1.65;max-width:46ch}
+.nb__form{display:grid;grid-template-columns:1fr auto;gap:8px;border-radius:999px;
+  background:var(--surface);border:1px solid var(--line);padding:6px}
+.nb__form:focus-within{border-color:var(--accent-ink);box-shadow:0 0 0 3px var(--accent-soft)}
+.nb__form input[type=email]{border:none;background:transparent;color:var(--ink);padding:13px 16px;
+  font-size:15px;font-family:inherit;outline:none;min-width:0}
+.nb__form button{background:var(--ink);color:var(--bg);border:none;border-radius:999px;
+  padding:13px 22px;font-weight:600;font-size:14.5px;font-family:inherit;cursor:pointer;white-space:nowrap}
+.nb__form button:hover{background:var(--accent-ink);color:#fff}
+.nb__hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.nb__svar{margin:12px 0 0;font-size:14px;font-weight:600;color:var(--accent-ink);min-height:1em}
+.nb__svar[data-fejl]{color:#a1291b}
+.nb__hjaelp{margin:10px 0 0;font-size:12.5px;color:var(--muted);line-height:1.55}
+.nb__alt{display:inline-block;margin-top:14px;font-size:14px;color:var(--muted);text-decoration:none;
+  border-bottom:1px solid var(--line)}
+.nb__alt:hover{color:var(--accent-ink);border-bottom-color:var(--accent)}
+@media (max-width:880px){
+  .nb__grid{grid-template-columns:1fr;align-items:start}
 }
 footer{border-top:1px solid var(--line);margin-top:60px;padding:34px 0;color:var(--muted);font-size:13.5px}
 .foot__grid{display:flex;gap:30px;justify-content:space-between;flex-wrap:wrap;margin-bottom:22px}
@@ -263,15 +278,23 @@ footer a{color:var(--accent-ink)}
     <p><strong>Næste skridt er installationen - og rækkefølgen er hele pointen. Fem trin, ét ad gangen:</strong> 1) vælg hjernens mappe · 2) byg hjernen · 3) installér skills · 4) udfyld hub-filerne · 5) tjek det hele. Hvert trin står forklaret nedenfor, i præcis den rækkefølge.</p>
   </section>
 
-<section class="staytuned"><div class="wrap">
-  <div class="stcard">
-    <div>
-      <h2>Få tips og baggrund om AI</h2>
-      <p>Pakken her er ét udsnit af arbejdet. Nyhedsbrevet er lav frekvens og høj substans: hvad der faktisk virker i danske virksomheder, og hvad der ikke gør.</p>
+<section class="nyband" aria-labelledby="nyhedsbrev"><div class="wrap">
+  <div class="nb__grid">
+    <div class="nb__head">
+      <p class="nb__eyebrow">Nyhedsbrev · lav frekvens, høj substans</p>
+      <h2 id="nyhedsbrev">Få skarpe pointer om AI direkte i indbakken.</h2>
+      <p class="nb__lead">Hver anden uge skriver jeg om, hvad jeg ser virke i danske virksomheder, og hvad jeg ser fejle. Ingen spam. Afmeld med ét klik.</p>
     </div>
-    <div class="stbtns">
-      <a class="btn btn--primary" href="https://thomascilius.dk/nyhedsbrev">Tilmeld nyhedsbrev →</a>
-      <a class="btn" href="https://www.linkedin.com/in/thomascilius" target="_blank" rel="noopener">Følg på LinkedIn →</a>
+    <div class="nb__side">
+      <form id="nbform" class="nb__form" novalidate>
+        <input id="nbmail" type="email" name="email" required autocomplete="email"
+               placeholder="din@mail.dk" aria-label="Din e-mailadresse">
+        <input type="text" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" class="nb__hp">
+        <button type="submit">Tilmeld →</button>
+      </form>
+      <p id="nbsvar" class="nb__svar" role="status" aria-live="polite"></p>
+      <p class="nb__hjaelp">Dobbelt opt-in: du får en mail, du skal bekræfte. Tilmeldingen håndteres på thomascilius.dk.</p>
+      <a class="nb__alt" href="https://www.linkedin.com/in/thomascilius" target="_blank" rel="noopener">Eller følg med på LinkedIn →</a>
     </div>
   </div>
 </div></section>
@@ -1190,6 +1213,31 @@ cd din-ai-organisation
 </div></footer>
 
 <script>
+(function(){
+  var f=document.getElementById('nbform'); if(!f) return;
+  var svar=document.getElementById('nbsvar'), felt=document.getElementById('nbmail');
+  var RE=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    var mail=(felt.value||'').trim();
+    if(!RE.test(mail)){ svar.setAttribute('data-fejl','1'); svar.textContent='Skriv en gyldig mailadresse.'; felt.focus(); return; }
+    svar.removeAttribute('data-fejl'); svar.textContent='Sender...';
+    var krop=new URLSearchParams();
+    krop.append('email',mail);
+    krop.append('botcheck',(f.elements['botcheck']||{}).value||'');
+    // urlencoded = simple request, saa ingen CORS-preflight. Svaret er opakt,
+    // men flowet er double opt-in: bekraeftelsesmailen er den rigtige kvittering.
+    fetch('https://thomascilius.dk/api/newsletter/subscribe',
+      {method:'POST',mode:'no-cors',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:krop.toString()}
+    ).then(function(){
+      svar.textContent='Tjek din indbakke - du har fået en mail, du skal bekræfte.';
+      f.style.display='none';
+    }).catch(function(){
+      svar.setAttribute('data-fejl','1');
+      svar.innerHTML='Kunne ikke sende. Tilmeld i stedet paa <a href="https://thomascilius.dk/nyhedsbrev">thomascilius.dk</a>.';
+    });
+  });
+})();
 (function(){
   var root=document.documentElement, tb=document.getElementById('theme');
   function set(t){root.setAttribute('data-theme',t);try{localStorage.setItem('tc-theme',t)}catch(e){}}
