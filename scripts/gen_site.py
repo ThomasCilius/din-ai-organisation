@@ -488,7 +488,7 @@ footer a{{color:var(--accent-ink)}}
     <div class="nb__head">
       <p class="nb__eyebrow">Nyhedsbrev · lav frekvens, høj substans</p>
       <h2 id="nyhedsbrev">Få skarpe pointer om AI direkte i indbakken.</h2>
-      <p class="nb__lead">Hver anden uge skriver jeg om, hvad jeg ser virke i danske virksomheder, og hvad jeg ser fejle. Ingen spam. Afmeld med ét klik.</p>
+      <p class="nb__lead">Du får arket <em>Din AI-organisation</em> som PDF med det samme, og derefter nyhedsbrevet hver anden mandag: hvad jeg ser virke i danske virksomheder, og hvad jeg ser fejle. Afmeld med ét klik.</p>
     </div>
     <div class="nb__side">
       <form id="nbform" class="nb__form" novalidate>
@@ -666,19 +666,18 @@ footer a{{color:var(--accent-ink)}}
     var mail=(felt.value||'').trim();
     if(!RE.test(mail)){{ svar.setAttribute('data-fejl','1'); svar.textContent='Skriv en gyldig mailadresse.'; felt.focus(); return; }}
     svar.removeAttribute('data-fejl'); svar.textContent='Sender...';
-    var krop=new URLSearchParams();
-    krop.append('email',mail);
-    krop.append('botcheck',(f.elements['botcheck']||{{}}).value||'');
-    // urlencoded = simple request, saa ingen CORS-preflight. Svaret er opakt,
-    // men flowet er double opt-in: bekraeftelsesmailen er den rigtige kvittering.
-    fetch('https://thomascilius.dk/api/newsletter/subscribe',
-      {{method:'POST',mode:'no-cors',headers:{{'Content-Type':'application/x-www-form-urlencoded'}},body:krop.toString()}}
+    var krop=JSON.stringify({{email:mail,botcheck:(f.elements['botcheck']||{{}}).value||''}});
+    // text/plain er CORS-sikker, saa ingen preflight - og Request.json() paa
+    // serveren tjekker ikke headeren, den parser kroppen. Single opt-in:
+    // tilmelding og levering af arket sker med det samme.
+    fetch('https://thomascilius.dk/api/ai-org/subscribe',
+      {{method:'POST',mode:'no-cors',headers:{{'Content-Type':'text/plain;charset=UTF-8'}},body:krop}}
     ).then(function(){{
-      svar.textContent='Tjek din indbakke - du har fået en mail, du skal bekræfte.';
+      svar.textContent='Du er tilmeldt. Arket lander i din indbakke om et øjeblik.';
       f.style.display='none';
     }}).catch(function(){{
       svar.setAttribute('data-fejl','1');
-      svar.innerHTML='Kunne ikke sende. Tilmeld i stedet paa <a href="{SITE}/nyhedsbrev">thomascilius.dk</a>.';
+      svar.innerHTML='Kunne ikke sende. Tilmeld i stedet paa <a href="{SITE}/din-ai-organisation">thomascilius.dk</a>.';
     }});
   }});
 }})();
