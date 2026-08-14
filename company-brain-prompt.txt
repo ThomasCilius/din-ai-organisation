@@ -69,7 +69,7 @@ Stub-regel: nævnes en person eller et emne første gang, opretter du en stub
 (titel + én linje + kilde). Dukker de op igen i en senere session, udbygger du
 til fuld side. Sådan lærer hjernen af sig selv, hvem og hvad der betyder noget.
 
-Hub-filer (bindeleddet til skill-pakken): de 63 skills læser tre faste filer i
+Hub-filer (bindeleddet til skill-pakken): de 76 skills læser tre faste filer i
 identity/, altid med præcis disse navne: virksomhedsprofil.md (stamdata,
 nav-filen alle skills læser først), voice-profil.md (tone) og designprofil.md
 (visuelt udtryk). Opret virksomhedsprofil.md under seedningen (fase 4);

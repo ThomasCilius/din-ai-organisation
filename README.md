@@ -1,14 +1,14 @@
 # Din AI-organisation
 
-En kurateret pakke på **74 Agent Skills** til Claude, bygget til kurset "Claude Desktop 0-100". Du bygger din egen AI-organisation efter et klassisk dansk organisationsdiagram: hver afdeling er et hold AI-medarbejdere, og hver skill er én afgrænset, tilbagevendende opgave, som er valideret mod virkelige danske jobfunktioner i en SMV.
+En kurateret pakke på **76 Agent Skills** til Claude, bygget til kurset "Claude Desktop 0-100". Du bygger din egen AI-organisation efter et klassisk dansk organisationsdiagram: hver afdeling er et hold AI-medarbejdere, og hver skill er én afgrænset, tilbagevendende opgave, som er valideret mod virkelige danske jobfunktioner i en SMV.
 
-Pakken er bevidst modulær. Anthropic anbefaler et loft på cirka 20-50 aktive skills, og 74 er over det med vilje - derfor installerer du kernen plus de afdelinger, der matcher din rolle (typisk 25-35 aktive skills), ikke hele pakken på én gang.
+Pakken er bevidst modulær. Anthropic anbefaler et loft på cirka 20-50 aktive skills, og 76 er over det med vilje - derfor installerer du kernen plus de afdelinger, der matcher din rolle (typisk 25-35 aktive skills), ikke hele pakken på én gang.
 
 ## Organisationsdiagrammet
 
 ```
                               DIREKTIONEN
-                  01 Direktionen - beslutninger & kontrakter (7)
+                  01 Direktionen - beslutninger & kontrakter (8)
                        02 Strategiudvikling (5)
                                   |
           +-----------------------+-----------------------+
@@ -17,7 +17,7 @@ Pakken er bevidst modulær. Anthropic anbefaler et loft på cirka 20-50 aktive s
           |                                               |
    +--------------+-------------+------------+-------------+--------------+---------------+
 Sekretariatet   Salg &      Marketing    Økonomi        HR      IT & Udvikling  Produktudvikling
-  05 (7)     Kundeservice     07 (9)       08 (5)      09 (7)      10 (11)          11 (6)
+  05 (7)     Kundeservice    07 (10)       08 (5)      09 (7)      10 (11)          11 (6)
                 06 (5)
 ```
 
@@ -36,6 +36,7 @@ Kernen er **03 Viden & Data** (den ejer virksomhedens hub-filer) og **01 Direkti
 | `beslutningsgrundlag` | Bygger et skriftligt, kildebelagt beslutningsgrundlag eller business case til store beslutninger. |
 | `bestyrelsespakke` | Udkast til bestyrelsesmateriale, bankpræsentation eller ledelsesrapport ud fra virksomhedens egne tal. |
 | `forhandlings-forberedelse` | Forbereder en konkret forhandling med BATNA, smertegrænse, aftalezone og indrømmelsesplan i ét forhandlingsark. |
+| `kvalitetsloop` | Kører enhver leverance gennem fem trin - succeskriterier, udkast, kritikerpanel, revision, verifikation - før den forlader huset. Leverér aldrig første udkast. |
 
 ### 02 - Strategiudvikling
 
@@ -104,6 +105,7 @@ Kernen er **03 Viden & Data** (den ejer virksomhedens hub-filer) og **01 Direkti
 | `marketing-rapport` | Månedlig marketingrapport ud fra egne tal (GA4, Meta, LinkedIn) med indsigter og anbefalinger. |
 | `pressemeddelelse` | Skriver pressemeddelelse med reel nyhedsvinkel plus pitch-mail og forslag til relevante medier. |
 | `menneskeliggoer` | Fjerner AI-præget fra en tekst: skærer floskler, oppustet vigtighed, reklamesprog og fyld væk og giver teksten stemme igen. |
+| `dansk-korrektur` | Korrekturlæser dansk tekst mod Retskrivningsordbogen 5 og rapporterer rettelser som før → efter med paragrafhenvisning. |
 
 ### 08 - Økonomi
 
@@ -163,7 +165,7 @@ Fem trin, i DENNE rækkefølge. Så hænger alt sammen fra dag ét:
 1. **Vælg hjernens mappe.** En synlig mappe, du selv har valgt, fx `~/Documents/company-brain`. Aldrig inde i appens data-mappe (Bibliotek/Application Support).
 2. **Byg hjernen.** Paste `company-brain-prompt.txt` ind i Claude (Cowork/Desktop), peget på mappen fra trin 1. Prompten interviewer dig og bygger struktur + CLAUDE.md.
 3. **Installér skills-pakken.** Claude Code: `./install.sh` - og når installeren spørger, hvor hjernen ligger, svarer du med mappen fra trin 1. Kun Claude Desktop: upload skills som zip i stedet (se nedenfor).
-4. **Udfyld hub-filerne.** Kør skillene `virksomhedsprofil`, `toneprofil` og `designretning` - så kender alle 74 skills din virksomhed, tone og visuelle retning.
+4. **Udfyld hub-filerne.** Kør skillene `virksomhedsprofil`, `toneprofil` og `designretning` - så kender alle 76 skills din virksomhed, tone og visuelle retning.
 5. **Tjek det hele:** `./install.sh status` - sundhedstjekket skal vise hjernen koblet og hub-filerne på plads.
 
 (Kom du til at bytte om på 2 og 3? Ingen skade sket: `./install.sh brain <sti>` kobler hjernen bagefter. Men følg rækkefølgen, så slipper du for at tænke over det.)
@@ -171,7 +173,7 @@ Fem trin, i DENNE rækkefølge. Så hænger alt sammen fra dag ét:
 **Sådan hænger delene sammen:**
 
 ```
-install.sh ──► ~/.claude/skills (74 skills, managed)
+install.sh ──► ~/.claude/skills (76 skills, managed)
      │    ──► settings.json (7 hooks, merge-sikkert - rører aldrig dine egne)
      │    ──► config.json { brainPath }  ◄── ./install.sh brain <sti>
      ▼
@@ -179,7 +181,7 @@ company-brain-prompt.txt ──► bygger hjernen + genererer CLAUDE.md (driftsr
      ▼
 hub-filer i hjernens identity/: virksomhedsprofil.md · voice-profil.md · designprofil.md
      ▲
-alle 74 skills læser dem ("Find og læs virksomhedsprofil.md ... (altid)")
+alle 76 skills læser dem ("Find og læs virksomhedsprofil.md ... (altid)")
      ▲
 brain-inject-hooken indlæser 00-index.md ambient i hver Claude Code-session
 ```
@@ -259,7 +261,7 @@ Zips regenereres med `scripts/make-zips.sh` efter ændringer i skills.
 
 ## Konventioner
 
-Alle 74 skills følger den samme opskrift, så de opfører sig ens uanset afdeling.
+Alle 76 skills følger den samme opskrift, så de opfører sig ens uanset afdeling.
 
 - **Danske skill-navne** - "noget du selv ville sige højt". Navnefeltet tillader kun a-z, tal og bindestreg, så æ/ø/å translittereres til ae/oe/aa: `moedeforberedelse`, `opfoelgningsliste`, `budgetopfoelgning`.
 - **Tosprogede triggere** - hver `description` indeholder ordrette triggersætninger på både dansk og engelsk ("skriv et tilbud" / "write a proposal"), skrevet pushy fordi Claude har tendens til at undertrigge.
@@ -273,11 +275,16 @@ Alle 74 skills følger den samme opskrift, så de opfører sig ens uanset afdeli
   - **Byggerejsen:** `ide-stresstest` -> `designretning` -> `designvarianter` -> `byggebrief` -> `plan-tjek` -> byg -> `fejldetektiv` -> `klar-tjek` -> `procedure-skriver`
   - **Projektlivscyklus:** `ide-stresstest` / `beslutningsgrundlag` -> `projekt-kickoff` -> `risiko-issue-log` -> `portefolje-status` -> `projekt-prioritering` -> `projekt-lukning`
   - **Salgsflow:** `kundeemner` -> `moedeforberedelse` (salgstilstand) -> `tilbud` -> `pipeline-gennemgang` -> `kundegennemgang`
+  - **Skrivekæden:** `toneprofil` -> den skrivende skill (`linkedin-opslag` / `nyhedsbrev` / `kundecase` / `pressemeddelelse` / `mail-i-min-stil` / `tilbud`) -> `menneskeliggoer` -> `dansk-korrektur` -> `kvalitetsloop` -> `second-opinion` ved høj indsats
   - **Produktrejsen:** `kundeinterview` -> `antagelses-tjek` -> `vaerditilbud` -> `produkt-etside` -> `lanceringsplan` -> `nordstjerne-maal` - med `ide-stresstest` som go/no-go-port undervejs og aflevering til marketing- og salgskæderne ved lancering
 
 På tværs af kæderne er `program-styring` (04) dirigenten for store, tværgående initiativer: den nedbryder ét initiativ i arbejdsstrømme og mapper hver strøm til den skill der løser den. Den virker dual-mode - Desktop-dirigeret (mennesket åbner hver afdelingsskill i rækkefølge) eller Claude Code-subagent-dispatch (én subagent pr. strøm) - og leverer status videre til `portefolje-status` og `risiko-issue-log`.
 
 Pakken bygger desuden ovenpå Claudes indbyggede dokumentskills (pptx, pdf, docx, xlsx) via `designprofil.md` og duplikerer dem ikke.
+
+### Ét valgfrit download: RO5-ordformlisten
+
+`dansk-korrektur` (07) virker ud af boksen på retskrivningsreglerne, som følger med pakken. Vil du have maskinelt verificeret stavekontrol mod alle ca. 535.000 ordformer i Retskrivningsordbogen 5, henter du datafilen (31 MB, CC0 fra Dansk Sprognævn) én gang - opskriften står i `07-marketing/dansk-korrektur/references/om-ro5-data.md`. Filen er for stor til repoet og er derfor bevidst holdt udenfor.
 
 ## Kom godt i gang
 
