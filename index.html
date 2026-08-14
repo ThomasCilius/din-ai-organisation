@@ -9,6 +9,7 @@
 :root{
   --bg:#f6f3ee; --surface:#fffdf9; --ink:#211d17; --muted:#6b6459;
   --line:#e4ddd1; --accent:#b9762a; --accent-soft:#f0e2cd; --accent-ink:#7a4a13;
+  --btn-flade:#7a4a13; --btn-tekst:#ffffff;
   --stab:#3f6b63; --stab-soft:#e0ece9; --afd-line:#d8cfc0; --code-bg:#2b2117; --code-ink:#f3e7d4;
   --radius:14px; --maxw:1120px;
   --font:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
@@ -18,13 +19,16 @@
 @media (prefers-color-scheme:dark){
   :root{ --bg:#17140f; --surface:#211c15; --ink:#f0ebe1; --muted:#a89e8d;
     --line:#332c22; --accent:#e0973f; --accent-soft:#3a2c17; --accent-ink:#f0c184;
+    --btn-flade:#e0973f; --btn-tekst:#1a1510;
     --stab:#6fb3a6; --stab-soft:#1e2e2a; --afd-line:#3a3227; --code-bg:#0f0c08; --code-ink:#e9dcc6; }
 }
 :root[data-theme=dark]{ --bg:#17140f; --surface:#211c15; --ink:#f0ebe1; --muted:#a89e8d;
   --line:#332c22; --accent:#e0973f; --accent-soft:#3a2c17; --accent-ink:#f0c184;
+    --btn-flade:#e0973f; --btn-tekst:#1a1510;
   --stab:#6fb3a6; --stab-soft:#1e2e2a; --afd-line:#3a3227; --code-bg:#0f0c08; --code-ink:#e9dcc6; }
 :root[data-theme=light]{ --bg:#f6f3ee; --surface:#fffdf9; --ink:#211d17; --muted:#6b6459;
   --line:#e4ddd1; --accent:#b9762a; --accent-soft:#f0e2cd; --accent-ink:#7a4a13;
+  --btn-flade:#7a4a13; --btn-tekst:#ffffff;
   --stab:#3f6b63; --stab-soft:#e0ece9; --afd-line:#d8cfc0; --code-bg:#2b2117; --code-ink:#f3e7d4; }
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);line-height:1.55;
@@ -43,7 +47,7 @@ a{color:var(--accent-ink);text-underline-offset:3px}
 .mainnav a{color:var(--muted);text-decoration:none;font-size:14px;font-weight:500;
   padding:6px 0;border-bottom:1.5px solid transparent}
 .mainnav a:hover{color:var(--ink);border-bottom-color:var(--accent)}
-.navcta{flex:none;background:var(--accent);color:#fff;text-decoration:none;font-size:13.5px;
+.navcta{flex:none;background:var(--btn-flade);color:var(--btn-tekst);text-decoration:none;font-size:13.5px;
   font-weight:600;padding:9px 16px;border-radius:999px;white-space:nowrap}
 .navcta:hover{filter:brightness(1.08)}
 .search{flex:1;max-width:340px;padding:9px 13px;border:1px solid var(--line);border-radius:999px;
@@ -64,7 +68,7 @@ a{color:var(--accent-ink);text-underline-offset:3px}
   font-weight:600;text-decoration:none;border:1px solid var(--line);background:var(--surface);color:var(--ink);
   transition:transform .14s ease,border-color .14s ease}
 .btn:hover{transform:translateY(-2px);border-color:var(--accent)}
-.btn--primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn--primary{background:var(--btn-flade);border-color:var(--btn-flade);color:var(--btn-tekst)}
 .btn--primary:hover{border-color:var(--accent)}
 .btn svg{width:18px;height:18px;fill:currentColor}
 .section-label{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
