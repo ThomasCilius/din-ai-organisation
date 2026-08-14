@@ -5,6 +5,7 @@ import glob, os, re, html
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 REPO = "https://github.com/ThomasCilius/din-ai-organisation"
 DOMAIN = "skills.thomascilius.dk"
+SITE = "https://thomascilius.dk"
 CC_ONELINER = ("Installer din-ai-organisation for mig: klon " + REPO +
   " (hvis den ikke allerede ligger lokalt), gaa ind i klonen og koer './install.sh install'. "
   "Spoerg mig derefter, hvor min company-brain ligger "
@@ -239,8 +240,17 @@ a{{color:var(--accent-ink);text-underline-offset:3px}}
 .topbar{{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 88%,transparent);
   backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}}
 .topbar__in{{display:flex;align-items:center;gap:16px;padding:12px clamp(16px,4vw,40px);max-width:var(--maxw);margin:0 auto}}
-.brand{{font-weight:700;letter-spacing:-.01em;margin-right:auto;font-size:15px}}
-.brand b{{color:var(--accent-ink)}}
+.brand{{font-weight:700;letter-spacing:-.01em;font-size:15px;text-decoration:none;color:var(--ink);
+  flex:none;white-space:nowrap}}
+.brand:hover{{color:var(--accent-ink)}}
+.brand__dot{{color:var(--accent-ink)}}
+.mainnav{{display:flex;gap:18px;margin-right:auto;white-space:nowrap}}
+.mainnav a{{color:var(--muted);text-decoration:none;font-size:14px;font-weight:500;
+  padding:6px 0;border-bottom:1.5px solid transparent}}
+.mainnav a:hover{{color:var(--ink);border-bottom-color:var(--accent)}}
+.navcta{{flex:none;background:var(--accent);color:#fff;text-decoration:none;font-size:13.5px;
+  font-weight:600;padding:9px 16px;border-radius:999px;white-space:nowrap}}
+.navcta:hover{{filter:brightness(1.08)}}
 .search{{flex:1;max-width:340px;padding:9px 13px;border:1px solid var(--line);border-radius:999px;
   background:var(--surface);color:var(--ink);font-size:14px;font-family:inherit}}
 .search:focus{{outline:2px solid var(--accent);outline-offset:1px}}
@@ -345,7 +355,20 @@ pre.cmd.wrapline{{white-space:pre-wrap;word-break:break-word}}
 .chip{{font-size:11.5px;color:var(--muted);background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:3px 9px}}
 .dep.dim,.card.hide{{display:none}}
 .noresult{{color:var(--muted);padding:30px 0;font-size:15px}}
-footer{{border-top:1px solid var(--line);margin-top:60px;padding:34px 0;color:var(--muted);font-size:13.5px}}
+.staytuned{{margin-top:70px}}
+.stcard{{display:flex;gap:28px;align-items:center;justify-content:space-between;flex-wrap:wrap;
+  background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:30px clamp(20px,3.5vw,38px)}}
+.stcard h2{{margin:0 0 8px;font-size:clamp(20px,2.4vw,26px);letter-spacing:-.01em}}
+.stcard p{{margin:0;color:var(--muted);font-size:14.5px;max-width:52ch;line-height:1.6}}
+.stbtns{{display:flex;gap:10px;flex-wrap:wrap;flex:none}}
+footer{{border-top:1px solid var(--line);margin-top:44px;padding:34px 0;color:var(--muted);font-size:13.5px}}
+.foot__grid{{display:flex;gap:30px;justify-content:space-between;flex-wrap:wrap;margin-bottom:22px}}
+.foot__sub{{margin:8px 0 0;line-height:1.7}}
+.foot__nav{{display:flex;flex-direction:column;gap:7px;text-align:right}}
+.foot__nav a{{color:var(--muted);text-decoration:none}}
+.foot__nav a:hover{{color:var(--accent-ink)}}
+.foot__fine{{margin:0;padding-top:18px;border-top:1px solid var(--line);line-height:1.7}}
+@media (max-width:600px){{.foot__nav{{text-align:left}}}}
 footer a{{color:var(--accent-ink)}}
 .orgsvg{{display:none}}
 .orgsvg__img{{width:100%;height:auto;display:block}}
@@ -359,6 +382,15 @@ footer a{{color:var(--accent-ink)}}
 .orgsvg .ob__cnt{{font-size:9.5px;fill:var(--accent-ink);font-weight:600}}
 .orgsvg .ob--stab .ob__cnt{{fill:var(--stab)}}
 .orgsvg__note{{font-size:12.5px;color:var(--muted);margin:8px 0 0;text-align:center}}
+@media (max-width:1180px){{
+  .mainnav{{gap:13px}}
+  .mainnav a{{font-size:13.5px}}
+  .search{{max-width:210px}}
+}}
+@media (max-width:1000px){{
+  .mainnav{{display:none}}
+  .search{{margin-left:auto}}
+}}
 @media (max-width:560px){{
   /* Grid i stedet for column-flex: flex-basis:200px ville ellers blive HOEJDEN
      paa hver node og give et 1.800px hoejt diagram af kaempeknapper. */
@@ -368,6 +400,9 @@ footer a{{color:var(--accent-ink)}}
   .install__cols{{grid-template-columns:1fr !important}}
   .topbar__in{{gap:10px;padding:10px 16px}}
   .brand{{font-size:14px;white-space:nowrap}}
+  .mainnav{{display:none}}
+  .navcta{{display:none}}
+  .search{{margin-left:auto}}
   .search{{min-width:0}}
   .chart__tier{{display:grid;grid-template-columns:1fr 1fr;gap:10px}}
   .chart__spine{{height:18px;justify-self:center}}
@@ -380,9 +415,17 @@ footer a{{color:var(--accent-ink)}}
 </head>
 <body>
 <div class="topbar"><div class="topbar__in">
-  <span class="brand">Din <b>AI-organisation</b></span>
+  <a class="brand" href="{SITE}/" title="Tilbage til thomascilius.dk">Thomas Cilius<span class="brand__dot">.</span></a>
+  <nav class="mainnav" aria-label="Hovednavigation">
+    <a href="{SITE}/advisory">Advisory</a>
+    <a href="{SITE}/ai-academy">AI Academy</a>
+    <a href="{SITE}/fractional-cmo">Fractional CxO</a>
+    <a href="{SITE}/om">Om Thomas</a>
+    <a href="{SITE}/blog">Blog</a>
+  </nav>
   <input id="q" class="search" type="search" placeholder="Søg i {total} skills…" aria-label="Søg i skills">
   <button id="theme" class="themebtn" type="button" aria-label="Skift lyst/mørkt tema">◐</button>
+  <a class="navcta" href="{SITE}/kontakt">Book møde →</a>
 </div></div>
 
 <header class="hero"><div class="wrap">
@@ -550,9 +593,36 @@ footer a{{color:var(--accent-ink)}}
   <p id="noresult" class="noresult" hidden>Ingen skills matcher søgningen.</p>
 </main>
 
+<section class="staytuned"><div class="wrap">
+  <div class="stcard">
+    <div>
+      <h2>Få tips og baggrund om AI</h2>
+      <p>Pakken her er ét udsnit af arbejdet. Nyhedsbrevet er lav frekvens og høj substans: hvad der faktisk virker i danske virksomheder, og hvad der ikke gør.</p>
+    </div>
+    <div class="stbtns">
+      <a class="btn btn--primary" href="{SITE}/nyhedsbrev">Tilmeld nyhedsbrev →</a>
+      <a class="btn" href="https://www.linkedin.com/in/thomascilius" target="_blank" rel="noopener">Følg på LinkedIn →</a>
+    </div>
+  </div>
+</div></section>
+
 <footer><div class="wrap">
-  <strong>Din AI-organisation</strong> · {total} Agent Skills · bygget til kurset <b>Claude 0-100</b>, AI Academy hos thomascilius.dk.<br>
-  Kode og skills: <a href="{REPO}" target="_blank" rel="noopener">{REPO.replace('https://','')}</a> · <a href="{REPO}/blob/main/README.md" target="_blank" rel="noopener">README &amp; installationsguide</a>
+  <div class="foot__grid">
+    <div>
+      <a class="brand" href="{SITE}/">Thomas Cilius<span class="brand__dot">.</span></a>
+      <p class="foot__sub">AI-transformation, rådgivning og undervisning.<br><a href="{SITE}/">Tilbage til thomascilius.dk →</a></p>
+    </div>
+    <nav class="foot__nav" aria-label="Sidefod">
+      <a href="{SITE}/advisory">Advisory</a>
+      <a href="{SITE}/ai-academy">AI Academy</a>
+      <a href="{SITE}/fractional-cmo">Fractional CxO</a>
+      <a href="{SITE}/om">Om Thomas</a>
+      <a href="{SITE}/blog">Blog</a>
+      <a href="{SITE}/kontakt">Kontakt</a>
+    </nav>
+  </div>
+  <p class="foot__fine"><strong>Din AI-organisation</strong> · {total} Agent Skills · bygget til kurset <b>Claude 0-100</b>, AI Academy hos <a href="{SITE}/ai-academy">thomascilius.dk</a>.<br>
+  Kode og skills: <a href="{REPO}" target="_blank" rel="noopener">{REPO.replace('https://','')}</a> · <a href="{REPO}/blob/main/README.md" target="_blank" rel="noopener">README &amp; installationsguide</a></p>
 </div></footer>
 
 <script>
