@@ -7,9 +7,9 @@
 <meta name="description" content="Et kurateret sæt Agent Skills til Claude, bygget som et dansk organisationsdiagram: 76 skills fordelt på 11 afdelinger. Fra AI Academy · Claude 0-100.">
 <style>
 :root{
-  --bg:#f6f3ee; --surface:#fffdf9; --ink:#211d17; --muted:#6b6459;
-  --line:#e4ddd1; --accent:#b9762a; --accent-soft:#f0e2cd; --accent-ink:#7a4a13;
-  --btn-flade:#7a4a13; --btn-tekst:#ffffff;
+  --bg:#f7f5f1; --surface:#ffffff; --ink:#13161a; --muted:#65696f;
+  --line:#ced1d4; --accent:#ca8a10; --accent-soft:#f9e1c0; --accent-ink:#ae5100;
+  --btn-flade:#ca8a10; --btn-tekst:#13161a;
   --stab:#3f6b63; --stab-soft:#e0ece9; --afd-line:#d8cfc0; --code-bg:#2b2117; --code-ink:#f3e7d4;
   --radius:14px; --maxw:1120px;
   --font:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
@@ -17,18 +17,18 @@
   --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
 }
 @media (prefers-color-scheme:dark){
-  :root{ --bg:#17140f; --surface:#211c15; --ink:#f0ebe1; --muted:#a89e8d;
-    --line:#332c22; --accent:#e0973f; --accent-soft:#3a2c17; --accent-ink:#f0c184;
-    --btn-flade:#e0973f; --btn-tekst:#1a1510;
+  :root{ --bg:#0b121a; --surface:#151b21; --ink:#f7f5f1; --muted:#a0a5ab;
+    --line:#36383a; --accent:#ca8a10; --accent-soft:#3a2c17; --accent-ink:#e8a93a;
+    --btn-flade:#ca8a10; --btn-tekst:#13161a;
     --stab:#6fb3a6; --stab-soft:#1e2e2a; --afd-line:#3a3227; --code-bg:#0f0c08; --code-ink:#e9dcc6; }
 }
-:root[data-theme=dark]{ --bg:#17140f; --surface:#211c15; --ink:#f0ebe1; --muted:#a89e8d;
-  --line:#332c22; --accent:#e0973f; --accent-soft:#3a2c17; --accent-ink:#f0c184;
-    --btn-flade:#e0973f; --btn-tekst:#1a1510;
+:root[data-theme=dark]{ --bg:#0b121a; --surface:#151b21; --ink:#f7f5f1; --muted:#a0a5ab;
+  --line:#36383a; --accent:#ca8a10; --accent-soft:#3a2c17; --accent-ink:#e8a93a;
+  --btn-flade:#ca8a10; --btn-tekst:#13161a;
   --stab:#6fb3a6; --stab-soft:#1e2e2a; --afd-line:#3a3227; --code-bg:#0f0c08; --code-ink:#e9dcc6; }
-:root[data-theme=light]{ --bg:#f6f3ee; --surface:#fffdf9; --ink:#211d17; --muted:#6b6459;
-  --line:#e4ddd1; --accent:#b9762a; --accent-soft:#f0e2cd; --accent-ink:#7a4a13;
-  --btn-flade:#7a4a13; --btn-tekst:#ffffff;
+:root[data-theme=light]{ --bg:#f7f5f1; --surface:#ffffff; --ink:#13161a; --muted:#65696f;
+  --line:#ced1d4; --accent:#ca8a10; --accent-soft:#f9e1c0; --accent-ink:#ae5100;
+  --btn-flade:#ca8a10; --btn-tekst:#13161a;
   --stab:#3f6b63; --stab-soft:#e0ece9; --afd-line:#d8cfc0; --code-bg:#2b2117; --code-ink:#f3e7d4; }
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);line-height:1.55;
@@ -154,7 +154,7 @@ pre.cmd.wrapline{white-space:pre-wrap;word-break:break-word}
 .chip{font-size:11.5px;color:var(--muted);background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:3px 9px}
 .dep.dim,.card.hide{display:none}
 .noresult{color:var(--muted);padding:30px 0;font-size:15px}
-.staytuned{margin-top:70px}
+.staytuned{margin:44px 0 8px}
 .stcard{display:flex;gap:28px;align-items:center;justify-content:space-between;flex-wrap:wrap;
   background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:30px clamp(20px,3.5vw,38px)}
 .stcard h2{margin:0 0 8px;font-size:clamp(20px,2.4vw,26px);letter-spacing:-.01em}
@@ -165,7 +165,7 @@ pre.cmd.wrapline{white-space:pre-wrap;word-break:break-word}
   .stbtns{width:100%}
   .stbtns .btn{flex:1 1 auto;justify-content:center}
 }
-footer{border-top:1px solid var(--line);margin-top:44px;padding:34px 0;color:var(--muted);font-size:13.5px}
+footer{border-top:1px solid var(--line);margin-top:60px;padding:34px 0;color:var(--muted);font-size:13.5px}
 .foot__grid{display:flex;gap:30px;justify-content:space-between;flex-wrap:wrap;margin-bottom:22px}
 .foot__sub{margin:8px 0 0;line-height:1.7}
 .foot__nav{display:flex;flex-direction:column;gap:7px;text-align:right}
@@ -262,6 +262,19 @@ footer a{color:var(--accent-ink)}
     <p>Og viden samles op i stedet for at fordampe. Undervejs i arbejdet skriver Claude selv nyt ind i hjernen som daterede noter med kilde, og varige beslutninger gemmes i <code>beslutninger.md</code> MED begrundelsen - de står ved magt, til du udtrykkeligt ændrer dem, så intet diskuteres forfra. Når du starter en ny samtale, læser Claude hjernens indeks, FØR den svarer: i Claude Desktop/Cowork via en fast åbningsregel, prompten har skrevet ind (virker, så snart du arbejder i hjernemappen), og i Claude Code automatisk i alle sessioner via en indbygget hook. Og læringen kræver ingenting af dig: ved <strong>dagsskiftet</strong> - dagens første samtale - samler Claude selv op fra i går (automatiske dagsspor og den natlige høst lander i hjernens indbakke, og morgenopsamlingen skriver det væsentlige ind) og kvitterer kort med, hvad hjernen har lært. Vil du gemme med det samme, kan du stadig skrive <em>"luk sessionen"</em> - men skriver du intet, tager dagsskiftet den i morgen. Organisationen bliver klogere for hver dag.</p>
     <p><strong>Næste skridt er installationen - og rækkefølgen er hele pointen. Fem trin, ét ad gangen:</strong> 1) vælg hjernens mappe · 2) byg hjernen · 3) installér skills · 4) udfyld hub-filerne · 5) tjek det hele. Hvert trin står forklaret nedenfor, i præcis den rækkefølge.</p>
   </section>
+
+<section class="staytuned"><div class="wrap">
+  <div class="stcard">
+    <div>
+      <h2>Få tips og baggrund om AI</h2>
+      <p>Pakken her er ét udsnit af arbejdet. Nyhedsbrevet er lav frekvens og høj substans: hvad der faktisk virker i danske virksomheder, og hvad der ikke gør.</p>
+    </div>
+    <div class="stbtns">
+      <a class="btn btn--primary" href="https://thomascilius.dk/nyhedsbrev">Tilmeld nyhedsbrev →</a>
+      <a class="btn" href="https://www.linkedin.com/in/thomascilius" target="_blank" rel="noopener">Følg på LinkedIn →</a>
+    </div>
+  </div>
+</div></section>
 
   <p class="section-label">Organisationsdiagrammet - klik en afdeling</p>
   
@@ -1156,19 +1169,6 @@ cd din-ai-organisation
   </div>
   <p id="noresult" class="noresult" hidden>Ingen skills matcher søgningen.</p>
 </main>
-
-<section class="staytuned"><div class="wrap">
-  <div class="stcard">
-    <div>
-      <h2>Få tips og baggrund om AI</h2>
-      <p>Pakken her er ét udsnit af arbejdet. Nyhedsbrevet er lav frekvens og høj substans: hvad der faktisk virker i danske virksomheder, og hvad der ikke gør.</p>
-    </div>
-    <div class="stbtns">
-      <a class="btn btn--primary" href="https://thomascilius.dk/nyhedsbrev">Tilmeld nyhedsbrev →</a>
-      <a class="btn" href="https://www.linkedin.com/in/thomascilius" target="_blank" rel="noopener">Følg på LinkedIn →</a>
-    </div>
-  </div>
-</div></section>
 
 <footer><div class="wrap">
   <div class="foot__grid">
