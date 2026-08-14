@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
 # din-ai-organisation - installationen over installationerne
 #
-# Modulaer, idempotent installer med profiler, install-state og ren afinstallation.
+# Én pakke, ingen profiler: hele organisationen installeres samlet, fordi
+# afdelingerne haenger sammen. Idempotent, med install-state og ren afinstallation.
 # Roerer ALDRIG dine egne skills - kun det, den selv har lagt (ownership: managed).
 #
-#   ./install.sh [install] [profil]   profil: operatoer (default) | hele-organisationen | udvikler
-#   ./install.sh update               hent nyeste + geninstaller (afstemmer skills, dev-lag og hooks)
-#   ./install.sh brain <sti>          kobl (eller flyt) company-brain'en - saa indlaeses den ambient
-#   ./install.sh status               profil + version + sundhedstjek (hooks, Node, hjerne, hub-filer)
-#   ./install.sh aktiver-udvikler     aktiver det stagede udvikler-lag (hvis payload findes)
-#   ./install.sh uninstall            fjern KUN managed skills + pakke-mappen
+#   ./install.sh [install]     installer (eller opdater) hele pakken
+#   ./install.sh update        hent nyeste + geninstaller (afstemmer skills og hooks)
+#   ./install.sh brain <sti>   kobl (eller flyt) company-brain'en - saa indlaeses den ambient
+#   ./install.sh status        version + sundhedstjek (hooks, Node, hjerne, hub-filer)
+#   ./install.sh uninstall     fjern KUN det installeren lagde
 #
 # CLAUDE_HOME kan overrides (bruges til test): CLAUDE_HOME=/tmp/x ./install.sh
 set -euo pipefail
@@ -21,11 +21,11 @@ AGENTS_DIR="$CLAUDE_HOME/agents"
 COMMANDS_DIR="$CLAUDE_HOME/commands"
 RULES_DIR="$CLAUDE_HOME/rules/din-ai-org"
 PKG_DIR="$CLAUDE_HOME/din-ai-org"
-STASH="$PKG_DIR/udvikler-lager"
+LEGACY_STASH="$PKG_DIR/udvikler-lager"
 STATE="$PKG_DIR/install-state.json"
 SETTINGS="$CLAUDE_HOME/settings.json"
 HOOKS_SRC="$REPO_ROOT/hooks"
-VERSION="1.1.0"
+VERSION="2.0.0"
 
 DEPTS=(01-direktionen 02-strategiudvikling 03-viden-og-data 04-programledelse \
        05-sekretariatet 06-salg-og-kundeservice 07-marketing 08-okonomi 09-hr 10-it-og-udvikling \
@@ -34,8 +34,8 @@ DEPTS=(01-direktionen 02-strategiudvikling 03-viden-og-data 04-programledelse \
 log(){ printf '  %s\n' "$*"; }
 die(){ printf 'FEJL: %s\n' "$*" >&2; exit 1; }
 
-# Operatoer-skill-mapper fra repoet (alle mapper med en SKILL.md under de 11 afdelinger).
-operator_skills(){
+# Alle skill-mapper i repoet (mapper med en SKILL.md under de 11 afdelinger).
+all_skills(){
   local d s
   for d in "${DEPTS[@]}"; do
     [ -d "$REPO_ROOT/$d" ] || continue
@@ -56,38 +56,31 @@ except Exception: pass
 PY
 }
 
-# Skriv install-state. Args: profil, sti-til-fil-med-skill-navne.
+# Skriv install-state. Arg: sti-til-fil-med-skill-navne.
 write_state(){
-  local profile="$1" names_file="$2"
+  local names_file="$1"
   mkdir -p "$PKG_DIR"
-  python3 - "$profile" "$STATE" "$VERSION" "$names_file" <<'PY'
-import json,sys,datetime,os
-profile,state,version,namesf=sys.argv[1:5]
-prev=json.load(open(state)) if os.path.exists(state) else {}
+  python3 - "$STATE" "$VERSION" "$names_file" <<'PY'
+import json,sys,datetime
+state,version,namesf=sys.argv[1:4]
 names=[n.strip() for n in open(namesf) if n.strip()]
-out={"package":"din-ai-organisation","version":version,"profile":profile,
+out={"package":"din-ai-organisation","version":version,
      "installedAt":datetime.datetime.now().isoformat(timespec="seconds"),
      "managedSkills":sorted(set(names))}
-for k,v in prev.items():
-    if k.startswith("managedDev"): out[k]=v
 json.dump(out, open(state,"w"), indent=2, ensure_ascii=False)
 open(state,"a").write("\n")
 PY
 }
 
-# Wire pakkens hooks ind i settings.json - merge-sikkert. Identificeres pa stien
-# 'din-ai-org/hooks/', saa vi kan fjerne prAcis vores egne igen uden at roere andres.
+# Wire pakkens hooks ind i settings.json - merge-sikkert. Identificeres paa stien
+# 'din-ai-org/hooks/', saa vi kan fjerne praecis vores egne igen uden at roere andres.
 wire_hooks(){
-  python3 - "$SETTINGS" "$PKG_DIR" "$STATE" <<'PY'
+  python3 - "$SETTINGS" "$PKG_DIR" <<'PY'
 import json, sys, os
-settings, pkg, state = sys.argv[1], sys.argv[2], sys.argv[3]
+settings, pkg = sys.argv[1], sys.argv[2]
 d = json.load(open(settings)) if os.path.exists(settings) else {}
 hooks = d.setdefault('hooks', {})
 marker = 'din-ai-org/hooks/'
-dev = False
-if os.path.exists(state):
-    try: dev = bool(json.load(open(state)).get('managedDevSkills'))
-    except Exception: pass
 def clean(ev):
     hooks[ev] = [g for g in hooks.get(ev, [])
                  if not any(marker in h.get('command','') for h in g.get('hooks', []))]
@@ -97,15 +90,9 @@ def add(ev, script, matcher='*'):
 for ev in ('SessionStart', 'Stop', 'PreToolUse', 'PostToolUse'):
     clean(ev)
 add('SessionStart', 'brain-inject.js'); add('SessionStart', 'session-load.js')
-add('SessionStart', 'rules-inject.js'); add('SessionStart', 'mcp-health.js')
+add('SessionStart', 'mcp-health.js')
 add('Stop', 'session-save.js');         add('Stop', 'notify-done.js')
 add('PreToolUse', 'brain-guard.js', 'Write|Edit')
-if dev:
-    add('PostToolUse', 'dev-accumulate.js', 'Write|Edit')
-    add('PostToolUse', 'dev-console-warn.js', 'Write|Edit')
-    add('Stop', 'dev-batch.js')
-    add('PreToolUse', 'dev-gateguard.js', 'Write|Edit')
-    add('PreToolUse', 'dev-commit-gate.js', 'Bash')
 for ev in list(hooks):
     if not hooks[ev]: del hooks[ev]
 os.makedirs(os.path.dirname(settings), exist_ok=True)
@@ -131,6 +118,8 @@ PY
 
 install_hooks(){
   mkdir -p "$PKG_DIR/hooks"
+  # Ryd tidligere hook-filer, saa udgaaede (fx dev-workflow-hooks fra v1) forsvinder.
+  rm -f "$PKG_DIR"/hooks/*.js
   ls "$HOOKS_SRC"/*.js >/dev/null 2>&1 && cp "$HOOKS_SRC"/*.js "$PKG_DIR/hooks/"
   python3 - "$PKG_DIR/config.json" "${DIN_AI_BRAIN:-}" <<'PY'
 import json, sys, os
@@ -141,6 +130,26 @@ json.dump({"package": "din-ai-organisation", "brainPath": brain},
           open(cfgp, 'w'), indent=2, ensure_ascii=False)
 PY
   wire_hooks
+}
+
+# Migration fra v1: fjern det gamle udvikler-lag (skills, agenter, commands, rules)
+# fra brugerens maskine. Uden det her ville et 'update' efterlade det gamle lag
+# liggende for alle, der installerede foer 2.0.0.
+purge_legacy_dev(){
+  [ -f "$STATE" ] || return 0
+  local n=0 p pair key dir
+  for pair in "managedDevSkills:$SKILLS_DIR" "managedDevAgents:$AGENTS_DIR" \
+              "managedDevCommands:$COMMANDS_DIR" "managedDevRules:$RULES_DIR"; do
+    key="${pair%%:*}"; dir="${pair#*:}"
+    while IFS= read -r p; do
+      [ -n "$p" ] || continue
+      [ -e "$dir/$p" ] && { rm -rf "${dir:?}/$p"; n=$((n+1)); }
+    done < <(python3 -c "import json,os;d=json.load(open('$STATE')) if os.path.exists('$STATE') else {};print(chr(10).join(d.get('$key',[])))" 2>/dev/null || true)
+  done
+  [ -d "$RULES_DIR" ] && { rm -rf "$RULES_DIR"; n=$((n+1)); }
+  [ -d "$LEGACY_STASH" ] && { rm -rf "$LEGACY_STASH"; n=$((n+1)); }
+  [ "$n" -gt 0 ] && log "Ryddet:      $n rester fra det gamle udvikler-lag (v1)"
+  return 0
 }
 
 # Kobl hjernen: saet brainPath i config.json (idempotent, virker foer OG efter
@@ -176,19 +185,17 @@ PY
 }
 
 do_install(){
-  local profile="${1:-operatoer}"
-  case "$profile" in
-    operatoer|operatør|hele-organisationen|udvikler) ;;
-    *) die "ukendt profil: $profile (brug operatoer | hele-organisationen | udvikler)";;
-  esac
   [ -d "$REPO_ROOT/03-viden-og-data" ] || die "koer scriptet fra repo-roden"
   mkdir -p "$SKILLS_DIR" "$PKG_DIR"
 
   local tmp; tmp="$(mktemp -d)"
-  operator_skills | sort -u > "$tmp/desired.txt"
+  all_skills | sort -u > "$tmp/desired.txt"
   read_managed | sort -u > "$tmp/prev.txt"
 
-  # 1) Fjern managed skills der ikke laengere er i profilen (roerer ikke ikke-managed).
+  # 0) Migration: fjern v1's udvikler-lag, foer vi skriver ny state.
+  purge_legacy_dev
+
+  # 1) Fjern managed skills der ikke laengere er i pakken (roerer ikke ikke-managed).
   local removed=0 s
   while IFS= read -r s; do
     [ -n "$s" ] || continue
@@ -197,7 +204,7 @@ do_install(){
     fi
   done < "$tmp/prev.txt"
 
-  # 2) Installer/opdater de oenskede skills.
+  # 2) Installer/opdater alle skills.
   local installed=0 d
   while IFS= read -r s; do
     [ -n "$s" ] || continue
@@ -210,29 +217,19 @@ do_install(){
     done
   done < "$tmp/desired.txt"
 
-  write_state "$profile" "$tmp/desired.txt"
+  write_state "$tmp/desired.txt"
 
-  # 3) Udvikler-lager: stage dev-lagets skills, agenter og commands (alle profiler).
-  mkdir -p "$STASH"
-  for t in skills agents commands rules; do
-    [ -d "$REPO_ROOT/dev-tier/$t" ] && { mkdir -p "$STASH/$t"; cp -R "$REPO_ROOT/dev-tier/$t/." "$STASH/$t/"; }
-  done
-
-  # 4) Brain-prompt tilgaengelig ved siden af pakken.
+  # 3) Brain-prompt tilgaengelig ved siden af pakken.
   [ -f "$REPO_ROOT/company-brain-prompt.txt" ] && cp "$REPO_ROOT/company-brain-prompt.txt" "$PKG_DIR/company-brain-prompt.txt"
 
-  # 5) Hooks - kontinuitet + brain-inject + notify, wired merge-sikkert ind i settings.json.
+  # 4) Hooks - kontinuitet + brain-inject + notify, wired merge-sikkert ind i settings.json.
   install_hooks
 
-  log "Profil:      $profile"
-  log "Installeret: $installed skills   (fjernet: $removed)"
-  log "Hooks:       brain-inject, session-load/save, notify (settings.json)"
+  log "Installeret: $installed skills i 11 afdelinger   (fjernet: $removed)"
+  log "Hooks:       brain-inject, session-load/save, notify, connector-vagt, brain-guard"
   log "State:       $STATE"
-  case "$profile" in
-    udvikler|hele-organisationen) do_activate_dev ;;
-    *) [ -n "$(ls -A "$STASH/skills" 2>/dev/null)" ] && log "Udvikler-lag: $(ls "$STASH/skills" | wc -l | tr -d ' ') skills staged - aktiver med './install.sh aktiver-udvikler'" ;;
-  esac
-  # 6) Hjerne-kobling: uden den er ambient genkaldelse stille slukket, saa vi
+
+  # 5) Hjerne-kobling: uden den er ambient genkaldelse stille slukket, saa vi
   # spoerger (interaktivt) eller siger det hoejt (ikke-interaktivt). DIN_AI_BRAIN
   # respekteres fortsat, og en eksisterende kobling roeres ikke.
   local bp
@@ -246,7 +243,7 @@ do_install(){
   fi
 
   # Naeste skridt foelger Kom i gang-raekkefoelgen (README) og viser kun det,
-  # der reelt mangler - saa kursisten aldrig skal gaette rakkefoelgen selv.
+  # der reelt mangler - saa kursisten aldrig skal gaette raekkefoelgen selv.
   printf '\nFaerdig. Naeste skridt (i denne raekkefoelge):\n'
   local idx=1
   if [ -n "$bp" ] && [ -f "$bp/00-index.md" ]; then
@@ -268,11 +265,10 @@ do_status(){
 import json,sys
 d=json.load(open(sys.argv[1]))
 print(f"Pakke:   {d.get('package')}  v{d.get('version')}")
-print(f"Profil:  {d.get('profile')}")
 print(f"Skills:  {len(d.get('managedSkills',[]))} managed")
-ds,da,dc=len(d.get('managedDevSkills',[])),len(d.get('managedDevAgents',[])),len(d.get('managedDevCommands',[]))
-if ds or da or dc: print(f"Dev-lag: {ds} skills + {da} agenter + {dc} commands aktive")
 print(f"Install: {d.get('installedAt')}")
+legacy=sum(len(d.get(k,[])) for k in ('managedDevSkills','managedDevAgents','managedDevCommands','managedDevRules'))
+if legacy: print(f"BEMAERK: {legacy} rester fra v1's udvikler-lag - koer './install.sh update' for at rydde dem")
 PY
 
   # Sundhedstjek: hele kaeden install -> settings -> hooks -> hjerne -> hub-filer.
@@ -326,48 +322,6 @@ PY
   fi
 }
 
-# Aktiver/opdater én staged type (skills/agents/commands/rules) og AFSTEM: fjern
-# tidligere-managed items der er faldet ud af payloadet, saa opdateringer bliver rene.
-_activate_type(){
-  local type="$1" dest="$2" statekey="$3" src="$STASH/$1"
-  [ -d "$src" ] || return 0
-  mkdir -p "$dest"
-  local cur; cur="$(mktemp)"
-  shopt -s nullglob
-  for e in "$src"/*; do basename "$e"; done > "$cur"
-  # 1) fjern items der var managed, men ikke laengere er i payloadet
-  python3 -c "import json,os;print(chr(10).join(json.load(open('$STATE')).get('$statekey',[])) if os.path.exists('$STATE') else '')" 2>/dev/null \
-    | while IFS= read -r p; do
-        [ -n "$p" ] || continue
-        grep -qxF "$p" "$cur" || { [ -e "$dest/$p" ] && rm -rf "${dest:?}/$p"; }
-      done
-  # 2) kopiér nuvaerende payload ind
-  local n=0 e
-  for e in "$src"/*; do
-    local base; base="$(basename "$e")"
-    rm -rf "${dest:?}/$base"; cp -R "$e" "$dest/$base"; n=$((n+1))
-  done
-  # 3) state[statekey] = nuvaerende payload (afstem, ikke merge)
-  python3 - "$STATE" "$statekey" "$cur" <<'PY'
-import json,sys,os
-state,key,curf=sys.argv[1],sys.argv[2],sys.argv[3]
-d=json.load(open(state)) if os.path.exists(state) else {"package":"din-ai-organisation"}
-d[key]=sorted({n.strip() for n in open(curf) if n.strip()})
-json.dump(d,open(state,"w"),indent=2,ensure_ascii=False); open(state,"a").write("\n")
-PY
-  [ "$n" -gt 0 ] && log "Aktiveret/opdateret $n $type"
-  rm -f "$cur"
-}
-
-do_activate_dev(){
-  [ -d "$STASH" ] || die "intet udvikler-lager (koer install foerst)"
-  _activate_type skills   "$SKILLS_DIR"   managedDevSkills
-  _activate_type agents   "$AGENTS_DIR"   managedDevAgents
-  _activate_type commands "$COMMANDS_DIR" managedDevCommands
-  _activate_type rules    "$RULES_DIR"    managedDevRules
-  wire_hooks   # dev-laget er nu aktivt: wire dev-workflow-hooks (gateguard/batch-format+typecheck/console/commit-gate) ind
-}
-
 _remove_list(){
   local key="$1" dir="$2" s n=0
   while IFS= read -r s; do
@@ -380,7 +334,8 @@ _remove_list(){
 do_uninstall(){
   [ -f "$STATE" ] || { echo "Intet at afinstallere."; return 0; }
   local t=0
-  t=$((t + $(_remove_list managedSkills     "$SKILLS_DIR")))
+  t=$((t + $(_remove_list managedSkills "$SKILLS_DIR")))
+  # Rester fra v1's udvikler-lag fjernes ogsaa, hvis de stadig staar i state.
   t=$((t + $(_remove_list managedDevSkills   "$SKILLS_DIR")))
   t=$((t + $(_remove_list managedDevAgents   "$AGENTS_DIR")))
   t=$((t + $(_remove_list managedDevCommands "$COMMANDS_DIR")))
@@ -388,7 +343,7 @@ do_uninstall(){
   [ -d "$RULES_DIR" ] && rm -rf "$RULES_DIR"   # namespaced, helt vores egen
   unwire_hooks
   rm -rf "$PKG_DIR"
-  log "Fjernet $t filer (skills, dev-lag, hooks) + pakke-mappen. Dine egne filer er uroert."
+  log "Fjernet $t skills + hooks + pakke-mappen. Dine egne filer er uroert."
 }
 
 do_update(){
@@ -399,26 +354,15 @@ do_update(){
   else
     log "Ikke en git-mappe. Opdater repo-filerne manuelt (nyt download) foer update."
   fi
-  # 2) vaelg profil: udvikler hvis dev-laget er aktivt, ellers den registrerede
-  local profile="operatoer"
-  if [ -f "$STATE" ]; then
-    if python3 -c "import json,sys;sys.exit(0 if json.load(open('$STATE')).get('managedDevSkills') else 1)" 2>/dev/null; then
-      profile="udvikler"
-    else
-      profile="$(python3 -c "import json;print(json.load(open('$STATE')).get('profile','operatoer'))" 2>/dev/null || echo operatoer)"
-    fi
-  fi
-  log "Opdaterer til nyeste, profil: $profile"
-  do_install "$profile"
+  log "Opdaterer til nyeste og afstemmer alt..."
+  do_install
 }
 
 case "${1:-install}" in
-  install)          do_install "${2:-operatoer}";;
-  brain)            do_brain "${2:-}";;
-  status)           do_status;;
-  aktiver-udvikler) do_activate_dev;;
-  uninstall)        do_uninstall;;
-  update)           do_update;;
-  operatoer|operatør|hele-organisationen|udvikler) do_install "$1";;  # tillad './install.sh <profil>'
-  *) die "ukendt kommando: $1 (install | update | brain <sti> | status | aktiver-udvikler | uninstall)";;
+  install)   do_install;;
+  brain)     do_brain "${2:-}";;
+  status)    do_status;;
+  uninstall) do_uninstall;;
+  update)    do_update;;
+  *) die "ukendt kommando: $1 (install | update | brain <sti> | status | uninstall)";;
 esac

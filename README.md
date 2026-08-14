@@ -2,7 +2,7 @@
 
 En kurateret pakke på **76 Agent Skills** til Claude, bygget til kurset "Claude Desktop 0-100". Du bygger din egen AI-organisation efter et klassisk dansk organisationsdiagram: hver afdeling er et hold AI-medarbejdere, og hver skill er én afgrænset, tilbagevendende opgave, som er valideret mod virkelige danske jobfunktioner i en SMV.
 
-Pakken er bevidst modulær. Anthropic anbefaler et loft på cirka 20-50 aktive skills, og 76 er over det med vilje - derfor installerer du kernen plus de afdelinger, der matcher din rolle (typisk 25-35 aktive skills), ikke hele pakken på én gang.
+Pakken installeres samlet. Afdelingerne er bygget til at hænge sammen: de læser de samme hub-filer og afleverer artefakter videre til hinanden, så en halv installation efterlader skills, der peger på noget, der ikke findes. Du installerer én gang, og organisationen står hel.
 
 ## Organisationsdiagrammet
 
@@ -188,37 +188,33 @@ brain-inject-hooken indlæser 00-index.md ambient i hver Claude Code-session
 
 Hjernen er sandheden, skills er medarbejderne, hub-filerne er bindeleddet, og hooks gør det ambient. `CLAUDE.md` (genereret af prompten) styrer adfærden i hjernemappen; `settings.json` (skrevet af installeren) styrer hooks globalt. I Claude Desktop/Cowork dækker CLAUDE.md-reglerne alene; i Claude Code sørger hooks for, at hjernen er til stede i alle sessioner.
 
-## Installationsmodel (modulær)
+## Installationsmodel
 
-Installér i lag frem for alt på én gang.
+Én kommando, hele organisationen. Du vælger ikke afdelinger til og fra, for kæderne går på tværs: `konkurrent-radar` (02) fodrer strategidagen, `tilbud` (06) køres gennem `kvalitetsloop` (01), og alt skrevet henter tonen fra `voice-profil.md`, som `toneprofil` (07) ejer. Tages en afdeling ud, knækker kæderne stille.
 
-1. **Kernen først.** Start med **03 Viden & Data** (den ejer hub-filerne, hele organisationen læser) og **01 Direktionen**. Uden kernen mangler de øvrige skills deres fælles kontekst.
-2. **Derefter de valgte afdelinger.** Vælg de 3-5 afdelinger, der matcher din rolle - typisk 25-35 aktive skills. Du kan altid tilføje flere senere.
+**Kernen er 03 Viden & Data.** Den ejer hub-filerne, som resten af huset læser. Derfor er første opgave efter install altid at køre `virksomhedsprofil` - uden den gætter organisationen om, hvem du er.
 
 ### Installer (anbefalet, Claude Code)
 
-Den reneste vej: en modulær installer, der lægger skills på plads, husker præcis hvad den selv har lagt, og aldrig rører dine egne skills.
+Den reneste vej: en installer, der lægger skills på plads, husker præcis hvad den selv har lagt, og aldrig rører dine egne skills.
 
 ```bash
 git clone https://github.com/ThomasCilius/din-ai-organisation.git
 cd din-ai-organisation
-./install.sh                  # operatoer-profil (alle forretnings-skills)
-./install.sh udvikler         # + udvikler-lag (staged, taendes senere)
+./install.sh                  # installer hele pakken
 ./install.sh brain <sti>      # kobl din company-brain (ambient genkaldelse)
 ./install.sh update           # hent nyeste + geninstaller (afstemmer alt)
 ./install.sh status           # sundhedstjek: hooks, Node, hjerne, hub-filer
-./install.sh aktiver-udvikler # aktiver det stagede udvikler-lag
 ./install.sh uninstall        # fjern KUN det, installeren lagde
 ```
 
-- **Profiler.** `operatoer` (standard) · `udvikler` (lægger dev-laget i staging) · `hele-organisationen`. Ét valg ved install, ikke to produkter.
-- **Idempotent opgradering.** `./install.sh update` henter nyeste version (git pull) og geninstallerer den profil, du kører, og **afstemmer alt**: nye skills/agenter/commands/rules/hooks kommer ind, udgåede fjernes, din brain-sti bevares, og intet af dit eget røres. Så ruller du dine egne ændringer ud på din eksisterende installation med én kommando.
+- **Én pakke, ingen valg.** Hele organisationen installeres samlet. Afdelingerne henter kontekst fra de samme hub-filer og afleverer artefakter til hinanden, så en halv installation giver skills, der peger på noget, der ikke er der.
+- **Idempotent opgradering.** `./install.sh update` henter nyeste version (git pull) og **afstemmer alt**: nye skills kommer ind, udgåede fjernes, din brain-sti bevares, og intet af dit eget røres.
 - **Install-state.** Alt noteres som `managed` i `~/.claude/din-ai-org/install-state.json`. Din memory, dine regler og dine egne skills står urørt.
-- **Udvikler-lag efter behov.** Vælger du `operatoer`, ligger dev-laget klar i `udvikler-lager/` og tændes senere med `aktiver-udvikler` uden download - hvis du begynder at kode mere.
 - **Ren afinstallation.** `uninstall` fjerner kun det, installeren lagde.
-- **Hooks-lag (levende hjerne).** Installeren wirer merge-sikkert syv hooks ind i `settings.json`: **brain-inject** (ambient genkaldelse), **kontinuitet** (session-save/load, "hvor vi slap"), **notify**, **connector-vagt** (`mcp-health`, opdager tabt login på Notion/Gmail/Shopify m.m.), **brain-guard** (beskytter hjernens kernefiler) og **rules-index** (dev-lagets kodestandarder). `uninstall` fjerner kun vores, aldrig dine andre hooks. Kræver Node. **Kobl hjernen med `./install.sh brain <sti>`** (installeren spørger også selv ved install) - uden koblingen er den ambiente genkaldelse stille slukket. `./install.sh status` viser om koblingen står rigtigt. Aktiverer du udvikler-laget, wires desuden fem **dev-workflow-hooks**: gateguard (fakta-tvang før første redigering af en fil), batch-formatering + typecheck én gang ved Stop (hurtigere end pr. edit), console-advarsel og commit-gate.
+- **Hooks-lag (levende hjerne).** Installeren wirer merge-sikkert seks hooks ind i `settings.json`: **brain-inject** (ambient genkaldelse), **kontinuitet** (session-save/load, "hvor vi slap"), **notify**, **connector-vagt** (`mcp-health`, opdager tabt login på Notion, Gmail, Shopify m.m.) og **brain-guard** (beskytter hjernens kernefiler). `uninstall` fjerner kun vores, aldrig dine andre hooks. Kræver Node. **Kobl hjernen med `./install.sh brain <sti>`** (installeren spørger også selv ved install) - uden koblingen er den ambiente genkaldelse stille slukket. `./install.sh status` viser, om koblingen står rigtigt.
 
-> På plads nu: hele pakken. Modulær installer (profiler, install-state, idempotent opgradering, ren afinstallation), 7 kerne-hooks + 5 dev-workflow-hooks (gateguard/batch-format+typecheck/console/commit-gate), de danske indholds-skills (`vidensarkitektur`, `menneskeliggoer`), og dev-laget med **70 skills + 36 agenter + 37 commands + 94 rules** inkl. engineering-craft-laget (arkitektur-review, qa-loop, ship-canary, beslutningsprotokol, redaktionsvagt) (kurateret ECC-subset under MIT, se `dev-tier/`). Udvikler-pariteten mod ECC er dermed lukket. Næste: migrationen (swap ECC ud).
+> **Opgraderer du fra v1?** Kør `./install.sh update`. Version 2.0.0 fjerner det gamle udvikler-lag helt - installeren rydder selv de skills, agenter, commands og rules op, som v1 lagde på din maskine. Dine egne filer røres ikke.
 
 ### Claude Desktop
 
@@ -229,7 +225,7 @@ Skills uploades pr. stk. som en zip-fil under **Settings > Capabilities > Skills
 **Nemmest - lad Claude Code installere.** Indsæt denne ene linje i Claude Code, så klarer den klon og install:
 
 ```
-Installer din-ai-organisation for mig: klon https://github.com/ThomasCilius/din-ai-organisation (hvis den ikke allerede ligger lokalt), gå ind i klonen og kør ./install.sh install operatoer (eller udvikler, hvis jeg også koder). Spørg mig derefter, hvor min company-brain ligger (eller skal ligge), og kør ./install.sh brain <sti> - uden den kobling indlæses hjernen aldrig ambient. Vis mig til sidst sundhedstjekket fra ./install.sh status.
+Installer din-ai-organisation for mig: klon https://github.com/ThomasCilius/din-ai-organisation (hvis den ikke allerede ligger lokalt), gå ind i klonen og kør ./install.sh install. Spørg mig derefter, hvor min company-brain ligger (eller skal ligge), og kør ./install.sh brain <sti> - uden den kobling indlæses hjernen aldrig ambient. Vis mig til sidst sundhedstjekket fra ./install.sh status.
 ```
 
 **Opdater senere.** Indsæt denne, så henter den nyeste og afstemmer alt:
@@ -243,7 +239,7 @@ Opdater min din-ai-organisation: find den lokale klon af https://github.com/Thom
 ```
 git clone https://github.com/ThomasCilius/din-ai-organisation.git
 cd din-ai-organisation
-./install.sh install operatoer    # eller: udvikler
+./install.sh install
 ```
 
 Begge veje giver en **managed, opdaterbar** installation (global i `~/.claude/`), i modsætning til at kopiere skill-mapper løst ind. Derefter henter `./install.sh update` altid nyeste og afstemmer alt.

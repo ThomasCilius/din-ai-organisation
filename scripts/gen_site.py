@@ -6,20 +6,19 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 REPO = "https://github.com/ThomasCilius/din-ai-organisation"
 DOMAIN = "skills.thomascilius.dk"
 CC_ONELINER = ("Installer din-ai-organisation for mig: klon " + REPO +
-  " (hvis den ikke allerede ligger lokalt), gaa ind i klonen og koer './install.sh install operatoer' "
-  "(eller 'udvikler', hvis jeg ogsaa koder). Spoerg mig derefter, hvor min company-brain ligger "
+  " (hvis den ikke allerede ligger lokalt), gaa ind i klonen og koer './install.sh install'. "
+  "Spoerg mig derefter, hvor min company-brain ligger "
   "(eller skal ligge), og koer './install.sh brain <sti>' - uden den kobling indlaeses hjernen "
   "aldrig ambient. Vis mig til sidst sundhedstjekket fra './install.sh status'.")
 UPDATE_ONELINER = ("Opdater min din-ai-organisation: find den lokale klon af " + REPO +
   " (klon den hvis den mangler), koer 'git pull', og koer derefter './install.sh update'. "
-  "Det henter nyeste og afstemmer alt (skills, dev-lag, hooks) uden at roere mine egne filer.")
+  "Det henter nyeste og afstemmer alt uden at roere mine egne filer.")
 GIT_BLOCK = ("git clone " + REPO + ".git\n"
   "cd din-ai-organisation\n"
-  "./install.sh install operatoer    # eller: udvikler")
+  "./install.sh install")
 INSTALLER_BLOCK = ("git clone " + REPO + ".git\n"
   "cd din-ai-organisation\n"
-  "./install.sh                # operatoer-profil (alle skills)\n"
-  "./install.sh udvikler       # + udvikler-lag (staged)\n"
+  "./install.sh                # installer hele pakken\n"
   "./install.sh brain <sti>    # kobl din company-brain (ambient genkaldelse)\n"
   "./install.sh update         # hent nyeste + geninstaller (afstemmer alt)\n"
   "./install.sh status         # sundhedstjek: hooks, Node, hjerne, hub-filer\n"
@@ -463,14 +462,13 @@ footer a{{color:var(--accent-ink)}}
     <div class="install__cols" style="grid-template-columns:1.05fr 1fr">
       <div class="icard">
         <h3>Én kommando, hele organisationen</h3>
-        <p class="sub">En modulær installer lægger de {total} skills på plads, husker præcis hvad den selv har lagt, og rører aldrig dine egne skills. Genkør for at opgradere, afinstallér rent når som helst. Til Claude Code.</p>
-        <div class="step"><b>1</b><div><b>Profiler.</b> <span class="inline">operatoer</span> (standard, forretnings-skills aktive) · <span class="inline">udvikler</span> (lægger dev-laget i staging) · <span class="inline">hele-organisationen</span>. Ét valg, ikke to produkter.</div></div>
+        <p class="sub">Installeren lægger alle {total} skills på plads, husker præcis hvad den selv har lagt, og rører aldrig dine egne skills. Genkør for at opgradere, afinstallér rent når som helst. Til Claude Code.</p>
+        <div class="step"><b>1</b><div><b>Én pakke, ingen valg.</b> Hele organisationen installeres samlet. Afdelingerne henter kontekst fra de samme hub-filer og afleverer artefakter til hinanden, så en halv installation giver skills, der peger på noget, der ikke er der.</div></div>
         <div class="step"><b>2</b><div><b>Idempotent opgradering.</b> Genkør <span class="inline">./install.sh</span> efter en ny kursusversion - den opdaterer skills, fjerner udgåede og rører intet af dit eget.</div></div>
         <div class="step"><b>3</b><div><b>Install-state.</b> Alt den lægger, noteres som <span class="inline">managed</span> i <span class="inline">~/.claude/din-ai-org/install-state.json</span>. Din memory, dine regler og dine egne skills står urørt.</div></div>
-        <div class="step"><b>4</b><div><b>Udvikler-lag efter behov.</b> Vælger du <span class="inline">operatoer</span>, ligger dev-laget klar i <span class="inline">udvikler-lager/</span> - tænd det senere med <span class="inline">./install.sh aktiver-udvikler</span>, uden download, hvis du begynder at kode mere.</div></div>
-        <div class="step"><b>5</b><div><b>Ren afinstallation.</b> <span class="inline">./install.sh uninstall</span> fjerner kun det, installeren lagde, aldrig dine egne filer.</div></div>
-        <div class="step"><b>6</b><div><b>Hooks-lag (levende hjerne).</b> Installeren wirer merge-sikkert syv hooks ind i <span class="inline">settings.json</span>: ambient brain-genkaldelse, kontinuitet (hvor vi slap), notify, connector-vagt (opdager tabt login), brain-guard og et dev-regel-indeks. Udvikler-laget tilføjer gateguard (fakta-tvang før første redigering), batch-format + typecheck ved Stop og commit-gate. Kræver Node.</div></div>
-        <div class="step"><b>7</b><div><b>Kobl hjernen - det vigtigste trin.</b> <span class="inline">./install.sh brain &lt;sti&gt;</span> peger pakken på din company-brain, så <span class="inline">00-index.md</span> indlæses ambient i hver Claude Code-session. Uden koblingen er den ambiente genkaldelse stille slukket. Rækkefølgen er ligegyldig: kør den før eller efter hjernen er bygget. <span class="inline">./install.sh status</span> viser et sundhedstjek af hele kæden.</div></div>
+        <div class="step"><b>4</b><div><b>Ren afinstallation.</b> <span class="inline">./install.sh uninstall</span> fjerner kun det, installeren lagde, aldrig dine egne filer.</div></div>
+        <div class="step"><b>5</b><div><b>Hooks-lag (levende hjerne).</b> Installeren wirer merge-sikkert seks hooks ind i <span class="inline">settings.json</span>: ambient brain-genkaldelse, kontinuitet (hvor vi slap), notify, connector-vagt (opdager tabt login) og brain-guard, der beskytter hjernens kernefiler. Kræver Node.</div></div>
+        <div class="step"><b>6</b><div><b>Kobl hjernen - det vigtigste trin.</b> <span class="inline">./install.sh brain &lt;sti&gt;</span> peger pakken på din company-brain, så <span class="inline">00-index.md</span> indlæses ambient i hver Claude Code-session. Uden koblingen er den ambiente genkaldelse stille slukket. Rækkefølgen er ligegyldig: kør den før eller efter hjernen er bygget. <span class="inline">./install.sh status</span> viser et sundhedstjek af hele kæden.</div></div>
       </div>
       <div class="icard">
         <div class="brainbar"><h3 style="margin:0">Kom i gang</h3></div>
