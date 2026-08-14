@@ -96,8 +96,8 @@ Tjekliste før aflevering (gengiv listen med kryds i dit svar, punkt for punkt):
 
 ### Sagslinje: skidt/godt
 
-- SKIDT: "Nordjysk Stål: tilbud sendt, vi følger op i næste uge. Ser fornuftigt ud."
-- GODT: "Nordjysk Stål | 180.000 kr. | Tilbud sendt 12/6 (25 dage) | FLAG: [GÅET I STÅ] - over 14-dages-tærsklen, acceptfristen udløb 26/6 | Næste skridt: Thomas ringer til indkøbschef Karin onsdag 9/7 - mail-udkast klar i afsnit 5 hvis hun ikke tager telefonen."
+- SKIDT: "Stålgrossisten Vest: tilbud sendt, vi følger op i næste uge. Ser fornuftigt ud."
+- GODT: "Stålgrossisten Vest | 180.000 kr. | Tilbud sendt 12/6 (25 dage) | FLAG: [GÅET I STÅ] - over 14-dages-tærsklen, acceptfristen udløb 26/6 | Næste skridt: Thomas ringer til indkøbschef Karin onsdag 9/7 - mail-udkast klar i afsnit 5 hvis hun ikke tager telefonen."
 
 Kontrasten: den gode linje kan der handles på i morgen tidlig uden ét opklarende spørgsmål - den dårlige udskyder bare stilheden en uge mere.
 

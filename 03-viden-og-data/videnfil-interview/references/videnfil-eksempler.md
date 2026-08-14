@@ -1,5 +1,7 @@
 # Eksempelsamling: videnfiler
 
+FIKTIVT EKSEMPEL - alle virksomhedsnavne, personnavne, mailadresser og tal er opdigtede og viser kun form og niveau. Enhver lighed med virkelige virksomheder er utilsigtet.
+
 Læs denne fil når du skal ramme formen - gode videnfiler ligner hinanden, og de dårlige fejler på de samme fem måder.
 
 ## Indhold
@@ -51,17 +53,17 @@ Hvorfor den virker: to tidsfrister der ikke står i noget system (2 timer, 48 ti
 
 ## 3. GODT: bestilling hos fast leverandør
 
-Fil: `brain/drift/bestilling-nordjysk-staal.md`
+Fil: `brain/drift/bestilling-staalgrossisten-vest.md`
 
 ```markdown
-# Bestilling hos Nordjysk Stål
+# Bestilling hos Stålgrossisten Vest
 **Bruges når:** Vi skal bruge stålprofiler eller plader til produktion.
-**Regel/trin:** Bestil via mail til Kim (kim@nordjyskstaal.dk) - aldrig
+**Regel/trin:** Bestil via mail til Kim (bestilling@eksempel-staal.dk) - aldrig
 webshoppen, den opdaterer ikke lagerstatus. Bestil torsdag før kl. 12,
 så leveres mandag.
 **Typiske fejl:** Haster det, så RING til Kim - mails læses kun morgen.
 Kan Kim ikke levere, brug Stålgrossisten i Aarhus (dyrere, men dag-til-dag).
-**Spørg/se:** Prisaftale: brain/leverandoerer/prisaftale-nordjysk-staal.md.
+**Spørg/se:** Prisaftale: brain/leverandoerer/prisaftale-staalgrossisten-vest.md.
 **Kilde:** Bo Andersen, 2026-04-20
 ```
 

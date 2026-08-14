@@ -1,5 +1,7 @@
 # Skabeloner: konkurrentkort.md og radar-Q[x]-[aar].md
 
+FIKTIVT EKSEMPEL - alle virksomhedsnavne, personnavne, mailadresser og tal er opdigtede og viser kun form og niveau. Enhver lighed med virkelige virksomheder er utilsigtet.
+
 Faste skabeloner for radarens to artefakter plus et udfyldt minieksempel. Følg strukturen præcist - faste felter gør kortet sammenligneligt fra kvartal til kvartal.
 
 ## Indhold

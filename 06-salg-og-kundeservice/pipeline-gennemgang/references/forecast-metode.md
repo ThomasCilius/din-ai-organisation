@@ -1,5 +1,7 @@
 # Forecast-metode: vægtet pipeline med interval
 
+FIKTIVT EKSEMPEL - alle virksomhedsnavne, personnavne, mailadresser og tal er opdigtede og viser kun form og niveau. Enhver lighed med virkelige virksomheder er utilsigtet.
+
 Indhold:
 
 1. [Hvorfor vægtet forecast](#1-hvorfor-vaegtet-forecast)
@@ -69,11 +71,11 @@ Periode: juli. Fem sager med lukkedato i perioden:
 
 | Sag | Beløb | Fase | Flag | Vægt | Forventet |
 |---|---|---|---|---|---|
-| Nordjysk Stål | 180.000 | Tilbud sendt | [GÅET I STÅ] | 40 % → 20 % | 36.000 |
+| Stålgrossisten Vest | 180.000 | Tilbud sendt | [GÅET I STÅ] | 40 % → 20 % | 36.000 |
 | Fjord Logistik | 95.000 | Forhandling | - | 70 % | 66.500 |
 | Byens VVS | 45.000 | Tilbud sendt | - | 40 % | 18.000 |
 | Grønvang A/S | 320.000 | Møde afholdt | - | 20 % | 64.000 |
-| Hedegaard IT | 60.000 | Tilbud sendt | [LUK ELLER GENÅBN] | kun i højt | 0 |
+| Eksempel IT | 60.000 | Tilbud sendt | [LUK ELLER GENÅBN] | kun i højt | 0 |
 
 - **Lavt: 66.500 kr.** (kun Fjord Logistik - eneste sag i forhandling uden flag)
 - **Forventet: 184.500 kr.** (36.000 + 66.500 + 18.000 + 64.000)
@@ -92,5 +94,5 @@ Grønvang udgør 64.000/184.500 = 35 % af forventet → vis også forecastet ude
 
 - Altid tre tal med etiketterne lavt/forventet/højt - aldrig "ca.", aldrig ét tal, heller ikke i en bisætning eller opsummering.
 - Vis beregningen som tabel (sag, beløb, fase, vægt, bidrag) - et forecast uden synligt regnestykke kan ikke udfordres, og så er det en påstand, ikke et forecast.
-- Skriv med én sætning hvad der adskiller forventet fra højt ("højt kræver at Nordjysk Stål og Hedegaard begge lander efter opfølgning") - det gør intervallet til en handlingsplan i stedet for et vilkår.
+- Skriv med én sætning hvad der adskiller forventet fra højt ("højt kræver at Stålgrossisten Vest og Eksempel IT begge lander efter opfølgning") - det gør intervallet til en handlingsplan i stedet for et vilkår.
 - Alle ukalibrerede sandsynligheder markeres [ANTAGELSE] med henvisning til dette dokument.
