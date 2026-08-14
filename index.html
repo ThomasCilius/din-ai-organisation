@@ -159,7 +159,12 @@ pre.cmd.wrapline{white-space:pre-wrap;word-break:break-word}
   background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:30px clamp(20px,3.5vw,38px)}
 .stcard h2{margin:0 0 8px;font-size:clamp(20px,2.4vw,26px);letter-spacing:-.01em}
 .stcard p{margin:0;color:var(--muted);font-size:14.5px;max-width:52ch;line-height:1.6}
-.stbtns{display:flex;gap:10px;flex-wrap:wrap;flex:none}
+.stbtns{display:flex;gap:10px;flex-wrap:wrap;flex:0 1 auto;min-width:0}
+@media (max-width:760px){
+  .stcard{flex-direction:column;align-items:flex-start;gap:20px}
+  .stbtns{width:100%}
+  .stbtns .btn{flex:1 1 auto;justify-content:center}
+}
 footer{border-top:1px solid var(--line);margin-top:44px;padding:34px 0;color:var(--muted);font-size:13.5px}
 .foot__grid{display:flex;gap:30px;justify-content:space-between;flex-wrap:wrap;margin-bottom:22px}
 .foot__sub{margin:8px 0 0;line-height:1.7}
