@@ -480,12 +480,21 @@ samme skabelon:
 
   # [Titel]
   ## Status    ← kompileret sandhed: kort og aktuel - det man skal vide NU
+  ## Filer     ← hvor tingene ligger: sti eller link til projektmappen,
+                 tilbudsarkivet, det delte drev, kontrakten. Én linje pr. sted
+                 med hvad der ligger der:
+                 &quot;- ~/Dokumenter/Kunder/Nordkøb/ - tilbud, kontrakt, referater&quot;
   ## Log       ← append-only, nyeste øverst:
                  &quot;- 2026-07-07 (session: tilbud til Nordkøb): ...&quot;
 
-To regler bag skabelonen:
+Tre regler bag skabelonen:
 - Du appender frit til Log. Status opdaterer du kun, når noget er sikkert.
 - Hver log-linje stemples med dato + kilde (session-emne eller inbox-fil).
+- Filer kopieres ALDRIG ind i hjernen. Nævner jeg en mappe, et dokument, et
+  drev eller en Notion-side, noterer du stien under ## Filer - så kan både
+  Cowork og Claude Code finde originalen igen. Kender du ingen sti, springer du
+  afsnittet over; gæt aldrig en. Hjernen ved hvad der gælder, ## Filer ved hvor
+  det ligger.
 
 Stub-regel: nævnes en person eller et emne første gang, opretter du en stub
 (titel + én linje + kilde). Dukker de op igen i en senere session, udbygger du
