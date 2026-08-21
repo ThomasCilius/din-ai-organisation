@@ -16,6 +16,11 @@
 #   ./install.sh status        version + sundhedstjek (hooks, Node, hjerne, hub-filer)
 #   ./install.sh uninstall     fjern KUN det installeren lagde
 #
+# Opgraderer du fra v1 og vil BEHOLDE det gamle udviklerlag (dev-skills, agenter,
+# commands og rules/din-ai-org), saa tilfoej --behold-udviklerlaget til install
+# eller update. Valget huskes i install-state, saa senere 'update' ogsaa bevarer
+# laget. Fortryder du: --drop-udviklerlaget rydder det og glemmer valget igen.
+#
 # Efter installation ligger scriptet ogsaa i ~/.claude/din-ai-org/install.sh,
 # saa opdatering og sundhedstjek altid er ét kald vaek.
 #
@@ -35,9 +40,21 @@ LEGACY_STASH="$PKG_DIR/udvikler-lager"
 STATE="$PKG_DIR/install-state.json"
 SETTINGS="$CLAUDE_HOME/settings.json"
 HOOKS_SRC="$REPO_ROOT/hooks"
-VERSION="2.1.0"
+VERSION="2.2.0"
 BRAND="Din AI Assistent - ThomasCilius.dk"
 PKG_URL="${DIN_AI_PKG_URL:-https://skills.thomascilius.dk/releases/din-ai-organisation.tar.gz}"
+
+# Flag kan staa hvor som helst i kommandolinjen; resten er kommando + argumenter.
+KEEP_DEV_FLAG=""      # "1" = behold, "0" = ryd og glem valget, "" = ikke sagt
+ARGS=()
+for a in "$@"; do
+  case "$a" in
+    --behold-udviklerlaget|--keep-dev) KEEP_DEV_FLAG=1;;
+    --drop-udviklerlaget|--drop-dev)   KEEP_DEV_FLAG=0;;
+    *) ARGS+=("$a");;
+  esac
+done
+set -- ${ARGS[@]+"${ARGS[@]}"}
 
 DEPTS=(01-direktionen 02-strategiudvikling 03-viden-og-data 04-programledelse \
        05-sekretariatet 06-salg-og-kundeservice 07-marketing 08-okonomi 09-hr 10-it-og-udvikling \
@@ -109,6 +126,16 @@ all_skills(){
   done
 }
 
+# Bevares det gamle v1-udviklerlag? Flaget vinder, saa env, saa det valg der
+# allerede staar i install-state. Default er nej: en kursist skal ikke slaebe
+# rundt paa et lag, kurset ikke laengere bruger.
+keep_dev(){
+  [ -n "$KEEP_DEV_FLAG" ] && { [ "$KEEP_DEV_FLAG" = "1" ]; return; }
+  [ -n "${DIN_AI_KEEP_DEV:-}" ] && { [ "$DIN_AI_KEEP_DEV" != "0" ]; return; }
+  [ -f "$STATE" ] || return 1
+  python3 -c "import json,sys;sys.exit(0 if json.load(open('$STATE')).get('keepDevLayer') else 1)" 2>/dev/null
+}
+
 # Tidligere managed skills fra install-state (tom hvis ingen state).
 read_managed(){
   [ -f "$STATE" ] || return 0
@@ -121,18 +148,26 @@ PY
 
 # Skriv install-state. Arg: sti-til-fil-med-skill-navne.
 write_state(){
-  local names_file="$1"
+  local names_file="$1" keep="0"
+  keep_dev && keep="1"
   mkdir -p "$PKG_DIR"
-  python3 - "$STATE" "$VERSION" "$names_file" <<'PY'
-import json,sys,datetime
-state,version,namesf=sys.argv[1:4]
+  python3 - "$STATE" "$VERSION" "$names_file" "$keep" <<'STATEPY'
+import json,os,sys,datetime
+state,version,namesf,keep=sys.argv[1:5]
 names=[n.strip() for n in open(namesf) if n.strip()]
+prev=json.load(open(state)) if os.path.exists(state) else {}
 out={"package":"din-ai-organisation","version":version,
      "installedAt":datetime.datetime.now().isoformat(timespec="seconds"),
      "managedSkills":sorted(set(names))}
+# Bevares udviklerlaget, skal listerne blive staaende - ellers ved hverken
+# uninstall eller en senere oprydning, hvad der er vores at fjerne.
+if keep == "1":
+    out["keepDevLayer"]=True
+    for k in ("managedDevSkills","managedDevAgents","managedDevCommands","managedDevRules"):
+        if prev.get(k): out[k]=prev[k]
 json.dump(out, open(state,"w"), indent=2, ensure_ascii=False)
 open(state,"a").write("\n")
-PY
+STATEPY
 }
 
 # Wire pakkens hooks ind i settings.json - merge-sikkert. Identificeres paa stien
@@ -200,6 +235,12 @@ PY
 # liggende for alle, der installerede foer 2.0.0.
 purge_legacy_dev(){
   [ -f "$STATE" ] || return 0
+  if keep_dev; then
+    local k
+    k="$(python3 -c "import json;d=json.load(open('$STATE'));print(sum(len(d.get(x,[])) for x in ('managedDevSkills','managedDevAgents','managedDevCommands','managedDevRules')))" 2>/dev/null || echo 0)"
+    [ "$k" != "0" ] && log "Beholdt:     $k filer i det gamle udviklerlag (--behold-udviklerlaget)"
+    return 0
+  fi
   local n=0 p pair key dir
   for pair in "managedDevSkills:$SKILLS_DIR" "managedDevAgents:$AGENTS_DIR" \
               "managedDevCommands:$COMMANDS_DIR" "managedDevRules:$RULES_DIR"; do
@@ -343,7 +384,10 @@ print(f"Pakke:   {d.get('package')}  v{d.get('version')}")
 print(f"Skills:  {len(d.get('managedSkills',[]))} managed")
 print(f"Install: {d.get('installedAt')}")
 legacy=sum(len(d.get(k,[])) for k in ('managedDevSkills','managedDevAgents','managedDevCommands','managedDevRules'))
-if legacy: print(f"BEMAERK: {legacy} rester fra v1's udvikler-lag - koer './install.sh update' for at rydde dem")
+if legacy and d.get('keepDevLayer'):
+    print(f"Udviklerlag: {legacy} filer bevaret (--behold-udviklerlaget). Ryd med 'install.sh update --drop-udviklerlaget'")
+elif legacy:
+    print(f"BEMAERK: {legacy} rester fra v1's udvikler-lag - koer 'install.sh update' for at rydde dem")
 PY
 
   # Sundhedstjek: hele kaeden install -> settings -> hooks -> hjerne -> hub-filer.
@@ -440,5 +484,5 @@ case "${1:-install}" in
   status)    do_status;;
   uninstall) do_uninstall;;
   update)    do_update;;
-  *) die "ukendt kommando: $1 (plan | install | update | brain <sti> | status | uninstall)";;
+  *) die "ukendt kommando: $1 (plan | install | update | brain <sti> | status | uninstall) - flag: --behold-udviklerlaget | --drop-udviklerlaget";;
 esac

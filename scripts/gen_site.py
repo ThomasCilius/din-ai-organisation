@@ -594,6 +594,7 @@ footer a{{color:var(--accent-ink)}}
         <div class="step"><b>b</b><div>Kopiér hele prompten til højre ind. Claude interviewer dig og bygger hjernen fase for fase - du svarer bare på spørgsmålene.</div></div>
         <div class="step"><b>c</b><div>Medbring <b>3-5 dokumenter</b> (gamle tilbud, prisliste, om os-tekst) - en tom hjerne giver tomme svar.</div></div>
         <div class="step"><b>d</b><div>Til sidst viser Claude dig hjernen og svarer på et prøvespørgsmål fra den. Så er trin 2 færdigt.</div></div>
+        <p class="sub" style="margin-top:12px"><b>Her kommer dine projekter og kunder ind.</b> Claude spørger til dine aktive kundeforløb og lægger én side pr. projekt i <span class="inline">projects/</span> - kunder, leads og samarbejdspartnere havner i <span class="inline">people/</span>. Kom der ingen med i første omgang, siger du det bare bagefter: <i>"opret sider for mine aktive projekter"</i>, eller lægger materialet i <span class="inline">inbox/</span> og siger <i>"behandl indbakken"</i>. Hjernen bygger videre - den starter aldrig forfra.</p>
         <p class="sub" style="margin-top:12px"><b>Har du allerede en hjerne?</b> Findes <span class="inline">00-index.md</span> i mappen, er Trin 0 gjort - spring bygningen over og installér skills oven på den.</p>
         <p style="margin:16px 0 0"><a class="btn" href="company-brain-bootstrap.md">Læs guiden &amp; facilitator-noter</a></p>
       </div>

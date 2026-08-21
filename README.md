@@ -231,6 +231,8 @@ bash din-ai-assistent.sh brain <sti>   # kobl din company-brain (ambient genkald
 - **Hooks-lag (levende hjerne).** Installeren wirer merge-sikkert seks hooks ind i `settings.json`: **brain-inject** (ambient genkaldelse), **kontinuitet** (session-save/load, "hvor vi slap"), **notify**, **connector-vagt** (`mcp-health`, opdager tabt login på Notion, Gmail, Shopify m.m.) og **brain-guard** (beskytter hjernens kernefiler). `uninstall` fjerner kun vores, aldrig dine andre hooks. Kræver Node. **Kobl hjernen med `./install.sh brain <sti>`** (installeren spørger også selv ved install) - uden koblingen er den ambiente genkaldelse stille slukket. `./install.sh status` viser, om koblingen står rigtigt.
 
 > **Opgraderer du fra v1?** Kør `~/.claude/din-ai-org/install.sh update` (eller hent installeren igen med kommandoen ovenfor). Version 2.0.0 fjerner det gamle udvikler-lag helt - installeren rydder selv de skills, agenter, commands og rules op, som v1 lagde på din maskine. Dine egne filer røres ikke.
+>
+> **Vil du beholde udviklerlaget?** Byggede du oven på v1's dev-lag - agenterne, slash-kommandoerne eller `rules/din-ai-org/` - så kør `install.sh update --behold-udviklerlaget`. Så opgraderes de 76 skills, mens laget bliver stående. Valget huskes i install-state, så senere `update` også bevarer det; `--drop-udviklerlaget` rydder op og glemmer valget igen. Flaget er fra som standard: en ny kursist skal ikke slæbe rundt på et lag, kurset ikke bruger.
 
 ### Claude Desktop
 
