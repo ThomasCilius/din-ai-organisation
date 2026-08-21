@@ -1,20 +1,30 @@
 #!/usr/bin/env bash
-# din-ai-organisation - installationen over installationerne
+# Din AI Assistent - ThomasCilius.dk
+# Installationen over installationerne.
 #
 # Én pakke, ingen profiler: hele organisationen installeres samlet, fordi
 # afdelingerne haenger sammen. Idempotent, med install-state og ren afinstallation.
 # Roerer ALDRIG dine egne skills - kun det, den selv har lagt (ownership: managed).
 #
+# Ingen konto, intet login, ingen git: ligger pakken ikke ved siden af scriptet,
+# hentes den som ét arkiv over almindelig https fra skills.thomascilius.dk.
+#
+#   ./install.sh plan          vis de fem trin med cirka tidsforbrug (installerer intet)
 #   ./install.sh [install]     installer (eller opdater) hele pakken
 #   ./install.sh update        hent nyeste + geninstaller (afstemmer skills og hooks)
 #   ./install.sh brain <sti>   kobl (eller flyt) company-brain'en - saa indlaeses den ambient
 #   ./install.sh status        version + sundhedstjek (hooks, Node, hjerne, hub-filer)
 #   ./install.sh uninstall     fjern KUN det installeren lagde
 #
+# Efter installation ligger scriptet ogsaa i ~/.claude/din-ai-org/install.sh,
+# saa opdatering og sundhedstjek altid er ét kald vaek.
+#
 # CLAUDE_HOME kan overrides (bruges til test): CLAUDE_HOME=/tmp/x ./install.sh
+# DIN_AI_PKG_URL kan overrides (bruges til test af arkiv-hentningen).
 set -euo pipefail
 
-REPO_ROOT="$(cd "$(dirname "$0")" && pwd)"
+# Naar scriptet koeres via en pipe (curl ... | bash) findes "$0" ikke som fil.
+REPO_ROOT="$(cd "$(dirname "$0")" 2>/dev/null && pwd || printf %s "$PWD")"
 CLAUDE_HOME="${CLAUDE_HOME:-$HOME/.claude}"
 SKILLS_DIR="$CLAUDE_HOME/skills"
 AGENTS_DIR="$CLAUDE_HOME/agents"
@@ -25,7 +35,9 @@ LEGACY_STASH="$PKG_DIR/udvikler-lager"
 STATE="$PKG_DIR/install-state.json"
 SETTINGS="$CLAUDE_HOME/settings.json"
 HOOKS_SRC="$REPO_ROOT/hooks"
-VERSION="2.0.0"
+VERSION="2.1.0"
+BRAND="Din AI Assistent - ThomasCilius.dk"
+PKG_URL="${DIN_AI_PKG_URL:-https://skills.thomascilius.dk/releases/din-ai-organisation.tar.gz}"
 
 DEPTS=(01-direktionen 02-strategiudvikling 03-viden-og-data 04-programledelse \
        05-sekretariatet 06-salg-og-kundeservice 07-marketing 08-okonomi 09-hr 10-it-og-udvikling \
@@ -33,6 +45,57 @@ DEPTS=(01-direktionen 02-strategiudvikling 03-viden-og-data 04-programledelse \
 
 log(){ printf '  %s\n' "$*"; }
 die(){ printf 'FEJL: %s\n' "$*" >&2; exit 1; }
+
+# Overskrift - saa det er tydeligt i Claude (og i terminalen), hvad der koerer.
+banner(){ printf '\n%s\n%s\n\n' "$BRAND" "$(printf '%*s' ${#BRAND} '' | tr ' ' '-')"; }
+
+# Korte stier i output - "~/.claude/..." er til at laese, den fulde sti er ikke.
+short(){ printf '%s' "${1/#$HOME/~}"; }
+
+# De fem trin med cirka tidsforbrug. Vises foer installationen gaar i gang, saa
+# ingen bliver overrasket over, at trin 2 og 4 er samtaler og ikke kommandoer.
+print_plan(){
+  banner
+  cat <<'PLAN'
+Saadan kommer du i maal - 5 trin, ca. 45-60 minutter i alt.
+Du kan holde pause mellem trinene; intet gaar tabt undervejs.
+
+  1  Vaelg hjernens mappe                              ca.  1 min   du vaelger mappen
+  2  Byg din company brain - Claude interviewer dig    ca. 20-30 min  medbring 3-5 dokumenter
+  3  Installer skills-pakken                           ca.  2 min   én kommando, koerer af sig selv
+  4  Udfyld hub-filerne: virksomhed, tone og design    ca. 15-25 min  tre skills, én ad gangen
+  5  Sundhedstjek: install.sh status                   ca.  1 min   [OK] / [MANGLER] linje for linje
+
+Trin 2 og 4 er samtaler med Claude - du svarer bare paa spoergsmaalene.
+Trin 1, 3 og 5 er hurtige og tekniske. Ingen konto, intet login, ingen git.
+PLAN
+}
+
+# Pakken skal ligge ved siden af scriptet. Goer den ikke det - fx fordi scriptet
+# er hentet alene med curl - henter vi hele pakken som ét arkiv fra sitet.
+# Almindelig https: ingen GitHub-konto, intet login, ingen git installeret.
+PAYLOAD_TMP=""
+cleanup_payload(){ [ -n "$PAYLOAD_TMP" ] && rm -rf "$PAYLOAD_TMP"; return 0; }
+trap cleanup_payload EXIT
+
+ensure_payload(){
+  local force="${1:-}"
+  [ -z "$force" ] && [ -d "$REPO_ROOT/03-viden-og-data" ] && return 0
+  command -v curl >/dev/null 2>&1 || die "curl mangler paa maskinen - kan ikke hente pakken"
+  command -v tar  >/dev/null 2>&1 || die "tar mangler paa maskinen - kan ikke pakke arkivet ud"
+  cleanup_payload
+  PAYLOAD_TMP="$(mktemp -d)"
+  log "Henter pakken fra ${PKG_URL%/*}/ ..."
+  curl -fsSL "$PKG_URL" -o "$PAYLOAD_TMP/pakke.tar.gz" \
+    || die "kunne ikke hente pakken ($PKG_URL) - tjek din netforbindelse og proev igen"
+  tar -xzf "$PAYLOAD_TMP/pakke.tar.gz" -C "$PAYLOAD_TMP" || die "arkivet kunne ikke pakkes ud"
+  local root="$PAYLOAD_TMP"
+  [ -d "$PAYLOAD_TMP/din-ai-organisation/03-viden-og-data" ] && root="$PAYLOAD_TMP/din-ai-organisation"
+  [ -d "$root/03-viden-og-data" ] || die "arkivet ser forkert ud - proev igen om lidt"
+  REPO_ROOT="$root"
+  HOOKS_SRC="$REPO_ROOT/hooks"
+  log "Pakken hentet - $(all_skills | wc -l | tr -d ' ') skills klar"
+}
 
 # Alle skill-mapper i repoet (mapper med en SKILL.md under de 11 afdelinger).
 all_skills(){
@@ -172,11 +235,14 @@ open(cfgp, 'a').write('\n')
 PY
   # soerg for at hook-filer + wiring er paa plads (idempotent; noedvendigt hvis
   # 'brain' koeres foer 'install', eller settings er blevet nulstillet).
-  if [ ! -f "$PKG_DIR/hooks/brain-inject.js" ] && ls "$HOOKS_SRC"/*.js >/dev/null 2>&1; then
-    mkdir -p "$PKG_DIR/hooks"; cp "$HOOKS_SRC"/*.js "$PKG_DIR/hooks/"
+  if [ ! -f "$PKG_DIR/hooks/brain-inject.js" ]; then
+    ls "$HOOKS_SRC"/*.js >/dev/null 2>&1 || ensure_payload
+    if ls "$HOOKS_SRC"/*.js >/dev/null 2>&1; then
+      mkdir -p "$PKG_DIR/hooks"; cp "$HOOKS_SRC"/*.js "$PKG_DIR/hooks/"
+    fi
   fi
   grep -q 'din-ai-org/hooks/' "$SETTINGS" 2>/dev/null || wire_hooks
-  log "Hjerne koblet: $sti"
+  log "Hjerne koblet: $(short "$sti")"
   if [ -f "$sti/00-index.md" ]; then
     log "00-index.md fundet - hjernen indlaeses ambient fra naeste Claude Code-session."
   else
@@ -185,7 +251,9 @@ PY
 }
 
 do_install(){
-  [ -d "$REPO_ROOT/03-viden-og-data" ] || die "koer scriptet fra repo-roden"
+  print_plan
+  printf '\nTrin 3 koerer nu.\n\n'
+  ensure_payload
   mkdir -p "$SKILLS_DIR" "$PKG_DIR"
 
   local tmp; tmp="$(mktemp -d)"
@@ -219,15 +287,19 @@ do_install(){
 
   write_state "$tmp/desired.txt"
 
-  # 3) Brain-prompt tilgaengelig ved siden af pakken.
+  # 3) Brain-prompt + installeren selv tilgaengelig ved siden af pakken, saa
+  # opdatering og sundhedstjek altid er ét kald vaek - uden at finde noget frem igen.
   [ -f "$REPO_ROOT/company-brain-prompt.txt" ] && cp "$REPO_ROOT/company-brain-prompt.txt" "$PKG_DIR/company-brain-prompt.txt"
+  if [ -f "$REPO_ROOT/install.sh" ]; then
+    cp "$REPO_ROOT/install.sh" "$PKG_DIR/install.sh"; chmod +x "$PKG_DIR/install.sh"
+  fi
 
   # 4) Hooks - kontinuitet + brain-inject + notify, wired merge-sikkert ind i settings.json.
   install_hooks
 
   log "Installeret: $installed skills i 11 afdelinger   (fjernet: $removed)"
   log "Hooks:       brain-inject, session-load/save, notify, connector-vagt, brain-guard"
-  log "State:       $STATE"
+  log "State:       $(short "$STATE")"
 
   # 5) Hjerne-kobling: uden den er ambient genkaldelse stille slukket, saa vi
   # spoerger (interaktivt) eller siger det hoejt (ikke-interaktivt). DIN_AI_BRAIN
@@ -244,23 +316,26 @@ do_install(){
 
   # Naeste skridt foelger Kom i gang-raekkefoelgen (README) og viser kun det,
   # der reelt mangler - saa kursisten aldrig skal gaette raekkefoelgen selv.
-  printf '\nFaerdig. Naeste skridt (i denne raekkefoelge):\n'
+  printf '\nTrin 3 er faerdigt. Naeste skridt (i denne raekkefoelge):\n'
   local idx=1
   if [ -n "$bp" ] && [ -f "$bp/00-index.md" ]; then
-    log "$idx) Hjernen er bygget og koblet ($bp) - indlaeses ambient fra naeste session"; idx=$((idx+1))
+    log "$idx) Hjernen er bygget og koblet ($bp) - indlaeses ambient fra naeste session   (0 min)"; idx=$((idx+1))
   elif [ -n "$bp" ]; then
-    log "$idx) Byg din company-brain i $bp: paste $PKG_DIR/company-brain-prompt.txt ind i Claude (koblingen staar klar og virker, saa snart hjernen findes)"; idx=$((idx+1))
+    log "$idx) Byg din company-brain i $(short "$bp"): paste $(short "$PKG_DIR")/company-brain-prompt.txt ind i Claude   (ca. 20-30 min)"; idx=$((idx+1))
   else
-    log "$idx) Byg din company-brain: paste $PKG_DIR/company-brain-prompt.txt ind i Claude, peget paa hjernens mappe (fx ~/Documents/company-brain)"; idx=$((idx+1))
-    log "$idx) Kobl hjernen: ./install.sh brain <sti>   (uden koblingen indlaeses den ALDRIG ambient i Claude Code)"; idx=$((idx+1))
+    log "$idx) Byg din company-brain: paste $(short "$PKG_DIR")/company-brain-prompt.txt ind i Claude, peget paa hjernens mappe (fx ~/Documents/company-brain)   (ca. 20-30 min)"; idx=$((idx+1))
+    log "$idx) Kobl hjernen: $(short "$PKG_DIR")/install.sh brain <sti>   (ca. 1 min - uden koblingen indlaeses den ALDRIG ambient)"; idx=$((idx+1))
   fi
-  log "$idx) Udfyld hub-filerne: koer skillene virksomhedsprofil, toneprofil og designretning"; idx=$((idx+1))
-  log "$idx) Tjek det hele: ./install.sh status"
+  log "$idx) Udfyld hub-filerne: koer skillene virksomhedsprofil, toneprofil og designretning   (ca. 15-25 min)"; idx=$((idx+1))
+  log "$idx) Tjek det hele: $(short "$PKG_DIR")/install.sh status   (ca. 1 min)"
+  printf '\n'
+  log "Senere: $(short "$PKG_DIR")/install.sh update   henter nyeste version - ingen git, ingen konto."
   rm -rf "$tmp"
 }
 
 do_status(){
-  [ -f "$STATE" ] || { echo "Ikke installeret (ingen $STATE)"; return 0; }
+  banner
+  [ -f "$STATE" ] || { echo "Ikke installeret endnu (ingen $STATE) - koer install.sh install"; return 0; }
   python3 - "$STATE" <<'PY'
 import json,sys
 d=json.load(open(sys.argv[1]))
@@ -292,7 +367,7 @@ print(sum(1 for s in d.get('managedSkills',[]) if not os.path.isdir(os.path.join
 PY
 )"
   if [ "$mangler" = "0" ]; then
-    log "[OK]      Alle managed skills ligger i $SKILLS_DIR"
+    log "[OK]      Alle managed skills ligger i $(short "$SKILLS_DIR")"
   else
     log "[MANGLER] $mangler managed skills mangler paa disk - koer './install.sh update'"
   fi
@@ -301,7 +376,7 @@ PY
   if [ -z "$bp" ]; then
     log "[MANGLER] Hjerne ikke koblet - koer './install.sh brain <sti-til-company-brain>'"
   elif [ -f "$bp/00-index.md" ]; then
-    log "[OK]      Hjerne koblet: $bp (00-index.md indlaeses ambient)"
+    log "[OK]      Hjerne koblet: $(short "$bp") (00-index.md indlaeses ambient)"
     if [ -f "$bp/identity/virksomhedsprofil.md" ]; then
       log "[OK]      identity/virksomhedsprofil.md - skills kender virksomheden"
     else
@@ -352,17 +427,18 @@ do_update(){
     log "Henter nyeste version fra git..."
     git -C "$REPO_ROOT" pull --ff-only 2>&1 | tail -2 | sed 's/^/  /'
   else
-    log "Ikke en git-mappe. Opdater repo-filerne manuelt (nyt download) foer update."
+    ensure_payload force   # henter altid nyeste arkiv fra sitet - ingen git noedvendig
   fi
   log "Opdaterer til nyeste og afstemmer alt..."
   do_install
 }
 
 case "${1:-install}" in
+  plan)      print_plan;;
   install)   do_install;;
   brain)     do_brain "${2:-}";;
   status)    do_status;;
   uninstall) do_uninstall;;
   update)    do_update;;
-  *) die "ukendt kommando: $1 (install | update | brain <sti> | status | uninstall)";;
+  *) die "ukendt kommando: $1 (plan | install | update | brain <sti> | status | uninstall)";;
 esac
