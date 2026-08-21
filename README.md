@@ -160,15 +160,26 @@ Afdelingens metodegrundlag er kurateret fra [pm-skills](https://github.com/phury
 
 ## Kom i gang - følg rækkefølgen
 
-Fem trin, i DENNE rækkefølge. Så hænger alt sammen fra dag ét:
+Fem trin, i DENNE rækkefølge - ca. 45-60 minutter i alt. Så hænger alt sammen fra dag ét:
+
+| # | Trin | Tid | Hvad det er |
+|---|------|-----|-------------|
+| 1 | Vælg hjernens mappe | ca. 1 min | du vælger mappen |
+| 2 | Byg din company brain | ca. 20-30 min | samtale med Claude, medbring 3-5 dokumenter |
+| 3 | Installér skills-pakken | ca. 2 min | én kommando |
+| 4 | Udfyld hub-filerne | ca. 15-25 min | tre skills, én ad gangen |
+| 5 | Sundhedstjek | ca. 1 min | `install.sh status` |
+
+`install.sh plan` skriver den samme oversigt i terminalen (og i Claude) uden at installere noget.
+
 
 1. **Vælg hjernens mappe.** En synlig mappe, du selv har valgt, fx `~/Documents/company-brain`. Aldrig inde i appens data-mappe (Bibliotek/Application Support).
 2. **Byg hjernen.** Paste `company-brain-prompt.txt` ind i Claude (Cowork/Desktop), peget på mappen fra trin 1. Prompten interviewer dig og bygger struktur + CLAUDE.md.
-3. **Installér skills-pakken.** Claude Code: `./install.sh` - og når installeren spørger, hvor hjernen ligger, svarer du med mappen fra trin 1. Kun Claude Desktop: upload skills som zip i stedet (se nedenfor).
+3. **Installér skills-pakken.** Claude Code: `curl -fsSL https://skills.thomascilius.dk/install.sh | bash` - og når installeren spørger, hvor hjernen ligger, svarer du med mappen fra trin 1. Ingen GitHub-konto, intet login, ingen git. Kun Claude Desktop: upload skills som zip i stedet (se nedenfor).
 4. **Udfyld hub-filerne.** Kør skillene `virksomhedsprofil`, `toneprofil` og `designretning` - så kender alle 76 skills din virksomhed, tone og visuelle retning.
-5. **Tjek det hele:** `./install.sh status` - sundhedstjekket skal vise hjernen koblet og hub-filerne på plads.
+5. **Tjek det hele:** `~/.claude/din-ai-org/install.sh status` - sundhedstjekket skal vise hjernen koblet og hub-filerne på plads.
 
-(Kom du til at bytte om på 2 og 3? Ingen skade sket: `./install.sh brain <sti>` kobler hjernen bagefter. Men følg rækkefølgen, så slipper du for at tænke over det.)
+(Kom du til at bytte om på 2 og 3? Ingen skade sket: `install.sh brain <sti>` kobler hjernen bagefter. Men følg rækkefølgen, så slipper du for at tænke over det.)
 
 **Sådan hænger delene sammen:**
 
@@ -199,22 +210,27 @@ Hjernen er sandheden, skills er medarbejderne, hub-filerne er bindeleddet, og ho
 Den reneste vej: en installer, der lægger skills på plads, husker præcis hvad den selv har lagt, og aldrig rører dine egne skills.
 
 ```bash
-git clone https://github.com/ThomasCilius/din-ai-organisation.git
-cd din-ai-organisation
-./install.sh                  # installer hele pakken
-./install.sh brain <sti>      # kobl din company-brain (ambient genkaldelse)
-./install.sh update           # hent nyeste + geninstaller (afstemmer alt)
-./install.sh status           # sundhedstjek: hooks, Node, hjerne, hub-filer
-./install.sh uninstall        # fjern KUN det, installeren lagde
+curl -fsSL https://skills.thomascilius.dk/install.sh -o din-ai-assistent.sh
+bash din-ai-assistent.sh plan          # de fem trin med cirka tidsforbrug (installerer intet)
+bash din-ai-assistent.sh install       # installer hele pakken
+bash din-ai-assistent.sh brain <sti>   # kobl din company-brain (ambient genkaldelse)
+
+# installeren lægger sig selv ved siden af pakken - derfra er alt ét kald væk:
+~/.claude/din-ai-org/install.sh status      # sundhedstjek: hooks, Node, hjerne, hub-filer
+~/.claude/din-ai-org/install.sh update      # hent nyeste + geninstaller (afstemmer alt)
+~/.claude/din-ai-org/install.sh uninstall   # fjern KUN det, installeren lagde
 ```
 
+- **Ingen konto, intet login, ingen git.** Ligger pakken ikke ved siden af scriptet, henter installeren den som ét arkiv (`releases/din-ai-organisation.tar.gz`) over almindelig https fra `skills.thomascilius.dk`. Derfor nævner prompterne heller ikke GitHub: peger man Claude på en GitHub-URL, griber den efter git eller GitHub-connectoren, og så står kursisten med et login-spørgsmål midt i en installation, der ikke kræver konto.
+- **Plan før handling.** `install.sh plan` viser de fem trin med tidsforbrug. `install` viser samme plan først og markerer, at trin 3 kører nu.
+
 - **Én pakke, ingen valg.** Hele organisationen installeres samlet. Afdelingerne henter kontekst fra de samme hub-filer og afleverer artefakter til hinanden, så en halv installation giver skills, der peger på noget, der ikke er der.
-- **Idempotent opgradering.** `./install.sh update` henter nyeste version (git pull) og **afstemmer alt**: nye skills kommer ind, udgåede fjernes, din brain-sti bevares, og intet af dit eget røres.
+- **Idempotent opgradering.** `~/.claude/din-ai-org/install.sh update` henter nyeste version (arkivet fra sitet, eller `git pull` hvis du kører fra en klon) og **afstemmer alt**: nye skills kommer ind, udgåede fjernes, din brain-sti bevares, og intet af dit eget røres.
 - **Install-state.** Alt noteres som `managed` i `~/.claude/din-ai-org/install-state.json`. Din memory, dine regler og dine egne skills står urørt.
 - **Ren afinstallation.** `uninstall` fjerner kun det, installeren lagde.
 - **Hooks-lag (levende hjerne).** Installeren wirer merge-sikkert seks hooks ind i `settings.json`: **brain-inject** (ambient genkaldelse), **kontinuitet** (session-save/load, "hvor vi slap"), **notify**, **connector-vagt** (`mcp-health`, opdager tabt login på Notion, Gmail, Shopify m.m.) og **brain-guard** (beskytter hjernens kernefiler). `uninstall` fjerner kun vores, aldrig dine andre hooks. Kræver Node. **Kobl hjernen med `./install.sh brain <sti>`** (installeren spørger også selv ved install) - uden koblingen er den ambiente genkaldelse stille slukket. `./install.sh status` viser, om koblingen står rigtigt.
 
-> **Opgraderer du fra v1?** Kør `./install.sh update`. Version 2.0.0 fjerner det gamle udvikler-lag helt - installeren rydder selv de skills, agenter, commands og rules op, som v1 lagde på din maskine. Dine egne filer røres ikke.
+> **Opgraderer du fra v1?** Kør `~/.claude/din-ai-org/install.sh update` (eller hent installeren igen med kommandoen ovenfor). Version 2.0.0 fjerner det gamle udvikler-lag helt - installeren rydder selv de skills, agenter, commands og rules op, som v1 lagde på din maskine. Dine egne filer røres ikke.
 
 ### Claude Desktop
 
@@ -222,27 +238,25 @@ Skills uploades pr. stk. som en zip-fil under **Settings > Capabilities > Skills
 
 ### Claude Code
 
-**Nemmest - lad Claude Code installere.** Indsæt denne ene linje i Claude Code, så klarer den klon og install:
+**Nemmest - lad Claude Code installere.** Indsæt denne i Claude Code. Den viser dig planen først, spørger om du er klar, og installerer derefter:
 
 ```
-Installer din-ai-organisation for mig: klon https://github.com/ThomasCilius/din-ai-organisation (hvis den ikke allerede ligger lokalt), gå ind i klonen og kør ./install.sh install. Spørg mig derefter, hvor min company-brain ligger (eller skal ligge), og kør ./install.sh brain <sti> - uden den kobling indlæses hjernen aldrig ambient. Vis mig til sidst sundhedstjekket fra ./install.sh status.
+Installer Din AI Assistent - ThomasCilius.dk for mig. Alt hentes over almindelig https fra skills.thomascilius.dk: brug IKKE git, gh eller GitHub-connectoren, og bed mig aldrig om at logge ind nogen steder. 1) Hent installeren: curl -fsSL https://skills.thomascilius.dk/install.sh -o ~/Downloads/din-ai-assistent.sh 2) Vis mig planen FØRST: kør 'bash ~/Downloads/din-ai-assistent.sh plan', gengiv de fem trin med cirka tidsforbrug, og spørg om jeg er klar. 3) Når jeg siger ja: 'bash ~/Downloads/din-ai-assistent.sh install'. 4) Spørg derefter, hvor min company-brain ligger (eller skal ligge), og kør 'bash ~/Downloads/din-ai-assistent.sh brain <sti>' - uden den kobling indlæses hjernen aldrig ambient. 5) Vis mig til sidst '~/.claude/din-ai-org/install.sh status' og forklar hver linje, der ikke er [OK].
 ```
 
 **Opdater senere.** Indsæt denne, så henter den nyeste og afstemmer alt:
 
 ```
-Opdater min din-ai-organisation: find den lokale klon af https://github.com/ThomasCilius/din-ai-organisation (klon den hvis den mangler), kør git pull, og kør derefter ./install.sh update. Det henter nyeste og afstemmer alt uden at røre mine egne filer.
+Opdater min Din AI Assistent - ThomasCilius.dk: kør '~/.claude/din-ai-org/install.sh update'. Den henter nyeste version over almindelig https fra skills.thomascilius.dk - ingen git, ingen GitHub-konto, intet login, og den rører ikke mine egne filer. Vis mig bagefter '~/.claude/din-ai-org/install.sh status'.
 ```
 
-**Eller manuelt.** Klon og installer:
+**Eller i terminalen - én linje:**
 
 ```
-git clone https://github.com/ThomasCilius/din-ai-organisation.git
-cd din-ai-organisation
-./install.sh install
+curl -fsSL https://skills.thomascilius.dk/install.sh | bash
 ```
 
-Begge veje giver en **managed, opdaterbar** installation (global i `~/.claude/`), i modsætning til at kopiere skill-mapper løst ind. Derefter henter `./install.sh update` altid nyeste og afstemmer alt.
+Begge veje giver en **managed, opdaterbar** installation (global i `~/.claude/`), i modsætning til at kopiere skill-mapper løst ind. Derefter henter `~/.claude/din-ai-org/install.sh update` altid nyeste og afstemmer alt.
 
 Hver skill-mappe (fx `virksomhedsprofil/`) lægges som en undermappe med sin `SKILL.md` og `references/` intakt.
 
